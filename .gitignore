@@ -17,3 +17,7 @@
 /sisga-parent/sisga-web/.settings/org.eclipse.wst.jsdt.ui.superType.container
 /sisga-parent/sisga-web/.settings/org.eclipse.wst.jsdt.ui.superType.name
 /sisga-parent/sisga-web/.settings/org.eclipse.wst.validation.prefs
+/sisga-parent/sisga-domain/.settings/org.eclipse.core.resources.prefs
+/sisga-parent/sisga-domain/.settings/org.eclipse.jdt.core.prefs
+/sisga-parent/sisga-domain/.settings/org.eclipse.m2e.core.prefs
+/sisga-parent/sisga-core/.settings/*.prefs

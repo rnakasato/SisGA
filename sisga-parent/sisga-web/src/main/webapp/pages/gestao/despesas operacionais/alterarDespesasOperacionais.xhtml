@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Alterar Despesas Operacionais</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+</h:head>
+
+<h:body>
+	<h:form>
+		<div style="margin: 0 auto; height: 100%; width: 100%;">
+			<p:layoutUnit position="top">
+				<ui:include src="/resources/template/header.xhtml" />
+			</p:layoutUnit>
+			<div
+				style="margin: 0 auto; height: 30px; width: 100%; padding: 2px; background-color: #A9A9A9;">
+				<p:breadCrumb>
+					<p:menuitem value="Início" url="../../paginaInicial.xhtml" />
+					<p:menuitem value="Gestão" url="../menuGestao.xhtml" />
+					<p:menuitem value="Despesas Operacionais"
+						url="menuDespesasOperacionais.xhtml" />
+					<p:menuitem value="Alterar Despesas Operacionais"
+						url="alterarDespesasOperacionais.xhtml" />
+				</p:breadCrumb>
+			</div>
+
+			<div style="margin: 0 auto; min-height: 380px; width: 100%;">
+				<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
+				<div
+					style="margin: 0 auto; width: 60%; height: 100%; float: center;">
+					<p:fieldset legend="Alterar Despesa"
+						style="text-align=left; border=1px;">
+						<p:outputLabel id="labelNomeDespesa">Nome da Despesa </p:outputLabel>
+						<h:inputText id="inputNomeDespesa"></h:inputText>
+						<br />
+						<p:outputLabel>Item da Despesa</p:outputLabel>
+						<h:selectOneMenu id="selectMenuItemDespesa">
+							<f:selectItem id="selectMenuItemDespesaProduto"
+								itemLabel="Produto" itemValue="produto" />
+							<f:selectItem id="selectMenuItemDespesaServico"
+								itemLabel="Serviço" itemValue="servico" />
+						</h:selectOneMenu>
+						<br />
+						<p:outputLabel>Tipo da Despesa</p:outputLabel>
+						<h:selectOneMenu id="selectMenuTipoDespesa">
+							<f:selectItem id="selectMenuTipoDespesaOperaciional"
+								itemLabel="Operacional" itemValue="operacional" />
+							<f:selectItem id="selectMenuTipoDespesaOutras"
+								itemLabel="Outras" itemValue="outras" />
+						</h:selectOneMenu>
+						<br />
+						<fieldset style="">
+							<p:outputLabel id="labelQuantidadeDespesa">Quantidade </p:outputLabel>
+							<h:inputText id="inputQuantidadeDespesa"></h:inputText>
+							<br />
+							<p:outputLabel id="labelValorUnitarioDespesa">Valor Unitário </p:outputLabel>
+							<h:inputText id="inputValorUnitarioDespesa"></h:inputText>
+							<br />
+							<p:outputLabel id="labelTotalDespesa">Total: </p:outputLabel>
+							<p:outputLabel id="labelTotalCalculadoDespesa">$$$</p:outputLabel>
+							<br />
+						</fieldset>
+						<fieldset style="">
+							<p:outputLabel id="labelValorServico">Valor do Serviço </p:outputLabel>
+							<h:inputText id="inputValorServico"></h:inputText>
+							<br />
+							<p:outputLabel id="labelDescricaoServico">Descrição </p:outputLabel>
+							<h:inputTextarea id="inputDescricaoServico"></h:inputTextarea>
+							<br />
+						</fieldset>
+						<p:outputLabel id="labelEstadoDespesa">Estado da Despesa </p:outputLabel>
+						<h:selectOneMenu id="selectMenuEstadoDespesa">
+							<f:selectItem id="selectMenuEstadoDespesaPago" itemLabel="Pago" itemValue="pago" />
+							<f:selectItem id="selectMenuEstadoDespesaAPagar" itemLabel="À Pagar" itemValue="apagar" />
+						</h:selectOneMenu>
+				
+						<p:outputLabel> Data da Despesa </p:outputLabel>
+						<p:outputLabel for="popupDataDespesa" value="" />
+						<p:calendar id="popupDataDespesa" value="#{calendarView.date2}" />
+						<br />
+						<p:outputLabel id="labelFornecedorDespesa">Fornecedor </p:outputLabel>
+						<h:inputText id="inputFornecedorDespesa"></h:inputText>
+						<br />
+						<p:outputLabel id="labelTelefoneContatatoDespesa">Tel. Contato </p:outputLabel>
+						<h:inputText id="inputTelefoneContatatoDespesa"></h:inputText>
+						<br />
+						
+						<h:commandButton id="buttonAlterarDespesa" value="Alterar"
+							type="submit" action="#{user.goLoginPage}" />
+						<h:commandButton id="buttonCancelarAlterarDespesa"
+							value="Cancelar" type="submit" action="#{user.goLoginPage}" />
+					</p:fieldset>
+				</div>
+				<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
+
+			</div>
+			<p:layoutUnit position="bottom">
+				<ui:include src="/resources/template/bottom.xhtml" />
+			</p:layoutUnit>
+		</div>
+	</h:form>
+</h:body>
+
+</html>

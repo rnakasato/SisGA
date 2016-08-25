@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Registrar Pedido</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+</h:head>
+
+<h:body>
+	<h:form>
+		<div style="margin: 0 auto; height: 100%; width: 100%;">
+			<p:layoutUnit position="top">
+				<ui:include src="/resources/template/header.xhtml" />
+			</p:layoutUnit>
+			<div
+				style="margin: 0 auto; height: 30px; width: 100%; padding: 2px; background-color: #A9A9A9;">
+				<p:breadCrumb>
+					<p:menuitem value="Início" url="../paginaInicial.xhtml" />
+					<p:menuitem value="Operação" url="menuOperacao.xhtml" />
+					<p:menuitem value="Registrar Pedido" url="registrarPedido.xhtml" />
+				</p:breadCrumb>
+			</div>
+
+			<div style="margin: 0 auto; height: 380px; width: 100%;">
+				<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
+				<div
+					style="margin: 0 auto; width: 60%; height: 140px; float: center;">
+					<p:fieldset legend="Registrar Pedido"
+						style="text-align=left; border=1px;">
+						<p:outputLabel>Cliente </p:outputLabel>
+						<h:selectOneMenu id="nomeCliente">
+							<f:selectItem id="bandeja" itemLabel="por bandeja" itemValue="1" />
+							<f:selectItem id="lata" itemLabel="lata" itemValue="2" />
+						</h:selectOneMenu>
+						<p:outputLabel> Data de Entrega </p:outputLabel>
+						<p:outputLabel for="popup" value="Popup:" />
+						<p:calendar id="popup" value="#{calendarView.date2}" />
+						<br />
+						<h:button>Adicionar Produto</h:button>
+						<p:dataTable var="car" value="#{dtBasicView.cars}">
+							<p:column headerText="Id">
+								<h:outputText value="#{car.id}" />
+							</p:column>
+
+							<p:column headerText="Year">
+								<h:outputText value="#{car.year}" />
+							</p:column>
+
+							<p:column headerText="Brand">
+								<h:outputText value="#{car.brand}" />
+							</p:column>
+
+							<p:column headerText="Color">
+								<h:outputText value="#{car.color}" />
+							</p:column>
+						</p:dataTable>
+						<h:button>Registrar</h:button>
+						<h:button>Cancelar</h:button>
+						<h:button>Voltar</h:button>
+
+
+					</p:fieldset>
+				</div>
+				<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
+
+			</div>
+			<p:layoutUnit position="bottom">
+				<ui:include src="/resources/template/bottom.xhtml" />
+			</p:layoutUnit>
+		</div>
+	</h:form>
+</h:body>
+
+</html>

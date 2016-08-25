@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Consultar Produtos</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+</h:head>
+
+<h:body>
+	<h:form>
+		<div style="margin: 0 auto; height: 100%; width: 100%;">
+			<p:layoutUnit position="top">
+				<ui:include src="/resources/template/header.xhtml" />
+			</p:layoutUnit>
+			<div
+				style="margin: 0 auto; height: 30px; width: 100%; padding: 2px; background-color: #A9A9A9;">
+				<p:breadCrumb>
+					<p:menuitem value="Início" url="../../paginaInicial.xhtml" />
+					<p:menuitem value="Gestão" url="../menuGestao.xhtml" />
+					<p:menuitem value="Produto" url="menuProdutos.xhtml" />
+					<p:menuitem value="Consultar Produto" url="consultarProdutos.xhtml" />
+				</p:breadCrumb>
+			</div>
+
+			<div style="margin: 0 auto; min-height: 380px; width: 100%;">
+				<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
+				<div
+					style="margin: 0 auto; width: 95%; height: 100%; float: center;">
+					<p:fieldset legend="Consultar Produto"
+						style="text-align=left; border=1px;">
+						<p:outputLabel for="inputBuscarProduto" value="Buscar Produto " />
+						<h:inputText id="inputBuscarProduto"></h:inputText>
+						<h:commandButton id="buttonBuscarProduto" value="Buscar"
+							type="submit" action="#{user.goLoginPage}" />
+						<br />
+						<p:outputLabel for="selectOneMenuProducaoPor"
+							value="Produção por " />
+						<h:selectOneMenu id="selectOneMenuProducaoPor">
+							<f:selectItem id="selectOneMenuMuda" itemLabel="Muda"
+								itemValue="muda" />
+							<f:selectItem id="selectOneMenuSemente" itemLabel="Semente"
+								itemValue="semente" />
+						</h:selectOneMenu>
+						<p:outputLabel for="selectOneMenuVendaPor" value="Venda por  " />
+						<h:selectOneMenu id="selectOneMenuVendaPor">
+							<f:selectItem id="selectOneMenuVendaPorCaixa" itemLabel="Caixa"
+								itemValue="caixa" />
+							<f:selectItem id="selectOneMenuVendaPorLata" itemLabel="Lata"
+								itemValue="lata" />
+						</h:selectOneMenu>
+						<h:commandButton id="buttonLimparFiltrosProduto"
+							value="Limpar Filtros" type="submit" action="#{user.goLoginPage}" />
+						<br />
+
+					</p:fieldset>
+					<h:dataTable id="table1" value="#{shoppingCartBean.items}"
+						var="item" border="1">
+						<f:facet name="header">
+							<h:outputText value="Your Shopping Cart" />
+						</f:facet>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Item Description" />
+							</f:facet>
+							<h:outputText value="#{item.description}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Price" />
+							</f:facet>
+							<h:outputText value="#{item.price}" />
+						</h:column>
+						<f:facet name="footer">
+							<h:outputText value="Total: #{shoppingCartBean.total}" />
+						</f:facet>
+					</h:dataTable>
+
+				</div>
+				<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
+
+			</div>
+			<p:layoutUnit position="bottom">
+				<ui:include src="/resources/template/bottom.xhtml" />
+			</p:layoutUnit>
+		</div>
+	</h:form>
+</h:body>
+
+</html>

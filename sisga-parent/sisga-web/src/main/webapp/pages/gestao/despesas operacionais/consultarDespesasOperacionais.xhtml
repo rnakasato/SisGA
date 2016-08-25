@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Consultar Despesas Operacionais</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+</h:head>
+
+<h:body>
+	<h:form>
+		<div style="margin: 0 auto; height: 100%; width: 100%;">
+			<p:layoutUnit position="top">
+				<ui:include src="/resources/template/header.xhtml" />
+			</p:layoutUnit>
+			<div
+				style="margin: 0 auto; height: 30px; width: 100%; padding: 2px; background-color: #A9A9A9;">
+				<p:breadCrumb>
+					<p:menuitem value="Início" url="../../paginaInicial.xhtml" />
+					<p:menuitem value="Gestão" url="../menuGestao.xhtml" />
+					<p:menuitem value="Despesas Operacionais"
+						url="menuDespesasOperacionais.xhtml" />
+					<p:menuitem value="Consultar Despesas Operacionais"
+						url="consultarDespesasOperacionais.xhtml" />
+				</p:breadCrumb>
+			</div>
+
+			<div style="margin: 0 auto; height: 380px; width: 100%;">
+				<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
+				<div
+					style="margin: 0 auto; width: 95%; height: 140px; float: center;">
+					<p:fieldset legend="Consultar Despesas Operacionais"
+						style="text-align=left; border=1px;">
+						<p:outputLabel>Buscar despesas </p:outputLabel>
+						<h:inputText id="buscarDespesas"></h:inputText>
+						<h:commandButton id="buttonBuscarDespesas" value="Buscar"
+							type="submit" action="#{user.goLoginPage}" />
+						<br />
+						<p:outputLabel for="selectOneMenuItemDespesa"
+							value="Item da Despesa " />
+						<h:selectOneMenu id="selectOneMenuItemDespesa">
+							<f:selectItem id="selectOneMenuItemDespesaProduto"
+								itemLabel="Produto" itemValue="produto" />
+							<f:selectItem id="selectOneMenuItemDespesaServico"
+								itemLabel="Serviço" itemValue="servico" />
+						</h:selectOneMenu>
+						<p:outputLabel for="selectOneMenuTipoDespesa"
+							value="Tipo da Despesa " />
+						<h:selectOneMenu id="selectOneMenuTipoDespesa">
+							<f:selectItem id="selectOneMenuTipoDespesaOperacional"
+								itemLabel="Operacional" itemValue="operacional" />
+							<f:selectItem id="selectOneMenuItemDespesaOutros"
+								itemLabel="Outros" itemValue="outro" />
+						</h:selectOneMenu>
+						<br />
+						<p:outputLabel for="selectOneMenuEstadoDespesa" value="Estado " />
+						<h:selectOneMenu id="selectOneMenuEstadoDespesa">
+							<f:selectItem id="selectOneMenuEstadoDespesaPago"
+								itemLabel="Pago" itemValue="pago" />
+							<f:selectItem id="selectOneMenuEstadoDespesaAPagar"
+								itemLabel="À pagar" itemValue="apagar" />
+						</h:selectOneMenu>
+
+						<h:commandButton id="buttonLimparFiltrosDespesas"
+							value="Limpar Filtros" type="submit" action="#{user.goLoginPage}" />
+						<br />
+					</p:fieldset>
+
+					<h:dataTable id="table1" value="#{shoppingCartBean.items}"
+						var="item" border="1">
+						<f:facet name="header">
+							<h:outputText value="Your Shopping Cart" />
+						</f:facet>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Item Description" />
+							</f:facet>
+							<h:outputText value="#{item.description}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Price" />
+							</f:facet>
+							<h:outputText value="#{item.price}" />
+						</h:column>
+						<f:facet name="footer">
+							<h:outputText value="Total: #{shoppingCartBean.total}" />
+						</f:facet>
+					</h:dataTable>
+
+				</div>
+				<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
+
+			</div>
+			<p:layoutUnit position="bottom">
+				<ui:include src="/resources/template/bottom.xhtml" />
+			</p:layoutUnit>
+		</div>
+	</h:form>
+</h:body>
+
+</html>

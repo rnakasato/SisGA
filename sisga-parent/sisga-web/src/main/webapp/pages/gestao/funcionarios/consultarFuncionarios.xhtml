@@ -48,26 +48,43 @@
 							value="Limpar Filtros" type="submit" action="#{user.goLoginPage}" />
 						<br />
 					</p:fieldset>
-					<h:dataTable id="table1" value="#{shoppingCartBean.items}"
-						var="item" border="1">
-						<f:facet name="header">
-							<h:outputText value="Your Shopping Cart" />
-						</f:facet>
+					<h:dataTable id="tableConsultaFuncionarios"
+						value="#{consultaFuncionariosBean.consultar}" var="funcionario" border="1">
 						<h:column>
 							<f:facet name="header">
-								<h:outputText value="Item Description" />
+								<h:outputText value="Funcionario" />
 							</f:facet>
-							<h:outputText value="#{item.description}" />
+							<h:outputText value="#{funcionario.nome}" />
 						</h:column>
 						<h:column>
 							<f:facet name="header">
-								<h:outputText value="Price" />
+								<h:outputText value="Salário" />
 							</f:facet>
-							<h:outputText value="#{item.price}" />
+							<h:outputText value="#{funcionario.salario}" />
 						</h:column>
-						<f:facet name="footer">
-							<h:outputText value="Total: #{shoppingCartBean.total}" />
-						</f:facet>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Telefone" />
+							</f:facet>
+							<h:outputText value="#{funcionario.telefone}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Celular" />
+							</f:facet>
+							<h:outputText value="#{funcionario.celular}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Operação" />
+							</f:facet>
+							<h:commandButton id="buttonAlterarFuncionario" value="Alterar"
+								type="submit" action="#{consultaFuncionariosBean.alterar}" />
+							<h:commandButton id="buttonExcluirFuncionario" value="Excluir"
+								type="submit" action="#{consultaFuncionariosBean.excluir}" />
+							<h:commandButton id="buttonDetalhesFuncionario" value="Detalhes"
+								type="submit" action="#{consultaFuncionariosBean.detalhar}" />
+						</h:column>
 					</h:dataTable>
 				</div>
 				<div style="margin: 0 auto; width: 100%; height: 50px;"></div>

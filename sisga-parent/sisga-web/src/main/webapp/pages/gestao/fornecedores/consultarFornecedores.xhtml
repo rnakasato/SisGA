@@ -40,26 +40,37 @@
 							type="submit" action="#{user.goLoginPage}" />
 						<br />
 					</p:fieldset>
-					<h:dataTable id="table1" value="#{shoppingCartBean.items}"
-						var="item" border="1">
-						<f:facet name="header">
-							<h:outputText value="Your Shopping Cart" />
-						</f:facet>
+					<h:dataTable id="tableConsultaFornecedores"
+						value="#{consultaFornecedoresBean.consultar}" var="fornecedor" border="1">
 						<h:column>
 							<f:facet name="header">
-								<h:outputText value="Item Description" />
+								<h:outputText value="Fornecedor" />
 							</f:facet>
-							<h:outputText value="#{item.description}" />
+							<h:outputText value="#{fornecedor.nome}" />
 						</h:column>
 						<h:column>
 							<f:facet name="header">
-								<h:outputText value="Price" />
+								<h:outputText value="Telefone" />
 							</f:facet>
-							<h:outputText value="#{item.price}" />
+							<h:outputText value="#{fornecedor.telefone}" />
 						</h:column>
-						<f:facet name="footer">
-							<h:outputText value="Total: #{shoppingCartBean.total}" />
-						</f:facet>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Celular" />
+							</f:facet>
+							<h:outputText value="#{fornecedor.celular}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Operação" />
+							</f:facet>
+							<h:commandButton id="buttonAlterarFornecedor" value="Alterar"
+								type="submit" action="#{consultaFornecedoresBean.alterar}" />
+							<h:commandButton id="buttonExcluirFornecedor" value="Excluir"
+								type="submit" action="#{consultaFornecedoresBean.excluir}" />
+							<h:commandButton id="buttonDetalhesFornecedor" value="Detalhes"
+								type="submit" action="#{consultaFornecedoresBean.detalhar}" />
+						</h:column>
 					</h:dataTable>
 				</div>
 				<div style="margin: 0 auto; width: 100%; height: 50px;"></div>

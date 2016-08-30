@@ -70,26 +70,55 @@
 						<br />
 					</p:fieldset>
 
-					<h:dataTable id="table1" value="#{shoppingCartBean.items}"
-						var="item" border="1">
-						<f:facet name="header">
-							<h:outputText value="Your Shopping Cart" />
-						</f:facet>
+					<h:dataTable id="tableConsultaDespesas"
+						value="#{consultaDespesasBean.consultar}" var="despesa" border="1">
 						<h:column>
 							<f:facet name="header">
-								<h:outputText value="Item Description" />
+								<h:outputText value="Nome da Despesa" />
 							</f:facet>
-							<h:outputText value="#{item.description}" />
+							<h:outputText value="#{despesa.nome}" />
 						</h:column>
 						<h:column>
 							<f:facet name="header">
-								<h:outputText value="Price" />
+								<h:outputText value="Item da Despesa" />
 							</f:facet>
-							<h:outputText value="#{item.price}" />
+							<h:outputText value="#{despesa.item}" />
 						</h:column>
-						<f:facet name="footer">
-							<h:outputText value="Total: #{shoppingCartBean.total}" />
-						</f:facet>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Tipo da Despesa" />
+							</f:facet>
+							<h:outputText value="#{despesa.tipo}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Total da Despesa" />
+							</f:facet>
+							<h:outputText value="#{despesa.total}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Total Pago" />
+							</f:facet>
+							<h:outputText value="#{despesa.totalPago}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Estado" />
+							</f:facet>
+							<h:outputText value="#{despesa.estado}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Operação" />
+							</f:facet>
+							<h:commandButton id="buttonAlterarDespesa" value="Alterar"
+								type="submit" action="#{consultaDespesasBean.alterar}" />
+							<h:commandButton id="buttonExcluirDespesa" value="Excluir"
+								type="submit" action="#{consultaDespesasBean.excluir}" />
+							<h:commandButton id="buttonDetalhesDespesa" value="Detalhes"
+								type="submit" action="#{consultaDespesasBean.detalhar}" />
+						</h:column>
 					</h:dataTable>
 
 				</div>

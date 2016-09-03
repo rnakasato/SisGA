@@ -51,23 +51,47 @@
 						<br />
 						<h:button>Buscar</h:button>
 						<h:button>Limpar Filtros</h:button>
-						<p:dataTable var="car" value="#{dtBasicView.cars}">
-							<p:column headerText="Id">
-								<h:outputText value="#{car.id}" />
-							</p:column>
+						<h:dataTable id="tableConsultarPedido"
+							value="#{consultarPedidoBean.pedidos}" var="pedido" border="1">
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Numero" />
+								</f:facet>
+								<h:outputText value="#{pedido.id}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Cliente" />
+								</f:facet>
+								<h:outputText value="#{pedido.cliente}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Data de Entrega" />
+								</f:facet>
+								<h:outputText value="#{pedido.dataEntrega}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Estado" />
+								</f:facet>
+								<h:outputText value="#{pedido.estado}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Operação" />
+								</f:facet>
+								<h:commandButton id="buttonDetalhesPedido" value="Detalhes"
+									type="submit" action="#{consultarPedidoBean.detalhar}" />
+								<h:commandButton id="buttonAlterarPedido" value="Alterar"
+									type="submit" action="#{consultarPedidoBean.alterar}" />
+								<h:commandButton id="buttonEntregarPedido" value="Entregar"
+									type="submit" action="#{consultarPedidoBean.entregar}" />
+								<h:commandButton id="buttonCancelarPedido" value="Cancelar"
+									type="submit" action="#{consultarPedidoBean.cancelar}" />
 
-							<p:column headerText="Year">
-								<h:outputText value="#{car.year}" />
-							</p:column>
-
-							<p:column headerText="Brand">
-								<h:outputText value="#{car.brand}" />
-							</p:column>
-
-							<p:column headerText="Color">
-								<h:outputText value="#{car.color}" />
-							</p:column>
-						</p:dataTable>
+							</h:column>
+						</h:dataTable>
 						<h:button>Voltar</h:button>
 
 

@@ -4,9 +4,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 @SessionScoped
-@ManagedBean(name="paginaInicial")
+@ManagedBean(name="headerBeans")
 
-public class PaginaInicialBeans {
+public class HeaderBeans {
 	private String nome = "Nome da Empresa";
 	private String telefone = "XXXX-XXXX";
 	private String endereco = "XXX, XXX, XXX";

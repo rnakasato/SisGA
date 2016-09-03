@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Resumo de Produção</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+</h:head>
+
+<h:body>
+	<h:form>
+		<div style="margin: 0 auto; height: 100%; width: 100%;">
+			<p:layoutUnit position="top">
+				<ui:include src="/resources/template/header.xhtml" />
+			</p:layoutUnit>
+			<div
+				style="margin: 0 auto; height: 30px; width: 100%; padding: 2px; background-color: #A9A9A9;">
+				<p:breadCrumb>
+					<p:menuitem value="Início" url="../paginaInicial.xhtml" />
+					<p:menuitem value="Relatorio" url="menuRelatorio.xhtml" />
+					<p:menuitem value="Resumo de Produção" url="resumoProducao.xhtml" />
+				</p:breadCrumb>
+			</div>
+
+			<div style="margin: 0 auto; min-height: 380px; width: 100%;">
+				<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
+				<div
+					style="margin: 0 auto; width: 95%; height: 100%; float: center;">
+					<p:fieldset legend="Filtros de Resumo de Produção"
+						style="text-align=left; border=1px;">
+
+						<h:outputLabel for="selectCheckboxMenuAno" value="Ano: " />
+						<p:selectCheckboxMenu id="selectCheckboxMenuAno"
+							value="#{resumoProducaoBeans.anosSelecionados}" label="Ano	"
+							filter="true" filterMatchMode="startsWith"
+							panelStyle="width:250px">
+							<f:selectItems value="#{resumoProducaoBeans.anos}" />
+						</p:selectCheckboxMenu>
+						<br />
+						<h:outputLabel for="selectCheckboxMenuMes" value="Mês: " />
+						<p:selectCheckboxMenu id="selectCheckboxMenuMes"
+							value="#{resumoProducaoBeans.mesesSelecionados}" label="Mês	"
+							filter="true" filterMatchMode="startsWith"
+							panelStyle="width:250px">
+							<f:selectItems value="#{resumoProducaoBeans.meses}" />
+						</p:selectCheckboxMenu>
+						<br />
+						<h:outputLabel for="selectManyCheckboxProdutos" value="Produtos: " />
+						<p:selectManyCheckbox id="selectManyCheckboxProdutos"
+							value="#{resumoProducaoBeans.produtosSelecionados}"
+							layout="grid" columns="3">
+							<f:selectItems value="#{resumoProducaoBeans.produtos}"
+								var="produtos" itemLabel="#{produtos}" itemValue="#{produtos}" />
+						</p:selectManyCheckbox>
+						<br />
+						<h:commandButton id="buttonGerarPDFResumoProducao"
+							value="Gerar PDF" type="submit"
+							action="#{resumoProducaoBeans.gerarPDF}" />
+						<h:commandButton id="buttonImprimirTelaResumoProducao"
+							value="Imprimir na Tela" type="submit"
+							action="#{resumoProducaoBeans.imprimirNaTela}" />
+					</p:fieldset>
+
+				</div>
+				<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
+
+			</div>
+			<p:layoutUnit position="bottom">
+				<ui:include src="/resources/template/bottom.xhtml" />
+			</p:layoutUnit>
+		</div>
+	</h:form>
+</h:body>
+
+</html>

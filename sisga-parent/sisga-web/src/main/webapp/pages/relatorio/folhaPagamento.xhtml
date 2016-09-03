@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Folha de Pagamento</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+</h:head>
+
+<h:body>
+	<h:form>
+		<div style="margin: 0 auto; height: 100%; width: 100%;">
+			<p:layoutUnit position="top">
+				<ui:include src="/resources/template/header.xhtml" />
+			</p:layoutUnit>
+			<div
+				style="margin: 0 auto; height: 30px; width: 100%; padding: 2px; background-color: #A9A9A9;">
+				<p:breadCrumb>
+					<p:menuitem value="Início" url="../paginaInicial.xhtml" />
+					<p:menuitem value="Relatorio" url="menuRelatorio.xhtml" />
+					<p:menuitem value="Follha de Pagamento" url="folhaPagamento.xhtml" />
+				</p:breadCrumb>
+			</div>
+
+			<div style="margin: 0 auto; min-height: 380px; width: 100%;">
+				<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
+				<div
+					style="margin: 0 auto; width: 95%; height: 100%; float: center;">
+					<p:fieldset legend="Filtros de Folha de Pagamento"
+						style="text-align=left; border=1px;">
+
+						<h:outputLabel for="selectCheckboxMenuAno" value="Ano: " />
+						<p:selectCheckboxMenu id="selectCheckboxMenuAno"
+							value="#{folhaPagamentoBeans.anosSelecionados}" label="Ano	"
+							filter="true" filterMatchMode="startsWith"
+							panelStyle="width:250px">
+							<f:selectItems value="#{folhaPagamentoBeans.anos}" />
+						</p:selectCheckboxMenu>
+						<br />
+						<h:outputLabel for="selectCheckboxMenuMes" value="Mês: " />
+						<p:selectCheckboxMenu id="selectCheckboxMenuMes"
+							value="#{folhaPagamentoBeans.mesesSelecionados}" label="Mês	"
+							filter="true" filterMatchMode="startsWith"
+							panelStyle="width:250px">
+							<f:selectItems value="#{folhaPagamentoBeans.meses}" />
+						</p:selectCheckboxMenu>
+						<br />
+						<h:outputLabel for="selectManyCheckboxFuncionarios" value="Funcionários: " />
+						<p:selectManyCheckbox id="selectManyCheckboxFuncionarios"
+							value="#{folhaPagamentoBeans.funcionariosSelecionados}"
+							layout="grid" columns="3">
+							<f:selectItems value="#{folhaPagamentoBeans.funcionarios}"
+								var="funcionarios" itemLabel="#{funcionarios}" itemValue="#{funcionarios}" />
+						</p:selectManyCheckbox>
+						<br />
+						<p:outputLabel id="labelselectManyCheckboxTipo">Tipo:  </p:outputLabel>
+						<p:selectManyCheckbox id="selectManyCheckboxTipo">
+							<f:selectItem itemLabel="Bônus" itemValue="bonus" />
+							<f:selectItem itemLabel="Salário" itemValue="salario" />
+							<f:selectItem itemLabel="13º" itemValue="decimoTerceiro" />
+						</p:selectManyCheckbox>
+						<br />
+						<h:commandButton id="buttonGerarPDFFolhaPagamento"
+							value="Gerar PDF" type="submit"
+							action="#{folhaPagamentoBeans.gerarPDF}" />
+						<h:commandButton id="buttonImprimirTelaFolhaPagamento"
+							value="Imprimir na Tela" type="submit"
+							action="#{folhaPagamentoBeans.imprimirNaTela}" />
+					</p:fieldset>
+
+					<h:dataTable id="tableFolhaPagamento"
+						value="#{folhaPagamentoBeans.consultar}" var="folhaPagamento"
+						border="1">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Meses/Ano" />
+							</f:facet>
+							<h:outputText value="#{folhaPagamento.mesAno}" />
+						</h:column>
+						<h:column id="columnFuncionario">
+							<f:facet name="header">
+								<h:outputText value="#(folhaPagamento.colunas)" />
+							</f:facet>
+							<h:outputText value="#{folhaPagamento.linhas}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Total" />
+							</f:facet>
+							<h:outputText value="#{folhaPagamento.total}" />
+						</h:column>
+					</h:dataTable>
+
+				</div>
+				<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
+
+			</div>
+			<p:layoutUnit position="bottom">
+				<ui:include src="/resources/template/bottom.xhtml" />
+			</p:layoutUnit>
+		</div>
+	</h:form>
+</h:body>
+
+</html>

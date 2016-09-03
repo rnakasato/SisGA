@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Pagamento de Fornecedores</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+</h:head>
+
+<h:body>
+	<h:form>
+		<div style="margin: 0 auto; height: 100%; width: 100%;">
+			<p:layoutUnit position="top">
+				<ui:include src="/resources/template/header.xhtml" />
+			</p:layoutUnit>
+			<div
+				style="margin: 0 auto; height: 30px; width: 100%; padding: 2px; background-color: #A9A9A9;">
+				<p:breadCrumb>
+					<p:menuitem value="Início" url="../paginaInicial.xhtml" />
+					<p:menuitem value="Relatorio" url="menuRelatorio.xhtml" />
+					<p:menuitem value="Pagamento de Fornecedores"
+						url="pagamentoFornecedores.xhtml" />
+				</p:breadCrumb>
+			</div>
+
+			<div style="margin: 0 auto; min-height: 380px; width: 100%;">
+				<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
+				<div
+					style="margin: 0 auto; width: 95%; height: 100%; float: center;">
+					<p:fieldset legend="Filtros de Pagamento de Fornecedores"
+						style="text-align=left; border=1px;">
+
+						<p:fieldset legend="Data Vencimento"
+							style="text-align=left; border=1px;">
+
+							<h:outputLabel for="selectCheckboxMenuAnoVencimento" value="Ano: " />
+							<p:selectCheckboxMenu id="selectCheckboxMenuAnoVencimento"
+								value="#{pagamentoFornecedoresBeans.anosVencimentoSelecionados}" label="Ano		"
+								filter="true" filterMatchMode="startsWith"
+								panelStyle="width:250px">
+								<f:selectItems value="#{pagamentoFornecedoresBeans.anosVencimento}" />
+							</p:selectCheckboxMenu>
+							<br />
+							<h:outputLabel for="selectCheckboxMenuMesVencimento" value="Mês: " />
+							<p:selectCheckboxMenu id="selectCheckboxMenuMesVencimento"
+								value="#{pagamentoFornecedoresBeans.mesesVencimentoSelecionados}" label="Mês	"
+								filter="true" filterMatchMode="startsWith"
+								panelStyle="width:250px">
+								<f:selectItems value="#{pagamentoFornecedoresBeans.mesesVencimento}" />
+							</p:selectCheckboxMenu>
+							<br />
+						</p:fieldset>
+
+						<p:fieldset legend="Data Pagamento"
+							style="text-align=left; border=1px;">
+
+							<h:outputLabel for="selectCheckboxMenuAnoPagamento" value="Ano: " />
+							<p:selectCheckboxMenu id="selectCheckboxMenuAnoPagamento"
+								value="#{pagamentoFornecedoresBeans.anosPagamentoSelecionados}" label="Ano"
+								filter="true" filterMatchMode="startsWith"
+								panelStyle="width:250px">
+								<f:selectItems value="#{pagamentoFornecedoresBeans.anosPagamento}" />
+							</p:selectCheckboxMenu>
+							<br />
+							<h:outputLabel for="selectCheckboxMenuMesPagamento" value="Mês: " />
+							<p:selectCheckboxMenu id="selectCheckboxMenuMesPagamento"
+								value="#{pagamentoFornecedoresBeans.mesesPagamentoSelecionados}" label="Mês"
+								filter="true" filterMatchMode="startsWith"
+								panelStyle="width:250px">
+								<f:selectItems value="#{pagamentoFornecedoresBeans.mesesPagamento}" />
+							</p:selectCheckboxMenu>
+							<br />
+						</p:fieldset>
+						<h:outputLabel for="selectManyCheckboxFornecedores" value="Fornecedores: " />
+						<p:selectManyCheckbox id="selectManyCheckboxFornecedores"
+							value="#{pagamentoFornecedoresBeans.fornecedoresSelecionados}"
+							layout="grid" columns="3">
+							<f:selectItems value="#{pagamentoFornecedoresBeans.fornecedores}"
+								var="fornecedores" itemLabel="#{fornecedores}" itemValue="#{fornecedores}" />
+						</p:selectManyCheckbox>
+						<br />
+						<p:outputLabel id="labelselectManyCheckboxStatus">Status:  </p:outputLabel>
+						<p:selectManyCheckbox id="selectManyCheckboxStatus">
+							<f:selectItem itemLabel="Pago" itemValue="pago" />
+							<f:selectItem itemLabel="Pendente" itemValue="pendente" />
+						</p:selectManyCheckbox>
+						<br />
+						<h:commandButton id="buttonGerarPDFPagamentoFornecedores"
+							value="Gerar PDF" type="submit"
+							action="#{PagamentoFornecedoresBeans.gerarPDF}" />
+						<h:commandButton id="buttonImprimirTelaPagamentoFornecedores"
+							value="Imprimir na Tela" type="submit"
+							action="#{pagamentoFornecedoresBeans.imprimirNaTela}" />
+					</p:fieldset>
+
+					<h:dataTable id="tablePagamentoFornecedores"
+						value="#{pagamentoFornecedoresBeans.consultarPagamentoFornecedores}" var="pagamentoFornecedores"
+						border="1">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Vencimentos" />
+							</f:facet>
+							<h:outputText value="#{pagamentoFornecedores.vencimentos}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Fornecedor" />
+							</f:facet>
+							<h:outputText value="#{pagamentoFornecedores.fornecedor}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Valor (R$)" />
+							</f:facet>
+							<h:outputText value="#{pagamentoFornecedores.valor}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Status" />
+							</f:facet>
+							<h:outputText value="#{pagamentoFornecedores.status}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Data Pagamento" />
+							</f:facet>
+							<h:outputText value="#{pagamentoFornecedores.dataPagamento}" />
+						</h:column>
+					</h:dataTable>
+				</div>
+				<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
+
+			</div>
+			<p:layoutUnit position="bottom">
+				<ui:include src="/resources/template/bottom.xhtml" />
+			</p:layoutUnit>
+		</div>
+	</h:form>
+</h:body>
+
+</html>

@@ -39,23 +39,43 @@
 						<p:calendar id="popup" value="#{calendarView.date2}" />
 						<br />
 						<h:button>Adicionar Produto</h:button>
-						<p:dataTable var="car" value="#{dtBasicView.cars}">
-							<p:column headerText="Id">
-								<h:outputText value="#{car.id}" />
-							</p:column>
-
-							<p:column headerText="Year">
-								<h:outputText value="#{car.year}" />
-							</p:column>
-
-							<p:column headerText="Brand">
-								<h:outputText value="#{car.brand}" />
-							</p:column>
-
-							<p:column headerText="Color">
-								<h:outputText value="#{car.color}" />
-							</p:column>
-						</p:dataTable>
+						<h:dataTable id="tableAlterarPedido"
+							value="#{alterarPedidoBean.carrinhoCompra}" var="produto"
+							border="1">
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Produto" />
+								</f:facet>
+								<h:outputText value="#{produto.nome}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Quantidade" />
+								</f:facet>
+								<h:outputText value="#{produto.quantidade}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Valor Unitário" />
+								</f:facet>
+								<h:outputText value="#{produto.valorUnitário}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Valor Total" />
+								</f:facet>
+								<h:outputText value="#{produto.valorTotal}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Operação" />
+								</f:facet>
+								<h:commandButton id="buttonAlterarProduto" value="Alterar"
+									type="submit" action="#{alterarPedidoBean.alterar}" />
+								<h:commandButton id="buttonRemoverProduto" value="Remover"
+									type="submit" action="#{alterarPedidoBean.remover}" />
+							</h:column>
+						</h:dataTable>
 						<h:button>Registrar</h:button>
 						<h:button>Cancelar</h:button>
 						<h:button>Voltar</h:button>

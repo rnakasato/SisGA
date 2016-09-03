@@ -2,35 +2,67 @@ package com.sisga.core.dao.impl;
 
 import org.hibernate.Session;
 
-import com.sisga.core.dao.IDAO;
+import com.sisga.core.IDAO;
 import com.sisga.core.hibernate.HibernateUtil;
 import com.sisga.domain.AbstractEntity;
 
 public abstract class AbstractDAO<T extends AbstractEntity> implements IDAO<T> {
-	private static Session session;
+	protected Session session;
 
 	@Override
-	public void save(T entity) {
-		session.save(entity);
+	public void save(T entity) throws Exception{
+		try {
+			openSession();
+			session.save(entity);
+			closeSession();
+		} catch (Exception e) {
+			e.printStackTrace();
+			cancelSession();
+			throw e;
+		}
+
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-	public T find(T entity) {
-		Class clazz = entity.getClass();
+	public T findById(T entity) throws Exception {
 		T result = null;
-		result = (T) session.find(clazz, entity.getId());
+		try {
+			openSession();
+			Class clazz = entity.getClass();			
+			result = (T) session.find(clazz, entity.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+			cancelSession();
+			throw e;
+		}
 		return result;
 	}
 
 	@Override
-	public void delete(T entity) {
-		session.delete(entity);
+	public void delete(T entity) throws Exception {
+		try {
+			openSession();
+			session.delete(entity);
+			closeSession();
+		} catch (Exception e) {
+			e.printStackTrace();
+			cancelSession();
+			throw e;
+		}
 	}
 
 	@Override
-	public void update(T entity) {
-		session.update(entity);
+	public void update(T entity) throws Exception {
+		try {
+			openSession();
+			session.update(entity);
+			closeSession();
+		} catch (Exception e) {
+			e.printStackTrace();
+			cancelSession();
+			throw e;
+		}
 	}
 
 	public void openSession() {

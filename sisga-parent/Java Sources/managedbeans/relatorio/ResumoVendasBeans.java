@@ -1,4 +1,4 @@
-package managedbeans;
+package managedbeans.relatorio;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -7,14 +7,14 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 @SessionScoped
-@ManagedBean(name="vendasDiariasClienteBeans")
+@ManagedBean(name="resumoVendasBeans")
 
 
-public class VendasDiariasClienteBeans {
+public class ResumoVendasBeans {
          
-    private String[] anosSelecionados, mesesSelecionados, produtosSelecionados, clientesSelecionados;   
+    private String[] anosSelecionados, mesesSelecionados, produtosSelecionados;   
     
-	private List<String> anos, meses, produtos, clientes;
+	private List<String> anos, meses, produtos;
      
     @PostConstruct
     public void init() {
@@ -51,11 +51,6 @@ public class VendasDiariasClienteBeans {
         produtos.add("Pudim");
         produtos.add("Torta");
         
-        clientes = new ArrayList<String>();
-        clientes.add("João");
-        clientes.add("Pedro");
-        clientes.add("Julia");
-        
     }
  
     public String[] getAnosSelecionados() {
@@ -91,16 +86,4 @@ public class VendasDiariasClienteBeans {
     public List<String> getProdutos() {
         return produtos;
     }
-
-	public String[] getClientesSelecionados() {
-		return clientesSelecionados;
-	}
-
-	public void setClientesSelecionados(String[] selectedClientes) {
-		this.clientesSelecionados = selectedClientes;
-	}
-
-	public List<String> getClientes() {
-		return clientes;
-	}
 }

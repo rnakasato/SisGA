@@ -17,14 +17,13 @@
 			<p:layoutUnit position="top">
 				<ui:include src="/resources/template/header.xhtml" />
 			</p:layoutUnit>
-			<div
-				style="margin: 0 auto; height: 30px; width: 100%; padding: 2px; background-color: #A9A9A9;">
-				<p:breadCrumb>
-					<p:menuitem value="Início" url="../../paginaInicial.xhtml" />
-					<p:menuitem value="Gestão" url="../menuGestao.xhtml" />
-					<p:menuitem value="Despesas Operacionais" url="menuDespesasOperacionais.xhtml" />
-				</p:breadCrumb>
-			</div>
+			
+			<p:breadCrumb style="margin: 0 auto; width: 100%; padding: 2px;">
+				<p:menuitem value="Início" url="../../paginaInicial.xhtml" />
+				<p:menuitem value="Gestão" url="../menuGestao.xhtml" />
+				<p:menuitem value="Despesas Operacionais"
+					url="menuDespesasOperacionais.xhtml" />
+			</p:breadCrumb>
 
 			<div style="margin: 0 auto; min-height: 380px; width: 100%;">
 				<div style="margin: 0 auto; width: 100%; height: 120px;"></div>
@@ -52,5 +51,4 @@
 		</div>
 	</h:form>
 </h:body>
-
 </html>

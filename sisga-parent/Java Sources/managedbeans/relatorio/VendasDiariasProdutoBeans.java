@@ -1,4 +1,4 @@
-package managedbeans;
+package managedbeans.relatorio;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -7,18 +7,19 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 @SessionScoped
-@ManagedBean(name="receitasDespesasBeans")
+@ManagedBean(name="vendasDiariasProdutoBeans")
 
 
-public class ReceitasDespesasBeans {
+public class VendasDiariasProdutoBeans {
          
-    private String[] anosSelecionados, mesesSelecionados, despesasSelecionados;   
+    private String[] anosSelecionados, mesesSelecionados, produtosSelecionados, clientesSelecionados;   
     
-	private List<String> anos, meses, despesas;
+	private List<String> anos, meses, produtos, clientes;
      
     @PostConstruct
     public void init() {
-    	anos = new ArrayList<String>();
+    	
+        anos = new ArrayList<String>();
         anos.add("2006");
         anos.add("2007");
         anos.add("2008");
@@ -45,10 +46,15 @@ public class ReceitasDespesasBeans {
         meses.add("Novembro");
         meses.add("Dezembro");
 
-        despesas = new ArrayList<String>();
-        despesas.add("Agua");
-        despesas.add("Luz");
-        despesas.add("Telefone");
+        produtos = new ArrayList<String>();
+        produtos.add("Bolo");
+        produtos.add("Pudim");
+        produtos.add("Torta");
+        
+        clientes = new ArrayList<String>();
+        clientes.add("João");
+        clientes.add("Pedro");
+        clientes.add("Julia");
         
     }
  
@@ -74,16 +80,27 @@ public class ReceitasDespesasBeans {
     public List<String> getMeses() {
         return meses;
     }
-    public String[] getDespesasSelecionados() {
-        return despesasSelecionados;
+    public String[] getProdutosSelecionados() {
+        return produtosSelecionados;
     }
  
-    public void setDespesasSelecionados(String[] selectedDespesas) {
-        this.despesasSelecionados = selectedDespesas;
+    public void setProdutosSelecionados(String[] selectedProdutos) {
+        this.produtosSelecionados = selectedProdutos;
     }
  
-    public List<String> getDespesas() {
-        return despesas;
+    public List<String> getProdutos() {
+        return produtos;
     }
-    
+
+	public String[] getClientesSelecionados() {
+		return clientesSelecionados;
+	}
+
+	public void setClientesSelecionados(String[] selectedClientes) {
+		this.clientesSelecionados = selectedClientes;
+	}
+
+	public List<String> getClientes() {
+		return clientes;
+	}
 }

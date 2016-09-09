@@ -17,17 +17,15 @@
 			<p:layoutUnit position="top">
 				<ui:include src="/resources/template/header.xhtml" />
 			</p:layoutUnit>
-			<div
-				style="margin: 0 auto; height: 30px; width: 100%; padding: 2px; background-color: #A9A9A9;">
-				<p:breadCrumb>
-					<p:menuitem value="Início" url="../../paginaInicial.xhtml" />
-					<p:menuitem value="Gestão" url="../menuGestao.xhtml" />
-					<p:menuitem value="Despesas Operacionais"
-						url="menuDespesasOperacionais.xhtml" />
-					<p:menuitem value="Adiconar Despesas Operacionais"
-						url="adicionarDespesasOperacionais.xhtml" />
-				</p:breadCrumb>
-			</div>
+
+			<p:breadCrumb style="margin: 0 auto; width: 100%; padding: 2px;">
+				<p:menuitem value="Início" url="../../paginaInicial.xhtml" />
+				<p:menuitem value="Gestão" url="../menuGestao.xhtml" />
+				<p:menuitem value="Despesas Operacionais"
+					url="menuDespesasOperacionais.xhtml" />
+				<p:menuitem value="Adiconar Despesas Operacionais"
+					url="adicionarDespesasOperacionais.xhtml" />
+			</p:breadCrumb>
 
 			<div style="margin: 0 auto; min-height: 380px; width: 100%;">
 				<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
@@ -35,65 +33,74 @@
 					style="margin: 0 auto; width: 60%; height: 100%; float: center;">
 					<p:fieldset legend="Adicionar Despesa"
 						style="text-align=left; border=1px;">
-						<p:outputLabel id="labelNomeDespesa">Nome da Despesa </p:outputLabel>
-						<h:inputText id="inputNomeDespesa"></h:inputText>
-						<br />
-						<p:outputLabel>Item da Despesa</p:outputLabel>
-						<h:selectOneMenu id="selectMenuItemDespesa">
-							<f:selectItem id="selectMenuItemDespesaProduto"
-								itemLabel="Produto" itemValue="produto" />
-							<f:selectItem id="selectMenuItemDespesaServico"
-								itemLabel="Serviço" itemValue="servico" />
-						</h:selectOneMenu>
-						<br />
-						<p:outputLabel>Tipo da Despesa</p:outputLabel>
-						<h:selectOneMenu id="selectMenuTipoDespesa">
-							<f:selectItem id="selectMenuTipoDespesaOperaciional"
-								itemLabel="Operacional" itemValue="operacional" />
-							<f:selectItem id="selectMenuTipoDespesaOutras"
-								itemLabel="Outras" itemValue="outras" />
-						</h:selectOneMenu>
-						<br />
-						<fieldset style="">
-							<p:outputLabel id="labelQuantidadeDespesa">Quantidade </p:outputLabel>
-							<h:inputText id="inputQuantidadeDespesa"></h:inputText>
-							<br />
-							<p:outputLabel id="labelValorUnitarioDespesa">Valor Unitário </p:outputLabel>
-							<h:inputText id="inputValorUnitarioDespesa"></h:inputText>
-							<br />
-							<p:outputLabel id="labelTotalDespesa">Total: </p:outputLabel>
-							<p:outputLabel id="labelTotalCalculadoDespesa">$$$</p:outputLabel>
-							<br />
-						</fieldset>
-						<fieldset style="">
-							<p:outputLabel id="labelValorServico">Valor do Serviço </p:outputLabel>
-							<h:inputText id="inputValorServico"></h:inputText>
-							<br />
-							<p:outputLabel id="labelDescricaoServico">Descrição </p:outputLabel>
-							<h:inputTextarea id="inputDescricaoServico"></h:inputTextarea>
-							<br />
-						</fieldset>
-						<p:outputLabel id="labelEstadoDespesa">Estado da Despesa </p:outputLabel>
-						<h:selectOneMenu id="selectMenuEstadoDespesa">
-							<f:selectItem id="selectMenuEstadoDespesaPago" itemLabel="Pago" itemValue="pago" />
-							<f:selectItem id="selectMenuEstadoDespesaAPagar" itemLabel="À Pagar" itemValue="apagar" />
-						</h:selectOneMenu>
-				
-						<p:outputLabel> Data da Despesa </p:outputLabel>
-						<p:outputLabel for="popupDataDespesa" value="" />
-						<p:calendar id="popupDataDespesa" value="#{calendarView.date2}" />
-						<br />
-						<p:outputLabel id="labelFornecedorDespesa">Fornecedor </p:outputLabel>
-						<h:inputText id="inputFornecedorDespesa"></h:inputText>
-						<br />
-						<p:outputLabel id="labelTelefoneContatatoDespesa">Tel. Contato </p:outputLabel>
-						<h:inputText id="inputTelefoneContatatoDespesa"></h:inputText>
-						<br />
-						
-						<h:commandButton id="buttonAdicionarDespesa" value="Adicionar"
-							type="submit" action="#{user.goLoginPage}" />
-						<h:commandButton id="buttonCancelarAdicionarDespesa"
-							value="Cancelar" type="submit" action="#{user.goLoginPage}" />
+						<p:fieldset>
+							<h:panelGrid columns="2" border="0">
+								<p:outputLabel id="labelNomeDespesa">Nome da Despesa </p:outputLabel>
+								<h:inputText id="inputNomeDespesa"></h:inputText>
+
+								<p:outputLabel id="labelselectMenuItemDespesa">Item da Despesa</p:outputLabel>
+								<p:selectOneMenu id="selectMenuItemDespesa"
+									value="#{adicionarDespesasBeans.itemDespesa}"
+									style="width:125px">
+									<f:selectItems value="#{adicionarDespesasBeans.itensDespesas}" />
+								</p:selectOneMenu>
+
+								<p:outputLabel id="selectMenuTipoDespesa">Tipo da Despesa</p:outputLabel>
+								<p:selectOneMenu id="selectMenuTipoDespesa"
+									value="#{adicionarDespesasBeans.tipoDespesa}"
+									style="width:125px">
+									<f:selectItems value="#{adicionarDespesasBeans.tiposDespesas}" />
+								</p:selectOneMenu>
+							</h:panelGrid>
+						</p:fieldset>
+						<p:fieldset>
+							<h:panelGrid columns="2" border="0">
+
+								<p:outputLabel id="labelQuantidadeDespesa">Quantidade </p:outputLabel>
+								<h:inputText id="inputQuantidadeDespesa"></h:inputText>
+
+								<p:outputLabel id="labelValorUnitarioDespesa">Valor Unitário </p:outputLabel>
+								<h:inputText id="inputValorUnitarioDespesa"></h:inputText>
+
+								<p:outputLabel id="labelTotalDespesa">Total: </p:outputLabel>
+								<p:outputLabel id="labelTotalCalculadoDespesa">$$$</p:outputLabel>
+							</h:panelGrid>
+						</p:fieldset>
+						<p:fieldset>
+							<h:panelGrid columns="2" border="0">
+
+								<p:outputLabel id="labelValorServico">Valor do Serviço </p:outputLabel>
+								<h:inputText id="inputValorServico"></h:inputText>
+								<p:outputLabel id="labelDescricaoServico">Descrição </p:outputLabel>
+								<h:inputTextarea id="inputDescricaoServico"></h:inputTextarea>
+							</h:panelGrid>
+						</p:fieldset>
+						<p:fieldset>
+							<h:panelGrid columns="2" border="0">
+								<p:outputLabel id="labelEstadoDespesa">Estado da Despesa </p:outputLabel>
+								<h:selectOneMenu id="selectMenuEstadoDespesa"
+									value="#{adicionarDespesasBeans.estadoDespesa}"
+									style="width:125px">
+									<f:selectItems
+										value="#{adicionarDespesasBeans.estadosDespesas}" />
+								</h:selectOneMenu>
+
+								<p:outputLabel for="popupDataDespesa" value="Data da Despesa" />
+								<p:calendar id="popupDataDespesa" value="#{adicionarDespesasBeans.dataDespesa}" />
+
+								<p:outputLabel id="labelFornecedorDespesa">Fornecedor </p:outputLabel>
+								<h:inputText id="inputFornecedorDespesa"></h:inputText>
+
+								<p:outputLabel id="labelTelefoneContatatoDespesa">Tel. Contato </p:outputLabel>
+								<h:inputText id="inputTelefoneContatatoDespesa"></h:inputText>
+
+								<h:commandButton id="buttonAdicionarDespesa" value="Adicionar"
+									type="submit" action="#{adicionarDespesasBeans.adicionar}" />
+								<h:commandButton id="buttonCancelarAdicionarDespesa"
+									value="Cancelar" type="submit"
+									action="#{adicionarDespesasBeans.cancelar}" />
+							</h:panelGrid>
+						</p:fieldset>
 					</p:fieldset>
 				</div>
 				<div style="margin: 0 auto; width: 100%; height: 50px;"></div>

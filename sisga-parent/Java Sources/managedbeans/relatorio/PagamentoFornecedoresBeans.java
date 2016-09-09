@@ -1,4 +1,4 @@
-package managedbeans;
+package managedbeans.relatorio;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;

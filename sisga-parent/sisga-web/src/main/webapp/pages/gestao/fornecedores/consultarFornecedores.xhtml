@@ -17,16 +17,13 @@
 			<p:layoutUnit position="top">
 				<ui:include src="/resources/template/header.xhtml" />
 			</p:layoutUnit>
-			<div
-				style="margin: 0 auto; height: 30px; width: 100%; padding: 2px; background-color: #A9A9A9;">
-				<p:breadCrumb>
-					<p:menuitem value="Início" url="../../paginaInicial.xhtml" />
-					<p:menuitem value="Gestão" url="../menuGestao.xhtml" />
-					<p:menuitem value="Fornecedor" url="menuFornecedores.xhtml" />
-					<p:menuitem value="Consultar Fornecedor"
-						url="consultarFornecedores.xhtml" />
-				</p:breadCrumb>
-			</div>
+			<p:breadCrumb style="margin: 0 auto; width: 100%; padding: 2px;">
+				<p:menuitem value="Início" url="../../paginaInicial.xhtml" />
+				<p:menuitem value="Gestão" url="../menuGestao.xhtml" />
+				<p:menuitem value="Fornecedor" url="menuFornecedores.xhtml" />
+				<p:menuitem value="Consultar Fornecedor"
+					url="consultarFornecedores.xhtml" />
+			</p:breadCrumb>
 
 			<div style="margin: 0 auto; min-height: 380px; width: 100%;">
 				<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
@@ -34,14 +31,17 @@
 					style="margin: 0 auto; width: 95%; height: 100%; float: center;">
 					<p:fieldset legend="Consultar Fornecedor"
 						style="text-align=left; border=1px;">
-						<p:outputLabel id="labelBuscarFornecedor">Buscar Fornecedor </p:outputLabel>
-						<h:inputText id="inputBuscarFornecedor"></h:inputText>
-						<h:commandButton id="buttonBuscarFornecedor" value="Buscar"
-							type="submit" action="#{user.goLoginPage}" />
-						<br />
+						<h:panelGrid columns="3" border="0">
+							<p:outputLabel id="labelBuscarFornecedor">Buscar Fornecedor </p:outputLabel>
+							<h:inputText id="inputBuscarFornecedor"></h:inputText>
+							<h:commandButton id="buttonBuscarFornecedor" value="Buscar"
+								type="submit" action="#{consultarForneccedoresBeans.buscar}" />
+						</h:panelGrid>
 					</p:fieldset>
+					
 					<h:dataTable id="tableConsultaFornecedores"
-						value="#{consultaFornecedoresBean.consultar}" var="fornecedor" border="1">
+						value="#{consultarFornecedoresBean.consultar}" var="fornecedor"
+						border="1">
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Fornecedor" />
@@ -65,11 +65,11 @@
 								<h:outputText value="Operação" />
 							</f:facet>
 							<h:commandButton id="buttonAlterarFornecedor" value="Alterar"
-								type="submit" action="#{consultaFornecedoresBean.alterar}" />
+								type="submit" action="#{consultarFornecedoresBean.alterar}" />
 							<h:commandButton id="buttonExcluirFornecedor" value="Excluir"
-								type="submit" action="#{consultaFornecedoresBean.excluir}" />
+								type="submit" action="#{consultarFornecedoresBean.excluir}" />
 							<h:commandButton id="buttonDetalhesFornecedor" value="Detalhes"
-								type="submit" action="#{consultaFornecedoresBean.detalhar}" />
+								type="submit" action="#{consultarFornecedoresBean.detalhar}" />
 						</h:column>
 					</h:dataTable>
 				</div>

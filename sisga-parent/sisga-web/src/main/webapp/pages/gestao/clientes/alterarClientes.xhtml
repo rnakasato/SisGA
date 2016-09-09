@@ -17,15 +17,14 @@
 			<p:layoutUnit position="top">
 				<ui:include src="/resources/template/header.xhtml" />
 			</p:layoutUnit>
-			<div
-				style="margin: 0 auto; height: 30px; width: 100%; padding: 2px; background-color: #A9A9A9;">
-				<p:breadCrumb>
-					<p:menuitem value="Início" url="../../paginaInicial.xhtml" />
-					<p:menuitem value="Gestão" url="../menuGestao.xhtml" />
-					<p:menuitem value="Cliente" url="menuClientes.xhtml" />
-					<p:menuitem value="Alterar Cliente" url="alteraClientes.xhtml" />
-				</p:breadCrumb>
-			</div>
+
+			<p:breadCrumb style="margin: 0 auto; width: 100%; padding: 2px;">
+				<p:menuitem value="Início" url="../../paginaInicial.xhtml" />
+				<p:menuitem value="Gestão" url="../menuGestao.xhtml" />
+				<p:menuitem value="Cliente" url="menuClientes.xhtml" />
+				<p:menuitem value="Alterar Cliente" url="alteraClientes.xhtml" />
+			</p:breadCrumb>
+
 
 			<div style="margin: 0 auto; min-height: 380px; width: 100%;">
 				<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
@@ -33,38 +32,40 @@
 					style="margin: 0 auto; width: 60%; height: 100%; float: center;">
 					<p:fieldset legend="Alterar Cliente"
 						style="text-align=left; border=1px;">
-						<p:outputLabel id="labelNomeCliente">Nome do Cliente </p:outputLabel>
-						<h:inputText id="inputNomeCliente"></h:inputText>
-						<br />
-						<p:outputLabel id="labelAssociarClienteA">Associar cliente a </p:outputLabel>
-						<h:selectOneMenu id="selectMenuAssociarClienteA">
-							<f:selectItem id="selectMenuAssociarClienteAMarcelo"
-								itemLabel="Marcelo" itemValue="marcelo" />
-							<f:selectItem id="selectMenuAssociarClienteAAntonio"
-								itemLabel="Antônio" itemValue="antonio" />
-						</h:selectOneMenu>
-						<br />
-						<p:outputLabel id="labelTelefone">Telefone </p:outputLabel>
-						<h:inputText id="inputTelefone"></h:inputText>
-						<br />
-						<p:outputLabel id="labelCelular">Celular </p:outputLabel>
-						<h:inputText id="inputCelular"></h:inputText>
-						<br />
-						<p:outputLabel id="labelEmail">e-mail </p:outputLabel>
-						<h:inputText id="inputEmail"></h:inputText>
-						<br />
-						<p:outputLabel id="labelStatus">Status </p:outputLabel>
-						<p:selectOneRadio id="selectRadioStatus">
-							<f:selectItem id="selectRadioStatusAtivo" itemLabel="Ativo"
-								itemValue="ativo" />
-							<f:selectItem id="selectRadioStatusInativo" itemLabel="Inativo"
-								itemValue="inativo" />
-						</p:selectOneRadio>
-						<br />
-						<h:commandButton id="buttonSalvarCliente" value="Salvar" type="submit"
-							action="#{user.goLoginPage}" />
-						<h:commandButton id="buttonCancelarAlterarCliente" value="Cancelar" type="submit"
-							action="#{user.goLoginPage}" />
+						<h:panelGrid columns="2" border="0">
+							<p:outputLabel id="labelNomeCliente">Nome do Cliente </p:outputLabel>
+							<p:inputText id="inputNomeCliente"></p:inputText>
+
+							<p:outputLabel id="labelAssociarClienteA">Associar cliente a </p:outputLabel>
+							<p:selectOneMenu id="selectMenuAssociarClienteA"
+								value="#{alterarClientesBeans.associarClienteA}"
+								style="width:125px">
+								<f:selectItems value="#{alterarClientesBeans.proprietarios}" />
+							</p:selectOneMenu>
+
+							<p:outputLabel id="labelTelefone">Telefone </p:outputLabel>
+							<h:inputText id="inputTelefone"></h:inputText>
+
+							<p:outputLabel id="labelCelular">Celular </p:outputLabel>
+							<h:inputText id="inputCelular"></h:inputText>
+
+							<p:outputLabel id="labelEmail">e-mail </p:outputLabel>
+							<h:inputText id="inputEmail"></h:inputText>
+
+							<p:outputLabel id="labelStatus">Status </p:outputLabel>
+							<p:selectOneRadio id="selectRadioStatus">
+								<f:selectItem id="selectRadioStatusAtivo" itemLabel="Ativo"
+									itemValue="ativo" />
+								<f:selectItem id="selectRadioStatusInativo" itemLabel="Inativo"
+									itemValue="inativo" />
+							</p:selectOneRadio>
+
+							<h:commandButton id="buttonSalvarCliente" value="Alterar"
+								type="submit" action="#{alterarClientesBeans.alterar}" />
+							<h:commandButton id="buttonCancelarAlterarCliente"
+								value="Cancelar" type="submit"
+								action="#{alterarClientesBeans.cancelar}" />
+						</h:panelGrid>
 					</p:fieldset>
 				</div>
 				<div style="margin: 0 auto; width: 100%; height: 50px;"></div>

@@ -1,4 +1,4 @@
-package managedbeans;
+package managedbeans.relatorio;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -7,10 +7,10 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 @SessionScoped
-@ManagedBean(name="vendasSemanaisBeans")
+@ManagedBean(name="vendasDiariasClienteBeans")
 
 
-public class VendasSemanaisBeans {
+public class VendasDiariasClienteBeans {
          
     private String[] anosSelecionados, mesesSelecionados, produtosSelecionados, clientesSelecionados;   
     

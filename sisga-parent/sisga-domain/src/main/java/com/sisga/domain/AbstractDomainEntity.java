@@ -3,7 +3,7 @@ package com.sisga.domain;
 import java.io.Serializable;
 import java.util.Date;
 
-public class AbstractEntity implements IEntity, Serializable {
+public class AbstractDomainEntity implements IEntity, Serializable {
 	private Long id;
 	private String description;
 	private Date insertDate;
@@ -12,7 +12,7 @@ public class AbstractEntity implements IEntity, Serializable {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId( Long id ) {
 		this.id = id;
 	}
 
@@ -20,7 +20,7 @@ public class AbstractEntity implements IEntity, Serializable {
 		return description;
 	}
 
-	public void setDescription(String description) {
+	public void setDescription( String description ) {
 		this.description = description;
 	}
 
@@ -28,7 +28,7 @@ public class AbstractEntity implements IEntity, Serializable {
 		return insertDate;
 	}
 
-	public void setInsertDate(Date insertDate) {
+	public void setInsertDate( Date insertDate ) {
 		this.insertDate = insertDate;
 	}
 

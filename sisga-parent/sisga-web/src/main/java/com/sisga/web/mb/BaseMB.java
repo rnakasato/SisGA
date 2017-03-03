@@ -17,16 +17,7 @@ public abstract class BaseMB implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Filter baseFilter;
 	private Boolean isSelected;
-
-	public Filter getBaseFilter() {
-		return baseFilter;
-	}
-
-	public void setBaseFilter( Filter filter ) {
-		this.baseFilter = filter;
-	}
 
 	public void select( SelectEvent event ) {
 		isSelected = true;

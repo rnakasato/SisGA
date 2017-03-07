@@ -4,65 +4,43 @@ import org.hibernate.Session;
 
 import com.sisga.core.IDAO;
 import com.sisga.core.hibernate.HibernateUtil;
-import com.sisga.domain.AbstractEntity;
+import com.sisga.domain.AbstractDomainEntity;
 
-public abstract class AbstractDAO<T extends AbstractEntity> implements IDAO<T> {
+public abstract class AbstractDAO < T extends AbstractDomainEntity > implements IDAO < T > {
+
 	protected Session session;
 
 	@Override
-	public void save(T entity) throws Exception{
-		try {
-			openSession();
-			session.save(entity);
-			closeSession();
-		} catch (Exception e) {
-			e.printStackTrace();
-			cancelSession();
-			throw e;
-		}
-
+	public void save( T entity ) throws Exception {
+		session.save( entity );
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings( { "unchecked", "rawtypes" } )
 	@Override
-	public T findById(T entity) throws Exception {
+	public T findById( T entity ) throws Exception {
 		T result = null;
-		try {
-			openSession();
-			Class clazz = entity.getClass();			
-			result = (T) session.find(clazz, entity.getId());
-		} catch (Exception e) {
-			e.printStackTrace();
-			cancelSession();
-			throw e;
-		}
+
+		Class clazz = entity.getClass();
+		result = ( T ) session.find( clazz, entity.getId() );
 		return result;
 	}
 
 	@Override
-	public void delete(T entity) throws Exception {
-		try {
-			openSession();
-			session.delete(entity);
-			closeSession();
-		} catch (Exception e) {
-			e.printStackTrace();
-			cancelSession();
-			throw e;
-		}
+	public void delete( T entity ) throws Exception {
+		session.delete( entity );
 	}
 
 	@Override
-	public void update(T entity) throws Exception {
-		try {
-			openSession();
-			session.update(entity);
-			closeSession();
-		} catch (Exception e) {
-			e.printStackTrace();
-			cancelSession();
-			throw e;
-		}
+	public void update( T entity ) throws Exception {
+		session.update( entity );
+	}
+
+	public Session getSession() {
+		return session;
+	}
+
+	public void setSession( Session session ) {
+		this.session = session;
 	}
 
 	public void openSession() {

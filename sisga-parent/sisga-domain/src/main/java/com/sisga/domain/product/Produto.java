@@ -1,8 +1,8 @@
 package com.sisga.domain.product;
 
-import com.sisga.domain.AbstractEntity;
+import com.sisga.domain.AbstractDomainEntity;
 
-public class Produto extends AbstractEntity {
+public class Produto extends AbstractDomainEntity {
 	private Double valorBase;
 	private String caminhoFoto;
 	private TipoVenda tipoVenda;
@@ -12,7 +12,7 @@ public class Produto extends AbstractEntity {
 		return valorBase;
 	}
 
-	public void setValorBase(Double valorBase) {
+	public void setValorBase( Double valorBase ) {
 		this.valorBase = valorBase;
 	}
 
@@ -20,7 +20,7 @@ public class Produto extends AbstractEntity {
 		return caminhoFoto;
 	}
 
-	public void setCaminhoFoto(String caminhoFoto) {
+	public void setCaminhoFoto( String caminhoFoto ) {
 		this.caminhoFoto = caminhoFoto;
 	}
 
@@ -28,7 +28,7 @@ public class Produto extends AbstractEntity {
 		return tipoVenda;
 	}
 
-	public void setTipoVenda(TipoVenda tipoVenda) {
+	public void setTipoVenda( TipoVenda tipoVenda ) {
 		this.tipoVenda = tipoVenda;
 	}
 
@@ -36,7 +36,7 @@ public class Produto extends AbstractEntity {
 		return tipoProducao;
 	}
 
-	public void setTipoProducao(TipoProducao tipoProducao) {
+	public void setTipoProducao( TipoProducao tipoProducao ) {
 		this.tipoProducao = tipoProducao;
 	}
 

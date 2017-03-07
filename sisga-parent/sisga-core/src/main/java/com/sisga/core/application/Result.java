@@ -2,13 +2,13 @@ package com.sisga.core.application;
 
 import java.util.List;
 
-import com.sisga.domain.AbstractEntity;
+import com.sisga.domain.AbstractDomainEntity;
 
-public class Result<T extends AbstractEntity> {
-	
+public class Result < T extends AbstractDomainEntity > {
 
 	private String msg;
-	private List<T> entityList;
+	private List < T > entityList;
+
 	/**
 	 * Método de recuperação do campo msg
 	 *
@@ -17,29 +17,34 @@ public class Result<T extends AbstractEntity> {
 	public String getMsg() {
 		return msg;
 	}
+
 	/**
-	 * Valor de msg atribuído a msg
+	 * Valor de msg atribuúo a msg
 	 *
-	 * @param msg Atributo da Classe
+	 * @param msg
+	 *            Atributo da Classe
 	 */
-	public void setMsg(String msg) {
+	public void setMsg( String msg ) {
 		this.msg = msg;
 	}
+
 	/**
 	 * Método de recuperação do campo entityList
 	 *
 	 * @return valor do campo entityList
 	 */
-	public List<T> getEntityList() {
+	public List < T > getEntityList() {
 		return entityList;
 	}
+
 	/**
-	 * Valor de entidades atribuído a entidades
+	 * Valor de entidades atribuúo a entidades
 	 *
-	 * @param entidades Atributo da Classe
+	 * @param entidades
+	 *            Atributo da Classe
 	 */
-	public void setEntityList(List<T> entityList) {
+	public void setEntityList( List < T > entityList ) {
 		this.entityList = entityList;
-	
+
 	}
 }

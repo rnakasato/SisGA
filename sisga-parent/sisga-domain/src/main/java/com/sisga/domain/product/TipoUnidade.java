@@ -1,7 +1,7 @@
 package com.sisga.domain.product;
 
-import com.sisga.domain.AbstractEntity;
+import com.sisga.domain.AbstractDomainEntity;
 
-public class TipoUnidade extends AbstractEntity {
+public class TipoUnidade extends AbstractDomainEntity {
 
 }

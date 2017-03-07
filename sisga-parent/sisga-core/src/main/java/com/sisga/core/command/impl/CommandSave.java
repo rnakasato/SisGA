@@ -2,15 +2,14 @@ package com.sisga.core.command.impl;
 
 import com.sisga.core.application.Result;
 import com.sisga.core.impl.Facade;
-import com.sisga.domain.AbstractEntity;
+import com.sisga.domain.AbstractDomainEntity;
 
-public class CommandSave<T extends AbstractEntity> extends Command<T>{
+public class CommandSave < T extends AbstractDomainEntity > extends Command < T > {
 
 	@Override
-	public Result<T> execute() {
-		facade = new Facade<T>();
-		return facade.save(entity);
+	public Result < T > execute() {
+		facade = new Facade < T >();
+		return facade.save( entity );
 	}
-	
 
 }

@@ -43,6 +43,16 @@
 	</repositories>
 	<dependencies>
 		<dependency>
+			<groupId>com.sisga</groupId>
+			<artifactId>sisga-core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sisga</groupId>
+			<artifactId>sisga-domain</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 			<version>7.0</version>
@@ -75,13 +85,20 @@
 			<version>1.0.10</version>
 		</dependency>
 
+<<<<<<< HEAD
 		
 		
 		<dependency>
 		    <groupId>javax.servlet</groupId>
 		    <artifactId>jstl</artifactId>
 		    <version>1.2</version>
+=======
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+>>>>>>> d5316386b7a92a556a518115e109789304303a97
 		</dependency>
-		
+
 	</dependencies>
 </project>

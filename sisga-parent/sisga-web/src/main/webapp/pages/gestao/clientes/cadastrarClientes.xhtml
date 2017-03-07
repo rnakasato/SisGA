@@ -52,11 +52,21 @@
 								<f:selectItem id="selectRadioStatusInativo" itemLabel="Inativo"
 									itemValue="inativo" />
 							</p:selectOneRadio>
+<<<<<<< HEAD
 							<p:commandButton id="buttonCadastrarCliente" value="Cadastrar"
 								type="submit" action="#{user.goLoginPage}" />
 							<p:commandButton id="buttonCancelarCadastrarCliente"
 								value="Cancelar" type="submit" action="#{user.goLoginPage}" />
 						</p:panelGrid>
+=======
+							
+							<p:commandButton id="buttonCadastrarCliente" value="Cadastrar"
+								actionListener="#{user.goLoginPage}" />
+							
+							<p:commandButton id="buttonCancelarCadastrarCliente"
+								value="Cancelar" action="../menuClientes.xhtml" />
+						</h:panelGrid>
+>>>>>>> d5316386b7a92a556a518115e109789304303a97
 					</p:fieldset>
 				</div>
 				<div style="margin: 0 auto; width: 100%; height: 50px;"></div>

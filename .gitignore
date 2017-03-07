@@ -21,4 +21,15 @@
 /sisga-parent/sisga-domain/.settings/org.eclipse.jdt.core.prefs
 /sisga-parent/sisga-domain/.settings/org.eclipse.m2e.core.prefs
 /sisga-parent/sisga-core/.settings/*.prefs
+<<<<<<< HEAD
 /build/
+=======
+/debug.log
+/sisga-parent/sisga-core/.settings/org.eclipse.wst.common.component
+/sisga-parent/sisga-core/.settings/org.eclipse.wst.common.project.facet.core.xml
+/sisga-parent/sisga-core/src/test/java/META-INF/MANIFEST.MF
+/sisga-parent/sisga-domain/.settings/org.eclipse.wst.common.component
+/sisga-parent/sisga-domain/src/test/java/META-INF/MANIFEST.MF
+/sisga-parent/sisga-web/.settings/org.hibernate.eclipse.console.prefs
+/sisga-parent/sisga-web/.tern-project
+>>>>>>> d5316386b7a92a556a518115e109789304303a97

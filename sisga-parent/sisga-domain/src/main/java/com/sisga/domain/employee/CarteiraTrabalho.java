@@ -1,15 +1,15 @@
-package entities;
+package com.sisga.domain.employee;
 
 public class CarteiraTrabalho {
-	private String numero;
+	private String number;
 	private String serie;
 
-	public String getNumero() {
-		return numero;
+	public String getNumber() {
+		return number;
 	}
 
-	public void setNumero(String numero) {
-		this.numero = numero;
+	public void setNumber(String number) {
+		this.number = number;
 	}
 
 	public String getSerie() {

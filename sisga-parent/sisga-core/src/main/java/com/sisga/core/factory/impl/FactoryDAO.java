@@ -20,6 +20,12 @@ public class FactoryDAO {
 			daoMap = new HashMap<>();
 			daoMap.put( Produto.class, new ProdutoDAO() );
 			daoMap.put( TipoProducao.class, new TipoProducaoDAO() );
+			
+			daoMap.put( Provider.class, new ProviderDAO() );
+			
+			daoMap.put( Customer.class, new CustomerDAO() );
+			
+			daoMap.put( Employee.class, new EmployeeDAO() );
 		}
 	}
 

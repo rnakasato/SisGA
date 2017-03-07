@@ -4,7 +4,7 @@ package com.sisga.domain.employee;
 public class Employee extends SocialPerson {
 	private int number;
 	private double salary;
-	private CarteiraTrabalho carteiraTrabalho;
+	private WorkCard workcard;
 
 	public int getNumber() {
 		return number;
@@ -22,12 +22,12 @@ public class Employee extends SocialPerson {
 		this.salary = salary;
 	}
 
-	public CarteiraTrabalho getCarteiraTrabalho() {
-		return carteiraTrabalho;
+	public Workcard getWorkcard() {
+		return workcard;
 	}
 
-	public void setCarteiraTrabalho(CarteiraTrabalho carteiraTrabalho) {
-		this.carteiraTrabalho = carteiraTrabalho;
+	public void setWorkcard(Workcard workcard) {
+		this.workcard = workcard;
 	}
 
 }

@@ -1,6 +1,6 @@
 package com.sisga.domain.customer;
 
-public class Customer extends PessoaJuridica {
+public class Customer extends LegalPerson {
 	
 	private boolean ativo;
 

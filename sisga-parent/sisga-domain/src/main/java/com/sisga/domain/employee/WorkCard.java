@@ -1,6 +1,6 @@
 package com.sisga.domain.employee;
 
-public class CarteiraTrabalho {
+public class WorkCard {
 	private String number;
 	private String serie;
 

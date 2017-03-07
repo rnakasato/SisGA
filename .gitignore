@@ -21,3 +21,4 @@
 /sisga-parent/sisga-domain/.settings/org.eclipse.jdt.core.prefs
 /sisga-parent/sisga-domain/.settings/org.eclipse.m2e.core.prefs
 /sisga-parent/sisga-core/.settings/*.prefs
+/build/

@@ -30,9 +30,9 @@
 					style="margin: 0 auto; width: 60%; height: 100%; float: center;">
 					<p:fieldset legend="Cadastro de Cliente"
 						style="text-align=left; border=1px;">
-						<h:panelGrid columns="2" border="0">
+						<p:panelGrid columns="2" border="0">
 							<p:outputLabel id="labelNomeCliente">Nome do Cliente </p:outputLabel>
-							<h:inputText id="inputNomeCliente"></h:inputText>
+							<p:inputText id="inputNomeCliente"></p:inputText>
 							<p:outputLabel id="labelAssociarClienteA">Associar cliente a </p:outputLabel>
 							<p:selectOneMenu id="selectMenuAssociarClienteA"
 								value="#{cadastrarClientesBeans.associarClienteA}"
@@ -40,11 +40,11 @@
 								<f:selectItems value="#{cadastrarClientesBeans.proprietarios}" />
 							</p:selectOneMenu>
 							<p:outputLabel id="labelTelefone">Telefone </p:outputLabel>
-							<h:inputText id="inputTelefone"></h:inputText>
+							<p:inputText id="inputTelefone"></p:inputText>
 							<p:outputLabel id="labelCelular">Celular </p:outputLabel>
-							<h:inputText id="inputCelular"></h:inputText>
+							<p:inputText id="inputCelular"></p:inputText>
 							<p:outputLabel id="labelEmail">e-mail </p:outputLabel>
-							<h:inputText id="inputEmail"></h:inputText>
+							<p:inputText id="inputEmail"></p:inputText>
 							<p:outputLabel for="selectRadioStatus" value="Status" />
 							<p:selectOneRadio id="selectRadioStatus">
 								<f:selectItem id="selectRadioStatusAtivo" itemLabel="Ativo"
@@ -52,11 +52,11 @@
 								<f:selectItem id="selectRadioStatusInativo" itemLabel="Inativo"
 									itemValue="inativo" />
 							</p:selectOneRadio>
-							<h:commandButton id="buttonCadastrarCliente" value="Cadastrar"
+							<p:commandButton id="buttonCadastrarCliente" value="Cadastrar"
 								type="submit" action="#{user.goLoginPage}" />
-							<h:commandButton id="buttonCancelarCadastrarCliente"
+							<p:commandButton id="buttonCancelarCadastrarCliente"
 								value="Cancelar" type="submit" action="#{user.goLoginPage}" />
-						</h:panelGrid>
+						</p:panelGrid>
 					</p:fieldset>
 				</div>
 				<div style="margin: 0 auto; width: 100%; height: 50px;"></div>

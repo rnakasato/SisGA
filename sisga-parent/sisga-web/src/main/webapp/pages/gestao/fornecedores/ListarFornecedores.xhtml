@@ -7,7 +7,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>Consultar Fornecedores</title>
+	<title>Listar Fornecedores</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 </h:head>
 
@@ -29,18 +29,19 @@
 				<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
 				<div
 					style="margin: 0 auto; width: 95%; height: 100%; float: center;">
-					<p:fieldset legend="Consultar Fornecedor"
+					<p:fieldset legend="Fornecedores"
 						style="text-align=left; border=1px;">
-						<h:panelGrid columns="3" border="0">
-							<p:outputLabel id="labelBuscarFornecedor">Buscar Fornecedor </p:outputLabel>
-							<h:inputText id="inputBuscarFornecedor"></h:inputText>
-							<h:commandButton id="buttonBuscarFornecedor" value="Buscar"
-								type="submit" action="#{consultarForneccedoresBeans.buscar}" />
-						</h:panelGrid>
+						<p:panelGrid columns="3" border="0">
+							<p:outputLabel id="labelFindProvider">Buscar Fornecedor</p:outputLabel>
+							<p:inputText id="inputFindProvider"></p:inputText>
+							<p:commandButton id="buttonFindProvider" value="Buscar"
+								type="submit" action="#{listarFornecedoresMB.buscar}" />
+						</p:panelGrid>
 					</p:fieldset>
 					
-					<h:dataTable id="tableConsultaFornecedores"
-						value="#{consultarFornecedoresBean.consultar}" var="fornecedor"
+					<h:dataTable id="tableListPovider"
+						value="#{listarFornecedoresMb.consultar}" 
+						var="fornecedor"
 						border="1">
 						<h:column>
 							<f:facet name="header">
@@ -64,12 +65,12 @@
 							<f:facet name="header">
 								<h:outputText value="Operação" />
 							</f:facet>
-							<h:commandButton id="buttonAlterarFornecedor" value="Alterar"
-								type="submit" action="#{consultarFornecedoresBean.alterar}" />
-							<h:commandButton id="buttonExcluirFornecedor" value="Excluir"
-								type="submit" action="#{consultarFornecedoresBean.excluir}" />
-							<h:commandButton id="buttonDetalhesFornecedor" value="Detalhes"
-								type="submit" action="#{consultarFornecedoresBean.detalhar}" />
+							<p:commandButton id="buttonUpdateProvider" value="Alterar"
+								type="submit" action="#{listarFornecedoresMB.alterar}" />
+							<p:commandButton id="buttonDeleteProvider" value="Excluir"
+								type="submit" action="#{listarFornecedoresMB.excluir}" />
+							<p:commandButton id="buttonDetailsPovider" value="Detalhes"
+								type="submit" action="#{listarFornecedoresMB.detalhar}" />
 						</h:column>
 					</h:dataTable>
 				</div>

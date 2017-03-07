@@ -1,6 +1,6 @@
 package entities;
 
-public class Cliente extends PessoaJuridica {
+public class Client extends PessoaJuridica {
 	private String email;
 	private boolean ativo;
 

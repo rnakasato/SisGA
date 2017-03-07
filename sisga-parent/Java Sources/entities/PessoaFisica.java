@@ -5,7 +5,7 @@ import java.util.Date;
 public abstract class PessoaFisica {
 	protected String cpf;
 	protected String rg;
-	protected Date dataNascimento;
+	protected Date dateBorn;
 
 	public String getCpf() {
 		return cpf;

@@ -4,7 +4,7 @@ import java.util.Date;
 
 public abstract class AbstractEntity implements IEntity{
 	protected long id;
-	protected Date datInsercao;
+	protected Date dateInsertion;
 	protected String description;
 
 	public long getId() {

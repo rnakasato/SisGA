@@ -1,5 +1,6 @@
 package com.sisga.domain.employee;
 
+import com.sisga.domain.person.SocialPerson;
 
 public class Employee extends SocialPerson {
 	private int number;

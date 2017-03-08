@@ -1,5 +1,7 @@
 package com.sisga.domain.customer;
 
+import com.sisga.domain.person.LegalPerson;
+
 public class Customer extends LegalPerson {
 	
 	private boolean ativo;

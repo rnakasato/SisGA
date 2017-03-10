@@ -1,8 +1,6 @@
 package com.sisga.domain.employee;
 
-import com.sisga.domain.person.SocialPerson;
-
-public class Employee extends SocialPerson {
+public class Employee {
 	private int number;
 	private double salary;
 	private WorkCard workcard;
@@ -11,7 +9,7 @@ public class Employee extends SocialPerson {
 		return number;
 	}
 
-	public void setNumber(int number) {
+	public void setNumber( int number ) {
 		this.number = number;
 	}
 
@@ -19,15 +17,15 @@ public class Employee extends SocialPerson {
 		return salary;
 	}
 
-	public void setSalary(double salary) {
+	public void setSalary( double salary ) {
 		this.salary = salary;
 	}
 
-	public Workcard getWorkcard() {
+	public WorkCard getWorkcard() {
 		return workcard;
 	}
 
-	public void setWorkcard(Workcard workcard) {
+	public void setWorkcard( WorkCard workcard ) {
 		this.workcard = workcard;
 	}
 

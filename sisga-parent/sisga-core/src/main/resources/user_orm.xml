@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+
+<!-- 	<class name="com.sisga.domain.product.StockType" table="TB_STOCK_TYPE">
+        <id name="id" column="IDSTOCKTYPE">
+            <generator class="sequence">
+        		<param name="sequence_name">SQ_STOCK_TYPE</param>
+        	</generator>            
+        </id>
+        <property name="code" column="CODE"/>
+        <property name="description" column="DESCRIPTION"/>
+    </class>
+      
+    
+    <class name="com.sisga.domain.product.Product" table="TB_PRODUCT">
+        <id name="id" column="IDPRODUCT">
+            <generator class="sequence">
+        		<param name="sequence_name">SQ_PRODUCT</param>
+        	</generator>            
+        </id>
+        <property name="insertDate" column="INSERTDATE"/>
+        <property name="code" column="CODE"/>
+        <property name="description" column="DESCRIPTION"/>
+        <property name="photo" column="PHOTO"/>
+        <property name="amount" column="AMOUNT"/>
+        <property name="baseValue" column="BASEVALUE"/>
+        <many-to-one name="productionType" column="IDPRODUCTIONTYPE" class="com.sisga.domain.product.ProductionType" not-null="true" />
+        <many-to-one name="saleType" column="IDSALETYPE" class="com.sisga.domain.product.SaleType" not-null="true" />
+        <many-to-one name="stockType" column="IDSTOCKTYPE" class="com.sisga.domain.product.StockType" not-null="true" />        
+    </class>   -->
+    
+   
+
+</hibernate-mapping>

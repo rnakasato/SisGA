@@ -3,49 +3,5 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.sisga.domain.product.TipoUnidade" table="TIPO_UNIDADE">
-        <id name="id" column="ID_TIPO_UNIDADE">
-            <generator class="sequence">
-        		<param name="sequence_name">SQ_TIPO_UNIDADE</param>
-        	</generator>            
-        </id>
-        <property name="insertDate" type="date" column="INSERTDATE"/>
-        <property name="description" type="string" column="DESCRIPTION"/>
-    </class>
-    
-    <class name="com.sisga.domain.product.TipoProducao" table="TIPO_PRODUCAO">
-        <id name="id" type="long" column="ID_TIPO_PRODUCAO">
-        	<generator class="sequence">
-        		<param name="sequence_name">SQ_TIPO_PRODUCAO</param>
-        	</generator>            
-        </id>
-        <property name="insertDate" type="date" column="INSERTDATE"/>
-        <property name="description" type="string" column="DESCRIPTION"/>
-        <many-to-one name="tipoUnidade" column="ID_TIPO_UNIDADE" class="com.sisga.domain.product.TipoUnidade" not-null="true" cascade="save-update"/>        
-    </class>
-    
-    <class name="com.sisga.domain.product.TipoVenda" table="TIPO_VENDA">
-        <id name="id" column="ID_TIPO_VENDA">
-            <generator class="sequence">
-        		<param name="sequence_name">SQ_TIPO_VENDA</param>
-        	</generator>            
-        </id>
-        <property name="insertDate" type="date" column="INSERTDATE"/>
-        <property name="description" type="string" column="DESCRIPTION"/>
-    </class>
-    
-    <class name="com.sisga.domain.product.Produto" table="PRODUTO">
-        <id name="id" column="ID_PRODUTO">
-            <generator class="sequence">
-        		<param name="sequence_name">SQ_PRODUTO</param>
-        	</generator>            
-        </id>
-        <property name="insertDate" type="date" column="INSERTDATE"/>
-        <property name="description" type="string" column="DESCRIPTION"/>
-        <property name="caminhoFoto" type="string" column="IMAGE_PATH"/>
-        <property name="valorBase" type="double" column="PRECO"/>
-        <many-to-one name="tipoProducao" column="ID_TIPO_PRODUCAO" class="com.sisga.domain.product.TipoProducao" not-null="true" />
-        <many-to-one name="tipoVenda" column="ID_TIPO_VENDA" class="com.sisga.domain.product.TipoVenda" not-null="true" />        
-    </class>  
 
 </hibernate-mapping>

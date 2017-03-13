@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.sisga.domain.adress.City" table="TB_CITY">
+        <id name="id" column="IDCITY">
+            <generator class="sequence">
+        		<param name="sequence_name">SQ_CITY</param>
+        	</generator>            
+        </id>
+        <property name="uf" column="UF"/>
+        <property name="name" column="NAME"/>
+        
+        <many-to-one name="state" column="IDSTATE" class="com.sisga.domain.adress.State" not-null="true" />
+    </class>
+    
+    <class name="com.sisga.domain.adress.State" table="TB_State">
+        <id name="id" column="IDState">
+            <generator class="sequence">
+        		<param name="sequence_name">SQ_STATE</param>
+        	</generator>            
+        </id>
+        <property name="uf" column="UF"/>
+        <property name="name" column="NAME"/>
+        
+        <many-to-one name="state" column="IDSTATE" class="com.sisga.domain.adress.State" not-null="true" />
+    </class>
+    
+    
+	<class name="com.sisga.domain.provider.Provider" table="TB_PROVIDER">
+        <id name="id" column="IDPROVIDER">
+            <generator class="sequence">
+        		<param name="sequence_name">SQ_PROVIDER</param>
+        	</generator>            
+        </id>
+        
+        <property name="firstName" column="FIRSTNAME"/>
+        <property name="cnpj" column="LASTNAME"/>
+        <property name="email" column="EMAIL"/>
+        <property name="active" column="ACTIVE"/>
+        <property name="insertDate" column="INSERTDATE"/>
+        <property name="neighborhood" column="NEIGHBORHOOD"/>
+        <property name="number" column="ANUMBER"/>
+        
+        <many-to-one name="city" column="IDCITY" class="com.sisga.domain.adress.City" not-null="true" />
+    </class>  
+    
+    <class name="com.sisga.domain.provider.ProviderOperation" table="TB_PROVIDER_OPERATION">
+        <id name="id" column="IDOPERATION">
+            <generator class="sequence">
+        		<param name="sequence_name">SQ_PROVIDER_OPERATION</param>
+        	</generator>            
+        </id>
+        <property name="code" column="CODE"/>
+        <property name="description" column="DESCRIPTION"/>       
+    </class>  
+    
+    <class name="com.sisga.domain.provider.ProviderHistory" table="TB_PROVIDER_HISTORY">
+        <id name="id" column="IDPROVIDERHISTORY">
+            <generator class="sequence">
+        		<param name="sequence_name">SQ_PROVIDER_HISTORY</param>
+        	</generator>            
+        </id>
+        <property name="firstName" column="FIRSTNAME"/>
+        <property name="cnpj" column="LASTNAME"/>
+        <property name="email" column="EMAIL"/>
+        <property name="active" column="ACTIVE"/>
+        <property name="insertDate" column="INSERTDATE"/>
+        <property name="neighborhood" column="NEIGHBORHOOD"/>
+        <property name="number" column="ANUMBER"/>
+        
+        <many-to-one name="city" column="IDCITY" class="com.sisga.domain.adress.City" not-null="true" />
+        <many-to-one name="provider" column="IDPROVIDER" class="com.sisga.domain.provider.provider" not-null="true" />
+        <many-to-one name="providerOperation" column="IDOPERATION" class="com.sisga.domain.provider.providerOperation" not-null="true" />
+    </class> 
+    
+    
+</hibernate-mapping>

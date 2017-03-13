@@ -20,6 +20,9 @@ public class FactoryStrategy {
 	 */
 	private static Map < String, Map < String, List < IStrategy > > > rns;
 	private static Map < String, List < IStrategy > > rnsProduct;
+	private static Map < String, List < IStrategy > > rnsCustomer;
+	private static Map < String, List < IStrategy > > rnsEmployee;
+	private static Map < String, List < IStrategy > > rnsProvider;
 
 	public static List < IStrategy > build( AbstractDomainEntity entity, String operation ) {
 		if( rns == null ) {
@@ -40,6 +43,19 @@ public class FactoryStrategy {
 		// InicializaÃ§Ã£o do mapa de regras de negÃ³cio do produto
 		rnsProduct = new HashMap<>();
 		initProductRns();
+		
+		// Inicialização do mapa de regras de negócio do cliente
+		rnsCustomer = new HashMap<>();
+		initCustomerRns();
+		
+		// Inicialização do mapa de regras de negócio do funcionario
+		rnsEmployee = new HashMap<>();
+		initEmployeeRns();
+			
+		// Inicialização do mapa de regras de negócio do fornecedor
+		rnsProvider = new HashMap<>();
+		initProviderRns();
+
 
 	}
 
@@ -56,4 +72,46 @@ public class FactoryStrategy {
 		rnsProduct.put( EOperation.DELETE, rnsDelete );
 		rnsProduct.put( EOperation.FIND, rnsFind );
 	}
+	
+	private static void initCustomerRns() {
+		List < IStrategy > rnsSave = new ArrayList<>();
+		List < IStrategy > rnsUpdate = new ArrayList<>();
+		List < IStrategy > rnsFind = new ArrayList<>();
+		List < IStrategy > rnsDelete = new ArrayList<>();
+
+		// Insere as regras de negócio por operação
+		rnsCustomer.put( EOperation.SAVE, rnsSave );
+		rnsCustomer.put( EOperation.UPDATE, rnsUpdate );
+		rnsCustomer.put( EOperation.DELETE, rnsDelete );
+		rnsCustomer.put( EOperation.FIND, rnsFind );
+	}
+
+	
+	private static void initEmployeeRns() {
+		List < IStrategy > rnsSave = new ArrayList<>();
+		List < IStrategy > rnsUpdate = new ArrayList<>();
+		List < IStrategy > rnsFind = new ArrayList<>();
+		List < IStrategy > rnsDelete = new ArrayList<>();
+
+		// Insere as regras de negócio por operação
+		rnsEmployee.put( EOperation.SAVE, rnsSave );
+		rnsEmployee.put( EOperation.UPDATE, rnsUpdate );
+		rnsEmployee.put( EOperation.DELETE, rnsDelete );
+		rnsEmployee.put( EOperation.FIND, rnsFind );
+	}
+
+	
+	private static void initProviderRns() {
+		List < IStrategy > rnsSave = new ArrayList<>();
+		List < IStrategy > rnsUpdate = new ArrayList<>();
+		List < IStrategy > rnsFind = new ArrayList<>();
+		List < IStrategy > rnsDelete = new ArrayList<>();
+
+		// Insere as regras de negócio por operação
+		rnsProvider.put( EOperation.SAVE, rnsSave );
+		rnsProvider.put( EOperation.UPDATE, rnsUpdate );
+		rnsProvider.put( EOperation.DELETE, rnsDelete );
+		rnsProvider.put( EOperation.FIND, rnsFind );
+	}
+
 }

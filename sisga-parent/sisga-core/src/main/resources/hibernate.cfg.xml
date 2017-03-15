@@ -16,5 +16,9 @@
         <mapping resource="product_orm.xml"></mapping>
         <mapping resource="expense_orm.xml"></mapping>
         <mapping resource="user_orm.xml"></mapping>
+        <mapping resource="customer_orm.xml"></mapping>
+        <mapping resource="employee_orm.xml"></mapping>
+        <mapping resource="phone_orm.xml"></mapping>
+        <mapping resource="provider_orm.xml"></mapping>
     </session-factory>
 </hibernate-configuration>

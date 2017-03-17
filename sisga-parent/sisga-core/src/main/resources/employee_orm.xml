@@ -52,15 +52,13 @@
         	</generator>            
         </id>
         
-        <property name="firstName" column="FIRSTNAME"/>
-        <property name="lastName" column="LASTNAME"/>
+        <property name="name" column="FIRSTNAME"/>
         <property name="email" column="EMAIL"/>
         <property name="active" column="ACTIVE"/>
         <property name="insertDate" column="INSERTDATE"/>
         <property name="neighborhood" column="NEIGHBORHOOD"/>
         <property name="number" column="ANUMBER"/>
         <property name="workcardNumber" column="WORKCARDNUMBER"/>
-        <property name="workcardSeries" column="WORKCARDSERIES"/>
         <property name="employmentDate" column="EMPLOYMENTDATE"/>
         <property name="salary" column="SALARY"/>
         
@@ -88,15 +86,13 @@
         		<param name="sequence_name">SQ_EMPLOYEE_HISTORY</param>
         	</generator>            
         </id>
-        <property name="firstName" column="FIRSTNAME"/>
-        <property name="lastName" column="LASTNAME"/>
+        <property name="name" column="FIRSTNAME"/>
         <property name="email" column="EMAIL"/>
         <property name="active" column="ACTIVE"/>
         <property name="insertDate" column="INSERTDATE"/>
         <property name="neighborhood" column="NEIGHBORHOOD"/>
         <property name="number" column="ANUMBER"/>
         <property name="workcardNumber" column="WORKCARDNUMBER"/>
-        <property name="workcardSeries" column="WORKCARDSERIES"/>
         <property name="employmentDate" column="EMPLOYMENTDATE"/>
         <property name="resignationDate" column="RESIGNATIONDATE"/>
         <property name="salary" column="SALARY"/>

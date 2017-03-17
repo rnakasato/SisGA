@@ -70,8 +70,7 @@
         	</generator>            
         </id>
         
-        <property name="firstName" column="FIRSTNAME"/>
-        <property name="lastName" column="LASTNAME"/>
+        <property name="name" column="FIRSTNAME"/>
         <property name="email" column="EMAIL"/>
         <property name="active" column="ACTIVE"/>
         <property name="insertDate" column="INSERTDATE"/>
@@ -102,8 +101,7 @@
         		<param name="sequence_name">SQ_CUSTOMER_HISTORY</param>
         	</generator>            
         </id>
-        <property name="firstName" column="FIRSTNAME"/>
-        <property name="lastName" column="LASTNAME"/>
+        <property name="name" column="FIRSTNAME"/>
         <property name="email" column="EMAIL"/>
         <property name="active" column="ACTIVE"/>
         <property name="insertDate" column="INSERTDATE"/>

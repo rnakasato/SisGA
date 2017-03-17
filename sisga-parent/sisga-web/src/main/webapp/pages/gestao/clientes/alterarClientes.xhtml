@@ -7,15 +7,15 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>Cadastrar Cliente</title>
+	<title>Alterar Cliente</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 </h:head>
 
 	<h:body>
 		<p:dialog
-			id="customerAdd"
-			header="Cadastro de Clientes"
-			widgetVar="customerAddDialog"
+			id="custmerAlt"
+			header="Alterar Cliente"
+			widgetVar="customerUpdateDialog"
 			modal="true"
 			showEffect="fade"
 			hideEffect="fade"
@@ -23,10 +23,9 @@
 			width="1000px"
 			position="center top">
 			<p:fieldset 
-				legend="Cadastro de Cliente"
+				legend="Alteração de Cliente"
 				style="text-align=left; border=1px;">
 						<p:panelGrid columns="2" border="0">
-						
 							<p:outputLabel for="association" value="Associar a:" />
 					        <p:selectOneListbox id="association" value="#{customer.userSeller.name}" 
 									var="user" filter="true" filterMatchMode="contains">
@@ -60,11 +59,11 @@
 							<p:outputLabel id="labelNumber">Numero </p:outputLabel>
 							<p:inputText id="inputNumber" value="#{listarClientesMB.customer.number}"></p:inputText>
 
-							<p:commandButton id="btnSaveProvider" value="Cadastrar"
-								type="submit" action="#{listarFornecedoresMB.save()}" />
+							<p:commandButton id="btnUpdateCustomer" value="Alterar"
+								type="submit" action="#{listarClientesMB.alter()}" />
 							<p:commandButton
 								value="Fechar"
-								onclick="PF('providerAddDialog').hide()" />
+								onclick="PF('customerUpdateDialog').hide()" />
 						</p:panelGrid>
 					</p:fieldset>
 		</p:dialog>

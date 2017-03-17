@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<ui:composition>
+		<p:dialog
+				id="customerDetail"
+				header="Cliente"
+				widgetVar="customerDetailDialog"
+				modal="true"
+				showEffect="fade"
+				hideEffect="fade"
+				resizable="false"
+				width="1000px"
+				position="center top">
+				<p:outputPanel
+					id="panelDetail"
+					style="align:center">
+					<p:panelGrid
+						id="gridDetail"
+						styleClass="baseGrid"
+						columns="1"
+						rendered="true"
+						columnClasses="label,value">
+	
+						<p:row style="text-align:left">
+							<p:outputLabel
+								value="Nome : "
+								style="font-weight:bold" />
+							<p:outputLabel
+								id="outputDetailName"
+								value="#{listarClientesMB.name(customer)}" />
+						</p:row>
+	
+						<p:row style="text-align:left">
+							<p:outputLabel
+								value="Associado a : "
+								style="font-weight:bold" />
+							<p:outputLabel
+								id="outputDetailState"
+								value="#{listarClientesMB.customer.userSeller.name}" />
+						</p:row>
+						
+						<p:row style="text-align:left">
+							<p:outputLabel
+								value="Satus: "
+								style="font-weight:bold" />
+							<p:outputLabel
+								id="outputDetailStatusA"
+								rendered="#{listarClientesMB.customer.active}" 
+								value="Ativo"/>
+							<p:outputLabel
+								id="outputDetailStatusI"
+								rendered="#{not(listarClientesMB.customer.active)}" 
+								value="Inativo"/>
+						</p:row>
+	
+						<p:row style="text-align:left">
+							<p:outputLabel
+								value="e-mail"
+								style="font-weight:bold" />
+							<p:outputLabel
+								id="outputDetailEmail"
+								value="#{listarClientesMB.customer.email}" />
+						</p:row>
+	
+						<p:row style="text-align:left">
+							<p:outputLabel
+								value="Data de Cadastro: "
+								style="font-weight:bold" />
+							<p:outputLabel
+								id="outputDetailInsertDate"
+								value="#{listarFornecedoresMB.provider.insertDate}" />
+						</p:row>
+	
+						<p:row style="text-align:left">
+							<p:outputLabel
+								value="Telefone: "
+								style="font-weight:bold" />
+							<p:outputLabel
+								id="outputDetailTelephone"
+								value="#{listarClientesMB.customer.telephones.get(0).pnumber)}" />
+						</p:row>
+					</p:panelGrid>
+	
+					<p:commandButton
+						value="Fechar"
+						onclick="PF('customerDetailDialog').hide()" />
+				</p:outputPanel>
+			</p:dialog>
+		</ui:composition>
+	</h:body>
+</html>

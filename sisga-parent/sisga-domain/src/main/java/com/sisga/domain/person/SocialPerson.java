@@ -29,7 +29,7 @@ public abstract class SocialPerson extends Person{
 		return dateBirth;
 	}
 
-	public void setDateBorn(Date dateBirth) {
+	public void setDateBirth(Date dateBirth) {
 		this.dateBirth = dateBirth;
 	}
 

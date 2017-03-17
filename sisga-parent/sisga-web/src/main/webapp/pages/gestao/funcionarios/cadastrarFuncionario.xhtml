@@ -7,15 +7,15 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>Alterar Funcionário</title>
+	<title>Cadastrar Funcionario</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 </h:head>
 
 	<h:body>
 		<p:dialog
-			id="employeeAlt"
-			header="Alterar Funcionário"
-			widgetVar="employeeUpdateDialog"
+			id="employeeAdd"
+			header="Cadastro de Funcionários"
+			widgetVar="employeeAddDialog"
 			modal="true"
 			showEffect="fade"
 			hideEffect="fade"
@@ -23,7 +23,7 @@
 			width="1000px"
 			position="center top">
 			<p:fieldset 
-				legend="Alteração de Funcionário"
+				legend="Cadastro de Funcionário"
 				style="text-align=left; border=1px;">
 						<p:panelGrid columns="2" border="0">
 							<p:outputLabel id="labelEmployeeName">Nome do Funcionário </p:outputLabel>
@@ -59,14 +59,15 @@
 							<p:outputLabel> Data de Contratação </p:outputLabel>
 							<p:calendar id="popupEmploymentDate"
 								value="#{listarFuncionariosMB.employee.employmentDate}" />
-								
-							<p:commandButton id="btnUpdateEmployee" value="Alterar"
-								type="submit" action="#{listarFuncionaariosMB.alter()}" />
+
+							<p:commandButton id="btnSaveEmployee" value="Cadastrar"
+								type="submit" action="#{listarFuncionariosMB.save()}" />
 							<p:commandButton
 								value="Fechar"
-								onclick="PF('employeeUpdateDialog').hide()" />
+								onclick="PF('employeeAddDialog').hide()" />
 						</p:panelGrid>
 					</p:fieldset>
 		</p:dialog>
 	</h:body>
 </html>
+						

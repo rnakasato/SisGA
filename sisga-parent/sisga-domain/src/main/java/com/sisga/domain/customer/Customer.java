@@ -4,14 +4,14 @@ import com.sisga.domain.person.LegalPerson;
 import com.sisga.domain.user.User;
 
 public class Customer extends LegalPerson {
-	private User uesrSeller;
+	private User userSeller;
 
-	public User getUesrSeller() {
-		return uesrSeller;
+	public User getUserSeller() {
+		return userSeller;
 	}
 
-	public void setUesrSeller(User uesrSeller) {
-		this.uesrSeller = uesrSeller;
+	public void setUserSeller(User userSeller) {
+		this.userSeller = userSeller;
 	}
 
 	

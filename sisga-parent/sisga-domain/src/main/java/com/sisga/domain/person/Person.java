@@ -9,31 +9,23 @@ import com.sisga.domain.communication.Telephone;
 
 public abstract class Person extends DomainSpecificEntity  {
 	
-	protected List<Telephone> telephones;
+	protected Telephone telephone;
+	protected Telephone cellphone;
 	protected String email;
 	protected City city;
 	protected String number;
 	protected String neighborhood;
-	protected String firstName;
-	protected String lastName;
+	protected String name;
 	protected boolean active;
 
-	public String getFirstName() {
-		return firstName;
+	public String getName() {
+		return name;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setName(String name) {
+		this.name = name;
 	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
+	
 	public boolean isActive() {
 		return active;
 	}
@@ -48,13 +40,22 @@ public abstract class Person extends DomainSpecificEntity  {
 	public void setCity(City city) {
 		this.city = city;
 	}
-	
-	public List<Telephone> getTelephones() {
-		return telephones;
+	public Telephone getTelephone() {
+		return telephone;
 	}
-	public void setTelephones(List<Telephone> telephones) {
-		this.telephones = telephones;
+
+	public void setTelephone(Telephone telephone) {
+		this.telephone = telephone;
 	}
+
+	public Telephone getCellphone() {
+		return cellphone;
+	}
+
+	public void setCellphone(Telephone cellphone) {
+		this.cellphone = cellphone;
+	}
+
 	public String getEmail() {
 		return email;
 	}

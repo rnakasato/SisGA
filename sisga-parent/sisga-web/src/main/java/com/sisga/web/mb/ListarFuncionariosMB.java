@@ -14,6 +14,12 @@ import com.sisga.domain.employee.Employee;
 import com.sisga.domain.employee.filter.EmployeeFilter;
 import com.sisga.domain.provider.Provider;
 
+/**
+ * 
+ * @author Sergio Massao Umiji 
+ * 16 de mar de 2017
+ */
+
 @SessionScoped
 @ManagedBean(name="listarFuncionariosMB")
 
@@ -38,9 +44,13 @@ public class ListarFuncionariosMB {
 	}
 	
 	public void find() {
+		employee = new Employee();
+		employee.setName(employeeFilter.getName());
+		employee.setInsertDate(employeeFilter.getEmploymentDateInit());
+		employee.setResignationDate(employeeFilter.getEmploymentDateFinal());
 		
 		try {
-			ICommand commandFind = FactoryCommand.build( employeeFilter, EOperation.FIND );
+			ICommand commandFind = FactoryCommand.build( employee, EOperation.FIND );
 			employees = commandFind.execute().getEntityList();
 		} catch( ClassNotFoundException e ) {
 			e.printStackTrace();
@@ -102,7 +112,16 @@ public class ListarFuncionariosMB {
 	}
 	
 	public void cleanFilters() {
-	
+		employeeFilter = new EmployeeFilter();
+		employeeFilter.setName("");
+		employees = new ArrayList<Employee>();
+		
+		try {
+			ICommand commandFindAll = FactoryCommand.build( new Employee(), EOperation.FINDALL );
+			employees = commandFindAll.execute().getEntityList();
+		} catch( ClassNotFoundException e ) {
+			e.printStackTrace();
+		}
 	}
 	
 

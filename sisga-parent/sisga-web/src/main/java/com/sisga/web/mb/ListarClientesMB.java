@@ -14,6 +14,12 @@ import com.sisga.domain.customer.Customer;
 import com.sisga.domain.customer.filter.CustomerFilter;
 import com.sisga.domain.user.User;
 
+/**
+ * 
+ * @author Sergio Massao Umiji 
+ * 14 de mar de 2017
+ */
+
 @SessionScoped
 @ManagedBean(name="listarClientesMB")
 
@@ -50,9 +56,15 @@ public class ListarClientesMB {
 	}
 	
 	public void find() {
-		
+		customer = new Customer();
+		customer.setName(customerFilter.getName());
+		if(customerFilter.getStatus().equals("ATIVO")){
+			customer.setActive(true);
+		}else if(customerFilter.getStatus().equals("INATIVO")){
+			customer.setActive(false);
+		}
 		try {
-			ICommand commandFind = FactoryCommand.build( customerFilter, EOperation.FIND );
+			ICommand commandFind = FactoryCommand.build( customer, EOperation.FIND );
 			customers = commandFind.execute().getEntityList();
 		} catch( ClassNotFoundException e ) {
 			e.printStackTrace();
@@ -113,8 +125,28 @@ public class ListarClientesMB {
 	public void details(Customer customer) {
 		this.customer = customer;
 	}
+	
 	public void cleanFilters() {
+		customerFilter = new CustomerFilter();
+		customerFilter.setName("");
+		customers = new ArrayList<Customer>();
+		userSellers = new ArrayList<User>();
 		
+		try {
+			ICommand commandFindAll = FactoryCommand.build( new Customer(), EOperation.FINDALL );
+			customers = commandFindAll.execute().getEntityList();
+			commandFindAll = FactoryCommand.build( new User(), EOperation.FINDALL );
+			users = commandFindAll.execute().getEntityList();
+		} catch( ClassNotFoundException e ) {
+			e.printStackTrace();
+		}
+		if(users!= null){
+			for(int i=users.size();i<users.size();i++ ){
+				if(users.get(i).getDescription() == "SELLER"){
+					userSellers.add(users.get(i));
+				}
+			}
+		}
 	}
 	
 	//getters and setters

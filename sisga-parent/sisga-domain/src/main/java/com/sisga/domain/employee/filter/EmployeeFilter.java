@@ -5,6 +5,12 @@ import java.util.Date;
 import com.sisga.domain.employee.Employee;
 import com.sisga.domain.filter.impl.DomainSpecificEntityFilter;
 
+/**
+ * 
+ * @author Sergio Massao Umiji
+ *         17 de mar de 2017
+ */
+
 public class EmployeeFilter extends DomainSpecificEntityFilter < Employee >{
 
 	private String name;

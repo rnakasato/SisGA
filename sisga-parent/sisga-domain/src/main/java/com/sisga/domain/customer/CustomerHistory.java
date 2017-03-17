@@ -7,6 +7,12 @@ import com.sisga.domain.address.City;
 import com.sisga.domain.communication.Telephone;
 import com.sisga.domain.user.User;
 
+/**
+ * 
+ * @author Sergio Massao Umiji
+ *         10 de mar de 2017
+ */
+
 public class CustomerHistory extends DomainSpecificEntity{
 
 	private Customer customer;

@@ -2,6 +2,11 @@ package com.sisga.domain.customer.filter;
 
 import com.sisga.domain.customer.Customer;
 import com.sisga.domain.filter.impl.DomainSpecificEntityFilter;
+/**
+ * 
+ * @author Sergio Massao Umiji
+ *         17 de mar de 2017
+ */
 
 public class CustomerFilter extends DomainSpecificEntityFilter < Customer >{
 	private String name;

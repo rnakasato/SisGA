@@ -13,6 +13,12 @@ import com.sisga.core.factory.impl.FactoryCommand;
 import com.sisga.domain.provider.Provider;
 import com.sisga.domain.provider.filter.ProviderFilter;
 
+/**
+ * 
+ * @author Sergio Massao Umiji 
+ * 15 de mar de 2017
+ */
+
 @SessionScoped
 @ManagedBean(name="listarFornecedoresMB")
 
@@ -36,9 +42,10 @@ public class ListarFornecedoresMB {
 	}
 	
 	public void find() {
-		
+		provider = new Provider();
+		provider.setName(providerFilter.getName());
 		try {
-			ICommand commandFind = FactoryCommand.build( providerFilter, EOperation.FIND );
+			ICommand commandFind = FactoryCommand.build( provider, EOperation.FIND );
 			providers = commandFind.execute().getEntityList();
 		} catch( ClassNotFoundException e ) {
 			e.printStackTrace();
@@ -101,7 +108,16 @@ public class ListarFornecedoresMB {
 	}
 	
 	public void cleanFilters() {
-		
+		providerFilter = new ProviderFilter();
+		providerFilter.setName("");
+		providers = new ArrayList<Provider>();
+	
+		try {
+			ICommand commandFindAll = FactoryCommand.build( new Provider(), EOperation.FINDALL );
+			providers = commandFindAll.execute().getEntityList();
+		} catch( ClassNotFoundException e ) {
+			e.printStackTrace();
+		}
 	}
 	
 	//getters and setters

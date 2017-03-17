@@ -7,6 +7,12 @@ import com.sisga.domain.DomainSpecificEntity;
 import com.sisga.domain.address.City;
 import com.sisga.domain.communication.Telephone;
 
+/**
+ * 
+ * @author Sergio Massao Umiji
+ *         10 de mar de 2017
+ */
+
 public abstract class Person extends DomainSpecificEntity  {
 	
 	protected Telephone telephone;

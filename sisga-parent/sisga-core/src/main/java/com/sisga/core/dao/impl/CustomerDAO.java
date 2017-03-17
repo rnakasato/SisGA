@@ -8,7 +8,9 @@ import com.sisga.domain.customer.Customer;
 
 /**
  * 
- * @author Sergio Massao Umiji 7 de mar de 2017
+ * @author Sergio Massao Umiji 
+ * 7 de mar de 2017
+ * 17 de mar de 2017  - find
  */
 public class CustomerDAO extends DomainSpecificEntityDAO < Customer > {
 

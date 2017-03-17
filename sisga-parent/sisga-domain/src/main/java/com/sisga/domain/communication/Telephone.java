@@ -6,6 +6,12 @@ import com.sisga.domain.employee.Employee;
 import com.sisga.domain.provider.Provider;
 import com.sisga.domain.user.User;
 
+/**
+ * 
+ * @author Sergio Massao Umiji
+ *         10 de mar de 2017
+ */
+
 public class Telephone extends DomainSpecificEntity{
 	private String ddd;
 	private String pnumber;

@@ -4,6 +4,12 @@ package com.sisga.domain.person;
 
 import java.util.Date;
 
+/**
+ * 
+ * @author Sergio Massao Umiji
+ *         10 de mar de 2017
+ */
+
 public abstract class SocialPerson extends Person{
 	protected String cpf;
 	protected String rg;

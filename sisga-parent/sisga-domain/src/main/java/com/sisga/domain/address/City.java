@@ -2,6 +2,12 @@ package com.sisga.domain.address;
 
 import com.sisga.domain.DomainSpecificEntity;
 
+/**
+ * 
+ * @author Sergio Massao Umiji
+ *         10 de mar de 2017
+ */
+
 public class City extends DomainSpecificEntity{
 	private String uf;
 	private String name;

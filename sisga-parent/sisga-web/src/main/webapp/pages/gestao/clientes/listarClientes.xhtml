@@ -20,7 +20,7 @@
 					<p:breadCrumb style="margin: 0 auto; width: 100%; padding: 2px;">
 						<p:menuitem value="Início" url="../../paginaInicial.xhtml" />
 						<p:menuitem value="Gestão" url="../menuGestao.xhtml" />
-						<p:menuitem value="Clientes" url="ListarClientes.xhtml" />
+						<p:menuitem value="Clientes" url="listarClientes.xhtml" />
 					</p:breadCrumb>
 		
 					<div style="margin: 0 auto; min-height: 380px; width: 100%;">
@@ -34,7 +34,7 @@
 									<p:outputLabel id="labelFindCustomer">Buscar Cliente</p:outputLabel>
 									<p:inputText 
 										id="inputFindCustomer" 
-										value="#{customerFilter.firstName}" >
+										value="#{listarClientesMB.customerFilter.name}" >
 									</p:inputText>
 									<p:commandButton 
 										id="buttonFindCustomer"
@@ -50,9 +50,10 @@
 										oncomplete="PF('customerAddDialog').show()"
 										title="Cadastrar">
 									</p:commandButton>
-							
+							</p:panelGrid>
+							<p:panelGrid columns="4" border="0">
 									<p:outputLabel id="labelStatus">Status  </p:outputLabel>
-									<p:selectOneRadio id="selectRadioStatus"  value="##{listarClientesMB.customerFilter.description}">
+									<p:selectOneRadio id="selectRadioStatus"  value="##{listarClientesMB.customerFilter.status }">
 										<f:selectItem id="selectRadioStatusTodos" itemLabel="Todos"
 											itemValue= "TODOS" />
 										<f:selectItem id="selectRadioStatusAtivo" itemLabel="Ativo"
@@ -60,6 +61,11 @@
 										<f:selectItem id="selectRadioStatusInativo" itemLabel="Inativo"
 											itemValue= "INATIVO" />
 									</p:selectOneRadio>
+									<p:commandButton
+										id="btnClean"
+										value="Limpar Filtros"
+										action="#{listarClientesMB.cleanFilters()}">
+									</p:commandButton>
 									<br />
 								</p:panelGrid>
 							</p:fieldset>
@@ -77,7 +83,7 @@
 									<f:facet name="header">
 										<p:outputText value="Cliente" />
 									</f:facet>
-									<p:outputText value="#{listarClientesMB.customer.firstName + ' ' + listarClientesMB.customer.lastName}" />
+									<p:outputText value="#{listarClientesMB.customer.name}" />
 								</p:column>
 								<p:column>
 									<f:facet name="header">
@@ -95,16 +101,16 @@
 										<p:outputText value="Telefone" />
 									</f:facet>
 									<p:outputText 
-										rendered="#{(customer.telephones.get(0).phoneType eq 'TEL')}"
-										value="#{customer.telephones.get(0).pNumber}" />
+										rendered="#{(customer.telephone.phoneType eq 'TEL')}"
+										value="#{customer.telephone.pnumber}" />
 								</p:column>
 								<p:column>
 									<f:facet name="header">
 										<h:outputText value="Celular" />
 									</f:facet>
 									<p:outputText 
-										rendered="#{(provider.telephones.get(1).phoneType eq 'CEL')}"
-										value="#{provider.telephones.get(1).pNumber}" />
+										rendered="#{(provider.cellphone.phoneType eq 'CEL')}"
+										value="#{provider.cellphone.pnumber}" />
 								</p:column>
 								<p:column>
 									<f:facet name="header">
@@ -137,7 +143,7 @@
 											styleClass="ui-confirmdialog-yes" 
 											icon="ui-icon-check"
 											action="#{listarClientesMB.del(customer)}" 
-											update="customerTable"
+											update=":form_content:customerDetail :form_content:customerTable"
 											oncomplete="PF ('confirmDelete').hide()" />
 							
 										<p:commandButton 
@@ -174,7 +180,7 @@
 				<p:breadCrumb style="margin: 0 auto; width: 100%; padding: 2px;">
 					<p:menuitem value="Início" url="../../paginaInicial.xhtml" />
 					<p:menuitem value="Gestão" url="../menuGestao.xhtml" />
-					<p:menuitem value="Fornecedores" url="ListarFornecedores.xhtml" />
+					<p:menuitem value="Clientes" url="listarClientes.xhtml" />
 				</p:breadCrumb>
 			</ui:define>
 		

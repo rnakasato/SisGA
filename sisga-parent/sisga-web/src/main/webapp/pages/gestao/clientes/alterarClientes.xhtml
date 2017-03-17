@@ -31,18 +31,16 @@
 									var="user" filter="true" filterMatchMode="contains">
 					            <f:selectItems 
 									value="#{userSellers.name}" var="user" 
-									itemLabel="#{userSllers.name}" itemValue="#{userSllers.name}" />
+									itemLabel="#{userSellers.name}" itemValue="#{userSellers.name}" />
 					        </p:selectOneListbox>
 							<p:outputLabel id="labelCustomerName">Nome</p:outputLabel>
-							<p:inputText id="inputCustomerName" value="#{listarClientesMB.customer.firstName}"></p:inputText>
-							<p:outputLabel id="labelCustomerLastName">Sobrenome</p:outputLabel>
-							<p:inputText id="inputCustomerLastName" value="#{listarClientesMB.customer.lastName}"></p:inputText>
+							<p:inputText id="inputCustomerName" value="#{listarClientesMB.customer.name}"></p:inputText>
 							
 							<p:outputLabel id="labelTelephone">Telefone </p:outputLabel>
-							<p:inputText id="inputTelephone" value="#{listarClientesMB.customer.telephones.get(0).pNumber}"></p:inputText>
+							<p:inputText id="inputTelephone" value="#{listarClientesMB.customer.telephone.pnumber}"></p:inputText>
 
 							<p:outputLabel id="labelMobilePhone">Celular </p:outputLabel>
-							<p:inputText id="inputMobilePhone" value="#{listarClientesMB.customer.telephones.get(0).pNumber}"></p:inputText>
+							<p:inputText id="inputMobilePhone" value="#{listarClientesMB.customer.cellphone.pnumber}"></p:inputText>
 
 							<p:outputLabel id="labelEmail">e-mail </p:outputLabel>
 							<p:inputText id="inputEmail" value="#{listarClientesMB.customer.email}"></p:inputText>

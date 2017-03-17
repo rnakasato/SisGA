@@ -20,9 +20,7 @@
 					<p:breadCrumb style="margin: 0 auto; width: 100%; padding: 2px;">
 						<p:menuitem value="Início" url="../../paginaInicial.xhtml" />
 						<p:menuitem value="Gestão" url="../menuGestao.xhtml" />
-						<p:menuitem value="Fornecedor" url="menuFornecedores.xhtml" />
-						<p:menuitem value="Consultar Fornecedor"
-							url="consultarFornecedores.xhtml" />
+						<p:menuitem value="Fornecedor" url="listarFornecedores.xhtml" />
 					</p:breadCrumb>
 		
 					<div style="margin: 0 auto; min-height: 380px; width: 100%;">
@@ -36,7 +34,7 @@
 									<p:outputLabel id="labelFindProvider">Buscar Fornecedor</p:outputLabel>
 									<p:inputText 
 										id="inputFindProvider" 
-										value="#{listarFornecedoresMB.providerFilter.firstName}" >
+										value="#{listarFornecedoresMB.providerFilter.name}" >
 									</p:inputText>
 									<p:commandButton 
 										id="buttonFindProvider"
@@ -68,23 +66,23 @@
 									<f:facet name="header">
 										<p:outputText value="Fornecedor" />
 									</f:facet>
-									<p:outputText value="#{provider.firstName}" />
+									<p:outputText value="#{provider.name}" />
 								</p:column>
 								<p:column>
 									<f:facet name="header">
 										<p:outputText value="Telefone" />
 									</f:facet>
 									<p:outputText 
-										rendered="#{(provider.telephones.phoneType eq 'TEL')}"
-										value="#{provider.telephones.pNumber}" />
+										rendered="#{(provider.telephone.phoneType eq 'TEL')}"
+										value="#{provider.telephone.pnumber}" />
 								</p:column>
 								<p:column>
 									<f:facet name="header">
 										<h:outputText value="Celular" />
 									</f:facet>
 									<p:outputText 
-										rendered="#{(provider.telephones.phoneType eq 'CEL')}"
-										value="#{provider.telephones.pNumber}" />
+										rendered="#{(provider.cellphone.phoneType eq 'CEL')}"
+										value="#{provider.cellphone.pnumber}" />
 								</p:column>
 								<p:column>
 									<f:facet name="header">
@@ -102,8 +100,31 @@
 									<p:commandButton 
 										id="btnDelete" 
 										value="Excluir"
-										type="submit" 
-										action="#{listarFornecedoresMB.del(provider)}" />
+										onclick="PF ('confirmDelete').show()"/>
+										
+
+									<p:confirmDialog header="Excluir Fornecedor"
+										message="Tem certeza que deseja excluir este fornecedor?"
+										icon="ui-icon-alert" 
+										severity="alert"
+										widgetVar="confirmDelete">
+													
+										<p:commandButton 
+											value="Sim" 
+											type="button"
+											styleClass="ui-confirmdialog-yes" 
+											icon="ui-icon-check"
+											action="#{listarFornecedoresMB.del(provider)}" 
+											update=":form_content:providerDetail :form_content:providerTable"
+											oncomplete="PF ('confirmDelete').hide()" />
+							
+										<p:commandButton 
+											value="Não" 
+											type="button"
+											styleClass="ui-confirmdialog-no" 
+											icon="ui-icon-close" 
+											oncomplete="PF ('confirmDelete').hide()" />
+									</p:confirmDialog>
 									
 									<p:commandButton
 										id="btnDetails"
@@ -121,23 +142,22 @@
 					<p:layoutUnit position="bottom">
 						<ui:include src="/resources/template/bottom.xhtml" />
 					</p:layoutUnit>
-		
+				<p:layoutUnit position="bottom">
+						<ui:include src="/resources/template/bottom.xhtml" />
+				</p:layoutUnit>
 				</div>
-		
 			</h:form>
+		</ui:composition>
 		
-		
-			<ui:define name="adminBreadcumb">
+		<ui:define name="adminBreadcumb">
 				<p:breadCrumb style="margin: 0 auto; width: 100%; padding: 2px;">
 					<p:menuitem value="Início" url="../../paginaInicial.xhtml" />
 					<p:menuitem value="Gestão" url="../menuGestao.xhtml" />
-					<p:menuitem value="Fornecedores" url="ListarFornecedores.xhtml" />
+					<p:menuitem value="Fornecedores" url="listarFornecedores.xhtml" />
 				</p:breadCrumb>
 			</ui:define>
 		
 			<ui:define name="content">
 					</ui:define>
-		
-		</ui:composition>
 	</h:body>
 </html>

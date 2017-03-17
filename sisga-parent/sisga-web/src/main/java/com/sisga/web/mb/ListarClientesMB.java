@@ -110,10 +110,12 @@ public class ListarClientesMB {
 		}
 	}
 
-	public void detail(Customer customer) {
+	public void details(Customer customer) {
 		this.customer = customer;
 	}
-	
+	public void cleanFilters() {
+		
+	}
 	
 	//getters and setters
 	public Customer getCustomer() {
@@ -134,10 +136,6 @@ public class ListarClientesMB {
 
 	public void setCustomers(List<Customer> customers) {
 		this.customers = customers;
-	}
-	
-	public String name(Customer customer) {
-		return (customer.getFirstName() + " " + customer.getLastName());
 	}
 	
 	public List<User> getUserSellers() {

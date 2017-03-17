@@ -35,7 +35,7 @@
 								style="font-weight:bold" />
 							<p:outputLabel
 								id="outputDetailName"
-								value="#{listarClientesMB.name(customer)}" />
+								value="#{listarClientesMB.customer.name}" />
 						</p:row>
 	
 						<p:row style="text-align:left">
@@ -85,7 +85,7 @@
 								style="font-weight:bold" />
 							<p:outputLabel
 								id="outputDetailTelephone"
-								value="#{listarClientesMB.customer.telephones.get(0).pnumber)}" />
+								value="#{listarClientesMB.customer.telephone.pnumber)}" />
 						</p:row>
 					</p:panelGrid>
 	

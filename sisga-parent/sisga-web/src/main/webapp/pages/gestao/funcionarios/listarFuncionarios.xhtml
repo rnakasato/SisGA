@@ -14,26 +14,26 @@
 <h:body>
 	<h:form>
 		<div style="margin: 0 auto; height: 100%; width: 100%;">
+			
 			<p:layoutUnit position="top">
 				<ui:include src="/resources/template/header.xhtml" />
 			</p:layoutUnit>
+			
 			<p:breadCrumb style="margin: 0 auto; width: 100%; padding: 2px;">
 				<p:menuitem value="Início" url="../../paginaInicial.xhtml" />
 				<p:menuitem value="Gestão" url="../menuGestao.xhtml" />
-				<p:menuitem value="Funcionário" url="menuFuncionarios.xhtml" />
-				<p:menuitem value="Consultar Funcionário"
-					url="consultarFuncionarios.xhtml" />
+				<p:menuitem value="Funcionário" url="listarFuncionarios.xhtml" />
 			</p:breadCrumb>
 
 				<div style="margin: 0 auto; min-height: 380px; width: 100%;">
 						<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
 						<div
 							style="margin: 0 auto; width: 95%; height: 100%; float: center;">
-							<p:fieldset legend="Funionários"
+							<p:fieldset legend="Funcionários"
 								style="text-align=left; border=1px;">
 								
 								<p:panelGrid columns="4" border="0">
-									<p:outputLabel id="labelFindProvider">Buscar Funcionário</p:outputLabel>
+									<p:outputLabel id="labelFindEmployee">Buscar Funcionário</p:outputLabel>
 									<p:inputText 
 										id="inputFindEmployee" 
 										value="#{listarFuncionariosMB.employeeFilter.name}" >
@@ -55,15 +55,15 @@
 								</p:panelGrid>
 								<p:panelGrid columns="5" border="0">
 								
-								<p:outputLabel> Data de Contratação entre </p:outputLabel>
-									<p:calendar id="popupInicio"
-										value="#{listarFuncionariosMB.employeeFilter.employmentDateInit}" />
-									<p:outputLabel> e </p:outputLabel>
-									<p:calendar id="popupFim"
-										value="#{listarFuncionariosMB.employeeFilter.employmentDateFinal}" />
-									<p:commandButton id="buttonLimparFiltrosFuncionario"
-										value="Limpar Filtros" type="submit"
-										action="#{listarFuncionariosMB.cleanFilters}" />
+									<p:outputLabel> Data de Contratação entre </p:outputLabel>
+										<p:calendar id="popupInicio"
+											value="#{listarFuncionariosMB.employeeFilter.employmentDateInit}" />
+										<p:outputLabel> e </p:outputLabel>
+										<p:calendar id="popupFim"
+											value="#{listarFuncionariosMB.employeeFilter.employmentDateFinal}" />
+										<p:commandButton id="btnClean"
+											value="Limpar Filtros" type="submit"
+											action="#{listarFuncionariosMB.cleanFilters}" />
 								</p:panelGrid>
 							</p:fieldset>
 								
@@ -80,21 +80,21 @@
 									<f:facet name="header">
 										<p:outputText value="Funcionário" />
 									</f:facet>
-									<p:outputText value="#{employee.firstName}" />
+									<p:outputText value="#{employee.name}" />
 								</p:column>
 								<p:column>
 									<f:facet name="header">
 										<p:outputText value="Telefone" />
 									</f:facet>
 									<p:outputText 
-										value="#{employee.telephone}" />
+										value="#{employee.telephone.pnumber}" />
 								</p:column>
 								<p:column>
 									<f:facet name="header">
 										<h:outputText value="Celular" />
 									</f:facet>
 									<p:outputText 
-										value="#{employee.cellphone}" />
+										value="#{employee.cellphone.pnumber}" />
 								</p:column>
 								<p:column>
 									<f:facet name="header">
@@ -112,8 +112,31 @@
 									<p:commandButton 
 										id="btnDelete" 
 										value="Excluir"
-										type="submit" 
-										action="#{listarFuncionariosMB.del(employee)}" />
+										onclick="PF ('confirmDelete').show()"/>
+										
+
+									<p:confirmDialog header="Excluir Funcionário"
+										message="Tem certeza que deseja excluir este funcionário?"
+										icon="ui-icon-alert" 
+										severity="alert"
+										widgetVar="confirmDelete">
+													
+										<p:commandButton 
+											value="Sim" 
+											type="button"
+											styleClass="ui-confirmdialog-yes" 
+											icon="ui-icon-check"
+											action="#{listarFuncionariosMB.del(employee)}" 
+											update=":form_content:employeeDetail :form_content:employeeTable"
+											oncomplete="PF ('confirmDelete').hide()" />
+							
+										<p:commandButton 
+											value="Não" 
+											type="button"
+											styleClass="ui-confirmdialog-no" 
+											icon="ui-icon-close" 
+											oncomplete="PF ('confirmDelete').hide()" />
+									</p:confirmDialog>
 									
 									<p:commandButton
 										id="btnDetails"
@@ -133,6 +156,18 @@
 			</p:layoutUnit>
 		</div>
 	</h:form>
+	
+	<ui:define name="adminBreadcumb">
+				<p:breadCrumb style="margin: 0 auto; width: 100%; padding: 2px;">
+					<p:menuitem value="Início" url="../../paginaInicial.xhtml" />
+					<p:menuitem value="Gestão" url="../menuGestao.xhtml" />
+					<p:menuitem value="Funcionários" url="listarFornecedores.xhtml" />
+				</p:breadCrumb>
+			</ui:define>
+		
+			<ui:define name="content">
+					</ui:define>
+		
 </h:body>
 
 </html>

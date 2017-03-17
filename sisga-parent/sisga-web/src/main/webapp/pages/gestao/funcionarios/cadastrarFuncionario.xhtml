@@ -27,19 +27,19 @@
 				style="text-align=left; border=1px;">
 						<p:panelGrid columns="2" border="0">
 							<p:outputLabel id="labelEmployeeName">Nome do Funcionário </p:outputLabel>
-							<p:inputText id="inputEmployeeName" value="#{listarFuncionariosMB.employee.firstName}"></p:inputText>
+							<p:inputText id="inputEmployeeName" value="#{listarFuncionariosMB.employee.name}"></p:inputText>
 
 							<p:outputLabel id="labelWorkCard">Carteira de Trabalho </p:outputLabel>
 							<p:inputText id="inputWorkCard" value="#{listarFuncionariosMB.employee.workcardNumber }"></p:inputText>
-
-							<p:outputLabel id="labelTelePhone">Telefone </p:outputLabel>
-							<p:inputText id="inputTelePhone" value="#{listarFuncionariosMB.employee.telephone }"></p:inputText>
 							
 							<p:outputLabel id="labelSalary">Salário </p:outputLabel>
 							<p:inputText id="inputSalary" value="#{listarFuncionariosMB.employee.salary }"></p:inputText>
 							
+							<p:outputLabel id="labelTelePhone">Telefone </p:outputLabel>
+							<p:inputText id="inputTelePhone" value="#{listarFuncionariosMB.employee.telephone.pnumber }"></p:inputText>
+							
 							<p:outputLabel id="labelMobilePhone">Celular </p:outputLabel>
-							<p:inputText id="inputMobilePhone" value="#{listarFuncionariosMB.employee.cellphone }"></p:inputText>
+							<p:inputText id="inputMobilePhone" value="#{listarFuncionariosMB.employee.cellphone.pnumber }"></p:inputText>
 
 							<p:outputLabel id="labelEmail">e-mail </p:outputLabel>
 							<p:inputText id="inputEmail" value="#{listarFuncionariosMB.employee.email}"></p:inputText>

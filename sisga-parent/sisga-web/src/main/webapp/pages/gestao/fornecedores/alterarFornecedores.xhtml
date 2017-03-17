@@ -7,15 +7,15 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>Alterar Funcionário</title>
+	<title>Alterar Fornecedor</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 </h:head>
 
 	<h:body>
 		<p:dialog
-			id="employeeAlt"
-			header="Alterar Funcionário"
-			widgetVar="employeeUpdateDialog"
+			id="providerAlt"
+			header="Alterar Fornecedor"
+			widgetVar="providerUpdateDialog"
 			modal="true"
 			showEffect="fade"
 			hideEffect="fade"
@@ -23,48 +23,41 @@
 			width="1000px"
 			position="center top">
 			<p:fieldset 
-				legend="Alteração de Funcionário"
+				legend="Alteração de Fornecedor"
 				style="text-align=left; border=1px;">
 						<p:panelGrid columns="2" border="0">
-							<p:outputLabel id="labelEmployeeName">Nome do Funcionário </p:outputLabel>
-							<p:inputText id="inputEmployeeName" value="#{listarFuncionariosMB.employee.firstName}"></p:inputText>
+							<p:outputLabel id="labelProviderName">Nome do Fornecedor </p:outputLabel>
+							<p:inputText id="inputProviderName" value="#{listarFornecedoresMB.provider.name}"></p:inputText>
 
-							<p:outputLabel id="labelWorkCard">Carteira de Trabalho </p:outputLabel>
-							<p:inputText id="inputWorkCard" value="#{listarFuncionariosMB.employee.workcardNumber }"></p:inputText>
+							<p:outputLabel id="labelCNPJ">CNPJ </p:outputLabel>
+							<p:inputText id="inputCNPJ" value="#{listarFornecedoresMB.provider.cnpj}"></p:inputText>
 
-							<p:outputLabel id="labelTelePhone">Telefone </p:outputLabel>
-							<p:inputText id="inputTelePhone" value="#{listarFuncionariosMB.employee.telephone }"></p:inputText>
-							
-							<p:outputLabel id="labelSalary">Salário </p:outputLabel>
-							<p:inputText id="inputSalary" value="#{listarFuncionariosMB.employee.salary }"></p:inputText>
-							
+							<p:outputLabel id="labelTelephone">Telefone </p:outputLabel>
+							<p:inputText id="inputTelephone" value="#{listarFornecedoresMB.provider.telephone.pnumber}"></p:inputText>
+
 							<p:outputLabel id="labelMobilePhone">Celular </p:outputLabel>
-							<p:inputText id="inputMobilePhone" value="#{listarFuncionariosMB.employee.cellphone }"></p:inputText>
+							<p:inputText id="inputMobilePhone" value="#{listarFornecedoresMB.provider.cellphone.pnumber}"></p:inputText>
 
 							<p:outputLabel id="labelEmail">e-mail </p:outputLabel>
-							<p:inputText id="inputEmail" value="#{listarFuncionariosMB.employee.email}"></p:inputText>
+							<p:inputText id="inputEmail" value="#{listarFornecedoresMB.provider.email}"></p:inputText>
 
 							<p:outputLabel id="labelState">Estado </p:outputLabel>
-							<p:inputText id="inputState" value="#{listarFuncionariosMB.employee.city.state.name}"></p:inputText>
+							<p:inputText id="inputState" value="#{listarFornecedoresMB.provider.city.state.name}"></p:inputText>
 
 							<p:outputLabel id="labelCity">Cidade </p:outputLabel>
-							<p:inputText id="inputCity" value="#{listarFuncionariosMB.employee.city.name}"></p:inputText>
+							<p:inputText id="inputCity" value="#{listarFornecedoresMB.provider.city.name}"></p:inputText>
 
 							<p:outputLabel id="labelNeighborhood">Bairro </p:outputLabel>
-							<p:inputText id="inputneighborhood" value="#{listarFuncionariosMB.employee.neighborhood}"></p:inputText>
+							<p:inputText id="inputneighborhood" value="#{listarFornecedoresMB.provider.neighborhood}"></p:inputText>
 
 							<p:outputLabel id="labelNumber">Numero </p:outputLabel>
-							<p:inputText id="inputNumber" value="#{listarFuncionariosMB.employee.number}"></p:inputText>
+							<p:inputText id="inputNumber" value="#{listarFornecedoresMB.provider.number}"></p:inputText>
 
-							<p:outputLabel> Data de Contratação </p:outputLabel>
-							<p:calendar id="popupEmploymentDate"
-								value="#{listarFuncionariosMB.employee.employmentDate}" />
-								
-							<p:commandButton id="btnUpdateEmployee" value="Alterar"
-								type="submit" action="#{listarFuncionaariosMB.alter()}" />
+							<p:commandButton id="btnUpdateProvider" value="Alterar"
+								type="submit" action="#{listarFornecedoresMB.alter()}" />
 							<p:commandButton
 								value="Fechar"
-								onclick="PF('employeeUpdateDialog').hide()" />
+								onclick="PF('providerUpdateDialog').hide()" />
 						</p:panelGrid>
 					</p:fieldset>
 		</p:dialog>

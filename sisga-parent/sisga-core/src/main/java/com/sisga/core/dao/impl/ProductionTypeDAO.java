@@ -11,6 +11,7 @@ import com.sisga.core.application.Result;
 import com.sisga.core.enums.EOperation;
 import com.sisga.core.factory.impl.FactoryCommand;
 import com.sisga.core.hibernate.HibernateUtil;
+import com.sisga.domain.AbstractDomainEntity;
 import com.sisga.domain.product.Product;
 import com.sisga.domain.product.ProductionType;
 
@@ -21,7 +22,7 @@ import com.sisga.domain.product.ProductionType;
 public class ProductionTypeDAO extends DomainSpecificEntityDAO < ProductionType > {
 
 	@Override
-	public List < ProductionType > find( ProductionType entity ) throws Exception {
+	public List < ProductionType > find( AbstractDomainEntity entity ) throws Exception {
 		// TODO refazer, foi utilizado para teste
 		return findAll();
 	}

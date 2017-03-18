@@ -15,7 +15,7 @@ public interface IDAO < T extends AbstractDomainEntity > {
 
 	public T findById( T entity ) throws Exception;
 
-	public List < T > find( T entity ) throws Exception;
+	public List < T > find( AbstractDomainEntity entity ) throws Exception;
 
 	public List < T > findAll() throws Exception;
 

@@ -40,12 +40,15 @@ public class FactoryDAO {
 			daoMap.put( ProductOperation.class, new ProductOperationDAO() );
 			
 			daoMap.put( Provider.class, new ProviderDAO() );
+			daoMap.put( ProviderFilter.class, new ProviderDAO() );
 			daoMap.put( ProviderOperation.class, new ProviderOperationDAO() );
 			
 			daoMap.put( Customer.class, new CustomerDAO() );
+			daoMap.put( CustomerFilter.class, new CustomerDAO() );
 			daoMap.put( CustomerOperation.class, new CustomerOperationDAO() );
 			
 			daoMap.put( Employee.class, new EmployeeDAO() );
+			daoMap.put( EmployeeFilter.class, new CustomerDAO() );
 			daoMap.put( EmployeeOperation.class, new EmployeeOperationDAO() );
 			
 		}

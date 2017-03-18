@@ -4,22 +4,53 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Session;
 
 import com.sisga.core.hibernate.HibernateUtil;
-import com.sisga.domain.product.ProductOperation;
+import com.sisga.domain.AbstractDomainEntity;
 import com.sisga.domain.provider.Provider;
+import com.sisga.domain.provider.filter.ProviderFilter;
 
 /**
  * 
  * @author Sergio Massao Umiji 7 de mar de 2017
  */
 public class ProviderDAO extends DomainSpecificEntityDAO < Provider > {
+	private ProviderFilter providerFilter;  
+	
+	@Override	
+	public List < Provider > find( AbstractDomainEntity entity ) throws Exception {
+		providerFilter = (ProviderFilter) entity;
+		List < Provider > providerList = null;
+		
+		try {
+			openSession();
 
-	@Override
-	public List < Provider > find( Provider fornecedor ) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+			StringBuilder jpql = new StringBuilder();
+			jpql.append( " SELECT DISTINCT (p) FROM Provider p" );
+			jpql.append( " LEFT JOIN p.city pc " );
+			jpql.append( " LEFT JOIN p.cellphone pm " );
+			jpql.append( " LEFT JOIN p.telephone pt " );
+			jpql.append( " WHERE 1=1 " );
+			
+			if( StringUtils.isNotEmpty( providerFilter.getName() ) ) {
+				jpql.append( " AND e.name = :name " );
+			}
+			
+			Query query = session.createQuery( jpql.toString() );
+			
+			if( StringUtils.isNotEmpty( providerFilter.getName() ) ) {
+				query.setParameter( "name", providerFilter.getName() );
+			}
+			
+			providerList = query.getResultList();
+
+			closeSession();
+		} catch( RuntimeException e ) {
+			cancelSession();
+		}
+		return providerList;
 	}
 
 	@Override

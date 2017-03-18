@@ -71,10 +71,14 @@
         <property name="number" column="ANUMBER"/>
         
         <many-to-one name="city" column="IDCITY" class="com.sisga.domain.adress.City" not-null="true" />
- 		<bag name="telephones" table="TB_PHONE" >
+ 		<bag name="telephone" table="TB_PHONE" >
 			<key column="IDPROVIDER" />
 			<one-to-many class="com.sisga.domain.communication.Phone" />
-		</bag>   
+		</bag>
+		<bag name="cellphone" table="TB_PHONE" >
+			<key column="IDPROVIDER" />
+			<one-to-many class="com.sisga.domain.communication.Phone" />
+		</bag> 
     </class>  
     
     <class name="com.sisga.domain.provider.ProviderOperation" table="TB_PROVIDER_OPERATION">

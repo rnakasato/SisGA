@@ -7,6 +7,7 @@ import javax.persistence.Query;
 import org.hibernate.Session;
 
 import com.sisga.core.hibernate.HibernateUtil;
+import com.sisga.domain.AbstractDomainEntity;
 import com.sisga.domain.product.Product;
 import com.sisga.domain.product.ProductOperation;
 import com.sisga.domain.product.ProductionType;
@@ -18,7 +19,7 @@ import com.sisga.domain.product.ProductionType;
 public class ProductOperationDAO extends DomainSpecificEntityDAO < ProductOperation > {
 
 	@Override
-	public List < ProductOperation > find( ProductOperation entity ) throws Exception {
+	public List < ProductOperation > find( AbstractDomainEntity entity ) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

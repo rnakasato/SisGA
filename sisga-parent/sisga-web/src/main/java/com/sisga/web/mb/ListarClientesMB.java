@@ -56,15 +56,16 @@ public class ListarClientesMB {
 	}
 	
 	public void find() {
-		customer = new Customer();
-		customer.setName(customerFilter.getName());
 		if(customerFilter.getStatus().equals("ATIVO")){
-			customer.setActive(true);
+			customerFilter.setStatus("ATIVO");
 		}else if(customerFilter.getStatus().equals("INATIVO")){
-			customer.setActive(false);
-		}
+			customerFilter.setStatus("INATIVO");
+			}else if(customerFilter.getStatus().equals("TODOS")){
+				customerFilter.setStatus("TODOS");
+				}
+			
 		try {
-			ICommand commandFind = FactoryCommand.build( customer, EOperation.FIND );
+			ICommand commandFind = FactoryCommand.build( customerFilter, EOperation.FIND );
 			customers = commandFind.execute().getEntityList();
 		} catch( ClassNotFoundException e ) {
 			e.printStackTrace();

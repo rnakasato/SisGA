@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import com.sisga.domain.AbstractDomainEntity;
 import com.sisga.domain.provider.ProviderOperation;
 
 /**
@@ -13,7 +14,7 @@ import com.sisga.domain.provider.ProviderOperation;
 public class ProviderOperationDAO extends DomainSpecificEntityDAO < ProviderOperation > {
 
 	@Override
-	public List < ProviderOperation > find( ProviderOperation entity ) throws Exception {
+	public List < ProviderOperation > find( AbstractDomainEntity entity ) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

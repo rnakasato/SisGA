@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import com.sisga.domain.AbstractDomainEntity;
 import com.sisga.domain.product.Product;
 import com.sisga.domain.product.SaleType;
 
@@ -15,7 +16,7 @@ import com.sisga.domain.product.SaleType;
 public class SaleTypeDAO extends DomainSpecificEntityDAO < SaleType >{
 
 	@Override
-	public List < SaleType > find( SaleType entity ) throws Exception {
+	public List < SaleType > find( AbstractDomainEntity entity ) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

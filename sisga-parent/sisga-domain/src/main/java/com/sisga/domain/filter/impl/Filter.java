@@ -3,7 +3,7 @@ package com.sisga.domain.filter.impl;
 import com.sisga.domain.AbstractDomainEntity;
 import com.sisga.domain.filter.IFilter;
 
-public abstract class Filter < T extends AbstractDomainEntity > implements IFilter < T > {
+public abstract class Filter < T extends AbstractDomainEntity > extends AbstractDomainEntity implements IFilter < T > {
 	private T entity;
 
 	public T getEntity() {

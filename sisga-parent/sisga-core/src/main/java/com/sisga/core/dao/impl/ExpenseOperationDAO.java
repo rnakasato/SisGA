@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import com.sisga.domain.AbstractDomainEntity;
 import com.sisga.domain.expense.ExpenseOperation;
 
 /**
@@ -14,7 +15,7 @@ import com.sisga.domain.expense.ExpenseOperation;
 public class ExpenseOperationDAO extends DomainSpecificEntityDAO < ExpenseOperation > {
 
 	@Override
-	public List < ExpenseOperation > find( ExpenseOperation entity ) throws Exception {
+	public List < ExpenseOperation > find( AbstractDomainEntity entity ) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

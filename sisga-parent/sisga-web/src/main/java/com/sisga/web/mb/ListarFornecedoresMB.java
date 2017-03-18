@@ -42,10 +42,8 @@ public class ListarFornecedoresMB {
 	}
 	
 	public void find() {
-		provider = new Provider();
-		provider.setName(providerFilter.getName());
-		try {
-			ICommand commandFind = FactoryCommand.build( provider, EOperation.FIND );
+			try {
+			ICommand commandFind = FactoryCommand.build( providerFilter, EOperation.FIND );
 			providers = commandFind.execute().getEntityList();
 		} catch( ClassNotFoundException e ) {
 			e.printStackTrace();

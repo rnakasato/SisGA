@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import com.sisga.domain.AbstractDomainEntity;
 import com.sisga.domain.product.Product;
 
 /**
@@ -14,7 +15,7 @@ import com.sisga.domain.product.Product;
 public class ProductDAO extends DomainSpecificEntityDAO < Product > {
 
 	@Override
-	public List < Product > find( Product produto ) throws Exception {
+	public List < Product > find( AbstractDomainEntity entity ) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

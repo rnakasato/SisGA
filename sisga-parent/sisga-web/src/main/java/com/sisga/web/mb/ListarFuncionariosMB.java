@@ -44,13 +44,9 @@ public class ListarFuncionariosMB {
 	}
 	
 	public void find() {
-		employee = new Employee();
-		employee.setName(employeeFilter.getName());
-		employee.setInsertDate(employeeFilter.getEmploymentDateInit());
-		employee.setResignationDate(employeeFilter.getEmploymentDateFinal());
 		
 		try {
-			ICommand commandFind = FactoryCommand.build( employee, EOperation.FIND );
+			ICommand commandFind = FactoryCommand.build( employeeFilter, EOperation.FIND );
 			employees = commandFind.execute().getEntityList();
 		} catch( ClassNotFoundException e ) {
 			e.printStackTrace();

@@ -4,12 +4,13 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import com.sisga.domain.AbstractDomainEntity;
 import com.sisga.domain.product.StockType;
 
 public class StockTypeDAO extends DomainSpecificEntityDAO < StockType > {
 
 	@Override
-	public List < StockType > find( StockType entity ) throws Exception {
+	public List < StockType > find( AbstractDomainEntity entity ) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

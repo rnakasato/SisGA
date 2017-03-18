@@ -27,32 +27,24 @@ public class ProductOperationDAO extends DomainSpecificEntityDAO < ProductOperat
 	@Override
 	public List < ProductOperation > findAll() throws Exception {
 		List < ProductOperation > operationList = null;
-		try {
-			openSession();
+		StringBuilder jpql = new StringBuilder();
+		jpql.append( " FROM ProductOperation " );
 
-			StringBuilder jpql = new StringBuilder();
-			jpql.append( " FROM ProductOperation " );
+		Query query = session.createQuery( jpql.toString() );
 
-			Query query = session.createQuery( jpql.toString() );
+		operationList = query.getResultList();
 
-			operationList = query.getResultList();
-
-			closeSession();
-		} catch( RuntimeException e ) {
-			cancelSession();
-		}
 		return operationList;
 
 	}
-	
-	
+
 	public static void main( String[] args ) throws Exception {
 		ProductOperationDAO dao = new ProductOperationDAO();
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		dao.setSession( session );
 
-		List<ProductOperation> operationList = dao.findAll();
+		List < ProductOperation > operationList = dao.findAll();
 
 		session.close();
 		for( ProductOperation productOperation: operationList ) {
@@ -61,7 +53,5 @@ public class ProductOperationDAO extends DomainSpecificEntityDAO < ProductOperat
 
 		System.exit( 0 );
 	}
-	
-	
 
 }

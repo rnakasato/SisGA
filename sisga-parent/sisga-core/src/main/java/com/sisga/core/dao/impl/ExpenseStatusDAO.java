@@ -16,7 +16,7 @@ public class ExpenseStatusDAO extends DomainSpecificEntityDAO < ExpenseStatus > 
 
 	@Override
 	public List < ExpenseStatus > find( AbstractDomainEntity entity ) throws Exception {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

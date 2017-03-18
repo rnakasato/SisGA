@@ -13,10 +13,9 @@ import com.sisga.domain.communication.Telephone;
  *         10 de mar de 2017
  */
 
-public abstract class Person extends DomainSpecificEntity  {
-	
-	protected Telephone telephone;
-	protected Telephone cellphone;
+public abstract class Person extends DomainSpecificEntity {
+
+	protected List < Telephone > telephones;
 	protected String email;
 	protected City city;
 	protected String number;
@@ -28,10 +27,10 @@ public abstract class Person extends DomainSpecificEntity  {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName( String name ) {
 		this.name = name;
 	}
-	
+
 	public boolean isActive() {
 		return active;
 	}
@@ -43,44 +42,41 @@ public abstract class Person extends DomainSpecificEntity  {
 	public City getCity() {
 		return city;
 	}
-	public void setCity(City city) {
+
+	public void setCity( City city ) {
 		this.city = city;
 	}
-	public Telephone getTelephone() {
-		return telephone;
+
+	public List < Telephone > getTelephones() {
+		return telephones;
 	}
 
-	public void setTelephone(Telephone telephone) {
-		this.telephone = telephone;
-	}
-
-	public Telephone getCellphone() {
-		return cellphone;
-	}
-
-	public void setCellphone(Telephone cellphone) {
-		this.cellphone = cellphone;
+	public void setTelephones( List < Telephone > telephones ) {
+		this.telephones = telephones;
 	}
 
 	public String getEmail() {
 		return email;
 	}
-	public void setEmail(String email) {
+
+	public void setEmail( String email ) {
 		this.email = email;
 	}
+
 	public String getNumber() {
 		return number;
 	}
-	public void setNumber(String number) {
+
+	public void setNumber( String number ) {
 		this.number = number;
 	}
+
 	public String getNeighborhood() {
 		return neighborhood;
 	}
-	public void setNeighborhood(String neighborhood) {
+
+	public void setNeighborhood( String neighborhood ) {
 		this.neighborhood = neighborhood;
 	}
-	
-	
-	
-	}
+
+}

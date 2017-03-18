@@ -1,28 +1,40 @@
 @CHARSET "ISO-8859-1";
-html, body { 
-    margin: 0; 
-    height: 100%; 
+
+html, body {
+	margin: 0;
+	height: 100%;
 }
-#adminHeader{
+
+#adminHeader {
 	
 }
 
-#menuBar{
+#menuBar {
 	
 }
 
-#messages-container{
+#messages-container {
 	
 }
 
-#footer-container{
+#footer-container {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	padding: 1rem;
+	background-color: #efefef;
+	text-align: center;
+}
+
+#side-bar {
 	
 }
-#side-bar{
 
-}
-#content-container{
-	float:left !important;
-	width:100%;
+#content-container {
+	
 }
 
+.baseGrid.ui-panelgrid>*>tr, .baseGrid.ui-panelgrid .ui-panelgrid-cell {
+	border: none; 
+}

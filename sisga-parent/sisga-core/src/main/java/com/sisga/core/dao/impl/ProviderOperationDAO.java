@@ -39,4 +39,3 @@ public class ProviderOperationDAO extends DomainSpecificEntityDAO < ProviderOper
 		return operationList;
 	}
 }
-	

@@ -23,46 +23,46 @@ public class ProductionTypeDAO extends DomainSpecificEntityDAO < ProductionType 
 
 	@Override
 	public List < ProductionType > find( AbstractDomainEntity entity ) throws Exception {
-		// TODO refazer, foi utilizado para teste
-		return findAll();
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public List < ProductionType > findAll() throws Exception {
 		List < ProductionType > productionTypeList = null;
-		try {
-			openSession();
 
-			StringBuilder jpql = new StringBuilder();
-			jpql.append( " FROM ProductionType " );
+		StringBuilder jpql = new StringBuilder();
+		jpql.append( " FROM ProductionType " );
 
-			Query query = session.createQuery( jpql.toString() );
+		Query query = session.createQuery( jpql.toString() );
 
-			productionTypeList = query.getResultList();
+		productionTypeList = query.getResultList();
 
-			closeSession();
-		} catch( RuntimeException e ) {
-			cancelSession();
-		}
 		return productionTypeList;
 
 	}
 
 	public static void main( String[] args ) throws ClassNotFoundException {
+		try {
 
-		ProductionTypeDAO dao = new ProductionTypeDAO();
+			ProductionTypeDAO dao = new ProductionTypeDAO();
 
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		dao.setSession( session );
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			dao.setSession( session );
 
-		ProductionType p = new ProductionType();
-		p.setCode( "SEM" );
-		p = dao.findByCode( p );
-		
-		session.close();
-		System.out.println( p.getDescription() );
+			ProductionType p = new ProductionType();
+			p.setCode( "SEM" );
+			p = dao.findByCode( p );
 
-		System.exit( 0 );
+			session.close();
+			System.out.println( p.getDescription() );
+		} catch( Exception e ) {
+
+		} finally {
+
+			System.exit( 0 );
+
+		}
 
 	}
 }

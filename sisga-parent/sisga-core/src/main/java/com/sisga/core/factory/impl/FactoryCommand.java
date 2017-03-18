@@ -6,6 +6,7 @@ import java.util.Map;
 import com.sisga.core.command.impl.Command;
 import com.sisga.core.command.impl.CommandDelete;
 import com.sisga.core.command.impl.CommandFind;
+import com.sisga.core.command.impl.CommandFindAll;
 import com.sisga.core.command.impl.CommandSave;
 import com.sisga.core.command.impl.CommandUpdate;
 import com.sisga.core.enums.EOperation;
@@ -48,5 +49,6 @@ public class FactoryCommand {
 		commandMap.put( EOperation.UPDATE, new CommandUpdate() );
 		commandMap.put( EOperation.DELETE, new CommandDelete() );
 		commandMap.put( EOperation.FIND, new CommandFind() );
+		commandMap.put( EOperation.FINDALL, new CommandFindAll() );
 	}
 }

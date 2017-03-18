@@ -16,9 +16,8 @@ public class Customer extends LegalPerson {
 		return userSeller;
 	}
 
-	public void setUserSeller(User userSeller) {
+	public void setUserSeller( User userSeller ) {
 		this.userSeller = userSeller;
 	}
 
-	
 }

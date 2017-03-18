@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.sisga.domain.adress.City" table="TB_CITY">
+	<class name="com.sisga.domain.address.City" table="TB_CITY">
         <id name="id" column="IDCITY">
             <generator class="sequence">
         		<param name="sequence_name">SQ_CITY</param>
@@ -12,10 +12,10 @@
         <property name="uf" column="UF"/>
         <property name="name" column="NAME"/>
         
-        <many-to-one name="state" column="IDSTATE" class="com.sisga.domain.adress.State" not-null="true" />
+        <many-to-one name="state" column="IDSTATE" class="com.sisga.domain.address.State" not-null="true" />
     </class>
     
-    <class name="com.sisga.domain.adress.State" table="TB_State">
+    <class name="com.sisga.domain.address.State" table="TB_State">
         <id name="id" column="IDState">
             <generator class="sequence">
         		<param name="sequence_name">SQ_STATE</param>
@@ -24,36 +24,6 @@
         <property name="uf" column="UF"/>
         <property name="name" column="NAME"/>
     </class>
-    
-    <class name="com.sisga.domain.communication.PhoneType" table="TB_PHONETYPE">
-        <id name="id" column="IDPHONETYPE">
-            <generator class="sequence">
-        		<param name="sequence_name">SQ_PHONETYPE</param>
-        	</generator>            
-        </id>
-        
-        <property name="code" column="CODE"/>
-        <property name="description" column="DESCRIPTION"/>
-        
-     </class>
-    
-	<class name="com.sisga.domain.communication.Telephone" table="TB_PHONE">
-        <id name="id" column="IDPHONE">
-            <generator class="sequence">
-        		<param name="sequence_name">SQ_PHONE</param>
-        	</generator>            
-        </id>
-        
-        <property name="ddd" column="DDD"/>
-        <property name="pnumber" column="PNUMBER"/>
-        
-        <many-to-one name="customer" column="IDCUSTOMER" class="com.sisga.domain.customer.Customer" not-null="true" />
-        <many-to-one name="employee" column="IDEMPLOYEE" class="com.sisga.domain.employee.Employee" not-null="true" />
-        <many-to-one name="provider" column="IDPROVIDER" class="com.sisga.domain.provider.Provider" not-null="true" />
-        <many-to-one name="user" column="IDUSER" class="com.sisga.domain.user.User" not-null="true" />
-        <many-to-one name="phoneType" column="IDPHONETYPE" class="com.sisga.domain.communication.PhoneType" not-null="true" />
-            
-    </class> 
     
     <class name="com.sisga.domain.user.User" table="TB_USER">
         <id name="id" column="IDUSER">
@@ -77,15 +47,11 @@
         <property name="neighborhood" column="NEIGHBORHOOD"/>
         <property name="number" column="ANUMBER"/>
         
-        <many-to-one name="city" column="IDCITY" class="com.sisga.domain.adress.City" not-null="true" />
+        <many-to-one name="city" column="IDCITY" class="com.sisga.domain.address.City" not-null="true" />
         <many-to-one name="userSeller" column="IDUSERSELLER" class="com.sisga.domain.user.User" not-null="true" />
-  		<bag name="telephone" table="TB_PHONE" >
+  		<bag name="telephones" table="TB_PHONE">
 			<key column="IDCUSTOMER" />
-			<one-to-many class="com.sisga.domain.communication.Phone" />
-		</bag>
-		<bag name="cellphone" table="TB_PHONE" >
-			<key column="IDCUSTOMER" />
-			<one-to-many class="com.sisga.domain.communication.Phone" />
+			<one-to-many class="com.sisga.domain.communication.Telephone" />
 		</bag> 
     </class>  
     
@@ -105,14 +71,13 @@
         		<param name="sequence_name">SQ_CUSTOMER_HISTORY</param>
         	</generator>            
         </id>
-        <property name="name" column="FIRSTNAME"/>
         <property name="email" column="EMAIL"/>
         <property name="active" column="ACTIVE"/>
         <property name="insertDate" column="INSERTDATE"/>
         <property name="neighborhood" column="NEIGHBORHOOD"/>
         <property name="number" column="ANUMBER"/>
         
-        <many-to-one name="city" column="IDCITY" class="com.sisga.domain.adress.City" not-null="true" />
+        <many-to-one name="city" column="IDCITY" class="com.sisga.domain.address.City" not-null="true" />
         <many-to-one name="customer" column="IDCUSTOMER" class="com.sisga.domain.customer.Customer" not-null="true" />
         <many-to-one name="customerOperation" column="IDOPERATION" class="com.sisga.domain.customer.CustomerOperation" not-null="true" />
     </class> 

@@ -80,9 +80,8 @@
         <property name="serviceDescription" column="SERVICEDESCRIPTION"/>
         <property name="expenseDate" column="EXPENSEDATE"/>
         <property name="insertDate" column="INSERTDATE"/>
-        <property name="active" column="ACTIVE"/>
         <property name="phoneDdd" column="DDD_PHONE"/>
-        <property name="phoneDdd" column="PHONE_NUMBER"/>
+        <property name="phoneNumber" column="PHONE_NUMBER"/>
         <property name="cellphoneDdd" column="DDD_CELLPHONE"/>
         <property name="cellphoneNumber" column="CELLPHONE_NUMBER"/>
         

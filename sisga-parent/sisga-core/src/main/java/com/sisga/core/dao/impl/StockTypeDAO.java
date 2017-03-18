@@ -18,20 +18,14 @@ public class StockTypeDAO extends DomainSpecificEntityDAO < StockType > {
 	@Override
 	public List < StockType > findAll() throws Exception {
 		List < StockType > stockTypeList = null;
-		try {
-			openSession();
 
-			StringBuilder jpql = new StringBuilder();
-			jpql.append( " FROM StockType " );
+		StringBuilder jpql = new StringBuilder();
+		jpql.append( " FROM StockType " );
 
-			Query query = session.createQuery( jpql.toString() );
+		Query query = session.createQuery( jpql.toString() );
 
-			stockTypeList = query.getResultList();
+		stockTypeList = query.getResultList();
 
-			closeSession();
-		} catch( RuntimeException e ) {
-			cancelSession();
-		}
 		return stockTypeList;
 
 	}

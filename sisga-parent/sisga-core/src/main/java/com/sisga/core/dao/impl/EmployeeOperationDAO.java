@@ -13,7 +13,7 @@ import com.sisga.domain.employee.EmployeeOperation;
  *         12 de mar de 2017
  */
 public class EmployeeOperationDAO extends DomainSpecificEntityDAO < EmployeeOperation > {
-
+		
 	@Override
 	public List < EmployeeOperation > find( AbstractDomainEntity entity ) throws Exception {
 		// TODO Auto-generated method stub

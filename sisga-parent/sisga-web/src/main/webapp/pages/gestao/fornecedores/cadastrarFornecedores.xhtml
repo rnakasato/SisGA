@@ -26,32 +26,26 @@
 				legend="Cadastro de Fornecedor"
 				style="text-align=left; border=1px;">
 						<p:panelGrid columns="2" border="0">
-							<p:outputLabel id="labelProviderName">Nome do Fornecedor </p:outputLabel>
-							<p:inputText id="inputProviderName" value="#{listarFornecedoresMB.provider.name}"></p:inputText>
+							<p:outputLabel id="labelAddProviderName">Nome do Fornecedor </p:outputLabel>
+							<p:inputText id="inputAddProviderName" value="#{listarFornecedoresMB.provider.name}"></p:inputText>
 
-							<p:outputLabel id="labelCNPJ">CNPJ </p:outputLabel>
-							<p:inputText id="inputCNPJ" value="#{listarFornecedoresMB.provider.cnpj}"></p:inputText>
+							<p:outputLabel id="labelAddCNPJ">CNPJ </p:outputLabel>
+							<p:inputText id="inputAddCNPJ" value="#{listarFornecedoresMB.provider.cnpj}"></p:inputText>
 
-							<p:outputLabel id="labelTelephone">Telefone </p:outputLabel>
-							<p:inputText id="inputTelephone" value="#{listarFornecedoresMB.provider.telephone.pnumber}"></p:inputText>
+							<p:outputLabel id="labelAddEmail">e-mail </p:outputLabel>
+							<p:inputText id="inputAddEmail" value="#{listarFornecedoresMB.provider.email}"></p:inputText>
 
-							<p:outputLabel id="labelMobilePhone">Celular </p:outputLabel>
-							<p:inputText id="inputMobilePhone" value="#{listarFornecedoresMB.provider.cellphone.pnumber}"></p:inputText>
+							<p:outputLabel id="labelAddState">Estado </p:outputLabel>
+							<p:inputText id="inputAddState" value="#{listarFornecedoresMB.provider.city.state.name}"></p:inputText>
 
-							<p:outputLabel id="labelEmail">e-mail </p:outputLabel>
-							<p:inputText id="inputEmail" value="#{listarFornecedoresMB.provider.email}"></p:inputText>
+							<p:outputLabel id="labelAddCity">Cidade </p:outputLabel>
+							<p:inputText id="inputAddCity" value="#{listarFornecedoresMB.provider.city.name}"></p:inputText>
 
-							<p:outputLabel id="labelState">Estado </p:outputLabel>
-							<p:inputText id="inputState" value="#{listarFornecedoresMB.provider.city.state.name}"></p:inputText>
+							<p:outputLabel id="labelAddNeighborhood">Bairro </p:outputLabel>
+							<p:inputText id="inputAddNeighborhood" value="#{listarFornecedoresMB.provider.neighborhood}"></p:inputText>
 
-							<p:outputLabel id="labelCity">Cidade </p:outputLabel>
-							<p:inputText id="inputCity" value="#{listarFornecedoresMB.provider.city.name}"></p:inputText>
-
-							<p:outputLabel id="labelNeighborhood">Bairro </p:outputLabel>
-							<p:inputText id="inputneighborhood" value="#{listarFornecedoresMB.provider.neighborhood}"></p:inputText>
-
-							<p:outputLabel id="labelNumber">Numero </p:outputLabel>
-							<p:inputText id="inputNumber" value="#{listarFornecedoresMB.provider.number}"></p:inputText>
+							<p:outputLabel id="labelAddNumber">Numero </p:outputLabel>
+							<p:inputText id="inputAddNumber" value="#{listarFornecedoresMB.provider.number}"></p:inputText>
 
 							<p:commandButton id="btnSaveProvider" value="Cadastrar"
 								type="submit" action="#{listarFornecedoresMB.save()}" />

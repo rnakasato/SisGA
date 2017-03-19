@@ -15,7 +15,7 @@ import com.sisga.domain.communication.Telephone;
 public class ProviderHistory extends DomainSpecificEntity{
 
 	private Provider provider;
-	private String firstName;
+	private String corporateName;
 	private String cnpj;
 	private boolean active;
 	private ProviderOperation providerOperation;
@@ -38,12 +38,7 @@ public class ProviderHistory extends DomainSpecificEntity{
 	public void setProviderOperation(ProviderOperation providerOperation) {
 		this.providerOperation = providerOperation;
 	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+	
 	public String getCnpj() {
 		return cnpj;
 	}
@@ -73,6 +68,12 @@ public class ProviderHistory extends DomainSpecificEntity{
 	}
 	public void setCity(City city) {
 		this.city = city;
+	}
+	public String getCorporateName() {
+		return corporateName;
+	}
+	public void setCorporateName(String corporateName) {
+		this.corporateName = corporateName;
 	}
 	public String getNumber() {
 		return number;

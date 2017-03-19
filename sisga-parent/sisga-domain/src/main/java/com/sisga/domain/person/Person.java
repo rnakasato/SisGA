@@ -20,15 +20,24 @@ public abstract class Person extends DomainSpecificEntity {
 	protected City city;
 	protected String number;
 	protected String neighborhood;
-	protected String name;
 	protected boolean active;
-
-	public String getName() {
-		return name;
+	protected String firstName;
+	protected String lastName;
+	
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName( String name ) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public boolean isActive() {

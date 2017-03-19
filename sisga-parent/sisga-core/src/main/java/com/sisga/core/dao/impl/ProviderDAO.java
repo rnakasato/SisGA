@@ -16,77 +16,64 @@ import com.sisga.domain.provider.filter.ProviderFilter;
  * 
  * @author Sergio Massao Umiji 7 de mar de 2017
  */
-public class ProviderDAO extends DomainSpecificEntityDAO < Provider > {
-	private ProviderFilter providerFilter;  
-	
-	@Override	
-	public List < Provider > find( AbstractDomainEntity entity ) throws Exception {
+public class ProviderDAO extends DomainSpecificEntityDAO<Provider> {
+	private ProviderFilter providerFilter;
+
+	@Override
+	public List<Provider> find(AbstractDomainEntity entity) throws Exception {
 		providerFilter = (ProviderFilter) entity;
-		List < Provider > providerList = null;
-		
-		try {
-			openSession();
+		List<Provider> providerList = null;
 
-			StringBuilder jpql = new StringBuilder();
-			jpql.append( " SELECT DISTINCT (p) FROM Provider p" );
-			jpql.append( " LEFT JOIN p.city pc " );
-			jpql.append( " LEFT JOIN p.cellphone pm " );
-			jpql.append( " LEFT JOIN p.telephone pt " );
-			jpql.append( " WHERE 1=1 " );
-			
-			if( StringUtils.isNotEmpty( providerFilter.getName() ) ) {
-				jpql.append( " AND e.name = :name " );
-			}
-			
-			Query query = session.createQuery( jpql.toString() );
-			
-			if( StringUtils.isNotEmpty( providerFilter.getName() ) ) {
-				query.setParameter( "name", providerFilter.getName() );
-			}
-			
-			providerList = query.getResultList();
+		StringBuilder jpql = new StringBuilder();
+		jpql.append(" SELECT DISTINCT (p) FROM Provider p");
+		jpql.append(" LEFT JOIN p.city pc ");
+		jpql.append(" LEFT JOIN p.cellphone pm ");
+		jpql.append(" LEFT JOIN p.telephone pt ");
+		jpql.append(" WHERE 1=1 ");
 
-			closeSession();
-		} catch( RuntimeException e ) {
-			cancelSession();
+		if (StringUtils.isNotEmpty(providerFilter.getName())) {
+			jpql.append(" AND e.name = :name ");
 		}
+
+		Query query = session.createQuery(jpql.toString());
+
+		if (StringUtils.isNotEmpty(providerFilter.getName())) {
+			query.setParameter("name", providerFilter.getName());
+		}
+
+		providerList = query.getResultList();
+
 		return providerList;
 	}
 
 	@Override
-	public List < Provider > findAll() throws Exception {
-		List < Provider > providerList = null;
-		try {
-			openSession();
+	public List<Provider> findAll() throws Exception {
+		List<Provider> providerList = null;
 
-			StringBuilder jpql = new StringBuilder();
-			jpql.append( " FROM Provider " );
+		StringBuilder jpql = new StringBuilder();
+		jpql.append(" FROM Provider ");
 
-			Query query = session.createQuery( jpql.toString() );
+		Query query = session.createQuery(jpql.toString());
 
-			providerList = query.getResultList();
+		providerList = query.getResultList();
 
-			closeSession();
-		} catch( RuntimeException e ) {
-			cancelSession();
-		}
 		return providerList;
 	}
-	
-	public static void main( String[] args ) throws Exception {
+
+	public static void main(String[] args) throws Exception {
 		ProviderDAO dao = new ProviderDAO();
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		dao.setSession( session );
+		dao.setSession(session);
 
 		List<Provider> providerList = dao.findAll();
 
 		session.close();
-		for( Provider provider: providerList ) {
-			System.out.println( provider.getDescription() );
+		for (Provider provider : providerList) {
+			System.out.println(provider.getCorporateName());
 		}
 
-		System.exit( 0 );
+		System.exit(0);
 	}
 
 }

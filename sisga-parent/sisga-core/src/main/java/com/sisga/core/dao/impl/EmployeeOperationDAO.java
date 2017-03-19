@@ -23,8 +23,6 @@ public class EmployeeOperationDAO extends DomainSpecificEntityDAO < EmployeeOper
 	@Override
 	public List < EmployeeOperation > findAll() throws Exception {
 		List < EmployeeOperation > OperationList = null;
-		try {
-			openSession();
 
 			StringBuilder jpql = new StringBuilder();
 			jpql.append( " FROM EmployeeOperation " );
@@ -33,10 +31,6 @@ public class EmployeeOperationDAO extends DomainSpecificEntityDAO < EmployeeOper
 
 			OperationList = query.getResultList();
 
-			closeSession();
-		} catch( RuntimeException e ) {
-			cancelSession();
-		}
 		return OperationList;
 
 	}

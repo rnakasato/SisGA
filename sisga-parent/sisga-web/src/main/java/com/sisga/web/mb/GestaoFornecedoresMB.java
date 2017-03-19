@@ -22,7 +22,8 @@ import com.sisga.domain.provider.filter.ProviderFilter;
 @SessionScoped
 @ManagedBean(name="listarFornecedoresMB")
 
-public class ListarFornecedoresMB {
+public class GestaoFornecedoresMB {
+	
 	private List<Provider> providers = null;
 	private Provider provider;
 	private ProviderFilter providerFilter;

@@ -23,8 +23,6 @@ public class CustomerOperationDAO extends DomainSpecificEntityDAO < CustomerOper
 	@Override
 	public List < CustomerOperation > findAll() throws Exception {
 		List < CustomerOperation > OperationList = null;
-		try {
-			openSession();
 
 			StringBuilder jpql = new StringBuilder();
 			jpql.append( " FROM CustomerOperation " );
@@ -33,10 +31,6 @@ public class CustomerOperationDAO extends DomainSpecificEntityDAO < CustomerOper
 
 			OperationList = query.getResultList();
 
-			closeSession();
-		} catch( RuntimeException e ) {
-			cancelSession();
-		}
 		return OperationList;
 
 	}

@@ -25,38 +25,41 @@
 			<p:fieldset 
 				legend="Cadastro de Cliente"
 				style="text-align=left; border=1px;">
-						<p:panelGrid columns="2" border="0">
+						<p:panelGrid columns="3" border="0">
 						
-							<p:outputLabel for="association" value="Associar a:" />
-					        <p:selectOneListbox id="association" value="#{customer.userSeller.name}" 
+							<p:outputLabel for="addAssociation" value="Associar a:" />
+					        <p:selectOneListbox id="addAssociation" value="#{customer.userSeller.name}" 
 									var="user" filter="true" filterMatchMode="contains">
 					            <f:selectItems 
 									value="#{userSellers.name}" var="user" 
 									itemLabel="#{userSellers.name}" itemValue="#{userSellers.name}" />
 					        </p:selectOneListbox>
-							<p:outputLabel id="labelCustomerName">Nome</p:outputLabel>
-							<p:inputText id="inputCustomerName" value="#{listarClientesMB.customer.name}"></p:inputText>
+		</p:panelGrid>
+				<p:panelGrid columns="2" border="0">
+						
+							<p:outputLabel id="labelAddCustomerName">Nome</p:outputLabel>
+							<p:inputText id="inputAddCustomerName" value="#{listarClientesMB.customer.name}"></p:inputText>
 							
-							<p:outputLabel id="labelTelephone">Telefone </p:outputLabel>
-							<p:inputText id="inputTelephone" value="#{listarClientesMB.customer.telephone.pnumber}"></p:inputText>
+							<p:outputLabel id="labelAddTelephone">Telefone </p:outputLabel>
+							<p:inputText id="inputAddTelephone" value="#{listarClientesMB.customer.telephone.pnumber}"></p:inputText>
 
-							<p:outputLabel id="labelMobilePhone">Celular </p:outputLabel>
-							<p:inputText id="inputMobilePhone" value="#{listarClientesMB.customer.cellphone.pnumber}"></p:inputText>
+							<p:outputLabel id="labelAddMobilePhone">Celular </p:outputLabel>
+							<p:inputText id="inputAddMobilePhone" value="#{listarClientesMB.customer.cellphone.pnumber}"></p:inputText>
 
-							<p:outputLabel id="labelEmail">e-mail </p:outputLabel>
-							<p:inputText id="inputEmail" value="#{listarClientesMB.customer.email}"></p:inputText>
+							<p:outputLabel id="labelAddEmail">e-mail </p:outputLabel>
+							<p:inputText id="inputAddEmail" value="#{listarClientesMB.customer.email}"></p:inputText>
 
-							<p:outputLabel id="labelState">Estado </p:outputLabel>
-							<p:inputText id="inputState" value="#{listarClientesMB.customer.city.state.name}"></p:inputText>
+							<p:outputLabel id="labelAddState">Estado </p:outputLabel>
+							<p:inputText id="inputAddState" value="#{listarClientesMB.customer.city.state.name}"></p:inputText>
 
-							<p:outputLabel id="labelCity">Cidade </p:outputLabel>
-							<p:inputText id="inputCity" value="#{listarClientesMB.customer.city.name}"></p:inputText>
+							<p:outputLabel id="labelAddCity">Cidade </p:outputLabel>
+							<p:inputText id="inputAddCity" value="#{listarClientesMB.customer.city.name}"></p:inputText>
 
-							<p:outputLabel id="labelNeighborhood">Bairro </p:outputLabel>
-							<p:inputText id="inputneighborhood" value="#{listarClientesMB.customer.neighborhood}"></p:inputText>
+							<p:outputLabel id="labelAddNeighborhood">Bairro </p:outputLabel>
+							<p:inputText id="inputAddNeighborhood" value="#{listarClientesMB.customer.neighborhood}"></p:inputText>
 
-							<p:outputLabel id="labelNumber">Numero </p:outputLabel>
-							<p:inputText id="inputNumber" value="#{listarClientesMB.customer.number}"></p:inputText>
+							<p:outputLabel id="labelAddNumber">Numero </p:outputLabel>
+							<p:inputText id="inputAddNumber" value="#{listarClientesMB.customer.number}"></p:inputText>
 
 							<p:commandButton id="btnSaveProvider" value="Cadastrar"
 								type="submit" action="#{listarFornecedoresMB.save()}" />

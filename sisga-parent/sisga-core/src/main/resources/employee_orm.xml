@@ -15,14 +15,14 @@
         <property name="active" column="ACTIVE"/>
         <property name="insertDate" column="INSERTDATE"/>
         <property name="neighborhood" column="NEIGHBORHOOD"/>
-        <property name="number" column="ANUMBER"/>
-        <property name="workcardNumber" column="WORKCARDNUMBER"/>
+        <property name="number" column="ANUMERIC"/>
+        <property name="workcardNumber" column="WORKCARDNUMERIC"/>
         <property name="employmentDate" column="EMPLOYMENTDATE"/>
         <property name="salary" column="SALARY"/>
         
-        
         <many-to-one name="city" column="IDCITY" class="com.sisga.domain.address.City" not-null="true" />
-    	<bag name="telephones" table="TB_PHONE" >
+        
+       <bag name="telephones" table="TB_PHONE" >
 			<key column="IDEMPLOYEE" />
 			<one-to-many class="com.sisga.domain.communication.Telephone" />
 		</bag> 
@@ -48,15 +48,20 @@
         <property name="active" column="ACTIVE"/>
         <property name="insertDate" column="INSERTDATE"/>
         <property name="neighborhood" column="NEIGHBORHOOD"/>
-        <property name="number" column="ANUMBER"/>
-        <property name="workcardNumber" column="WORKCARDNUMBER"/>
+        <property name="number" column="ANUMERIC"/>
+        <property name="workcardNumber" column="WORKCARDNUMERIC"/>
         <property name="employmentDate" column="EMPLOYMENTDATE"/>
         <property name="resignationDate" column="RESIGNATIONDATE"/>
         <property name="salary" column="SALARY"/>
             
-        <many-to-one name="city" column="IDCITY" class="com.sisga.domain.address.City" not-null="true" />
         <many-to-one name="employee" column="IDEMPLOYEE" class="com.sisga.domain.employee.Employee" not-null="true" />
         <many-to-one name="employeeOperation" column="IDOPERATION" class="com.sisga.domain.employee.EmployeeOperation" not-null="true" />
+    <many-to-one name="city" column="IDCITY" class="com.sisga.domain.address.City" not-null="true" />
+        
+        <bag name="telephones" table="TB_PHONE">
+			<key column="IDEMPLOYEE" />
+			<one-to-many class="com.sisga.domain.communication.Telephone" />
+		</bag> 
      </class> 
     
     

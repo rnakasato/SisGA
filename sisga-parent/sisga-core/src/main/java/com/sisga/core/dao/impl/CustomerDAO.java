@@ -5,10 +5,13 @@ import java.util.List;
 import javax.persistence.Query;
 
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.Session;
 
+import com.sisga.core.hibernate.HibernateUtil;
 import com.sisga.domain.AbstractDomainEntity;
 import com.sisga.domain.customer.Customer;
 import com.sisga.domain.customer.filter.CustomerFilter;
+import com.sisga.domain.employee.Employee;
 
 /**
  * 
@@ -23,9 +26,6 @@ public class CustomerDAO extends DomainSpecificEntityDAO < Customer > {
 	public List<Customer> find(AbstractDomainEntity entity) throws Exception {
 		customerFilter = (CustomerFilter) entity;
 		List < Customer > customerList = null;
-		
-		try {
-			openSession();
 
 			StringBuilder jpql = new StringBuilder();
 			jpql.append( " SELECT DISTINCT (c) FROM Customer c" );
@@ -52,18 +52,12 @@ public class CustomerDAO extends DomainSpecificEntityDAO < Customer > {
 
 			customerList = query.getResultList();
 
-			closeSession();
-		} catch( RuntimeException e ) {
-			cancelSession();
-		}
-		return customerList;
+			return customerList;
 	}
 
 	@Override
 	public List < Customer > findAll() throws Exception {
 		List < Customer > customerList = null;
-		try {
-			openSession();
 
 			StringBuilder jpql = new StringBuilder();
 			jpql.append( " FROM Customer " );
@@ -72,13 +66,24 @@ public class CustomerDAO extends DomainSpecificEntityDAO < Customer > {
 
 			customerList = query.getResultList();
 
-			closeSession();
-		} catch( RuntimeException e ) {
-			cancelSession();
-		}
-		return customerList;
+			return customerList;
 	}
 
+	public static void main(String[] args) throws Exception {
+		CustomerDAO dao = new CustomerDAO();
+
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		dao.setSession(session);
+
+		List<Customer> list = dao.findAll();
+
+		session.close();
+		for (Customer domain : list) {
+			System.out.println(domain.getFirstName());
+		}
+
+		System.exit(0);
+	}
 	
 
 	

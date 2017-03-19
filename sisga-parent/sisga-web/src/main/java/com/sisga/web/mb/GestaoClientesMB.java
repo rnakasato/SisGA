@@ -23,9 +23,9 @@ import com.sisga.domain.user.User;
 @SessionScoped
 @ManagedBean(name="listarClientesMB")
 
-public class ListarClientesMB {
-
-	private List<Customer> customers = null;
+public class GestaoClientesMB {
+	
+	private List<Customer> customers;
 	private Customer customer;
 	private CustomerFilter customerFilter;
 	private List<User> users;
@@ -34,7 +34,6 @@ public class ListarClientesMB {
 	@PostConstruct
 	private void init(){
 		customerFilter = new CustomerFilter();
-		customerFilter.setName("");
 		customers = new ArrayList<Customer>();
 		userSellers = new ArrayList<User>();
 		
@@ -162,6 +161,7 @@ public class ListarClientesMB {
 	public CustomerFilter getCustomerFilter() {
 		return customerFilter;
 	}
+	
 
 	public void setCustomerFilter(CustomerFilter customerFilter) {
 		this.customerFilter = customerFilter;

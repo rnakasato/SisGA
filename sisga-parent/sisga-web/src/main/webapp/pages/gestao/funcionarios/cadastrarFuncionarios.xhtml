@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Cadastrar Funcionario</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+</h:head>
+
+	<h:body>
+		<p:dialog
+			id="employeeAdd"
+			header="Cadastro de Funcionários"
+			widgetVar="employeeAddDialog"
+			modal="true"
+			showEffect="fade"
+			hideEffect="fade"
+			resizable="false"
+			width="1000px"
+			position="center top">
+			<p:fieldset 
+				legend="Cadastro de Funcionário"
+				style="text-align=left; border=1px;">
+						<p:panelGrid columns="2" border="0">
+							<p:outputLabel id="labelAddEmployeeName">Nome do Funcionário </p:outputLabel>
+							<p:inputText id="inputAddEmployeeName" value="#{listarFuncionariosMB.employee.name}"></p:inputText>
+
+							<p:outputLabel id="labelAddWorkCard">Carteira de Trabalho </p:outputLabel>
+							<p:inputText id="inputAddWorkCard" value="#{listarFuncionariosMB.employee.workcardNumber }"></p:inputText>
+							
+							<p:outputLabel id="labelAddSalary">Salário </p:outputLabel>
+							<p:inputText id="inputAddSalary" value="#{listarFuncionariosMB.employee.salary }"></p:inputText>
+							
+							
+							<p:outputLabel id="labelAddEmail">e-mail </p:outputLabel>
+							<p:inputText id="inputAddEmail" value="#{listarFuncionariosMB.employee.email}"></p:inputText>
+
+							<p:outputLabel id="labelAddState">Estado </p:outputLabel>
+							<p:inputText id="inputAddState" value="#{listarFuncionariosMB.employee.city.state.name}"></p:inputText>
+
+							<p:outputLabel id="labelAddCity">Cidade </p:outputLabel>
+							<p:inputText id="inputAddCity" value="#{listarFuncionariosMB.employee.city.name}"></p:inputText>
+
+							<p:outputLabel id="labelAddNeighborhood">Bairro </p:outputLabel>
+							<p:inputText id="inputAddNeighborhood" value="#{listarFuncionariosMB.employee.neighborhood}"></p:inputText>
+
+							<p:outputLabel id="labelAddNumber">Numero </p:outputLabel>
+							<p:inputText id="inputAddNumber" value="#{listarFuncionariosMB.employee.number}"></p:inputText>
+
+							<p:outputLabel> Data de Contratação </p:outputLabel>
+							<p:calendar id="popupAddEmploymentDate"
+								value="#{listarFuncionariosMB.employee.employmentDate}" />
+
+							<p:commandButton id="btnSaveEmployee" value="Cadastrar"
+								type="submit" action="#{listarFuncionariosMB.save()}" />
+							<p:commandButton
+								value="Fechar"
+								onclick="PF('employeeAddDialog').hide()" />
+						</p:panelGrid>
+					</p:fieldset>
+		</p:dialog>
+	</h:body>
+</html>
+						

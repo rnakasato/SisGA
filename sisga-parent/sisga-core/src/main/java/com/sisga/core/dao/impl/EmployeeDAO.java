@@ -5,82 +5,84 @@ import java.util.List;
 import javax.persistence.Query;
 
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.Session;
 
+import com.sisga.core.hibernate.HibernateUtil;
 import com.sisga.domain.AbstractDomainEntity;
 import com.sisga.domain.customer.Customer;
 import com.sisga.domain.employee.Employee;
 import com.sisga.domain.employee.filter.EmployeeFilter;
+import com.sisga.domain.provider.Provider;
 
 /**
  * 
- * @author Sergio Massao Umiji 
- * 7 de mar de 2017
- * 17 de mar de 2017 - find
+ * @author Sergio Massao Umiji 7 de mar de 2017 17 de mar de 2017 - find
  */
-public class EmployeeDAO extends DomainSpecificEntityDAO < Employee > {
+public class EmployeeDAO extends DomainSpecificEntityDAO<Employee> {
 	private EmployeeFilter employeeFilter;
-	
+
 	@Override
-	public List < Employee > find( AbstractDomainEntity entity ) throws Exception {
+	public List<Employee> find(AbstractDomainEntity entity) throws Exception {
 		employeeFilter = (EmployeeFilter) entity;
-		List < Employee > employeeList = null;
-		
-		try {
-			openSession();
+		List<Employee> employeeList = null;
 
-			StringBuilder jpql = new StringBuilder();
-			jpql.append( " SELECT DISTINCT (e) FROM Employee e" );
-			jpql.append( " LEFT JOIN e.city ec " );
-			jpql.append( " LEFT JOIN e.cellphone em " );
-			jpql.append( " LEFT JOIN e.telephone et " );
-			jpql.append( " WHERE 1=1 " );
-			
-			if( StringUtils.isNotEmpty( employeeFilter.getName() ) ) {
-				jpql.append( " AND e.name = :name " );
-			}
-			if( employeeFilter.getEmploymentDateInit() != null && employeeFilter.getEmploymentDateFinal() != null ) {
-				jpql.append( " AND e.employmentDate BETWEEN :initDate AND :finalDate " );
-			}
-				
-			Query query = session.createQuery( jpql.toString() );
-			
-			if( StringUtils.isNotEmpty( employeeFilter.getName() ) ) {
-				query.setParameter( "name", employeeFilter.getName() );
-			}
-			if( employeeFilter.getEmploymentDateInit() != null ) {
-				query.setParameter( "initDate", employeeFilter.getEmploymentDateInit() );
-			}
-			if( employeeFilter.getEmploymentDateFinal() != null ) {
-				query.setParameter( "finalDate", employeeFilter.getEmploymentDateFinal() );
-			}
+		StringBuilder jpql = new StringBuilder();
+		jpql.append(" SELECT DISTINCT (e) FROM Employee e");
+		jpql.append(" LEFT JOIN e.city ec ");
+		jpql.append(" LEFT JOIN e.cellphone em ");
+		jpql.append(" LEFT JOIN e.telephone et ");
+		jpql.append(" WHERE 1=1 ");
 
-			employeeList = query.getResultList();
-
-			closeSession();
-		} catch( RuntimeException e ) {
-			cancelSession();
+		if (StringUtils.isNotEmpty(employeeFilter.getName())) {
+			jpql.append(" AND e.name = :name ");
 		}
+		if (employeeFilter.getEmploymentDateInit() != null && employeeFilter.getEmploymentDateFinal() != null) {
+			jpql.append(" AND e.employmentDate BETWEEN :initDate AND :finalDate ");
+		}
+
+		Query query = session.createQuery(jpql.toString());
+
+		if (StringUtils.isNotEmpty(employeeFilter.getName())) {
+			query.setParameter("name", employeeFilter.getName());
+		}
+		if (employeeFilter.getEmploymentDateInit() != null) {
+			query.setParameter("initDate", employeeFilter.getEmploymentDateInit());
+		}
+		if (employeeFilter.getEmploymentDateFinal() != null) {
+			query.setParameter("finalDate", employeeFilter.getEmploymentDateFinal());
+		}
+
+		employeeList = query.getResultList();
 		return employeeList;
 	}
 
 	@Override
-	public List < Employee > findAll() throws Exception {
-		List < Employee > employeeList = null;
-		try {
-			openSession();
+	public List<Employee> findAll() throws Exception {
+		List<Employee> employeeList = null;
 
-			StringBuilder jpql = new StringBuilder();
-			jpql.append( " FROM Employee " );
+		StringBuilder jpql = new StringBuilder();
+		jpql.append(" FROM Employee ");
 
-			Query query = session.createQuery( jpql.toString() );
+		Query query = session.createQuery(jpql.toString());
 
-			employeeList = query.getResultList();
+		employeeList = query.getResultList();
 
-			closeSession();
-		} catch( RuntimeException e ) {
-			cancelSession();
-		}
 		return employeeList;
 	}
 
+	public static void main(String[] args) throws Exception {
+		EmployeeDAO dao = new EmployeeDAO();
+
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		dao.setSession(session);
+
+		List<Employee> list = dao.findAll();
+
+		session.close();
+		for (Employee domain : list) {
+			System.out.println(domain.getSalary());
+		}
+
+		System.exit(0);
+	}
 }

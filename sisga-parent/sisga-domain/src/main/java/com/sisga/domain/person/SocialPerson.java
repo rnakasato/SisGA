@@ -11,8 +11,26 @@ import java.util.Date;
  */
 
 public abstract class SocialPerson extends Person{
+	
 	protected String cpf;
 	protected String rg;
+	
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
 	protected Date dateBirth;
 
 	public String getCpf() {

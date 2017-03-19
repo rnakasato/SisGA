@@ -29,7 +29,6 @@
         <many-to-one name="customer" column="IDCUSTOMER" class="com.sisga.domain.customer.Customer" not-null="true" />
         <many-to-one name="employee" column="IDEMPLOYEE" class="com.sisga.domain.employee.Employee" not-null="true" />
         <many-to-one name="provider" column="IDPROVIDER" class="com.sisga.domain.provider.Provider" not-null="true" />
-        <many-to-one name="user" column="IDUSER" class="com.sisga.domain.user.User" not-null="true" />
         <many-to-one name="phoneType" column="IDPHONETYPE" class="com.sisga.domain.communication.PhoneType" not-null="true" />
             
     </class> 

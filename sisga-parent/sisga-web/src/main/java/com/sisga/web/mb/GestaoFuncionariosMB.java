@@ -23,7 +23,7 @@ import com.sisga.domain.provider.Provider;
 @SessionScoped
 @ManagedBean(name="listarFuncionariosMB")
 
-public class ListarFuncionariosMB {
+public class GestaoFuncionariosMB {
 
 	private List<Employee> employees = null;
 	private Employee employee;

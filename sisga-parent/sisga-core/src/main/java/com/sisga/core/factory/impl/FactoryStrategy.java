@@ -6,8 +6,18 @@ import java.util.List;
 import java.util.Map;
 
 import com.sisga.core.IStrategy;
+import com.sisga.core.business.complement.InsertDateComplementor;
+import com.sisga.core.business.complement.ProductActiveComplementor;
+import com.sisga.core.business.complement.ProductCodeComplementor;
+import com.sisga.core.business.complement.ProductHistoryComplementor;
+import com.sisga.core.business.complement.ProductSaleTypeComplementor;
+import com.sisga.core.business.fieldsvalidator.ProductFieldsValidator;
+import com.sisga.core.business.validator.ProductAmountValidator;
+import com.sisga.core.business.validator.ProductBaseValueValidator;
 import com.sisga.core.enums.EOperation;
 import com.sisga.domain.AbstractDomainEntity;
+import com.sisga.domain.product.Product;
+import com.sisga.domain.product.ProductHistory;
 
 public class FactoryStrategy {
 
@@ -20,9 +30,11 @@ public class FactoryStrategy {
 	 */
 	private static Map < String, Map < String, List < IStrategy > > > rns;
 	private static Map < String, List < IStrategy > > rnsProduct;
+	private static Map < String, List < IStrategy > > rnsProductHistory;
 	private static Map < String, List < IStrategy > > rnsCustomer;
 	private static Map < String, List < IStrategy > > rnsEmployee;
-	private static Map < String, List < IStrategy > > rnsProvider;
+	private static Map < String, List < IStrategy > > rnsProvider;	
+	
 
 	public static List < IStrategy > build( AbstractDomainEntity entity, String operation ) {
 		if( rns == null ) {
@@ -44,18 +56,25 @@ public class FactoryStrategy {
 		rnsProduct = new HashMap<>();
 		initProductRns();
 		
-		// Inicialização do mapa de regras de negócio do cliente
+		// InicializaÃ§Ã£o do mapa de regras de histÃ³rico de produto
+		rnsProductHistory = new HashMap<>();
+		initProductHistoryRns();
+
+		// Inicializaï¿½ï¿½o do mapa de regras de negï¿½cio do cliente
 		rnsCustomer = new HashMap<>();
 		initCustomerRns();
-		
-		// Inicialização do mapa de regras de negócio do funcionario
+
+		// Inicializaï¿½ï¿½o do mapa de regras de negï¿½cio do funcionario
 		rnsEmployee = new HashMap<>();
 		initEmployeeRns();
-			
-		// Inicialização do mapa de regras de negócio do fornecedor
+
+		// Inicializaï¿½ï¿½o do mapa de regras de negï¿½cio do fornecedor
 		rnsProvider = new HashMap<>();
 		initProviderRns();
-
+		
+		// Adiciona regras de negÃ³cio no mapa
+		rns.put( Product.class.getName(), rnsProduct );
+		rns.put( ProductHistory.class.getName(), rnsProductHistory );
 
 	}
 
@@ -66,6 +85,19 @@ public class FactoryStrategy {
 		List < IStrategy > rnsFind = new ArrayList<>();
 		List < IStrategy > rnsDelete = new ArrayList<>();
 
+		rnsSave.add( new ProductFieldsValidator() );
+		rnsSave.add( new ProductAmountValidator() );
+		rnsSave.add( new ProductBaseValueValidator() );
+		rnsSave.add( new ProductSaleTypeComplementor() );
+		rnsSave.add( new InsertDateComplementor() );
+		rnsSave.add( new ProductActiveComplementor() );		
+		rnsSave.add( new ProductCodeComplementor() );
+
+		rnsUpdate.add( new ProductFieldsValidator() );
+		rnsUpdate.add( new ProductAmountValidator() );
+		rnsUpdate.add( new ProductBaseValueValidator() );
+		rnsUpdate.add( new ProductSaleTypeComplementor() );
+
 		// Insere as regras de negÃ³cio por operaÃ§Ã£o
 		rnsProduct.put( EOperation.SAVE, rnsSave );
 		rnsProduct.put( EOperation.UPDATE, rnsUpdate );
@@ -73,41 +105,57 @@ public class FactoryStrategy {
 		rnsProduct.put( EOperation.FIND, rnsFind );
 	}
 	
+	
+	private static void initProductHistoryRns() {
+		List < IStrategy > rnsSave = new ArrayList<>();
+		List < IStrategy > rnsUpdate = new ArrayList<>();
+		// NÃ£o hÃ¡ regras para a busca de produto
+		List < IStrategy > rnsFind = new ArrayList<>();
+		List < IStrategy > rnsDelete = new ArrayList<>();
+
+		rnsSave.add( new ProductHistoryComplementor() );
+
+		// Insere as regras de negÃ³cio por operaÃ§Ã£o
+		rnsProductHistory.put( EOperation.SAVE, rnsSave );
+		rnsProductHistory.put( EOperation.UPDATE, rnsUpdate );
+		rnsProductHistory.put( EOperation.DELETE, rnsDelete );
+		rnsProductHistory.put( EOperation.FIND, rnsFind );
+	}
+
+	
 	private static void initCustomerRns() {
 		List < IStrategy > rnsSave = new ArrayList<>();
 		List < IStrategy > rnsUpdate = new ArrayList<>();
 		List < IStrategy > rnsFind = new ArrayList<>();
 		List < IStrategy > rnsDelete = new ArrayList<>();
 
-		// Insere as regras de negócio por operação
+		// Insere as regras de negï¿½cio por operaï¿½ï¿½o
 		rnsCustomer.put( EOperation.SAVE, rnsSave );
 		rnsCustomer.put( EOperation.UPDATE, rnsUpdate );
 		rnsCustomer.put( EOperation.DELETE, rnsDelete );
 		rnsCustomer.put( EOperation.FIND, rnsFind );
 	}
 
-	
 	private static void initEmployeeRns() {
 		List < IStrategy > rnsSave = new ArrayList<>();
 		List < IStrategy > rnsUpdate = new ArrayList<>();
 		List < IStrategy > rnsFind = new ArrayList<>();
 		List < IStrategy > rnsDelete = new ArrayList<>();
 
-		// Insere as regras de negócio por operação
+		// Insere as regras de negï¿½cio por operaï¿½ï¿½o
 		rnsEmployee.put( EOperation.SAVE, rnsSave );
 		rnsEmployee.put( EOperation.UPDATE, rnsUpdate );
 		rnsEmployee.put( EOperation.DELETE, rnsDelete );
 		rnsEmployee.put( EOperation.FIND, rnsFind );
 	}
 
-	
 	private static void initProviderRns() {
 		List < IStrategy > rnsSave = new ArrayList<>();
 		List < IStrategy > rnsUpdate = new ArrayList<>();
 		List < IStrategy > rnsFind = new ArrayList<>();
 		List < IStrategy > rnsDelete = new ArrayList<>();
 
-		// Insere as regras de negócio por operação
+		// Insere as regras de negï¿½cio por operaï¿½ï¿½o
 		rnsProvider.put( EOperation.SAVE, rnsSave );
 		rnsProvider.put( EOperation.UPDATE, rnsUpdate );
 		rnsProvider.put( EOperation.DELETE, rnsDelete );

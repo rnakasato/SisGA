@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition>
+		<p:dataTable
+			var="prod"
+			id="productTable"
+			value="#{productMB.productList}"
+			paginator="true"
+			selection="#{productMB.selectedProduct}"
+			rowKey="#{prod.id}"
+			rows="15"
+			style="width:100%">
+			<f:facet
+				name="header"
+				style="align:left">
+				            Produtos
+				        </f:facet>
+
+			<p:column style="width:15%;text-align:center">
+
+				<f:facet name="header">
+					<p:outputLabel value="Produto" />
+				</f:facet>
+
+				<p:outputLabel value="#{prod.description}" />
+
+			</p:column>
+
+			<p:column style="width:15%;text-align:center">
+
+				<f:facet name="header">
+					<p:outputLabel value="Código" />
+				</f:facet>
+
+				<p:outputLabel value="#{prod.code}" />
+
+			</p:column>
+
+			<p:column style="width:15%;text-align:center">
+
+				<f:facet name="header">
+					<p:outputLabel value="Estoque" />
+				</f:facet>
+
+				<p:outputLabel value="#{prod.amount}" />
+
+			</p:column>
+
+			<p:column style="width:15%;text-align:center">
+
+				<f:facet name="header">
+					<p:outputLabel value="Foto" />
+				</f:facet>
+				<p:graphicImage
+					value="#{productMB.getImagePath(prod)}"
+					style="width:192px;heigth:192" />
+
+			</p:column>
+
+			<p:column style="width:40%;text-align:center">
+				<f:facet name="header">
+					<p:outputLabel value="Operação" />
+				</f:facet>
+				<p:commandButton
+					id="buttonAlterarProduto"
+					style="margin-left:20px"
+					value="Alterar" 
+					actionListener="#{productMB.redirectToProductUpdate(prod)}"/>
+
+				<p:commandButton
+					id="buttonExcluirProduto"
+					value="Excluir"
+					update=":form_content :messages"
+					style="margin-left:20px"
+					actionListener="#{productMB.delete(prod)}">
+					<p:confirm
+						header="Produto"
+						message="Confirmar exclusão de produto?" />
+				</p:commandButton>
+
+				<p:commandButton
+					id="buttonDetalhesProduto"
+					style="margin-left:20px"
+					value="Detalhes"
+					update=":form_content:prodDetail, :messages "
+					actionListener="#{productMB.viewDetails(prod)}"
+					onclick="PF('prodDialog').show()" />
+			</p:column>
+		</p:dataTable>
+	</ui:composition>
+</h:body>
+</html>

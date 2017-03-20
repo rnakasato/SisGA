@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<ui:composition>
+		<p:dialog
+			id="productDetail"
+			header="Produto "
+			widgetVar="prodDialog"
+			modal="true"
+			showEffect="fade"
+			hideEffect="fade"
+			resizable="false"
+			width="600px"
+			position="center">
+			<p:outputPanel
+				id="prodDetail"
+				style="align:center">
+				<p:panelGrid
+					id="gridDetail"
+					styleClass="baseGrid"
+					style="width:100%">
+					<p:row>
+
+						<p:column style="width:20%">
+							<p:panelGrid
+								id="gridHeader"
+								styleClass="baseGrid">
+								<p:graphicImage
+									id="imageProduct"
+									value="#{productMB.getImagePath(productMB.selectedProduct)}"
+									style="width:256px;heigth:256px" />
+
+
+							</p:panelGrid>
+						</p:column>
+						<p:column style="width:80%">
+							<p:panelGrid
+								id="gridProductData"
+								styleClass="baseGrid">
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											value="Nome do produto: "
+											style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:outputLabel
+											id="outputNameDetail"
+											value="#{productMB.selectedProduct.description}" />
+									</p:column>
+								</p:row>
+								
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											value="Código do produto: "
+											style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:outputLabel
+											id="outputCodeDetail"
+											value="#{productMB.selectedProduct.code}" />
+									</p:column>
+								</p:row>
+
+								<p:row style="text-align:left">
+									<p:column>
+										<p:outputLabel
+											value="Produção por: "
+											style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:outputLabel
+											id="outputProductionTypeDetail"
+											value="#{productMB.selectedProduct.productionType.description}" />
+									</p:column>
+
+								</p:row>
+
+								<p:row style="text-align:left">
+									<p:column>
+										<p:outputLabel
+											value="Estoque: "
+											style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:outputLabel
+											id="outputAmountDetail"
+											value="#{productMB.selectedProduct.amount}" />
+									</p:column>
+								</p:row>
+								<p:row style="text-align:left">
+									<p:column>
+										<p:outputLabel
+											value="Unidade de estoque: "
+											style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:outputLabel
+											id="outputStockTypeDetail"
+											value="#{productMB.selectedProduct.stockType.description}" />
+									</p:column>
+								</p:row>
+
+
+								<p:row style="text-align:left">
+									<p:column>
+										<p:outputLabel
+											value="Venda por: "
+											style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:outputLabel
+											id="outputSaleTypeDetail"
+											value="#{productMB.selectedProduct.saleType.description}" />
+									</p:column>
+								</p:row>
+
+							</p:panelGrid>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+
+
+
+				<p:panelGrid
+					id="gridClose"
+					styleClass="baseGrid"
+					style="width:100%;text-align:right"
+					columns="2">
+					<p:column style="width:80%">
+
+					</p:column>
+					<p:column style="width:20%">
+						<p:commandButton
+							id="btnClose"
+							value="Fechar"
+							onclick="PF('prodDialog').hide()" />
+					</p:column>
+				</p:panelGrid>
+			</p:outputPanel>
+		</p:dialog>
+	</ui:composition>
+</h:body>
+</html>

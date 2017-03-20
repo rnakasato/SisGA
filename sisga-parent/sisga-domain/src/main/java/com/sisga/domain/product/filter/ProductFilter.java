@@ -17,6 +17,7 @@ public class ProductFilter extends DomainSpecificEntityFilter < Product > {
 	private SaleType saleType;
 	private ProductionType productionType;
 	private StockType stockType;
+	private Boolean active;
 
 	public SaleType getSaleType() {
 		return saleType;
@@ -40,6 +41,14 @@ public class ProductFilter extends DomainSpecificEntityFilter < Product > {
 
 	public void setStockType( StockType stockType ) {
 		this.stockType = stockType;
+	}
+
+	public Boolean isActive() {
+		return active;
+	}
+
+	public void setActive( Boolean active ) {
+		this.active = active;
 	}
 
 }

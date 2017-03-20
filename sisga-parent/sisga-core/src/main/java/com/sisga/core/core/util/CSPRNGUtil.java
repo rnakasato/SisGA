@@ -3,6 +3,7 @@ package com.sisga.core.core.util;
 import java.security.SecureRandom;
 
 public class CSPRNGUtil {
+	public static final Integer BYTE_02 = 2;
 	public static final Integer BYTE_06 = 6;
 
 	public static String generateHex( Integer size ) {
@@ -18,5 +19,9 @@ public class CSPRNGUtil {
 		randomCode = sb.toString();
 
 		return randomCode;
+	}
+	
+	public static void main( String[] args ) {
+		System.out.println( generateHex( 2 ) );
 	}
 }

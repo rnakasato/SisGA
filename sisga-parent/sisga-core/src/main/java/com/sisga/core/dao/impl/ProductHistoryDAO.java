@@ -1,4 +1,3 @@
-
 package com.sisga.core.dao.impl;
 
 import java.util.List;
@@ -8,34 +7,36 @@ import javax.persistence.Query;
 import org.apache.commons.lang3.StringUtils;
 
 import com.sisga.domain.AbstractDomainEntity;
-import com.sisga.domain.product.Product;
-import com.sisga.domain.product.filter.ProductFilter;
+import com.sisga.domain.product.ProductHistory;
+import com.sisga.domain.product.filter.ProductHistoryFilter;
 
 /**
  * 
- * @author Rafael Hikaru Nakasato 7 de mar de 2017
+ * @author Rafael Hikaru Nakasato
+ *         19 de mar de 2017
  */
-public class ProductDAO extends DomainSpecificEntityDAO < Product > {
+public class ProductHistoryDAO extends DomainSpecificEntityDAO < ProductHistory > {
 
 	@Override
-	public List < Product > find( AbstractDomainEntity entity ) throws Exception {
-		ProductFilter filter = ( ProductFilter ) entity;
-		List < Product > productList = null;
+	public List < ProductHistory > find( AbstractDomainEntity entity ) throws Exception {
+		ProductHistoryFilter filter = ( ProductHistoryFilter ) entity;
+		List < ProductHistory > productHistoryList = null;
 
 		StringBuilder jpql = new StringBuilder();
 
-		jpql.append( " SELECT DISTINCT(p) FROM Product p " );
-		jpql.append( " LEFT JOIN p.saleType sat " );
-		jpql.append( " LEFT JOIN p.productionType prt " );
-		jpql.append( " LEFT JOIN p.stockType stk " );
+		jpql.append( " SELECT DISTINCT(ph) FROM ProductHistory ph " );
+		jpql.append( " LEFT JOIN ph.saleType sat " );
+		jpql.append( " LEFT JOIN ph.productionType prt " );
+		jpql.append( " LEFT JOIN ph.stockType stk " );
+		jpql.append( " LEFT JOIN ph.product p " );
 		jpql.append( " WHERE 1=1 " );
 
 		if( StringUtils.isNotEmpty( filter.getCode() ) ) {
-			jpql.append( " AND UPPER(p.code) like :productCode " );
+			jpql.append( " AND p.code like :productCode " );
 		}
 
 		if( StringUtils.isNotEmpty( filter.getDescription() ) ) {
-			jpql.append( " AND UPPER(p.description) like :description  " );
+			jpql.append( " AND UPPER(p.description) like  :description  " );
 		}
 
 		if( filter.getSaleType() != null && StringUtils.isNotEmpty( filter.getSaleType().getCode() ) ) {
@@ -51,17 +52,13 @@ public class ProductDAO extends DomainSpecificEntityDAO < Product > {
 		}
 
 		if( filter.getInsertDate() != null ) {
-			jpql.append( " AND p.insertDate =  :insertDate  " );
-		}
-
-		if( filter.isActive() != null ) {
-			jpql.append( " AND p.active =  :active  " );
+			jpql.append( " AND ph.insertDate =  :insertDate  " );
 		}
 
 		Query query = session.createQuery( jpql.toString() );
 
 		if( StringUtils.isNotEmpty( filter.getCode() ) ) {
-			query.setParameter( "productCode", filter.getCode().toUpperCase() );
+			query.setParameter( "productCode", "%" + filter.getCode().toUpperCase() + "%" );
 		}
 
 		if( StringUtils.isNotEmpty( filter.getDescription() ) ) {
@@ -84,25 +81,21 @@ public class ProductDAO extends DomainSpecificEntityDAO < Product > {
 			query.setParameter( "insertDate", filter.getInsertDate() );
 		}
 
-		if( filter.isActive() != null ) {
-			query.setParameter( "active", filter.isActive() );
-		}
+		productHistoryList = query.getResultList();
 
-		productList = query.getResultList();
-
-		return productList;
+		return productHistoryList;
 	}
 
 	@Override
-	public List < Product > findAll() throws Exception {
-		List < Product > productList = null;
+	public List < ProductHistory > findAll() throws Exception {
+		List < ProductHistory > historyList = null;
 		StringBuilder jpql = new StringBuilder();
-		jpql.append( " FROM Product " );
+		jpql.append( " FROM ProductHistory " );
 
 		Query query = session.createQuery( jpql.toString() );
 
-		productList = query.getResultList();
-		return productList;
+		historyList = query.getResultList();
+		return historyList;
 	}
 
 }

@@ -47,9 +47,10 @@
         <property name="photo" column="PHOTO"/>
         <property name="amount" column="AMOUNT"/>
         <property name="baseValue" column="BASEVALUE"/>
-        <many-to-one name="productionType" column="IDPRODUCTIONTYPE" class="com.sisga.domain.product.ProductionType" not-null="true" />
-        <many-to-one name="saleType" column="IDSALETYPE" class="com.sisga.domain.product.SaleType" not-null="true" />
-        <many-to-one name="stockType" column="IDSTOCKTYPE" class="com.sisga.domain.product.StockType" not-null="true" />        
+        <property name="active" column="ACTIVE"/>
+        <many-to-one name="productionType" column="IDPRODUCTIONTYPE" class="com.sisga.domain.product.ProductionType" not-null="true" lazy="false" />
+        <many-to-one name="saleType" column="IDSALETYPE" class="com.sisga.domain.product.SaleType" not-null="true" cascade="save-update" lazy="false" />
+        <many-to-one name="stockType" column="IDSTOCKTYPE" class="com.sisga.domain.product.StockType" not-null="true" lazy="false" />        
     </class>  
     
     <class name="com.sisga.domain.product.ProductOperation" table="TB_PRODUCT_OPERATION">
@@ -69,12 +70,12 @@
         	</generator>            
         </id>
         <property name="insertDate" column="INSERTDATE"/>
-        <property name="code" column="CODE"/>
         <property name="description" column="DESCRIPTION"/>
         <property name="photo" column="PHOTO"/>
         <property name="amount" column="AMOUNT"/>
         <property name="baseValue" column="BASEVALUE"/>
         <many-to-one name="productionType" column="IDPRODUCTIONTYPE" class="com.sisga.domain.product.ProductionType" not-null="true" />
+        <many-to-one name="productOperation" column="IDOPERATION" class="com.sisga.domain.product.ProductOperation" not-null="true" />
         <many-to-one name="saleType" column="IDSALETYPE" class="com.sisga.domain.product.SaleType" not-null="true" />
         <many-to-one name="stockType" column="IDSTOCKTYPE" class="com.sisga.domain.product.StockType" not-null="true" />        
         <many-to-one name="product" column="IDPRODUCT" class="com.sisga.domain.product.Product" not-null="true" />

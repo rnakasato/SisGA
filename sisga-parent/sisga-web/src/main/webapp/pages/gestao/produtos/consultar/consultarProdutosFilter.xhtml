@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<ui:composition>
+		<h:form
+			id="formFilter"
+			style="height:100%;width:100%">
+			<p:fieldset
+				legend="Consultar Produto"
+				style="text-align=left; border=1px;">
+				<p:panelGrid
+					border="0"
+					style="margin-top:30px"
+					styleClass="baseGrid">
+					<p:row>
+						<p:column>
+							<p:outputLabel
+								for="inputNomeProduto"
+								value="Buscar Produto " />
+						</p:column>
+						<p:column>
+							<p:inputText
+								id="inputNomeProduto"
+								value="#{productMB.filter.description}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel
+								for="inputCodigoProduto"
+								value="Código do produto " />
+						</p:column>
+						<p:column>
+							<p:inputText
+								id="inputCodigoProduto"
+								value="#{productMB.filter.code}" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<p:outputLabel
+								for="selectOneMenuProducaoPor"
+								value="Produção por " />
+						</p:column>
+						<p:column>
+							<p:selectOneMenu
+								id="selectOneMenuProducaoPor"
+								value="#{productMB.filter.productionType}"
+								converter="defaultConverter">
+								<f:selectItem
+									itemLabel="Todos"
+									itemValue="#{null}" />
+								<f:selectItems
+									value="#{productMB.productionTypeList}"
+									var="tp"
+									itemValue="#{tp}"
+									itemLabel="#{tp.description}" />
+							</p:selectOneMenu>
+						</p:column>
+						<p:column>
+						</p:column>
+					</p:row>
+
+
+					<p:row>
+						<p:column>
+							<p:outputLabel
+								for="selectOneMenuVendaPor"
+								value="Venda por  " />
+						</p:column>
+						<p:column>
+							<p:selectOneMenu
+								id="selectOneMenuVendaPor"
+								value="#{productMB.filter.saleType}"
+								converter="defaultConverter">
+								<f:selectItem
+									itemLabel="Todos"
+									itemValue="#{null}" />
+								<f:selectItems
+									value="#{productMB.saleTypeList}"
+									var="tp"
+									itemValue="#{tp}"
+									itemLabel="#{tp.description}" />
+
+
+							</p:selectOneMenu>
+
+						</p:column>
+
+					</p:row>
+
+
+					<p:row>
+						<p:column>
+							<p:commandButton
+								id="buttonBuscarProduto"
+								style="margin-top:50px"
+								value="Buscar"
+								update=":form_content:productTable"
+								actionListener="#{productMB.search()}" />
+						</p:column>
+
+						<p:column>
+							<p:commandButton
+								id="buttonLimparFiltros"
+								style="margin-top:50px"
+								value="Limpar Filtros"
+								update=":form_content"
+								actionListener="#{productMB.clearFilter}" />
+						</p:column>
+						<p:column>
+							<p:commandButton
+								id="buttonNovoProduto"
+								style="margin-top:50px"
+								value="Novo Produto"
+								action="/pages/gestao/produtos/cadastrarProdutos.jsf?faces-redirect=true" />
+						</p:column>
+
+					</p:row>
+				</p:panelGrid>
+			</p:fieldset>
+		</h:form>
+	</ui:composition>
+</h:body>
+</html>

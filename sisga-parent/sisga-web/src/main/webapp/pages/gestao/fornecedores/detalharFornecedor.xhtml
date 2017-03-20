@@ -35,7 +35,7 @@
 								style="font-weight:bold" />
 							<p:outputLabel
 								id="outputDetailName"
-								value="#{listarFornecedoresMB.provider.name}" />
+								value="#{listarFornecedoresMB.provider.corporateName}" />
 						</p:row>
 	
 						<p:row style="text-align:left">
@@ -45,6 +45,24 @@
 							<p:outputLabel
 								id="outputDetailCnpj"
 								value="#{listarFornecedoresMB.provider.cnpj}" />
+						</p:row>
+
+						<p:row style="text-align:left">
+							<p:outputLabel
+								value="Telefone: "
+								style="font-weight:bold" />
+							<p:outputLabel
+								id="outputDetailTelephone"
+								value="#{listarFornecedoresMB.provider.telephones.get(0).pnumber }" />
+						</p:row>
+
+						<p:row style="text-align:left">
+							<p:outputLabel
+								value="Celular: "
+								style="font-weight:bold" />
+							<p:outputLabel
+								id="outputDetailCellphone"
+								value="#{listarFornecedoresMB.provider.telephones.get(1).pnumber }" />
 						</p:row>
 	
 						<p:row style="text-align:left">
@@ -110,14 +128,6 @@
 								value="#{listarFornecedoresMB.provider.insertDate}" />
 						</p:row>
 	
-						<p:row style="text-align:left">
-							<p:outputLabel
-								value="Telefone: "
-								style="font-weight:bold" />
-							<p:outputLabel
-								id="outputDetailTelephone"
-								value="#{listarFornecedoresMB.provider.telephone.pnumber }" />
-						</p:row>
 					</p:panelGrid>
 	
 					<p:commandButton

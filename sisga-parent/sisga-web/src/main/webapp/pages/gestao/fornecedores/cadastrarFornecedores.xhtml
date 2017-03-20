@@ -11,49 +11,57 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 </h:head>
 
-	<h:body>
-		<p:dialog
-			id="providerAdd"
-			header="Cadastro de Fornecedores"
-			widgetVar="providerAddDialog"
-			modal="true"
-			showEffect="fade"
-			hideEffect="fade"
-			resizable="false"
-			width="1000px"
-			position="center top">
-			<p:fieldset 
-				legend="Cadastro de Fornecedor"
-				style="text-align=left; border=1px;">
-						<p:panelGrid columns="2" border="0">
-							<p:outputLabel id="labelAddProviderName">Nome do Fornecedor </p:outputLabel>
-							<p:inputText id="inputAddProviderName" value="#{listarFornecedoresMB.provider.name}"></p:inputText>
+<h:body>
+	<p:dialog id="providerAdd" header="Cadastro de Fornecedores"
+		widgetVar="providerAddDialog" modal="true" showEffect="fade"
+		hideEffect="fade" resizable="false" width="1000px"
+		position="center top">
+		<p:fieldset legend="Cadastro de Fornecedor"
+			style="text-align=left; border=1px;">
+			<p:panelGrid columns="2" border="0">
+				<p:outputLabel id="labelAddProviderName">Nome do Fornecedor </p:outputLabel>
+				<p:inputText id="inputAddProviderName"
+					value="#{listarFornecedoresMB.provider.firstName}"></p:inputText>
 
-							<p:outputLabel id="labelAddCNPJ">CNPJ </p:outputLabel>
-							<p:inputText id="inputAddCNPJ" value="#{listarFornecedoresMB.provider.cnpj}"></p:inputText>
+				<p:outputLabel id="labelAddCNPJ">CNPJ </p:outputLabel>
+				<p:inputText id="inputAddCNPJ"
+					value="#{listarFornecedoresMB.provider.cnpj}"></p:inputText>
 
-							<p:outputLabel id="labelAddEmail">e-mail </p:outputLabel>
-							<p:inputText id="inputAddEmail" value="#{listarFornecedoresMB.provider.email}"></p:inputText>
+				<p:outputLabel id="labelAddPhone">Telefone </p:outputLabel>
+				<p:inputText id="inputAddPhone"
+					value="#{listarFornecedoresMB.phone}"></p:inputText>
 
-							<p:outputLabel id="labelAddState">Estado </p:outputLabel>
-							<p:inputText id="inputAddState" value="#{listarFornecedoresMB.provider.city.state.name}"></p:inputText>
+				<p:outputLabel id="labelAddCellPhone">Celular </p:outputLabel>
+				<p:inputText id="inputAddCellPhone"
+					value="#{listarFornecedoresMB.cellphone}"></p:inputText>
 
-							<p:outputLabel id="labelAddCity">Cidade </p:outputLabel>
-							<p:inputText id="inputAddCity" value="#{listarFornecedoresMB.provider.city.name}"></p:inputText>
+				<p:outputLabel id="labelAddEmail">e-mail </p:outputLabel>
+				<p:inputText id="inputAddEmail"
+					value="#{listarFornecedoresMB.provider.email}"></p:inputText>
 
-							<p:outputLabel id="labelAddNeighborhood">Bairro </p:outputLabel>
-							<p:inputText id="inputAddNeighborhood" value="#{listarFornecedoresMB.provider.neighborhood}"></p:inputText>
+				<p:outputLabel id="labelAddState">Estado </p:outputLabel>
+				<p:inputText id="inputAddState"
+					value="#{listarFornecedoresMB.provider.city.state.name}"></p:inputText>
 
-							<p:outputLabel id="labelAddNumber">Numero </p:outputLabel>
-							<p:inputText id="inputAddNumber" value="#{listarFornecedoresMB.provider.number}"></p:inputText>
+				<p:outputLabel id="labelAddCity">Cidade </p:outputLabel>
+				<p:inputText id="inputAddCity"
+					value="#{listarFornecedoresMB.provider.city.name}"></p:inputText>
 
-							<p:commandButton id="btnSaveProvider" value="Cadastrar"
-								type="submit" action="#{listarFornecedoresMB.save()}" />
-							<p:commandButton
-								value="Fechar"
-								onclick="PF('providerAddDialog').hide()" />
-						</p:panelGrid>
-					</p:fieldset>
-		</p:dialog>
-	</h:body>
+				<p:outputLabel id="labelAddNeighborhood">Bairro </p:outputLabel>
+				<p:inputText id="inputAddNeighborhood"
+					value="#{listarFornecedoresMB.provider.neighborhood}"></p:inputText>
+
+				<p:outputLabel id="labelAddNumber">Numero </p:outputLabel>
+				<p:inputText id="inputAddNumber"
+					value="#{listarFornecedoresMB.provider.number}"></p:inputText>
+
+				<p:commandButton id="btnSaveProvider" value="Cadastrar"
+					type="submit" action="#{listarFornecedoresMB.save()}"
+					oncomplete="PF('providerAddDialog').hide()" />
+				<p:commandButton value="Fechar"
+					onclick="PF('providerAddDialog').hide()" />
+			</p:panelGrid>
+		</p:fieldset>
+	</p:dialog>
+</h:body>
 </html>

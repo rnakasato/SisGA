@@ -14,9 +14,18 @@ import com.sisga.domain.filter.impl.DomainSpecificEntityFilter;
 public class EmployeeFilter extends DomainSpecificEntityFilter < Employee >{
 
 	private String name;
+	private String status;
 	private Date employmentDateInit;
 	private Date employmentDateFinal;
 	
+	
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public String getName() {
 		return name;
 	}

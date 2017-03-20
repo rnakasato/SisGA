@@ -27,16 +27,16 @@
 				style="text-align=left; border=1px;">
 						<p:panelGrid columns="2" border="0">
 							<p:outputLabel id="labelProviderName">Nome do Fornecedor </p:outputLabel>
-							<p:inputText id="inputProviderName" value="#{listarFornecedoresMB.provider.name}"></p:inputText>
+							<p:inputText id="inputProviderName" value="#{listarFornecedoresMB.provider.corporateName}"></p:inputText>
 
 							<p:outputLabel id="labelCNPJ">CNPJ </p:outputLabel>
 							<p:inputText id="inputCNPJ" value="#{listarFornecedoresMB.provider.cnpj}"></p:inputText>
 
 							<p:outputLabel id="labelTelephone">Telefone </p:outputLabel>
-							<p:inputText id="inputTelephone" value="#{listarFornecedoresMB.provider.telephone.pnumber}"></p:inputText>
+							<p:inputText id="inputTelephone" value="#{listarFornecedoresMB.provider.telephones.get(0).pnumber}"></p:inputText>
 
 							<p:outputLabel id="labelMobilePhone">Celular </p:outputLabel>
-							<p:inputText id="inputMobilePhone" value="#{listarFornecedoresMB.provider.cellphone.pnumber}"></p:inputText>
+							<p:inputText id="inputMobilePhone" value="#{listarFornecedoresMB.provider.telephones.get(1).pnumber}"></p:inputText>
 
 							<p:outputLabel id="labelEmail">e-mail </p:outputLabel>
 							<p:inputText id="inputEmail" value="#{listarFornecedoresMB.provider.email}"></p:inputText>

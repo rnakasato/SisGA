@@ -10,9 +10,10 @@ import javax.faces.bean.SessionScoped;
 import com.sisga.core.ICommand;
 import com.sisga.core.enums.EOperation;
 import com.sisga.core.factory.impl.FactoryCommand;
+import com.sisga.domain.communication.PhoneType;
+import com.sisga.domain.communication.Telephone;
 import com.sisga.domain.employee.Employee;
 import com.sisga.domain.employee.filter.EmployeeFilter;
-import com.sisga.domain.provider.Provider;
 
 /**
  * 
@@ -28,7 +29,11 @@ public class GestaoFuncionariosMB {
 	private List<Employee> employees = null;
 	private Employee employee;
 	private EmployeeFilter employeeFilter;
+	private Telephone phone;
+	private Telephone cellphone;
 	
+	
+
 	@PostConstruct
 	private void init(){
 		employeeFilter = new EmployeeFilter();
@@ -55,9 +60,20 @@ public class GestaoFuncionariosMB {
 
 	public void add() {
 		employee = new Employee();
+		cellphone = new Telephone();
+		phone = new Telephone();  
+		cellphone.setPnumber("");
+		cellphone.setPhoneType(new PhoneType());
+		cellphone.getPhoneType().setCode(PhoneType.CELULAR);
+		phone.setPnumber("");
+		phone.setPhoneType(new PhoneType());
+		phone.getPhoneType().setCode(PhoneType.TELEFONE);
 	}
 
 	public void save() {
+		employee.setTelephones(new ArrayList<Telephone>());
+		employee.getTelephones().add(phone);
+		employee.getTelephones().add(cellphone);
 		try {
 			ICommand commandAdd = FactoryCommand.build( employee, EOperation.SAVE );
 			try {
@@ -151,7 +167,21 @@ public class GestaoFuncionariosMB {
 		this.employeeFilter = employeeFilter;
 	}
 	
-	
+	public Telephone getPhone() {
+		return phone;
+	}
+
+	public void setPhone(Telephone phone) {
+		this.phone = phone;
+	}
+
+	public Telephone getCellphone() {
+		return cellphone;
+	}
+
+	public void setCellphone(Telephone cellphone) {
+		this.cellphone = cellphone;
+	}
 	
 
 }

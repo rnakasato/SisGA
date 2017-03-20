@@ -35,7 +35,16 @@
 								style="font-weight:bold" />
 							<p:outputLabel
 								id="outputDetailName"
-								value="#{listarFuncionariosMB.employee.name}" />
+								value="#{listarFuncionariosMB.employee.firstName}" />
+						</p:row>
+	
+						<p:row style="text-align:left">
+							<p:outputLabel
+								value="Sobrenome : "
+								style="font-weight:bold" />
+							<p:outputLabel
+								id="outputDetailLastName"
+								value="#{listarFuncionariosMB.employee.lastName}" />
 						</p:row>
 	
 						<p:row style="text-align:left">
@@ -49,7 +58,7 @@
 
 						<p:row style="text-align:left">
 							<p:outputLabel
-								value="Nome : "
+								value="Salario : "
 								style="font-weight:bold" />
 							<p:outputLabel
 								id="outputDetailSalary"
@@ -65,7 +74,23 @@
 								value="#{listarFuncionariosMB.employee.email}" />
 						</p:row>
 						
+						<p:row style="text-align:left">
+							<p:outputLabel
+								value="Telefone"
+								style="font-weight:bold" />
+							<p:outputLabel
+								id="outputDetailPhone"
+								value="#{listarFuncionariosMB.phone.pnumber}" />
+						</p:row>
 						
+						<p:row style="text-align:left">
+							<p:outputLabel
+								value="Celular"
+								style="font-weight:bold" />
+							<p:outputLabel
+								id="outputDetailCellPhone"
+								value="#{listarFuncionariosMB.cellphone.pnumber}" />
+						</p:row>
 						
 						<p:row style="text-align:left">
 							<p:outputLabel

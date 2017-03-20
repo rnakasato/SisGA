@@ -11,56 +11,83 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 </h:head>
 
-	<h:body>
-		<p:dialog
-			id="employeeAlt"
-			header="Alterar Funcionário"
-			widgetVar="employeeUpdateDialog"
-			modal="true"
-			showEffect="fade"
-			hideEffect="fade"
-			resizable="false"
-			width="1000px"
-			position="center top">
-			<p:fieldset 
-				legend="Alteração de Funcionário"
-				style="text-align=left; border=1px;">
-						<p:panelGrid columns="2" border="0">
-							<p:outputLabel id="labelEmployeeName">Nome do Funcionário </p:outputLabel>
-							<p:inputText id="inputEmployeeName" value="#{listarFuncionariosMB.employee.name}"></p:inputText>
+<h:body>
+	<p:dialog id="employeeAlt" header="Alterar Funcionário"
+		widgetVar="employeeUpdateDialog" modal="true" showEffect="fade"
+		hideEffect="fade" resizable="false" width="1000px"
+		position="center top">
+		<p:fieldset legend="Alteração de Funcionário"
+			style="text-align=left; border=1px;">
+			<p:panelGrid columns="2" border="0">
+				<p:outputLabel id="labelEmployeeName">Nome do Funcionário </p:outputLabel>
+				<p:inputText id="inputEmployeeName"
+					value="#{listarFuncionariosMB.employee.firstName}"></p:inputText>
 
-							<p:outputLabel id="labelWorkCard">Carteira de Trabalho </p:outputLabel>
-							<p:inputText id="inputWorkCard" value="#{listarFuncionariosMB.employee.workcardNumber }"></p:inputText>
+				<p:outputLabel id="labelEmployeeLastName">Sobrenome </p:outputLabel>
+				<p:inputText id="inputEmployeeLastName"
+					value="#{listarFuncionariosMB.employee.lastName}"></p:inputText>
 
-							<p:outputLabel id="labelSalary">Salário </p:outputLabel>
-							<p:inputText id="inputSalary" value="#{listarFuncionariosMB.employee.salary }"></p:inputText>
-							
-								<p:outputLabel id="labelEmail">e-mail </p:outputLabel>
-							<p:inputText id="inputEmail" value="#{listarFuncionariosMB.employee.email}"></p:inputText>
+				<p:outputLabel id="labelWorkCard">Carteira de Trabalho </p:outputLabel>
+				<p:inputText id="inputWorkCard"
+					value="#{listarFuncionariosMB.employee.workcardNumber }"></p:inputText>
 
-							<p:outputLabel id="labelState">Estado </p:outputLabel>
-							<p:inputText id="inputState" value="#{listarFuncionariosMB.employee.city.state.name}"></p:inputText>
+				<p:outputLabel id="labelSalary">Salário </p:outputLabel>
+				<p:inputText id="inputSalary"
+					value="#{listarFuncionariosMB.employee.salary }"></p:inputText>
 
-							<p:outputLabel id="labelCity">Cidade </p:outputLabel>
-							<p:inputText id="inputCity" value="#{listarFuncionariosMB.employee.city.name}"></p:inputText>
 
-							<p:outputLabel id="labelNeighborhood">Bairro </p:outputLabel>
-							<p:inputText id="inputneighborhood" value="#{listarFuncionariosMB.employee.neighborhood}"></p:inputText>
+				<p:outputLabel id="labelPhone">Telefone </p:outputLabel>
+				<p:inputText id="inputPhone"
+					value="#{listarFuncionariosMB.employee.telephones.get(0).pnumber}"></p:inputText>
+				
+				<p:outputLabel id="labelCellPhone">Celular </p:outputLabel>
+				<p:inputText id="inputCellPhone"
+					value="#{listarFuncionariosMB.employee.telephones.get(1).pnumber}"></p:inputText>
+					
+				<p:outputLabel id="labelEmail">e-mail </p:outputLabel>
+				<p:inputText id="inputEmail"
+					value="#{listarFuncionariosMB.employee.email}"></p:inputText>
 
-							<p:outputLabel id="labelNumber">Numero </p:outputLabel>
-							<p:inputText id="inputNumber" value="#{listarFuncionariosMB.employee.number}"></p:inputText>
+				<p:outputLabel id="labelState">Estado </p:outputLabel>
+				<p:inputText id="inputState"
+					value="#{listarFuncionariosMB.employee.city.state.name}"></p:inputText>
 
-							<p:outputLabel> Data de Contratação </p:outputLabel>
-							<p:calendar id="popupEmploymentDate"
-								value="#{listarFuncionariosMB.employee.employmentDate}" />
-								
-							<p:commandButton id="btnUpdateEmployee" value="Alterar"
-								type="submit" action="#{listarFuncionariosMB.alter()}" />
-							<p:commandButton
-								value="Fechar"
-								onclick="PF('employeeUpdateDialog').hide()" />
-						</p:panelGrid>
-					</p:fieldset>
-		</p:dialog>
-	</h:body>
+				<p:outputLabel id="labelCity">Cidade </p:outputLabel>
+				<p:inputText id="inputCity"
+					value="#{listarFuncionariosMB.employee.city.name}"></p:inputText>
+
+				<p:outputLabel id="labelNeighborhood">Bairro </p:outputLabel>
+				<p:inputText id="inputneighborhood"
+					value="#{listarFuncionariosMB.employee.neighborhood}"></p:inputText>
+
+				<p:outputLabel id="labelNumber">Numero </p:outputLabel>
+				<p:inputText id="inputNumber"
+					value="#{listarFuncionariosMB.employee.number}"></p:inputText>
+
+				<p:outputLabel> Data de Contratação </p:outputLabel>
+				<p:calendar id="popupEmploymentDate"
+					value="#{listarFuncionariosMB.employee.employmentDate}" />
+					
+					<p:outputLabel id="labelStatus">Status  </p:outputLabel>
+					<p:selectOneRadio id="selectRadioStatus"
+						value="##{listarFuncionariosMB.employeeFilter.status }">
+						<f:selectItem id="selectRadioStatusAtivo" itemLabel="Ativo"
+							itemValue="ATIVO" />
+						<f:selectItem id="selectRadioStatusInativo" itemLabel="Inativo"
+							itemValue="INATIVO" />
+					</p:selectOneRadio>
+
+				<p:commandButton id="btnUpdateEmployee" value="Alterar"
+					type="submit" action="#{listarFuncionariosMB.alter()}" />
+				<p:commandButton value="Fechar"
+					onclick="PF('employeeUpdateDialog').hide()" />
+			
+					
+			</p:panelGrid>
+			
+			
+			
+		</p:fieldset>
+	</p:dialog>
+</h:body>
 </html>

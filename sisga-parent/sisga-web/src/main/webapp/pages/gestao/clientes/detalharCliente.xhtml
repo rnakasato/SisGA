@@ -37,7 +37,15 @@
 								id="outputDetailName"
 								value="#{listarClientesMB.customer.firstName}" />
 						</p:row>
-	
+						
+						<p:row style="text-align:left">
+							<p:outputLabel
+								value="Sobrenome : "
+								style="font-weight:bold" />
+							<p:outputLabel
+								id="outputDetailLastName"
+								value="#{listarClientesMB.customer.lastName}" />
+						</p:row>
 						<p:row style="text-align:left">
 							<p:outputLabel
 								value="Associado a : "
@@ -59,6 +67,24 @@
 								id="outputDetailStatusI"
 								rendered="#{not(listarClientesMB.customer.active)}" 
 								value="Inativo"/>
+						</p:row>
+
+						<p:row style="text-align:left">
+							<p:outputLabel
+								value="Telefone: "
+								style="font-weight:bold" />
+							<p:outputLabel
+								id="outputDetailTel"
+								value="#{listarClientesMB.customer.telephones.get(0).pnumber }" />
+						</p:row>
+
+						<p:row style="text-align:left">
+							<p:outputLabel
+								value="Celular: "
+								style="font-weight:bold" />
+							<p:outputLabel
+								id="outputDetailCel"
+								value="#{listarClientesMB.customer.telephones.get(1).pnumber}"  />
 						</p:row>
 	
 						<p:row style="text-align:left">

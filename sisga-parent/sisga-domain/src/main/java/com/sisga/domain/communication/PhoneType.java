@@ -9,5 +9,6 @@ import com.sisga.domain.DomainSpecificEntity;
  */
 
 public class PhoneType extends DomainSpecificEntity{	
-	
+	public static final String TELEFONE = "TEL";
+	public static final String CELULAR = "CEL";
 }

@@ -10,6 +10,8 @@ import javax.faces.bean.SessionScoped;
 import com.sisga.core.ICommand;
 import com.sisga.core.enums.EOperation;
 import com.sisga.core.factory.impl.FactoryCommand;
+import com.sisga.domain.communication.PhoneType;
+import com.sisga.domain.communication.Telephone;
 import com.sisga.domain.customer.Customer;
 import com.sisga.domain.customer.filter.CustomerFilter;
 import com.sisga.domain.user.User;
@@ -30,12 +32,16 @@ public class GestaoClientesMB {
 	private CustomerFilter customerFilter;
 	private List<User> users;
 	private List<User> userSellers;
+	private Telephone phone;
+	private Telephone cellphone;
 	
+
 	@PostConstruct
 	private void init(){
 		customerFilter = new CustomerFilter();
 		customers = new ArrayList<Customer>();
 		userSellers = new ArrayList<User>();
+		
 		
 		try {
 			ICommand commandFindAll = FactoryCommand.build( new Customer(), EOperation.FINDALL );
@@ -73,10 +79,21 @@ public class GestaoClientesMB {
 
 	public void add() {
 		customer = new Customer();
-		
+		cellphone = new Telephone();
+		phone = new Telephone();  
+		cellphone.setPnumber("");
+		cellphone.setPhoneType(new PhoneType());
+		cellphone.getPhoneType().setCode(PhoneType.CELULAR);
+		phone.setPnumber("");
+		phone.setPhoneType(new PhoneType());
+		phone.getPhoneType().setCode(PhoneType.TELEFONE);
 	}
 
 	public void save() {
+		customer.setTelephones(new ArrayList<Telephone>());
+		customer.getTelephones().add(phone);
+		customer.getTelephones().add(cellphone);
+		
 		try {
 			ICommand commandAdd = FactoryCommand.build( customer, EOperation.SAVE );
 			try {
@@ -173,6 +190,39 @@ public class GestaoClientesMB {
 	
 	public List<User> getUserSellers() {
 		return userSellers;
+	}
+	
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	public Telephone getPhone() {
+		return phone;
+	}
+
+	public void setPhone(Telephone phone) {
+		this.phone = phone;
+	}
+
+	public Telephone getCellphone() {
+		return cellphone;
+	}
+
+	public void setCellphone(Telephone cellphone) {
+		this.cellphone = cellphone;
+	}
+
+	public List<Customer> getCustomers() {
+		return customers;
+	}
+
+	public void setUserSellers(List<User> userSellers) {
+		this.userSellers = userSellers;
 	}
 
 }

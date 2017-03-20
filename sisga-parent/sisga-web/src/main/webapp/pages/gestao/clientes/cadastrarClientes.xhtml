@@ -38,13 +38,16 @@
 				<p:panelGrid columns="2" border="0">
 						
 							<p:outputLabel id="labelAddCustomerName">Nome</p:outputLabel>
-							<p:inputText id="inputAddCustomerName" value="#{listarClientesMB.customer.name}"></p:inputText>
+							<p:inputText id="inputAddCustomerName" value="#{listarClientesMB.customer.firstName}"></p:inputText>
+							
+							<p:outputLabel id="labelAddCustomerLastName">Sobrenome</p:outputLabel>
+							<p:inputText id="inputAddCustomerLastName" value="#{listarClientesMB.customer.lastName}"></p:inputText>
 							
 							<p:outputLabel id="labelAddTelephone">Telefone </p:outputLabel>
-							<p:inputText id="inputAddTelephone" value="#{listarClientesMB.customer.telephone.pnumber}"></p:inputText>
+							<p:inputText id="inputAddTelephone" value="#{listarClientesMB.phone.pnumber}"></p:inputText>
 
 							<p:outputLabel id="labelAddMobilePhone">Celular </p:outputLabel>
-							<p:inputText id="inputAddMobilePhone" value="#{listarClientesMB.customer.cellphone.pnumber}"></p:inputText>
+							<p:inputText id="inputAddMobilePhone" value="#{listarClientesMB.cellphone.pnumber}"></p:inputText>
 
 							<p:outputLabel id="labelAddEmail">e-mail </p:outputLabel>
 							<p:inputText id="inputAddEmail" value="#{listarClientesMB.customer.email}"></p:inputText>
@@ -61,11 +64,12 @@
 							<p:outputLabel id="labelAddNumber">Numero </p:outputLabel>
 							<p:inputText id="inputAddNumber" value="#{listarClientesMB.customer.number}"></p:inputText>
 
-							<p:commandButton id="btnSaveProvider" value="Cadastrar"
-								type="submit" action="#{listarFornecedoresMB.save()}" />
+							<p:commandButton id="btnSaveCustomer" value="Cadastrar"
+								type="submit" action="#{listarClientesMB.save()}" 
+								oncomplete="PF('customerAddDialog').hide()"/>
 							<p:commandButton
 								value="Fechar"
-								onclick="PF('providerAddDialog').hide()" />
+								onclick="PF('customerAddDialog').hide()" />
 						</p:panelGrid>
 					</p:fieldset>
 		</p:dialog>

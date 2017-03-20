@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<ui:composition>
+		<h:form id="formAlterarFuncionario">
+			<div style="margin: 0 auto; height: 100%; width: 100%;">
+				<div style="margin: 0 auto; height: 380px; width: 100%;">
+					<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
+					<div
+						style="margin: 0 auto; width: 800px; height: 140px; float: center;">
+						<p:fieldset
+							legend="Alterar Funcionário"
+							style="text-align:left; border-width:thin;">
+							<p:panelGrid
+								border="0"
+								styleClass="baseGrid">
+								<p:row>
+									<p:column>
+										<p:outputLabel for="inputPrimeiroNomeFuncionario"
+											value="Nome " style="font-weight:bold" />
+									</p:column>
+
+									<p:column>
+										<p:inputText id="inputPrimeiroNomeFuncionario"
+											value="#{employeeMB.employee.firstName}" required="true"
+											requiredMessage="Campo obrigatório" />
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel for="inputSobrenomeFuncionario"
+											value="Sobrenome " style="font-weight:bold" />
+									</p:column>
+
+									<p:column>
+										<p:inputText id="inputSobrenomeFuncionario"
+											value="#{employeeMB.employee.lastName}" required="true"
+											requiredMessage="Campo obrigatório" />
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel for="inputCarteiraTrabalho"
+											value="Carteira de Trabalho " style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:inputNumber id="inputCarteiraTrabalho"
+											value="#{employeeMB.employee.workCardNumber}" required="true"
+											requiredMessage="Campo obrigatório">
+										</p:inputNumber>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel for="inputSalario"
+											value="Salário " style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:inputNumber id="inputSalario"
+											value="#{employeeMB.employee.salary}" 
+											decimalSeparator=","
+											thousandSeparator="." 
+											decimalPlaces="0" 
+											required="true" 
+											requiredMessage="Campo obrigatório">
+										</p:inputNumber>
+									</p:column>
+								</p:row>
+								
+								<p:row>
+									<p:column>
+										<p:outputLabel for="inputTelefone"
+											value="Telefone " style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:inputNumber id="inputTelefone"
+											value="#{employeeMB.telefone}" 
+											required="true" 
+											requiredMessage="Campo obrigatório">
+										</p:inputNumber>
+									</p:column>
+								</p:row>
+				
+								<p:row>
+									<p:column>
+										<p:outputLabel for="inputCelular"
+											value="Celular " style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:inputNumber id="inputCelular"
+											value="#{employeeMB.celular}" 
+											required="true" 
+											requiredMessage="Campo obrigatório">
+										</p:inputNumber>
+									</p:column>
+								</p:row>
+				
+								<p:row>
+									<p:column>
+										<p:outputLabel for="inputEmail"
+											value="E-mail " style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:inputText id="inputEmail"
+											value="#{employeeMB.employee.email}" 
+											required="true" 
+											requiredMessage="Campo obrigatório">
+										</p:inputText>
+									</p:column>
+								</p:row>
+								
+							
+								<p:row>
+									<p:column>
+										<p:outputLabel for="inputEstado"
+											value="Estado " style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:inputText id="inputEstado"
+											value="#{employeeMB.employee.city.state.name}" 
+											required="true" 
+											requiredMessage="Campo obrigatório">
+										</p:inputText>
+									</p:column>
+								</p:row>
+				
+								<p:row>
+									<p:column>
+										<p:outputLabel for="inputCidade"
+											value="Cidade " style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:inputText id="inputCidade"
+											value="#{employeeMB.employee.city.name}" 
+											required="true" 
+											requiredMessage="Campo obrigatório">
+										</p:inputText>
+									</p:column>
+								</p:row>
+								
+								<p:row>
+									<p:column>
+										<p:outputLabel for="inputBairro"
+											value="Bairro " style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:inputText id="inputBairro"
+											value="#{employeeMB.employee.neighborhood}" 
+											required="true" 
+											requiredMessage="Campo obrigatório">
+										</p:inputText>
+									</p:column>
+								</p:row>
+								
+								<p:row>
+									<p:column>
+										<p:outputLabel for="inputNumero"
+											value="Numero " style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:inputNumber id="inputNumero"
+											value="#{employeeMB.employee.number}" 
+											required="true" 
+											requiredMessage="Campo obrigatório">
+										</p:inputNumber>
+									</p:column>
+								</p:row>
+								
+								<p:row>
+									<p:column>
+										<p:outputLabel for="inputDataContratacao"
+											value="Data de Contratação " style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:calendar id="inputDataContratacao"
+											value="#{employeeMB.employee.employmentDate}" 
+											required="true" 
+											requiredMessage="Campo obrigatório">
+										</p:calendar>
+									</p:column>
+								</p:row>
+								
+								<p:row>
+									<p:column>
+										<p:outputLabel id="labelStatus">Status  </p:outputLabel>
+										<p:selectOneRadio id="selectRadioStatus"
+											value="##{employeeMB.status }">
+											<f:selectItem id="selectRadioStatusAtivo" itemLabel="Ativo"
+												itemValue="ATIVO" />
+											<f:selectItem id="selectRadioStatusInativo"
+												itemLabel="Inativo" itemValue="INATIVO" />
+										</p:selectOneRadio>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column>
+									</p:column>
+									<p:column>
+										<p:outputLabel
+											value="Campos marcados com * são de preenchimento obrigatório"
+											style="color:red;margin-bottom:20px" />
+									</p:column>
+								</p:row></p:panelGrid>
+
+							<p:panelGrid
+								id="gridAlterarButtons"
+								styleClass="baseGrid">
+								<p:row>
+									<p:column style="width:80%">
+									</p:column>
+									<p:column style="width:10%">
+										<p:commandButton
+											id="btnAlterarFuncionario"
+											value="Alterar"
+											update=":formAlterarFuncionario,:messages"
+											actionListener="#{employeeMB.update}">
+											<p:confirm
+												header="Funcionário"
+												message="Confirmar alteração?" />
+										</p:commandButton>
+									</p:column>
+									<p:column style="width:10%">
+										<p:commandButton
+											id="btnCancelarAlteracaoFuncionario"
+											value="Cancelar"
+											actionListener="#{employeeMB.cancel}"
+											process="@this">
+											<p:confirm
+												header="Funcionario"
+												message="Cancelar alteração?" />
+										</p:commandButton>
+									</p:column>
+								</p:row>
+							</p:panelGrid>
+						</p:fieldset>
+					</div>
+					<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
+				</div>
+			</div>
+			<ui:include src="/public/confirmDialog.xhtml" />
+		</h:form>
+	</ui:composition>
+</h:body>
+</html>

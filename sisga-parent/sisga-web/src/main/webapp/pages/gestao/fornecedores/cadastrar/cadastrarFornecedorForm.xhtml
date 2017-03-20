@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<ui:composition>
+		<h:form id="formCadastroFornecedor">
+			<div style="margin: 0 auto; height: 100%; width: 100%;">
+				<div style="margin: 0 auto; height: 380px; width: 100%;">
+					<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
+					<div
+						style="margin: 0 auto; width: 700px; height: 140px; float: center;">
+						<p:fieldset legend="Cadastro de Fornecedor"
+							style="text-align:left; border-width:thin;">
+							<p:panelGrid border="0" styleClass="baseGrid">
+								<p:row>
+									<p:column>
+										<p:outputLabel for="inputNomeFornecedor"
+											value="Nome do Fornecedor" style="font-weight:bold" />
+									</p:column>
+
+									<p:column>
+										<p:inputText id="inputNomeFornecedor"
+											value="#{providerMB.provider.corporateName}" required="true"
+											requiredMessage="Campo obrigatório" />
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel for="inputCPJ" value="CNPJ "
+											style="font-weight:bold" />
+									</p:column>
+
+									<p:column>
+										<p:inputNumber id="inputCNPJ"
+											value="#{providerMB.provider.cnpj}" required="true"
+											requiredMessage="Campo obrigatório" />
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel for="inputTelefone" value="Telefone "
+											style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:inputNumber id="inputTelefone"
+											value="#{providerMB.telefone}" required="true"
+											requiredMessage="Campo obrigatório">
+										</p:inputNumber>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel for="inputCelular" value="Celular "
+											style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:inputNumber id="inputCelular" value="#{providerMB.celular}"
+											required="true" requiredMessage="Campo obrigatório">
+										</p:inputNumber>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel for="inputEmail" value="E-mail "
+											style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:inputText id="inputEmail"
+											value="#{providerMB.provider.email}" required="true"
+											requiredMessage="Campo obrigatório">
+										</p:inputText>
+									</p:column>
+								</p:row>
+
+
+								<p:row>
+									<p:column>
+										<p:outputLabel for="inputEstado" value="Estado "
+											style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:inputText id="inputEstado"
+											value="#{providerMB.provider.city.state.name}"
+											required="true" requiredMessage="Campo obrigatório">
+										</p:inputText>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel for="inputCidade" value="Cidade "
+											style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:inputText id="inputCidade"
+											value="#{providerMB.provider.city.name}" required="true"
+											requiredMessage="Campo obrigatório">
+										</p:inputText>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel for="inputBairro" value="Bairro "
+											style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:inputText id="inputBairro"
+											value="#{providerMB.provider.neighborhood}" required="true"
+											requiredMessage="Campo obrigatório">
+										</p:inputText>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel for="inputNumero" value="Numero "
+											style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:inputNumber id="inputNumero"
+											value="#{providerMB.provider.number}" required="true"
+											requiredMessage="Campo obrigatório">
+										</p:inputNumber>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+									</p:column>
+									<p:column>
+										<p:outputLabel
+											value="Campos marcados com * são de preenchimento obrigatório"
+											style="color:red;margin-bottom:20px" />
+									</p:column>
+								</p:row>
+							</p:panelGrid>
+
+							<p:panelGrid id="gridCadastrarButtons" styleClass="baseGrid">
+								<p:row>
+									<p:column style="width:80%">
+									</p:column>
+									<p:column style="width:10%">
+										<p:commandButton id="btnCadastrarFornecedor" value="Cadastrar"
+											update=":formCadastroFornecedor,:messages"
+											actionListener="#{providerMB.save}">
+											<p:confirm header="Fornecedor" message="Confirmar cadastro?" />
+										</p:commandButton>
+									</p:column>
+									<p:column style="width:10%">
+										<p:commandButton id="btnCancelarCadastrarFornecedor"
+											value="Cancelar" actionListener="#{providerMB.cancel}"
+											process="@this">
+											<p:confirm header="Fornecedor" message="Cancelar cadastro?" />
+										</p:commandButton>
+									</p:column>
+								</p:row>
+							</p:panelGrid>
+						</p:fieldset>
+					</div>
+					<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
+				</div>
+			</div>
+			<ui:include src="/public/confirmDialog.xhtml" />
+		</h:form>
+	</ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<ui:composition>
+		<p:dialog id="employeeDetail" header="Funcionario "
+			widgetVar="employDialog" modal="true" showEffect="fade"
+			hideEffect="fade" resizable="false" width="600px" position="center">
+			<p:outputPanel id="employDetail" style="align:center">
+				<p:panelGrid id="gridDetail" styleClass="baseGrid"
+					style="width:100%">
+					<p:row>
+
+						<p:column style="width:80%">
+							<p:panelGrid id="gridEmployeeData" styleClass="baseGrid">
+								<p:row style="text-align:left">
+									<p:outputLabel value="Nome : " style="font-weight:bold" />
+									<p:outputLabel id="outputDetailName"
+										value="#{employeeMB.selectedEmployee.firstName}" />
+								</p:row>
+
+								<p:row style="text-align:left">
+									<p:outputLabel value="Sobrenome : " style="font-weight:bold" />
+									<p:outputLabel id="outputDetailLastName"
+										value="#{employeeMB.selectedEmployee.lastName}" />
+								</p:row>
+
+								<p:row style="text-align:left">
+									<p:outputLabel value="Carteira de Trabalho : "
+										style="font-weight:bold" />
+									<p:outputLabel id="outputDetailWorkCard"
+										value="#{employeeMB.selectedEmployee.workcardNumber}" />
+								</p:row>
+
+								<p:row style="text-align:left">
+									<p:outputLabel value="Salario : " style="font-weight:bold" />
+									<p:outputLabel id="outputDetailSalary"
+										value="#{employeeMB.selectedEmployee.salary}" />
+								</p:row>
+
+								<p:row style="text-align:left">
+									<p:outputLabel value="e-mail" style="font-weight:bold" />
+									<p:outputLabel id="outputDetailEmail"
+										value="#{employeeMB.selectedEmployee.email}" />
+								</p:row>
+
+								<p:row style="text-align:left">
+									<p:outputLabel value="Telefone" style="font-weight:bold" />
+									<p:outputLabel id="outputDetailPhone"
+										value="#{employeeMB.selectedEmployee.telephones.get(0).pnumber}" />
+								</p:row>
+
+								<p:row style="text-align:left">
+									<p:outputLabel value="Celular" style="font-weight:bold" />
+									<p:outputLabel id="outputDetailCellPhone"
+										value="#{employeeMB.selectedEmployee.telephones.get(1).pnumber}" />
+								</p:row>
+
+								<p:row style="text-align:left">
+									<p:outputLabel value="Estado: " style="font-weight:bold" />
+									<p:outputLabel id="outputDetailState"
+										value="#{employeeMB.selectedEmployee.city.state.name}" />
+								</p:row>
+
+								<p:row style="text-align:left">
+									<p:outputLabel value="Cidade: " style="font-weight:bold" />
+									<p:outputLabel id="outputDetailCity"
+										value="#{employeeMB.selectedEmployee.city.name}" />
+								</p:row>
+
+								<p:row style="text-align:left">
+									<p:outputLabel value="Bairro: " style="font-weight:bold" />
+									<p:outputLabel id="outputDetailNeighborhood"
+										value="#{employeeMB.selectedEmployee.neighborhood}" />
+								</p:row>
+
+								<p:row style="text-align:left">
+									<p:outputLabel value="Numero: " style="font-weight:bold" />
+									<p:outputLabel id="outputDetailNumber"
+										value="#{employeeMB.selectedEmployee.number}" />
+								</p:row>
+
+								<p:row style="text-align:left">
+									<p:outputLabel value="Status: " style="font-weight:bold" />
+									<p:outputLabel id="outputDetailStatusA"
+										rendered="#{employeeMB.selectedEmployee.active}"
+										value="Ativo" />
+									<p:outputLabel id="outputDetailStatusI"
+										rendered="#{not (employeeMB.selectedEmployee.active)}"
+										value="Inativo" />
+								</p:row>
+
+								<p:row style="text-align:left">
+									<p:outputLabel value="Data de Cadastro: "
+										style="font-weight:bold" />
+									<p:outputLabel id="outputDetailInsertDate"
+										value="#{employeeMB.selectedEmployee.employmentDate }" />
+								</p:row>
+
+							</p:panelGrid>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+
+
+
+				<p:panelGrid id="gridClose" styleClass="baseGrid"
+					style="width:100%;text-align:right" columns="2">
+					<p:column style="width:80%">
+
+					</p:column>
+					<p:column style="width:20%">
+						<p:commandButton id="btnClose" value="Fechar"
+							onclick="PF('employDialog').hide()" />
+					</p:column>
+				</p:panelGrid>
+			</p:outputPanel>
+		</p:dialog>
+	</ui:composition>
+</h:body>
+</html>

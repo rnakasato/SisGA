@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition>
+		<p:dataTable var="cust" id="customerTable"
+			value="#{customerMB.customerList}" paginator="true"
+			selection="#{customerMB.selectedCustomer}" rowKey="#{customer.id}"
+			rows="15" style="width:100%">
+			<f:facet name="header" style="align:left">
+				            Clientes
+				        </f:facet>
+
+			<p:column style="width:15%;text-align:center">
+
+				<f:facet name="header">
+					<p:outputLabel value="Clientes" />
+				</f:facet>
+
+				<p:outputLabel value="#{cust.firstName + ' ' + cust.lastName}" />
+
+			</p:column>
+
+			<p:column style="width:15%;text-align:center">
+
+				<f:facet name="header">
+					<p:outputLabel value="Código" />
+				</f:facet>
+
+				<p:outputLabel value="#{cust.code}" />
+
+			</p:column>
+
+			<p:column style="width:15%;text-align:center">
+				<f:facet name="header">
+					<h:outputText value="Telefone" />
+				</f:facet>
+				<p:outputLabel value="#{cust.telephones.get(0).pnumber}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Celular" />
+				</f:facet>
+				<p:outputLabel value="#{cust.telephones.get(1).pnumber}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<p:outputLabel value="E-mail" />
+				</f:facet>
+				<h:outputText value="#{cust.email}" />
+			</p:column>
+
+			<p:column style="width:40%;text-align:center">
+				<f:facet name="header">
+					<p:outputLabel value="Operação" />
+				</f:facet>
+				<p:commandButton id="buttonAlterarCliente" style="margin-left:20px"
+					value="Alterar"
+					actionListener="#{customerMB.redirectToCustomerUpdate(cust)}" />
+
+				<p:commandButton id="buttonExcluirCliente" value="Excluir"
+					update=":form_content :messages" style="margin-left:20px"
+					actionListener="#{customerMB.delete(cust)}">
+					<p:confirm header="Cliente"
+						message="Confirmar exclusão do cliente?" />
+				</p:commandButton>
+
+				<p:commandButton id="buttonDetalhesCliente" style="margin-left:20px"
+					value="Detalhes" update=":form_content:custDetail, :messages "
+					actionListener="#{customerMB.viewDetails(cust)}"
+					onclick="PF('custDialog').show()" />
+			</p:column>
+		</p:dataTable>
+	</ui:composition>
+</h:body>
+</html>

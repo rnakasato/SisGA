@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition>
+		<p:dataTable var="employ" id="employeeTable"
+			value="#{employeeMB.employeeList}" paginator="true"
+			selection="#{employeeMB.selectedEmployee}" rowKey="#{employee.id}"
+			rows="15" style="width:100%">
+			<f:facet name="header" style="align:left">
+				            Funcionários
+				        </f:facet>
+
+			<p:column style="width:15%;text-align:center">
+
+				<f:facet name="header">
+					<p:outputLabel value="Funcionário" />
+				</f:facet>
+
+				<p:outputLabel value="#{employ.firstName + ' ' + employ.lastName }" />
+
+			</p:column>
+
+			<p:column style="width:15%;text-align:center">
+
+				<f:facet name="header">
+					<p:outputLabel value="Código" />
+				</f:facet>
+
+				<p:outputLabel value="#{employ.code}" />
+
+			</p:column>
+
+			<p:column style="width:15%;text-align:center">
+				<f:facet name="header">
+					<h:outputText value="Telefone" />
+				</f:facet>
+				<p:outputLabel value="#{employ.telephones.get(0).pnumber}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Celular" />
+				</f:facet>
+				<p:outputLabel value="#{employ.telephones.get(1).pnumber}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<p:outputLabel value="Carteira de Trabalho" />
+				</f:facet>
+				<h:outputText value="#{employ.workcardNumber}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Salario" />
+				</f:facet>
+				<h:outputText value="#{employ.salary}" />
+			</p:column>
+
+
+			<p:column style="width:40%;text-align:center">
+				<f:facet name="header">
+					<p:outputLabel value="Operação" />
+				</f:facet>
+				<p:commandButton id="buttonAlterarFuncionario" style="margin-left:20px"
+					value="Alterar"
+					actionListener="#{employeeMB.redirectToEmployeeUpdate(employ)}" />
+
+				<p:commandButton id="buttonExcluirFuncionario" value="Excluir"
+					update=":form_content :messages" style="margin-left:20px"
+					actionListener="#{employeeMB.delete(employ)}">
+					<p:confirm header="Funcionário"
+						message="Confirmar exclusão do funcionário?" />
+				</p:commandButton>
+
+				<p:commandButton id="buttonDetalhesFuncionario" style="margin-left:20px"
+					value="Detalhes" update=":form_content:employDetail, :messages "
+					actionListener="#{employeeMB.viewDetails(employ)}"
+					onclick="PF('employDialog').show()" />
+			</p:column>
+		</p:dataTable>
+	</ui:composition>
+</h:body>
+</html>

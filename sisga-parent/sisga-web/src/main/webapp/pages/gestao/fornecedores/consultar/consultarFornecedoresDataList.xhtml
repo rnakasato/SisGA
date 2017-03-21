@@ -60,8 +60,8 @@
 				<f:facet name="header">
 					<p:outputLabel value="Operação" />
 				</f:facet>
-				<p:commandButton id="buttonAlterarFornecedor" style="margin-left:20px"
-					value="Alterar"
+				<p:commandButton id="buttonAlterarFornecedor"
+					style="margin-left:20px" value="Alterar"
 					actionListener="#{providerMB.redirectToProviderUpdate(prov)}" />
 
 				<p:commandButton id="buttonExcluirFornecedor" value="Excluir"
@@ -71,8 +71,9 @@
 						message="Confirmar exclusão do fornecedor?" />
 				</p:commandButton>
 
-				<p:commandButton id="buttonDetalhesFornecedor" style="margin-left:20px"
-					value="Detalhes" update=":form_content:provDetail, :messages "
+				<p:commandButton id="buttonDetalhesFornecedor"
+					style="margin-left:20px" value="Detalhes"
+					update=":form_content:provDetail, :messages "
 					actionListener="#{providerMB.viewDetails(prov)}"
 					onclick="PF('provDialog').show()" />
 			</p:column>

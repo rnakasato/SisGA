@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/pages/layout/adminLayout.xhtml">
+	<ui:define name="head">
+		<title>SisGA - Alterar Clientes</title>
+	</ui:define>
+
+	<ui:define name="metadate">
+		<f:metadata>
+			<f:event
+				listener="#{customerMB.loadCustomer()}"
+				type="preRenderView" />
+			<f:viewParam
+				name="customerCode"
+				value="#{customerMB.code}" />
+		</f:metadata>
+	</ui:define>
+
+	<ui:define name="adminBreadcumb">
+		<p:breadCrumb style="margin: 0 auto; width: 100%; padding: 2px;">
+			<p:menuitem
+				value="Início"
+				url="../../paginaInicial.xhtml" />
+			<p:menuitem
+				value="Gestão"
+				url="../menuGestao.xhtml" />
+			<p:menuitem
+				value="Cliente"
+				url="menuClientes.xhtml" />
+			<p:menuitem
+				value="Alterar Cliente"
+				url="alterarClientes.xhtml" />
+		</p:breadCrumb>
+	</ui:define>
+
+	<ui:define name="content">
+		<ui:include
+			src="/pages/gestao/clientes/alterar/alterarClienteForm.xhtml" />
+	</ui:define>
+</ui:composition>
+</html>

@@ -79,8 +79,15 @@
 											value="Telefone " style="font-weight:bold" />
 									</p:column>
 									<p:column>
+										<p:inputNumber id="inputDDDTelefone"
+											value="#{employeeMB.telephones.get(0).ddd}" 
+											required="true" 
+											requiredMessage="Campo obrigatório">
+										</p:inputNumber>
+									</p:column>
+									<p:column>
 										<p:inputNumber id="inputTelefone"
-											value="#{employeeMB.telefone}" 
+											value="#{employeeMB.telephones.get(0).pnumber}" 
 											required="true" 
 											requiredMessage="Campo obrigatório">
 										</p:inputNumber>
@@ -93,8 +100,15 @@
 											value="Celular " style="font-weight:bold" />
 									</p:column>
 									<p:column>
+										<p:inputNumber id="inputDDDCelular"
+											value="#{employeeMB.telephones.get(1).ddd}" 
+											required="true" 
+											requiredMessage="Campo obrigatório">
+										</p:inputNumber>
+									</p:column>
+									<p:column>
 										<p:inputNumber id="inputCelular"
-											value="#{employeeMB.celular}" 
+											value="#{employeeMB.telephones.get(1).pnumber}" 
 											required="true" 
 											requiredMessage="Campo obrigatório">
 										</p:inputNumber>

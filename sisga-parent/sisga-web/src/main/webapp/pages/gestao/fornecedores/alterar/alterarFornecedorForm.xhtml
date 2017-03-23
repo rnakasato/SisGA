@@ -49,8 +49,14 @@
 											style="font-weight:bold" />
 									</p:column>
 									<p:column>
+										<p:inputNumber id="inputDDDTelefone"
+											value="#{providerMB.telephones.get(0).ddd}" required="true"
+											requiredMessage="Campo obrigatório">
+										</p:inputNumber>
+									</p:column>
+									<p:column>
 										<p:inputNumber id="inputTelefone"
-											value="#{providerMB.telefone}" required="true"
+											value="#{providerMB.telephones.get(0).pnumber}" required="true"
 											requiredMessage="Campo obrigatório">
 										</p:inputNumber>
 									</p:column>
@@ -61,8 +67,13 @@
 										<p:outputLabel for="inputCelular" value="Celular "
 											style="font-weight:bold" />
 									</p:column>
+										<p:column>
+										<p:inputNumber id="inputCelular" value="#{providerMB.telephones.get(1).pnumber}"
+											required="true" requiredMessage="Campo obrigatório">
+										</p:inputNumber>
+									</p:column>
 									<p:column>
-										<p:inputNumber id="inputCelular" value="#{providerMB.celular}"
+										<p:inputNumber id="inputDDDCelular" value="#{providerMB.telephones.get(1).ddd}"
 											required="true" requiredMessage="Campo obrigatório">
 										</p:inputNumber>
 									</p:column>

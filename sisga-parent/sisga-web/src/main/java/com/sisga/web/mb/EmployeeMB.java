@@ -10,6 +10,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -17,12 +18,10 @@ import com.sisga.core.ICommand;
 import com.sisga.core.application.Result;
 import com.sisga.core.enums.EOperation;
 import com.sisga.core.factory.impl.FactoryCommand;
+import com.sisga.domain.address.City;
+import com.sisga.domain.address.State;
 import com.sisga.domain.communication.PhoneType;
 import com.sisga.domain.communication.Telephone;
-import com.sisga.domain.customer.Customer;
-import com.sisga.domain.customer.CustomerHistory;
-import com.sisga.domain.customer.CustomerOperation;
-import com.sisga.domain.customer.filter.CustomerFilter;
 import com.sisga.domain.employee.Employee;
 import com.sisga.domain.employee.EmployeeHistory;
 import com.sisga.domain.employee.EmployeeOperation;
@@ -44,12 +43,13 @@ public class EmployeeMB extends BaseMB {
 
 	// utilizado para cadastrar e alterar funcionarios
 	private Employee employee;
-	private String telephone;
-	private String celular;
 	private String status;
 	private String code;
 	private boolean doUpdate;
-
+	private State selectedState;
+	private List<City> cityList;
+	private List<State> stateList;
+	
 	// Para manipulação de funcionarios
 	private Employee selectedEmployee;
 
@@ -57,14 +57,17 @@ public class EmployeeMB extends BaseMB {
 	public void init() {
 
 		filter = new EmployeeFilter();
+		filter.setStatus("TODOS");
 		employee = new Employee();
-		employee.setTelephones(new ArrayList<Telephone>());
 		doUpdate = false;
+		newTelephonesCityState(employee);
+		cityList = getCities();
+		stateList = getStates();
 	}
 
 	// Métodos Operacionais
 	public void save() {
-		prepareEmployee();
+		prepareSaveEmployee();
 		ICommand commandSave;
 		try {
 
@@ -103,7 +106,7 @@ public class EmployeeMB extends BaseMB {
 	}
 
 	public void update() {
-		prepareEmployee();
+		prepareUpdateEmployee();
 		ICommand commandUpdate;
 		try {
 			commandUpdate = FactoryCommand.build(employee, EOperation.UPDATE);
@@ -133,7 +136,6 @@ public class EmployeeMB extends BaseMB {
 			}
 
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -183,7 +185,6 @@ public class EmployeeMB extends BaseMB {
 			employeeList = commandFind.execute().getEntityList();
 
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -228,33 +229,87 @@ public class EmployeeMB extends BaseMB {
 
 	}
 
+	private void newTelephonesCityState(Employee employee) {
+		employee.setTelephones(new ArrayList<Telephone>());
+		employee.setTelephones(new ArrayList<Telephone>());
+		employee.getTelephones().add(new Telephone());
+		employee.getTelephones().add(new Telephone());
+		employee.getTelephones().get(0).setPhoneType(new PhoneType());
+		employee.getTelephones().get(1).setPhoneType(new PhoneType());
+		employee.getTelephones().get(0).getPhoneType().setCode(PhoneType.TELEFONE);
+		employee.getTelephones().get(1).getPhoneType().setCode(PhoneType.CELULAR);
+		employee.getTelephones().get(0).getPhoneType().setId(1L);
+		employee.getTelephones().get(1).getPhoneType().setId(2L);
+		employee.setCity(new City());
+		employee.getCity().setState(new State());
+		this.employee = employee;
+	}
+	
+	private List<City> getCities(){
+		List<City> city = new ArrayList<City>();
+		try {
+				ICommand commandFind;
+				commandFind = FactoryCommand.build(new City(), EOperation.FINDALL);
+				city = commandFind.execute().getEntityList();
+			} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return city;
+	}
+
+	private List<State> getStates() {
+		List<State> states = new ArrayList<State>();
+		try {
+			ICommand commandFind;
+			commandFind = FactoryCommand.build(new State(), EOperation.FINDALL);
+			states = commandFind.execute().getEntityList();
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return  states;
+	}
+
+	public void loadCities( AjaxBehaviorEvent event ) {
+		City city = new City();
+		city.setUf(selectedState.getUf());
+		List<City> cityList = new ArrayList<City>();
+		try {
+			ICommand commandFind;
+			commandFind = FactoryCommand.build(city, EOperation.FIND);
+			cityList = commandFind.execute().getEntityList();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		this.cityList = cityList;
+	}
+	
 	public void viewDetails(Employee employee) {
 		selectedEmployee = employee;
 	}
 
-	private Employee prepareEmployee() {
-		Telephone tel = new Telephone();
-		Telephone cel = new Telephone();
-
-		PhoneType type = new PhoneType();
-
-		tel.setPnumber(telephone);
-		type.setDescription(PhoneType.TELEFONE);
-		tel.setPhoneType(type);
-		employee.setTelephones(new ArrayList<Telephone>());
-		employee.getTelephones().add(tel);
-
-		cel.setPnumber(celular);
-		type.setDescription(PhoneType.CELULAR);
-		cel.setPhoneType(type);
-		employee.getTelephones().add(cel);
-
+	private Employee prepareUpdateEmployee(){
 		return employee;
 	}
 
+	private Employee prepareSaveEmployee() { 
+		String tel = employee.getTelephones().get(0).getPnumber();
+		String [] dddtel = tel.split(" ");
+		employee.getTelephones().get(0).setDdd(dddtel[0].substring(1,3));
+		employee.getTelephones().get(0).setPnumber(dddtel[1].replace("-", ""));
+	
+		tel = employee.getTelephones().get(1).getPnumber();
+		dddtel = tel.split(" ");
+		employee.getTelephones().get(1).setDdd(dddtel[0].substring(1,3));
+		employee.getTelephones().get(1).setPnumber(dddtel[1].replace("-", ""));
+	
+		return employee;
+	}
+	
 	@Override
 	public void clearFilter() {
 		filter = new EmployeeFilter();
+		filter.setStatus("TODOS");
 	}
 
 	// Getters e Setters
@@ -281,22 +336,6 @@ public class EmployeeMB extends BaseMB {
 
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
-	}
-
-	public String getTelephone() {
-		return telephone;
-	}
-
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
-
-	public String getCelular() {
-		return celular;
-	}
-
-	public void setCelular(String celular) {
-		this.celular = celular;
 	}
 
 	public String getStatus() {
@@ -329,6 +368,30 @@ public class EmployeeMB extends BaseMB {
 
 	public void setSelectedEmployee(Employee selectedEmployee) {
 		this.selectedEmployee = selectedEmployee;
+	}
+
+	public State getSelectedState() {
+		return selectedState;
+	}
+
+	public void setSelectedState(State selectedState) {
+		this.selectedState = selectedState;
+	}
+
+	public List<City> getCityList() {
+		return cityList;
+	}
+
+	public void setCityList(List<City> cityList) {
+		this.cityList = cityList;
+	}
+
+	public List<State> getStateList() {
+		return stateList;
+	}
+
+	public void setStateList(List<State> stateList) {
+		this.stateList = stateList;
 	}
 
 }

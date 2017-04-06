@@ -27,12 +27,11 @@ public class ProviderDAO extends DomainSpecificEntityDAO<Provider> {
 		StringBuilder jpql = new StringBuilder();
 		jpql.append(" SELECT DISTINCT (p) FROM Provider p");
 		jpql.append(" LEFT JOIN p.city pc ");
-		jpql.append(" LEFT JOIN p.cellphone pm ");
-		jpql.append(" LEFT JOIN p.telephone pt ");
+		jpql.append(" LEFT JOIN p.telephones pt ");
 		jpql.append(" WHERE 1=1 ");
 
 		if (StringUtils.isNotEmpty(providerFilter.getName())) {
-			jpql.append(" AND e.name = :name ");
+			jpql.append(" AND p.name LIKE '%:name%' ");
 		}
 
 		Query query = session.createQuery(jpql.toString());
@@ -51,7 +50,9 @@ public class ProviderDAO extends DomainSpecificEntityDAO<Provider> {
 		List<Provider> providerList = null;
 
 		StringBuilder jpql = new StringBuilder();
-		jpql.append(" FROM Provider ");
+		jpql.append(" SELECT DISTINCT (p)FROM Provider p");
+		jpql.append(" LEFT JOIN p.telephones pt ");
+		jpql.append(" LEFT JOIN p.city pc ");
 
 		Query query = session.createQuery(jpql.toString());
 

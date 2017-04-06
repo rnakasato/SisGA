@@ -4,65 +4,76 @@
 
 <hibernate-mapping>
 
-    <class name="com.sisga.domain.employee.Employee" table="TB_Employee">
-        <id name="id" column="IDEMPLOYEE">
-            <generator class="sequence">
-        		<param name="sequence_name">SQ_EMPLOYEE</param>
-        	</generator>            
-        </id>
-        
-        <property name="email" column="EMAIL"/>
-        <property name="active" column="ACTIVE"/>
-        <property name="insertDate" column="INSERTDATE"/>
-        <property name="neighborhood" column="NEIGHBORHOOD"/>
-        <property name="number" column="ANUMERIC"/>
-        <property name="workcardNumber" column="WORKCARDNUMERIC"/>
-        <property name="employmentDate" column="EMPLOYMENTDATE"/>
-        <property name="salary" column="SALARY"/>
-        
-        <many-to-one name="city" column="IDCITY" class="com.sisga.domain.address.City" not-null="true" />
-        
-       <bag name="telephones" table="TB_PHONE" >
+	<class name="com.sisga.domain.employee.Employee" table="TB_Employee">
+		<id name="id" column="IDEMPLOYEE">
+			<generator class="sequence">
+				<param name="sequence_name">SQ_EMPLOYEE</param>
+			</generator>
+		</id>
+		<property name="firstName" column="FIRSTNAME" />
+		<property name="lastName" column="LASTNAME" />
+		<property name="email" column="EMAIL" />
+		<property name="active" column="ACTIVE" />
+		<property name="insertDate" column="INSERTDATE" />
+		<property name="neighborhood" column="NEIGHBORHOOD" />
+		<property name="number" column="ANUMERIC" />
+		<property name="workcardNumber" column="WORKCARDNUMERIC" />
+		<property name="workcardSeries" column="WORKCARDSERIES" />
+		<property name="employmentDate" column="EMPLOYMENTDATE" />
+		<property name="resignationDate" column="RESIGNATIONDATE" />
+		<property name="salary" column="SALARY" />
+
+		<many-to-one name="city" column="IDCITY"
+			class="com.sisga.domain.address.City" not-null="true" lazy="false"
+			cascade="save-update" />
+
+		<bag name="telephones" table="TB_PHONE" inverse="true" lazy="false" cascade="save-update">
 			<key column="IDEMPLOYEE" />
 			<one-to-many class="com.sisga.domain.communication.Telephone" />
-		</bag> 
-    </class>  
-    
-    <class name="com.sisga.domain.employee.EmployeeOperation" table="TB_EMPLOYEE_OPERATION">
-        <id name="id" column="IDOPERATION">
-            <generator class="sequence">
-        		<param name="sequence_name">SQ_EMPLOYEE_OPERATION</param>
-        	</generator>            
-        </id>
-        <property name="code" column="CODE"/>
-        <property name="description" column="DESCRIPTION"/>       
-    </class>  
-    
-    <class name="com.sisga.domain.employee.EmployeeHistory" table="TB_EMPLOYEE_HISTORY">
-        <id name="id" column="IDEMPLOYEEHISTORY">
-            <generator class="sequence">
-        		<param name="sequence_name">SQ_EMPLOYEE_HISTORY</param>
-        	</generator>            
-        </id>
-        <property name="email" column="EMAIL"/>
-        <property name="active" column="ACTIVE"/>
-        <property name="insertDate" column="INSERTDATE"/>
-        <property name="neighborhood" column="NEIGHBORHOOD"/>
-        <property name="number" column="ANUMERIC"/>
-        <property name="workcardNumber" column="WORKCARDNUMERIC"/>
-        <property name="employmentDate" column="EMPLOYMENTDATE"/>
-        <property name="resignationDate" column="RESIGNATIONDATE"/>
-        <property name="salary" column="SALARY"/>
-            
-        <many-to-one name="employee" column="IDEMPLOYEE" class="com.sisga.domain.employee.Employee" not-null="true" />
-        <many-to-one name="employeeOperation" column="IDOPERATION" class="com.sisga.domain.employee.EmployeeOperation" not-null="true" />
-    <many-to-one name="city" column="IDCITY" class="com.sisga.domain.address.City" not-null="true" />
-        
-        <bag name="telephones" table="TB_PHONE">
+		</bag>
+	</class>
+
+	<class name="com.sisga.domain.employee.EmployeeOperation" table="TB_EMPLOYEE_OPERATION">
+		<id name="id" column="IDOPERATION">
+			<generator class="sequence">
+				<param name="sequence_name">SQ_EMPLOYEE_OPERATION</param>
+			</generator>
+		</id>
+		<property name="code" column="CODE" />
+		<property name="description" column="DESCRIPTION" />
+	</class>
+
+	<class name="com.sisga.domain.employee.EmployeeHistory" table="TB_EMPLOYEE_HISTORY">
+		<id name="id" column="IDEMPLOYEEHISTORY">
+			<generator class="sequence">
+				<param name="sequence_name">SQ_EMPLOYEE_HISTORY</param>
+			</generator>
+		</id>
+		<property name="firstName" column="FIRSTNAME" />
+		<property name="lastName" column="LASTNAME" />
+		<property name="email" column="EMAIL" />
+		<property name="active" column="ACTIVE" />
+		<property name="insertDate" column="INSERTDATE" />
+		<property name="neighborhood" column="NEIGHBORHOOD" />
+		<property name="number" column="ANUMERIC" />
+		<property name="workcardNumber" column="WORKCARDNUMERIC" />
+		<property name="workcardSeries" column="WORKCARDSERIES" />
+		<property name="employmentDate" column="EMPLOYMENTDATE" />
+		<property name="resignationDate" column="RESIGNATIONDATE" />
+		<property name="salary" column="SALARY" />
+
+		<many-to-one name="employee" column="IDEMPLOYEE"
+			class="com.sisga.domain.employee.Employee" not-null="true" />
+		<many-to-one name="employeeOperation" column="IDOPERATION"
+			class="com.sisga.domain.employee.EmployeeOperation" not-null="true" />
+		<many-to-one name="city" column="IDCITY"
+			class="com.sisga.domain.address.City" not-null="true" />
+
+		<bag name="telephones" table="TB_PHONE">
 			<key column="IDEMPLOYEE" />
 			<one-to-many class="com.sisga.domain.communication.Telephone" />
-		</bag> 
-     </class> 
-    
-    
+		</bag>
+	</class>
+
+
 </hibernate-mapping>

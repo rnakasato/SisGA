@@ -10,6 +10,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -17,12 +18,15 @@ import com.sisga.core.ICommand;
 import com.sisga.core.application.Result;
 import com.sisga.core.enums.EOperation;
 import com.sisga.core.factory.impl.FactoryCommand;
+import com.sisga.domain.address.City;
+import com.sisga.domain.address.State;
 import com.sisga.domain.communication.PhoneType;
 import com.sisga.domain.communication.Telephone;
 import com.sisga.domain.customer.Customer;
 import com.sisga.domain.customer.CustomerHistory;
 import com.sisga.domain.customer.CustomerOperation;
 import com.sisga.domain.customer.filter.CustomerFilter;
+import com.sisga.domain.employee.Employee;
 import com.sisga.web.util.Redirector;
 
 /**
@@ -41,11 +45,12 @@ public class CustomerMB extends BaseMB {
 
 	// utilizado para cadastrar e alterar clientes
 	private Customer customer;
-	private String telephone;
-	private String celular;
 	private String status;
 	private String code;
 	private boolean doUpdate;
+	private State selectedState;
+	private List<City> cityList;
+	private List<State> stateList;
 	
 	// Para manipulação de clientes
 	private Customer selectedCustomer;
@@ -54,14 +59,17 @@ public class CustomerMB extends BaseMB {
 	public void init() {
 		
 		filter = new CustomerFilter();
+		filter.setStatus("TODOS");
 		customer = new Customer();
-		customer.setTelephones(new ArrayList<Telephone>());
 		doUpdate = false;
+		newTelephonesCityState(customer);
+		cityList = getCities();
+		stateList = getStates();
 	}
 
 	// Métodos Operacionais
 	public void save() {
-		prepareCustomer();
+		prepareSaveCustomer();
 		ICommand commandSave;
 		try {
 
@@ -101,7 +109,8 @@ public class CustomerMB extends BaseMB {
 	}
 
 	public void update() {
-		prepareCustomer();
+		prepareUpdateCustomer();
+		
 		ICommand commandUpdate;
 		try {
 			commandUpdate = FactoryCommand.build( customer, EOperation.UPDATE );
@@ -226,34 +235,88 @@ public class CustomerMB extends BaseMB {
 		}
 
 	}
+	
+	private void newTelephonesCityState(Customer customer) {
+		customer.setTelephones(new ArrayList<Telephone>());
+		customer.setTelephones(new ArrayList<Telephone>());
+		customer.getTelephones().add(new Telephone());
+		customer.getTelephones().add(new Telephone());
+		customer.getTelephones().get(0).setPhoneType(new PhoneType());
+		customer.getTelephones().get(1).setPhoneType(new PhoneType());
+		customer.getTelephones().get(0).getPhoneType().setCode(PhoneType.TELEFONE);
+		customer.getTelephones().get(1).getPhoneType().setCode(PhoneType.CELULAR);
+		customer.getTelephones().get(0).getPhoneType().setId(1L);
+		customer.getTelephones().get(1).getPhoneType().setId(2L);
+		customer.setCity(new City());
+		customer.getCity().setState(new State());
+		this.customer = customer;
+	}
 
+	private List<City> getCities(){
+		List<City> city = new ArrayList<City>();
+		try {
+				ICommand commandFind;
+				commandFind = FactoryCommand.build(new City(), EOperation.FINDALL);
+				city = commandFind.execute().getEntityList();
+			} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return city;
+	}
+
+	private List<State> getStates() {
+		List<State> states = new ArrayList<State>();
+		try {
+			ICommand commandFind;
+			commandFind = FactoryCommand.build(new State(), EOperation.FINDALL);
+			states = commandFind.execute().getEntityList();
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return  states;
+	}
+
+	public void loadCities( AjaxBehaviorEvent event ) {
+		City city = new City();
+		city.setUf(selectedState.getUf());
+		List<City> cityList = new ArrayList<City>();
+		try {
+			ICommand commandFind;
+			commandFind = FactoryCommand.build(city, EOperation.FIND);
+			cityList = commandFind.execute().getEntityList();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		this.cityList = cityList;
+	}
+	
 	public void viewDetails( Customer customer ) {
 		selectedCustomer = customer;
 	}
 
-	private Customer prepareCustomer() {
-		Telephone tel = new Telephone();
-		Telephone cel = new Telephone();
-		
-		PhoneType type = new PhoneType();
-		
-		tel.setPnumber(telephone);
-		type.setDescription(PhoneType.TELEFONE);
-		tel.setPhoneType(type);
-		customer.setTelephones(new ArrayList<Telephone>());
-		customer.getTelephones().add(tel);
-		
-		cel.setPnumber(celular);
-		type.setDescription(PhoneType.CELULAR);
-		cel.setPhoneType(type);
-		customer.getTelephones().add(cel);
-		
+	private Customer prepareSaveCustomer() { 
+		String tel = customer.getTelephones().get(0).getPnumber();
+		String [] dddtel = tel.split(" ");
+		customer.getTelephones().get(0).setDdd(dddtel[0].substring(1,3));
+		customer.getTelephones().get(0).setPnumber(dddtel[1].replace("-", ""));
+	
+		tel = customer.getTelephones().get(1).getPnumber();
+		dddtel = tel.split(" ");
+		customer.getTelephones().get(1).setDdd(dddtel[0].substring(1,3));
+		customer.getTelephones().get(1).setPnumber(dddtel[1].replace("-", ""));
+	
+		return customer;
+	}
+	
+	private Customer prepareUpdateCustomer() {
 		return customer;
 	}
 
 	@Override
 	public void clearFilter() {
 		filter = new CustomerFilter();
+		filter.setStatus("TODOS");
 	}
 
 	// Getters e Setters
@@ -281,22 +344,6 @@ public class CustomerMB extends BaseMB {
 		this.customer = customer;
 	}
 
-	public String getTelephone() {
-		return telephone;
-	}
-
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
-
-	public String getCelular() {
-		return celular;
-	}
-
-	public void setCelular(String celular) {
-		this.celular = celular;
-	}
-
 	public String getStatus() {
 		return status;
 	}
@@ -311,6 +358,30 @@ public class CustomerMB extends BaseMB {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public State getSelectedState() {
+		return selectedState;
+	}
+
+	public void setSelectedState(State selectedState) {
+		this.selectedState = selectedState;
+	}
+
+	public List<City> getCityList() {
+		return cityList;
+	}
+
+	public void setCityList(List<City> cityList) {
+		this.cityList = cityList;
+	}
+
+	public List<State> getStateList() {
+		return stateList;
+	}
+
+	public void setStateList(List<State> stateList) {
+		this.stateList = stateList;
 	}
 
 	public boolean isDoUpdate() {

@@ -29,12 +29,11 @@ public class EmployeeDAO extends DomainSpecificEntityDAO<Employee> {
 		StringBuilder jpql = new StringBuilder();
 		jpql.append(" SELECT DISTINCT (e) FROM Employee e");
 		jpql.append(" LEFT JOIN e.city ec ");
-		jpql.append(" LEFT JOIN e.cellphone em ");
-		jpql.append(" LEFT JOIN e.telephone et ");
+		jpql.append(" LEFT JOIN e.telephones et ");
 		jpql.append(" WHERE 1=1 ");
 
 		if (StringUtils.isNotEmpty(employeeFilter.getName())) {
-			jpql.append(" AND e.name = :name ");
+			jpql.append(" AND (e.firstname LIKE :fname OR e.lastname LIKE :lname");
 		}
 		if (employeeFilter.getEmploymentDateInit() != null && employeeFilter.getEmploymentDateFinal() != null) {
 			jpql.append(" AND e.employmentDate BETWEEN :initDate AND :finalDate ");
@@ -43,7 +42,10 @@ public class EmployeeDAO extends DomainSpecificEntityDAO<Employee> {
 		Query query = session.createQuery(jpql.toString());
 
 		if (StringUtils.isNotEmpty(employeeFilter.getName())) {
-			query.setParameter("name", employeeFilter.getName());
+			query.setParameter("fname", employeeFilter.getName());
+		}
+		if (StringUtils.isNotEmpty(employeeFilter.getName())) {
+			query.setParameter("lname", employeeFilter.getName());
 		}
 		if (employeeFilter.getEmploymentDateInit() != null) {
 			query.setParameter("initDate", employeeFilter.getEmploymentDateInit());

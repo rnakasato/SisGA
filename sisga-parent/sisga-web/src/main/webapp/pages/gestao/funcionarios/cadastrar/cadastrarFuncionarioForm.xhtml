@@ -25,8 +25,10 @@
 
 									<p:column>
 										<p:inputText id="inputPrimeiroNomeFuncionario"
-											value="#{employeeMB.employee.firstName}" required="true"
-											requiredMessage="Campo obrigatório" />
+											value="#{employeeMB.employee.firstName}" 
+											maxlength="50"
+											required="true"
+											requiredMessage="Nome obrigatório" />
 									</p:column>
 								</p:row>
 
@@ -39,153 +41,159 @@
 									<p:column>
 										<p:inputText id="inputSobrenomeFuncionario"
 											value="#{employeeMB.employee.lastName}" required="true"
-											requiredMessage="Campo obrigatório" />
+											maxlength="50"
+											requiredMessage="Sobrenome obrigatório" />
 									</p:column>
 								</p:row>
-
 								<p:row>
 									<p:column>
 										<p:outputLabel for="inputCarteiraTrabalho"
-											value="Carteira de Trabalho " style="font-weight:bold" />
+											value="Carteira de Trabalho Número" style="font-weight:bold" />
 									</p:column>
 									<p:column>
-										<p:inputNumber id="inputCarteiraTrabalho"
-											value="#{employeeMB.employee.workCardNumber}" required="true"
-											requiredMessage="Campo obrigatório">
+										<p:inputMask id="inputCarteiraTrabalho"
+											value="#{employeeMB.employee.workcardNumber}"
+											thousandSeparator="" required="true" mask="99999"
+											requiredMessage="Numero Carteira de Trabalho obrigatório">
+										</p:inputMask>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column>
+										<p:outputLabel for="inputCarteiraTrabalhoSerie"
+											value="Carteira de Trabalho Série" style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:inputMask id="inputCarteiraTrabalhoSerie"
+											thousandSeparator="" mask="9999-aa"
+											value="#{employeeMB.employee.workcardSeries  }"
+											required="true"
+											requiredMessage="Série Carteira de Trabalho obrigatório">
+										</p:inputMask>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column>
+										<p:outputLabel for="inputSalario" value="Salário "
+											style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:inputNumber id="inputSalario"
+											value="#{employeeMB.employee.salary}" decimalSeparator=","
+											maxValue="99999"
+											thousandSeparator="." required="true"
+											requiredMessage="Salário obrigatório">
 										</p:inputNumber>
 									</p:column>
 								</p:row>
 
 								<p:row>
 									<p:column>
-										<p:outputLabel for="inputSalario"
-											value="Salário " style="font-weight:bold" />
+										<p:outputLabel for="inputTelefone" value="Telefone "
+											style="font-weight:bold" />
 									</p:column>
 									<p:column>
-										<p:inputNumber id="inputSalario"
-											value="#{employeeMB.employee.salary}" 
-											decimalSeparator=","
-											thousandSeparator="." 
-											decimalPlaces="0" 
-											required="true" 
-											requiredMessage="Campo obrigatório">
-										</p:inputNumber>
+										<p:inputMask id="inputTelefone"
+											value="#{employeeMB.employee.telephones.get(0).pnumber}"
+											required="true" mask="(99) 9999-9999"
+											requiredMessage="Telefone obrigatório">
+										</p:inputMask>
 									</p:column>
 								</p:row>
-								
+
 								<p:row>
 									<p:column>
-										<p:outputLabel for="inputTelefone"
-											value="Telefone " style="font-weight:bold" />
+										<p:outputLabel for="inputCelular" value="Celular "
+											style="font-weight:bold" />
 									</p:column>
 									<p:column>
-										<p:inputNumber id="inputDDDTelefone"
-											value="#{employeeMB.telephones.get(0).ddd}" 
-											required="true" 
-											requiredMessage="Campo obrigatório">
-										</p:inputNumber>
-									</p:column>
-									<p:column>
-										<p:inputNumber id="inputTelefone"
-											value="#{employeeMB.telephones.get(0).pnumber}" 
-											required="true" 
-											requiredMessage="Campo obrigatório">
-										</p:inputNumber>
+										<p:inputMask id="inputCelular"
+											value="#{employeeMB.employee.telephones.get(1).pnumber}"
+											required="true" mask="(99) 99999-9999"
+											requiredMessage="Celular obrigatório">
+										</p:inputMask>
 									</p:column>
 								</p:row>
-				
+
+
 								<p:row>
 									<p:column>
-										<p:outputLabel for="inputCelular"
-											value="Celular " style="font-weight:bold" />
-									</p:column>
-									<p:column>
-										<p:inputNumber id="inputDDDCelular"
-											value="#{employeeMB.telephones.get(1).ddd}" 
-											required="true" 
-											requiredMessage="Campo obrigatório">
-										</p:inputNumber>
-									</p:column>
-									<p:column>
-										<p:inputNumber id="inputCelular"
-											value="#{employeeMB.telephones.get(1).pnumber}" 
-											required="true" 
-											requiredMessage="Campo obrigatório">
-										</p:inputNumber>
-									</p:column>
-								</p:row>
-				
-								<p:row>
-									<p:column>
-										<p:outputLabel for="inputEmail"
-											value="E-mail " style="font-weight:bold" />
+										<p:outputLabel for="inputEmail" value="E-mail "
+											style="font-weight:bold" />
 									</p:column>
 									<p:column>
 										<p:inputText id="inputEmail"
-											value="#{employeeMB.employee.email}" 
-											required="true" 
-											requiredMessage="Campo obrigatório">
+											value="#{employeeMB.employee.email}" required="true"
+											maxlength="50"
+											requiredMessage="E-mail obrigatório">
 										</p:inputText>
 									</p:column>
 								</p:row>
-								
-							
+
+
 								<p:row>
 									<p:column>
-										<p:outputLabel for="inputEstado"
-											value="Estado " style="font-weight:bold" />
+										<p:outputLabel for="selectOneMenuEstado" value="Estado "
+											style="font-weight:bold" />
 									</p:column>
 									<p:column>
-										<p:inputText id="inputEstado"
-											value="#{employeeMB.employee.city.state.name}" 
-											required="true" 
-											requiredMessage="Campo obrigatório">
-										</p:inputText>
+										<p:selectOneMenu id="selectOneMenuEstado"
+											value="#{employeeMB.selectedState}"
+											converter="defaultConverter" filter="true" required="true"
+											requiredMessage="Estado obrigatório">
+											<f:selectItems value="#{employeeMB.stateList}" var="states"
+												itemValue="#{states}" itemLabel="#{states.name}" />
+
+											<p:ajax event="change" listener="#{employeeMB.loadCities}"
+												update=":formCadastroFuncionario:selectOneMenuCidade" />
+										</p:selectOneMenu>
 									</p:column>
 								</p:row>
-				
+
 								<p:row>
 									<p:column>
-										<p:outputLabel for="inputCidade"
-											value="Cidade " style="font-weight:bold" />
+										<p:outputLabel for="selectOneMenuCidade" value="Cidade "
+											style="font-weight:bold" />
 									</p:column>
 									<p:column>
-										<p:inputText id="inputCidade"
-											value="#{employeeMB.employee.city.name}" 
-											required="true" 
-											requiredMessage="Campo obrigatório">
-										</p:inputText>
+										<p:selectOneMenu id="selectOneMenuCidade"
+											disabled="#{empty employeeMB.selectedState}"
+											value="#{employeeMB.employee.city}"
+											converter="defaultConverter" filter="true" required="true"
+											requiredMessage="Cidade obrigatório">
+											<f:selectItems value="#{employeeMB.cityList}" var="cities"
+												itemValue="#{cities}" itemLabel="#{cities.name}" />
+										</p:selectOneMenu>
 									</p:column>
 								</p:row>
-								
 								<p:row>
 									<p:column>
-										<p:outputLabel for="inputBairro"
-											value="Bairro " style="font-weight:bold" />
+										<p:outputLabel for="inputBairro" value="Bairro "
+											style="font-weight:bold" />
 									</p:column>
 									<p:column>
 										<p:inputText id="inputBairro"
-											value="#{employeeMB.employee.neighborhood}" 
-											required="true" 
-											requiredMessage="Campo obrigatório">
+											value="#{employeeMB.employee.neighborhood}" required="true"
+											maxlength="50"
+											requiredMessage="Bairro obrigatório">
 										</p:inputText>
 									</p:column>
 								</p:row>
-								
+
 								<p:row>
 									<p:column>
-										<p:outputLabel for="inputNumero"
-											value="Numero " style="font-weight:bold" />
+										<p:outputLabel for="inputNumero" value="Numero "
+											style="font-weight:bold" />
 									</p:column>
 									<p:column>
 										<p:inputNumber id="inputNumero"
 											value="#{employeeMB.employee.number}" 
-											required="true" 
-											requiredMessage="Campo obrigatório">
-										</p:inputNumber>
+											maxValue="99999" thousandSeparator="."
+											decimalSeparator=","
+											required="true" requiredMessage="Número obrigatório"/>
 									</p:column>
 								</p:row>
-								
+
 								<p:row>
 									<p:column>
 										<p:outputLabel for="inputDataContratacao"
@@ -193,13 +201,12 @@
 									</p:column>
 									<p:column>
 										<p:calendar id="inputDataContratacao"
-											value="#{employeeMB.employee.employmentDate}" 
-											required="true" 
-											requiredMessage="Campo obrigatório">
+											value="#{employeeMB.employee.employmentDate}" required="true"
+											requiredMessage="Data de Contratação obrigatório">
 										</p:calendar>
 									</p:column>
 								</p:row>
-								
+
 								<p:row>
 									<p:column>
 									</p:column>
@@ -216,8 +223,8 @@
 									<p:column style="width:80%">
 									</p:column>
 									<p:column style="width:10%">
-										<p:commandButton id="btnCadastrarFuncionario" value="Cadastrar"
-											update=":formCadastroFuncionario,:messages"
+										<p:commandButton id="btnCadastrarFuncionario"
+											value="Cadastrar" update=":formCadastroFuncionario,:messages"
 											actionListener="#{employeeMB.save}">
 											<p:confirm header="Funcionário" message="Confirmar cadastro?" />
 										</p:commandButton>

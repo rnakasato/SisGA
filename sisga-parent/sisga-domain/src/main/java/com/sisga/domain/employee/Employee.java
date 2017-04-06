@@ -13,6 +13,7 @@ import com.sisga.domain.person.SocialPerson;
 public class Employee extends SocialPerson{
 	private double salary;
 	private String workcardNumber;
+	private String workcardSeries;
 	private Date employmentDate;
 	private Date resignationDate;
 	
@@ -40,5 +41,10 @@ public class Employee extends SocialPerson{
 	public void setEmploymentDate(Date employmentDate) {
 		this.employmentDate = employmentDate;
 	}
-
+	public String getWorkcardSeries() {
+		return workcardSeries;
+	}
+	public void setWorkcardSeries(String workcardSeries) {
+		this.workcardSeries = workcardSeries;
+	}
 }

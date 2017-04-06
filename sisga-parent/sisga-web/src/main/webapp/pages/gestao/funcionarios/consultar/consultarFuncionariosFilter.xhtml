@@ -32,7 +32,7 @@
 						</p:column>
 						<p:column>
 							<p:selectOneRadio id="selectRadioStatus"
-								value="##{employeeMB.filter.status }">
+								value="#{employeeMB.filter.status }">
 								<f:selectItem id="selectRadioStatusTodos" itemLabel="Todos"
 									itemValue="TODOS" />
 								<f:selectItem id="selectRadioStatusAtivo" itemLabel="Ativo"
@@ -56,7 +56,7 @@
 						</p:column>
 						<p:column>
 							<p:calendar id="popupFim"
-								value="#{listarFuncionariosMB.employeeFilter.employmentDateFinal}" />
+								value="#{employeeMB.filter.employmentDateFinal}" />
 						</p:column>
 					</p:row>
 

@@ -3,86 +3,94 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	
+
 	<class name="com.sisga.domain.address.City" table="TB_CITY">
-        <id name="id" column="IDCITY">
-        <generator class="native"/>
-        
-        </id>
-        
-        <property name="name" column="NAME"/>
-        <property name="uf" column="UF"/>
-        
-        <many-to-one name="state" column="IDSTATE" class="com.sisga.domain.address.State" not-null="true" />
-        
-     </class>
-    
+		<id name="id" column="IDCITY">
+			<generator class="native" />
+
+		</id>
+
+		<property name="name" column="NAME" />
+		<property name="uf" column="UF" />
+
+		<many-to-one name="state" column="IDSTATE"
+			class="com.sisga.domain.address.State" not-null="true" />
+
+	</class>
+
 	<class name="com.sisga.domain.address.State" table="TB_STATE">
-        <id name="id" column="IDSTATE">
-        <generator class="native"/>
-      
-        </id>
-        
-        <property name="name" column="NAME"/>
-        <property name="uf" column="UF"/>
-        
-    </class>
-    
-	
-    <class name="com.sisga.domain.customer.Customer" table="TB_Customer">
-        <id name="id" column="IDCUSTOMER">
-            <generator class="sequence">
-        		<param name="sequence_name">SQ_CUSTOMER</param>
-        	</generator>            
-        </id>
-        
-        <property name="firstName" column="FIRSTNAME"/>
-        <property name="lastName" column="LASTNAME"/>
-        <property name="email" column="EMAIL"/>
-        <property name="active" column="ACTIVE"/>
-        <property name="insertDate" column="INSERTDATE"/>
-        <property name="neighborhood" column="NEIGHBORHOOD"/>
-        <property name="number" column="ANUMERIC"/>
-        
-        <many-to-one name="city" column="IDCITY" class="com.sisga.domain.address.City" not-null="true" />
-        
-        <bag name="telephones" table="TB_PHONE">
+		<id name="id" column="IDSTATE">
+			<generator class="native" />
+
+		</id>
+
+		<property name="name" column="NAME" />
+		<property name="uf" column="UF" />
+
+	</class>
+
+
+	<class name="com.sisga.domain.customer.Customer" table="TB_Customer">
+		<id name="id" column="IDCUSTOMER">
+			<generator class="sequence">
+				<param name="sequence_name">SQ_CUSTOMER</param>
+			</generator>
+		</id>
+
+		<property name="firstName" column="FIRSTNAME" />
+		<property name="lastName" column="LASTNAME" />
+		<property name="email" column="EMAIL" />
+		<property name="active" column="ACTIVE" />
+		<property name="insertDate" column="INSERTDATE" />
+		<property name="neighborhood" column="NEIGHBORHOOD" />
+		<property name="number" column="ANUMERIC" />
+
+		<many-to-one name="city" column="IDCITY"
+			class="com.sisga.domain.address.City" not-null="true" 
+			lazy="false" cascade="save-update"/>
+
+		<bag name="telephones" table="TB_PHONE" inverse="true" lazy="false" cascade="save-update">
 			<key column="IDCUSTOMER" />
 			<one-to-many class="com.sisga.domain.communication.Telephone" />
-		</bag> 
-    </class>  
-    
-    <class name="com.sisga.domain.customer.CustomerOperation" table="TB_CUSTOMER_OPERATION">
-        <id name="id" column="IDOPERATION">
-            <generator class="sequence">
-        		<param name="sequence_name">SQ_CUSTOMER_OPERATION</param>
-        	</generator>            
-        </id>
-        <property name="code" column="CODE"/>
-        <property name="description" column="DESCRIPTION"/>       
-    </class>  
-    
-    <class name="com.sisga.domain.customer.CustomerHistory" table="TB_CUSTOMER_HISTORY">
-        <id name="id" column="IDCUSTOMERHISTORY">
-            <generator class="sequence">
-        		<param name="sequence_name">SQ_CUSTOMER_HISTORY</param>
-        	</generator>            
-        </id>
-        <property name="email" column="EMAIL"/>
-        <property name="active" column="ACTIVE"/>
-        <property name="insertDate" column="INSERTDATE"/>
-        <property name="neighborhood" column="NEIGHBORHOOD"/>
-        <property name="number" column="ANUMERIC"/>
-        
-        <many-to-one name="customer" column="IDCUSTOMER" class="com.sisga.domain.customer.Customer" not-null="true" />
-        <many-to-one name="customerOperation" column="IDOPERATION" class="com.sisga.domain.customer.CustomerOperation" not-null="true" />
-        <many-to-one name="city" column="IDCITY" class="com.sisga.domain.address.City" not-null="true" />
-        
-        <bag name="telephones" table="TB_PHONE">
+		</bag>
+	</class>
+
+	<class name="com.sisga.domain.customer.CustomerOperation" table="TB_CUSTOMER_OPERATION">
+		<id name="id" column="IDOPERATION">
+			<generator class="sequence">
+				<param name="sequence_name">SQ_CUSTOMER_OPERATION</param>
+			</generator>
+		</id>
+		<property name="code" column="CODE" />
+		<property name="description" column="DESCRIPTION" />
+	</class>
+
+	<class name="com.sisga.domain.customer.CustomerHistory" table="TB_CUSTOMER_HISTORY">
+		<id name="id" column="IDCUSTOMERHISTORY">
+			<generator class="sequence">
+				<param name="sequence_name">SQ_CUSTOMER_HISTORY</param>
+			</generator>
+		</id>
+		<property name="firstName" column="FIRSTNAME" />
+		<property name="lastName" column="LASTNAME" />
+		<property name="email" column="EMAIL" />
+		<property name="active" column="ACTIVE" />
+		<property name="insertDate" column="INSERTDATE" />
+		<property name="neighborhood" column="NEIGHBORHOOD" />
+		<property name="number" column="ANUMERIC" />
+
+		<many-to-one name="customer" column="IDCUSTOMER"
+			class="com.sisga.domain.customer.Customer" not-null="true" />
+		<many-to-one name="customerOperation" column="IDOPERATION"
+			class="com.sisga.domain.customer.CustomerOperation" not-null="true" />
+		<many-to-one name="city" column="IDCITY"
+			class="com.sisga.domain.address.City" not-null="true" />
+
+		<bag name="telephones" table="TB_PHONE">
 			<key column="IDCUSTOMER" />
 			<one-to-many class="com.sisga.domain.communication.Telephone" />
-		</bag> 
-    </class> 
-    
-    
+		</bag>
+	</class>
+
+
 </hibernate-mapping>

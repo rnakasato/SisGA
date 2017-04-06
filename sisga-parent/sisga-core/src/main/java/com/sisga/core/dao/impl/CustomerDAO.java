@@ -1,17 +1,18 @@
 package com.sisga.core.dao.impl;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.persistence.Query;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Session;
+import org.hibernate.type.StandardBasicTypes;
 
 import com.sisga.core.hibernate.HibernateUtil;
 import com.sisga.domain.AbstractDomainEntity;
 import com.sisga.domain.customer.Customer;
 import com.sisga.domain.customer.filter.CustomerFilter;
-import com.sisga.domain.employee.Employee;
 
 /**
  * 
@@ -31,8 +32,7 @@ public class CustomerDAO extends DomainSpecificEntityDAO < Customer > {
 			jpql.append( " SELECT DISTINCT (c) FROM Customer c" );
 			jpql.append( " LEFT JOIN c.city cc " );
 			jpql.append( " LEFT JOIN c.userSeller cu " );
-			jpql.append( " LEFT JOIN c.cellphone cm " );
-			jpql.append( " LEFT JOIN c.telephone ct " );
+			jpql.append( " LEFT JOIN c.telephones ct " );
 			jpql.append( " WHERE 1=1 " );
 			
 			if( StringUtils.isNotEmpty( customerFilter.getName() ) ) {
@@ -77,11 +77,10 @@ public class CustomerDAO extends DomainSpecificEntityDAO < Customer > {
 
 		List<Customer> list = dao.findAll();
 
-		session.close();
+			session.close();
 		for (Customer domain : list) {
 			System.out.println(domain.getFirstName());
 		}
-
 		System.exit(0);
 	}
 	

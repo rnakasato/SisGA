@@ -26,20 +26,20 @@
 									<p:column>
 										<p:inputText id="inputPrimeiroNomeCliente"
 											value="#{customerMB.customer.firstName}" required="true"
-											requiredMessage="Campo obrigatório" />
+											requiredMessage="Nome obrigatório" />
 									</p:column>
 								</p:row>
 
 								<p:row>
 									<p:column>
-										<p:outputLabel for="inputSobrenomeCliente" value="Sobrenome "
+										<p:outputLabel for="inputSobrenome" value="Sobrenome "
 											style="font-weight:bold" />
 									</p:column>
 
 									<p:column>
-										<p:inputNumber id="inputSobrenomeCliente"
+										<p:inputNumber id="inputSobrenome"
 											value="#{customerMB.customer.lastName}" required="true"
-											requiredMessage="Campo obrigatório" />
+											requiredMessage="Sobrenome obrigatório" />
 									</p:column>
 								</p:row>
 
@@ -49,16 +49,11 @@
 											style="font-weight:bold" />
 									</p:column>
 									<p:column>
-										<p:inputNumber id="inputDDDTelefone"
-											value="#{customerMB.telephones.get(0).ddd}" required="true"
-											requiredMessage="Campo obrigatório">
-										</p:inputNumber>
-									</p:column>
-									<p:column>
-										<p:inputNumber id="inputTelefone"
-											value="#{customerMB.telephones.get(0).pnumber}" required="true"
-											requiredMessage="Campo obrigatório">
-										</p:inputNumber>
+										<p:inputMask id="inputTelefone"
+											mask="(99) 9999-9999"
+											value="#{customerMB.customer.telephones.get(0).pnumber}" required="true"
+											requiredMessage="Telefone obrigatório">
+										</p:inputMask>
 									</p:column>
 								</p:row>
 
@@ -67,15 +62,13 @@
 										<p:outputLabel for="inputCelular" value="Celular "
 											style="font-weight:bold" />
 									</p:column>
+
 									<p:column>
-										<p:inputNumber id="inputDDDCelular" value="#{customerMB.telephones.get(1).ddd}"
-											required="true" requiredMessage="Campo obrigatório">
-										</p:inputNumber>
-									</p:column>
-									<p:column>
-										<p:inputNumber id="inputCelular" value="#{customerMB.telephones.get(1).pnumber}"
-											required="true" requiredMessage="Campo obrigatório">
-										</p:inputNumber>
+										<p:inputMask id="inputCelular" value="#{customerMB.customer.telephones.get(1).pnumber}"
+											required="true" 
+											mask="(99) 99999-9999"
+											requiredMessage="Celular obrigatório">
+										</p:inputMask>
 									</p:column>
 								</p:row>
 
@@ -87,38 +80,48 @@
 									<p:column>
 										<p:inputText id="inputEmail"
 											value="#{customerMB.customer.email}" required="true"
-											requiredMessage="Campo obrigatório">
+											requiredMessage="E-mail obrigatório">
 										</p:inputText>
 									</p:column>
 								</p:row>
 
 
-								<p:row>
+									<p:row>
 									<p:column>
-										<p:outputLabel for="inputEstado" value="Estado "
+										<p:outputLabel for="selectOneMenuEstado" value="Estado "
 											style="font-weight:bold" />
 									</p:column>
 									<p:column>
-										<p:inputText id="inputEstado"
-											value="#{customerMB.customer.city.state.name}"
-											required="true" requiredMessage="Campo obrigatório">
-										</p:inputText>
+										<p:selectOneMenu id="selectOneMenuEstado"
+											value="#{customerMB.selectedState}"
+											converter="defaultConverter" filter="true" required="true"
+											requiredMessage="Estado obrigatório">
+											<f:selectItems value="#{customerMB.stateList}" var="states"
+												itemValue="#{states}" itemLabel="#{states.name}" />
+
+											<p:ajax event="change" listener="#{customerMB.loadCities}"
+												update=":formCadastroCliente:selectOneMenuCidade" />
+										</p:selectOneMenu>
 									</p:column>
 								</p:row>
 
 								<p:row>
 									<p:column>
-										<p:outputLabel for="inputCidade" value="Cidade "
+										<p:outputLabel for="selectOneMenuCidade" value="Cidade "
 											style="font-weight:bold" />
 									</p:column>
 									<p:column>
-										<p:inputText id="inputCidade"
-											value="#{customerMB.customer.city.name}" required="true"
-											requiredMessage="Campo obrigatório">
-										</p:inputText>
+										<p:selectOneMenu id="selectOneMenuCidade"
+											disabled="#{empty customerMB.selectedState}"
+											value="#{customerMB.customer.city}"
+											converter="defaultConverter" filter="true" required="true"
+											requiredMessage="Cidade obrigatório">
+											<f:selectItems value="#{customerMB.cityList}" var="cities"
+												itemValue="#{cities}" itemLabel="#{cities.name}" />
+										</p:selectOneMenu>
 									</p:column>
 								</p:row>
-
+							
 								<p:row>
 									<p:column>
 										<p:outputLabel for="inputBairro" value="Bairro "
@@ -127,7 +130,7 @@
 									<p:column>
 										<p:inputText id="inputBairro"
 											value="#{customerMB.customer.neighborhood}" required="true"
-											requiredMessage="Campo obrigatório">
+											requiredMessage="Bairro obrigatório">
 										</p:inputText>
 									</p:column>
 								</p:row>
@@ -140,11 +143,11 @@
 									<p:column>
 										<p:inputNumber id="inputNumero"
 											value="#{customerMB.customer.number}" required="true"
-											requiredMessage="Campo obrigatório">
+											thousandSeparator="." decimalSeparator="," 
+											requiredMessage="Número obrigatório">
 										</p:inputNumber>
 									</p:column>
 								</p:row>
-
 								<p:row>
 									<p:column>
 										<p:outputLabel id="labelStatus">Status  </p:outputLabel>

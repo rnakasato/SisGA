@@ -11,18 +11,19 @@
 			</generator>
 		</id>
 
-		<property name="corporateName" column="FIRSTNAME" />
-		<property name="cnpj" column="LASTNAME" />
+		<property name="corporateName" column="CORPORATENAME" />
+		<property name="cnpj" column="CNPJ" />
 		<property name="email" column="EMAIL" />
 		<property name="active" column="ACTIVE" />
 		<property name="insertDate" column="INSERTDATE" />
 		<property name="neighborhood" column="NEIGHBORHOOD" />
 		<property name="number" column="ANUMERIC" />
-		
-		<many-to-one name="city" column="IDCITY"
-			class="com.sisga.domain.address.City" not-null="true" />
 
-		<bag name="telephones" table="TB_PHONE">
+		<many-to-one name="city" column="IDCITY"
+			class="com.sisga.domain.address.City" not-null="true" lazy="false"
+			cascade="save-update" />
+
+		<bag name="telephones" table="TB_PHONE" inverse="true" lazy="false" cascade="save-update">
 			<key column="IDPROVIDER" />
 			<one-to-many class="com.sisga.domain.communication.Telephone" />
 		</bag>
@@ -44,8 +45,8 @@
 				<param name="sequence_name">SQ_PROVIDER_HISTORY</param>
 			</generator>
 		</id>
-		<property name="corporateName" column="FIRSTNAME" />
-		<property name="cnpj" column="LASTNAME" />
+		<property name="corporateName" column="CORPORATENAME" />
+		<property name="cnpj" column="CNPJ" />
 		<property name="email" column="EMAIL" />
 		<property name="active" column="ACTIVE" />
 		<property name="insertDate" column="INSERTDATE" />
@@ -58,11 +59,11 @@
 			class="com.sisga.domain.provider.ProviderOperation" not-null="true" />
 		<many-to-one name="city" column="IDCITY"
 			class="com.sisga.domain.address.City" not-null="true" />
-			
-        <bag name="telephones" table="TB_PHONE">
-			<key column="IDCUSTOMER" />
+
+		<bag name="telephones" table="TB_PHONE" lazy="true">
+			<key column="IDPROVIDER" />
 			<one-to-many class="com.sisga.domain.communication.Telephone" />
-		</bag> 
+		</bag>
 	</class>
 
 

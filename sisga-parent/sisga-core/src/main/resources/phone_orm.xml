@@ -4,10 +4,10 @@
 
 <hibernate-mapping>
     
-	<class name="com.sisga.domain.communication.PhoneType" table="TB_PHONETYPE">
+	<class name="com.sisga.domain.communication.PhoneType" table="TB_PHONE_TYPE">
         <id name="id" column="IDPHONETYPE">
             <generator class="sequence">
-        		<param name="sequence_name">SQ_PHONETYPE</param>
+        		<param name="sequence_name">SQ_PHONE_TYPE</param>
         	</generator>            
         </id>
         
@@ -24,12 +24,16 @@
         </id>
         
         <property name="ddd" column="DDD"/>
-        <property name="pnumber" column="PNUMBER"/>
+        <property name="pnumber" column="PNUMERIC"/>
         
-        <many-to-one name="customer" column="IDCUSTOMER" class="com.sisga.domain.customer.Customer" not-null="true" />
-        <many-to-one name="employee" column="IDEMPLOYEE" class="com.sisga.domain.employee.Employee" not-null="true" />
-        <many-to-one name="provider" column="IDPROVIDER" class="com.sisga.domain.provider.Provider" not-null="true" />
-        <many-to-one name="phoneType" column="IDPHONETYPE" class="com.sisga.domain.communication.PhoneType" not-null="true" />
+        <many-to-one name="customer" column="IDCUSTOMER" class="com.sisga.domain.customer.Customer" 
+        	not-null="false" lazy="false" cascade="save-update"/>
+        <many-to-one name="employee" column="IDEMPLOYEE" class="com.sisga.domain.employee.Employee" 
+        	not-null="false" lazy="false" cascade="save-update"/>
+        <many-to-one name="provider" column="IDPROVIDER" class="com.sisga.domain.provider.Provider" 
+        	not-null="false" lazy="false" cascade="save-update" />
+        <many-to-one name="phoneType" column="IDPHONETYPE" class="com.sisga.domain.communication.PhoneType" 
+        	not-null="true" lazy="false" cascade="save-update"/>
             
     </class> 
     

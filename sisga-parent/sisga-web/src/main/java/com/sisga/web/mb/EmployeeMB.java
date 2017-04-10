@@ -68,9 +68,8 @@ public class EmployeeMB extends BaseMB {
 	// Métodos Operacionais
 	public void save() {
 		prepareSaveEmployee();
-		ICommand commandSave;
 		try {
-
+			ICommand commandSave;
 			commandSave = FactoryCommand.build(employee, EOperation.SAVE);
 			Result result = commandSave.execute();
 
@@ -81,11 +80,12 @@ public class EmployeeMB extends BaseMB {
 			} else {
 				ctx.addMessage(null, new FacesMessage("Funcionário cadastrado com código: " + employee.getCode()));
 
+				ICommand commandSaveH;
 				EmployeeHistory history = new EmployeeHistory();
 				history.setEmployee(employee);
 				history.setOperationCode(EmployeeOperation.CADASTRO_FUNCIONARIO);
-				commandSave = FactoryCommand.build(history, EOperation.SAVE);
-				Result historyResult = commandSave.execute();
+				commandSaveH = FactoryCommand.build(history, EOperation.SAVE);
+				Result historyResult = commandSaveH.execute();
 
 				if (StringUtils.isNotEmpty(result.getMsg())) {
 					ctx.addMessage(null, new FacesMessage(historyResult.getMsg(), historyResult.getMsg()));

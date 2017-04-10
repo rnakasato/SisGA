@@ -51,7 +51,8 @@
 									</p:column>
 									<p:column>
 										<p:inputMask id="inputTelefone"
-											value="#{providerMB.provider.telephones.get(0).pnumber}"
+											value="#{providerMB.provider.telephones.get(0).ddd +
+												providerMB.provider.telephones.get(0).pnumber}"
 											required="true" mask="(99) 9999-9999"
 											requiredMessage="Telefone obrigatório">
 										</p:inputMask>
@@ -65,7 +66,8 @@
 									</p:column>
 									<p:column>
 										<p:inputMask id="inputCelular"
-											value="#{providerMB.provider.telephones.get(1).pnumber}"
+											value="#{providerMB.provider.telephones.get(1).ddd + 
+												providerMB.provider.telephones.get(1).pnumber}"
 											required="true" mask="(99) 99999-9999"
 											requiredMessage="Celular obrigatório">
 										</p:inputMask>
@@ -142,7 +144,6 @@
 									<p:column>
 										<p:inputNumber id="inputNumero"
 											value="#{providerMB.provider.number}" required="true"
-											thousandSeparator="." decimalSeparator="," 
 											requiredMessage="Campo obrigatório">
 										</p:inputNumber>
 									</p:column>

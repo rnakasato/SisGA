@@ -29,13 +29,15 @@
 					<p:row style="text-align:left">
 						<p:outputLabel value="Telefone: " style="font-weight:bold" />
 						<p:outputLabel id="outputDetailTelephone"
-							value="#{customerMB.selectedCustomer.telephones.get(0).pnumber }" />
+							value="#{customerMB.selectedCustomer.telephones.get(0).ddd
+							+ customerMB.selectedCustomer.telephones.get(0).pnumber }" />
 					</p:row>
 
 					<p:row style="text-align:left">
 						<p:outputLabel value="Celular: " style="font-weight:bold" />
 						<p:outputLabel id="outputDetailCellphone"
-							value="#{customerMB.selectedCustomer.telephones.get(1).pnumber }" />
+							value="#{customerMB.selectedCustomer.telephones.get(1).ddd
+							+ customerMB.selectedCustomer.telephones.get(1).pnumber}" />
 					</p:row>
 
 					<p:row style="text-align:left">

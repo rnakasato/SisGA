@@ -26,7 +26,7 @@ import com.sisga.domain.customer.Customer;
 import com.sisga.domain.customer.CustomerHistory;
 import com.sisga.domain.customer.CustomerOperation;
 import com.sisga.domain.customer.filter.CustomerFilter;
-import com.sisga.domain.employee.Employee;
+import com.sisga.domain.user.User;
 import com.sisga.web.util.Redirector;
 
 /**
@@ -51,6 +51,8 @@ public class CustomerMB extends BaseMB {
 	private State selectedState;
 	private List<City> cityList;
 	private List<State> stateList;
+	private List<User> userList;
+	
 	
 	// Para manipulação de clientes
 	private Customer selectedCustomer;
@@ -65,6 +67,8 @@ public class CustomerMB extends BaseMB {
 		newTelephonesCityState(customer);
 		cityList = getCities();
 		stateList = getStates();
+		userList = getUsers();
+		
 	}
 
 	// Métodos Operacionais
@@ -276,6 +280,26 @@ public class CustomerMB extends BaseMB {
 		}
 		return  states;
 	}
+	
+	private List<User> getUsers() {
+		List<User> users = new ArrayList<User>();
+		//try {
+		//	ICommand commandFind;
+		//	commandFind = FactoryCommand.build(new User(), EOperation.FINDALL);
+		//	users = commandFind.execute().getEntityList();
+
+		//} catch (ClassNotFoundException e) {
+		//	e.printStackTrace();
+		//}
+		
+		User u = new User();
+		u.setFirstName("Sergio");
+		users.add(u);
+		u.setFirstName("Massao");
+		users.add(u);
+		
+		return  users;
+	}
 
 	public void loadCities( AjaxBehaviorEvent event ) {
 		City city = new City();
@@ -399,6 +423,16 @@ public class CustomerMB extends BaseMB {
 	public void setSelectedCustomer(Customer selectedCustomer) {
 		this.selectedCustomer = selectedCustomer;
 	}
+
+	public List<User> getUserList() {
+		return userList;
+	}
+
+	public void setUserList(List<User> userList) {
+		this.userList = userList;
+	}
+	
+	
 
 	
 }

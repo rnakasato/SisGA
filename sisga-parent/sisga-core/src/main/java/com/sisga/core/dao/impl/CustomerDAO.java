@@ -36,7 +36,7 @@ public class CustomerDAO extends DomainSpecificEntityDAO < Customer > {
 			jpql.append( " WHERE 1=1 " );
 			
 			if( StringUtils.isNotEmpty( customerFilter.getName() ) ) {
-				jpql.append( " AND c.name = :name " );
+				jpql.append( " AND UPPER(c.name) = :name " );
 			}
 			if( customerFilter.getStatus().equals("ATIVO")){
 				jpql.append( " AND c.active = true " );
@@ -47,7 +47,7 @@ public class CustomerDAO extends DomainSpecificEntityDAO < Customer > {
 			Query query = session.createQuery( jpql.toString() );
 			
 			if( StringUtils.isNotEmpty( customerFilter.getName() ) ) {
-				query.setParameter( "name", customerFilter.getName() );
+				query.setParameter( "name", customerFilter.getName().toUpperCase() );
 			}
 
 			customerList = query.getResultList();

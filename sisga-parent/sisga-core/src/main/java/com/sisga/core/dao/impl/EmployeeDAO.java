@@ -33,7 +33,7 @@ public class EmployeeDAO extends DomainSpecificEntityDAO<Employee> {
 		jpql.append(" WHERE 1=1 ");
 
 		if (StringUtils.isNotEmpty(employeeFilter.getName())) {
-			jpql.append(" AND (e.firstname LIKE :fname OR e.lastname LIKE :lname");
+			jpql.append(" AND (UPPER(e.firstname) LIKE :fname OR UPPER(e.lastname) LIKE :lname");
 		}
 		if (employeeFilter.getEmploymentDateInit() != null && employeeFilter.getEmploymentDateFinal() != null) {
 			jpql.append(" AND e.employmentDate BETWEEN :initDate AND :finalDate ");
@@ -42,10 +42,10 @@ public class EmployeeDAO extends DomainSpecificEntityDAO<Employee> {
 		Query query = session.createQuery(jpql.toString());
 
 		if (StringUtils.isNotEmpty(employeeFilter.getName())) {
-			query.setParameter("fname", employeeFilter.getName());
+			query.setParameter("fname", employeeFilter.getName().toUpperCase());
 		}
 		if (StringUtils.isNotEmpty(employeeFilter.getName())) {
-			query.setParameter("lname", employeeFilter.getName());
+			query.setParameter("lname", employeeFilter.getName().toUpperCase());
 		}
 		if (employeeFilter.getEmploymentDateInit() != null) {
 			query.setParameter("initDate", employeeFilter.getEmploymentDateInit());

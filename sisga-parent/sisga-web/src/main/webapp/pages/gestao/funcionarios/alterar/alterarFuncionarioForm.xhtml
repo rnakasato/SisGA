@@ -93,7 +93,8 @@
 									</p:column>
 									<p:column>
 										<p:inputMask id="inputTelefone"
-											value="#{employeeMB.employee.telephones.get(0).pnumber}"
+											value="#{employeeMB.employee.telephones.get(0).ddd +
+												employeeMB.employee.telephones.get(0).pnumber}"
 											required="true" mask="(99) 9999-9999"
 											requiredMessage="Telefone obrigatório">
 										</p:inputMask>
@@ -107,7 +108,8 @@
 									</p:column>
 									<p:column>
 										<p:inputMask id="inputCelular"
-											value="#{employeeMB.employee.telephones.get(1).pnumber}"
+											value="#{employeeMB.employee.telephones.get(1).pnumber +
+												employeeMB.employee.telephones.get(1).ddd}"
 											required="true" mask="(99) 99999-9999"
 											requiredMessage="Celular obrigatório">
 										</p:inputMask>

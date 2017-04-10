@@ -45,6 +45,22 @@
 
 								<p:row>
 									<p:column>
+										<p:outputLabel for="selectOneMenuUsuario" value="Vendedor "
+											style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:selectOneMenu id="selectOneMenuUsuario"
+											value="#{customerMB.customer.userSeller}"
+											converter="defaultConverter" filter="true" required="true"
+											requiredMessage="Vendedor obrigatório">
+											<f:selectItems value="#{customerMB.userList}" var="users"
+												itemValue="#{users}" itemLabel="#{user.firstName}" />
+										</p:selectOneMenu>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
 										<p:outputLabel for="inputTelefone" value="Telefone "
 											style="font-weight:bold" />
 									</p:column>
@@ -85,8 +101,8 @@
 								</p:row>
 
 
-								
-									<p:row>
+
+								<p:row>
 									<p:column>
 										<p:outputLabel for="selectOneMenuEstado" value="Estado "
 											style="font-weight:bold" />
@@ -121,7 +137,7 @@
 										</p:selectOneMenu>
 									</p:column>
 								</p:row>
-							
+
 								<p:row>
 									<p:column>
 										<p:outputLabel for="inputBairro" value="Bairro "
@@ -143,7 +159,8 @@
 									<p:column>
 										<p:inputNumber id="inputNumero"
 											value="#{customerMB.customer.number}" required="true"
-											thousandSeparator="." decimalSeparator="," requiredMessage="Número obrigatório">
+											thousandSeparator="." decimalSeparator=","
+											requiredMessage="Número obrigatório">
 										</p:inputNumber>
 									</p:column>
 								</p:row>

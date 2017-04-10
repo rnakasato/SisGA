@@ -31,7 +31,7 @@ public class ProviderDAO extends DomainSpecificEntityDAO<Provider> {
 		jpql.append(" WHERE 1=1 ");
 
 		if (StringUtils.isNotEmpty(providerFilter.getName())) {
-			jpql.append(" AND p.name LIKE '%:name%' ");
+			jpql.append(" AND p.corporatename LIKE '%:name%' ");
 		}
 
 		Query query = session.createQuery(jpql.toString());

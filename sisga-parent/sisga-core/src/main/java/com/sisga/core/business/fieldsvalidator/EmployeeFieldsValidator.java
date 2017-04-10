@@ -23,6 +23,27 @@ public class EmployeeFieldsValidator extends FieldsValidator < Employee > {
 
 		if( StringUtils.isEmpty( employee.getLastName() ) ) {
 			appendMsg( "Sobrenome do Funcionário" );
+			
+		} else {
+			String email = employee.getEmail();
+			String[] emailSplit01 = email.split("@");
+			if (emailSplit01.length == 2) {
+				if (emailSplit01[0].length() > 1) {
+					if (emailSplit01[1].length() > 3) {
+						String[] emailSplit02 = email.split(".");
+						if (emailSplit02.length == 2) {
+						} else {
+							appendMsg("Email Inválido");
+						}
+					} else {
+						appendMsg("Email Inválido");
+					}
+				} else {
+					appendMsg("Email Inválido");
+				}
+			} else {
+				appendMsg("Email Inválido");
+			}
 		}
 
 		if( StringUtils.isEmpty( employee.getEmail() ) ) {

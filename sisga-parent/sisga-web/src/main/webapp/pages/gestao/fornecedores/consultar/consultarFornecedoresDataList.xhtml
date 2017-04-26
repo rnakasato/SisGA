@@ -66,6 +66,7 @@
 
 				<p:commandButton id="buttonExcluirFornecedor" value="Excluir"
 					update=":form_content :messages" style="margin-left:20px"
+					rendered="#{prov.active}"
 					actionListener="#{providerMB.delete(prov)}">
 					<p:confirm header="Fornecedor"
 						message="Confirmar exclusão do fornecedor?" />

@@ -14,8 +14,8 @@ public class EmployeeSalaryValidator extends Validator < Employee > {
 	@Override
 	public String validate( Employee e ) {
 		msg = null;
-		if( e.getSalary() <= getMinSalary() ) {
-			msg = "O salário do funcionário não podeser menor que o salário mínimo";
+		if( e.getSalary() < getMinSalary() ) {
+			msg = "O salário do funcionário não pode ser menor que o salário mínimo";
 		}
 
 		return msg;

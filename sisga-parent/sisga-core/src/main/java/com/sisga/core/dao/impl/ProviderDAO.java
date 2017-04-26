@@ -31,13 +31,17 @@ public class ProviderDAO extends DomainSpecificEntityDAO<Provider> {
 		jpql.append(" WHERE 1=1 ");
 
 		if (StringUtils.isNotEmpty(providerFilter.getName())) {
-			jpql.append(" AND p.corporatename LIKE '%:name%' ");
+			jpql.append(" AND (UPPER(p.corporatename) LIKE :name) ");
 		}
-
+		if( providerFilter.getStatus().equals("ATIVO")){
+			jpql.append( " AND p.active = true " );
+		} else if( providerFilter.getStatus().equals("INATIVO")){
+			jpql.append( " AND p.active = false " );
+		}
 		Query query = session.createQuery(jpql.toString());
 
 		if (StringUtils.isNotEmpty(providerFilter.getName())) {
-			query.setParameter("name", providerFilter.getName());
+			query.setParameter("name", "%" + providerFilter.getName().toUpperCase() + "%");
 		}
 
 		providerList = query.getResultList();

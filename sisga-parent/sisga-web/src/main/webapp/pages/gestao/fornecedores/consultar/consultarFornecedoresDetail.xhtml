@@ -29,14 +29,14 @@
 					<p:row style="text-align:left">
 						<p:outputLabel value="Telefone: " style="font-weight:bold" />
 						<p:outputLabel id="outputDetailTelephone"
-							value="#{providerMB.selectedProvider.telephones.get(0).ddd
+							value="#{providerMB.selectedProvider.telephones.get(0).ddd 
 							+providerMB.selectedProvider.telephones.get(0).pnumber }" />
 					</p:row>
 
 					<p:row style="text-align:left">
 						<p:outputLabel value="Celular: " style="font-weight:bold" />
 						<p:outputLabel id="outputDetailCellphone"
-							value="#{providerMB.selectedProvider.telephones.get(1).ddd 
+							value="#{providerMB.selectedProvider.telephones.get(1).ddd  
 							+ providerMB.selectedProvider.telephones.get(1).pnumber}" />
 					</p:row>
 
@@ -49,7 +49,7 @@
 					<p:row style="text-align:left">
 						<p:outputLabel value="Estado: " style="font-weight:bold" />
 						<p:outputLabel id="outputDetailState"
-							value="#{providerMB.selectedProvider.city.state.name}" />
+							value="#{providerMB.selectedProvider.city.uf}" />
 					</p:row>
 
 					<p:row style="text-align:left">

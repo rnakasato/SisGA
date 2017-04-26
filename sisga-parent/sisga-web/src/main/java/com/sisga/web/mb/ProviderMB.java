@@ -49,6 +49,7 @@ public class ProviderMB extends BaseMB {
 	private State selectedState;
 	private List<City> cityList;
 	private List<State> stateList;
+	private String status;
 
 	// Para manipulação de fornecedores
 	private Provider selectedProvider;
@@ -396,6 +397,14 @@ public class ProviderMB extends BaseMB {
 
 	public void setStateList(List<State> stateList) {
 		this.stateList = stateList;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

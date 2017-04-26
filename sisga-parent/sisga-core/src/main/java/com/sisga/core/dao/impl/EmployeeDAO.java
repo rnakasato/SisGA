@@ -38,7 +38,12 @@ public class EmployeeDAO extends DomainSpecificEntityDAO<Employee> {
 		if (employeeFilter.getEmploymentDateInit() != null && employeeFilter.getEmploymentDateFinal() != null) {
 			jpql.append(" AND e.employmentDate BETWEEN :initDate AND :finalDate ");
 		}
-
+		if( employeeFilter.getStatus().equals("ATIVO")){
+			jpql.append( " AND e.active = true " );
+		} else if( employeeFilter.getStatus().equals("INATIVO")){
+			jpql.append( " AND e.active = false " );
+		}
+		
 		Query query = session.createQuery(jpql.toString());
 
 		if (StringUtils.isNotEmpty(employeeFilter.getName())) {

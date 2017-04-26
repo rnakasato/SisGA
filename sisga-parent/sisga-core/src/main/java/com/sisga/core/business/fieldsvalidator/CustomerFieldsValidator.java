@@ -27,13 +27,13 @@ public class CustomerFieldsValidator extends FieldsValidator<Customer> {
 		if (StringUtils.isEmpty(customer.getEmail())) {
 			appendMsg("Email do Cliente");
 		} else {
-			String email = customer.getEmail();
+			String email = customer.getEmail().toUpperCase();
 			String[] emailSplit01 = email.split("@");
 			if (emailSplit01.length == 2) {
-				if (emailSplit01[0].length() > 1) {
-					if (emailSplit01[1].length() > 3) {
-						String[] emailSplit02 = email.split(".");
-						if (emailSplit02.length == 2) {
+				if (emailSplit01[0].length() > 0) {
+					if (emailSplit01[1].length() > 2) {
+						String[] emailSplit02 = email.split(".CO");
+						if (emailSplit02.length > 1) {
 						} else {
 							appendMsg("Email Inválido");
 						}

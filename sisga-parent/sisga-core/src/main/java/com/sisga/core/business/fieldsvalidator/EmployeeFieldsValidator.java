@@ -24,14 +24,21 @@ public class EmployeeFieldsValidator extends FieldsValidator < Employee > {
 		if( StringUtils.isEmpty( employee.getLastName() ) ) {
 			appendMsg( "Sobrenome do Funcionário" );
 			
+		} 
+		
+		
+		if( StringUtils.isEmpty( employee.getEmail() ) ) {
+			appendMsg( "Email do Funcionário" );
 		} else {
-			String email = employee.getEmail();
+			String email = employee.getEmail().toUpperCase();
 			String[] emailSplit01 = email.split("@");
 			if (emailSplit01.length == 2) {
-				if (emailSplit01[0].length() > 1) {
-					if (emailSplit01[1].length() > 3) {
-						String[] emailSplit02 = email.split(".");
-						if (emailSplit02.length == 2) {
+				if (emailSplit01[0].length() > 0) {
+					if (emailSplit01[1].length() > 2) {
+						String com = emailSplit01[1];
+						String[] emailSplit02 = com.split(".CO");
+						if (emailSplit02.length > 1) {
+							
 						} else {
 							appendMsg("Email Inválido");
 						}
@@ -46,9 +53,6 @@ public class EmployeeFieldsValidator extends FieldsValidator < Employee > {
 			}
 		}
 
-		if( StringUtils.isEmpty( employee.getEmail() ) ) {
-			appendMsg( "Email do Funcionário" );
-		}
 
 		if( StringUtils.isEmpty( employee.getNeighborhood() ) ) {
 			appendMsg( "Bairro do Funcionário" );

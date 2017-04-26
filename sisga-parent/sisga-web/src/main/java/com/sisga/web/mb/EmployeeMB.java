@@ -43,12 +43,12 @@ public class EmployeeMB extends BaseMB {
 
 	// utilizado para cadastrar e alterar funcionarios
 	private Employee employee;
-	private String status;
 	private String code;
 	private boolean doUpdate;
 	private State selectedState;
 	private List<City> cityList;
 	private List<State> stateList;
+	private String status;
 	
 	// Para manipulação de funcionarios
 	private Employee selectedEmployee;
@@ -180,7 +180,6 @@ public class EmployeeMB extends BaseMB {
 
 	public void search() {
 		try {
-			filter.setStatus(status);
 			ICommand commandFind = FactoryCommand.build(filter, EOperation.FIND);
 			employeeList = commandFind.execute().getEntityList();
 
@@ -338,14 +337,6 @@ public class EmployeeMB extends BaseMB {
 		this.employee = employee;
 	}
 
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
 	public String getCode() {
 		return code;
 	}
@@ -392,6 +383,14 @@ public class EmployeeMB extends BaseMB {
 
 	public void setStateList(List<State> stateList) {
 		this.stateList = stateList;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

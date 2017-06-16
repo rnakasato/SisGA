@@ -40,3 +40,13 @@ html, body {
 .baseGrid.ui-panelgrid>*>tr, .baseGrid.ui-panelgrid .ui-panelgrid-cell {
 	border: none; 
 }
+
+
+.breadCrumb{	
+	padding-left:30px !important;
+	padding-top:10px !important;
+	padding-bottom:10px !important;
+	margin: 0 auto !important; 
+	width: 100% !important;	 
+}
+

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition>
+	<p:menubar style="padding-left:30px">
+		<p:submenu label="Gestão" icon="ui-icon-document">
+			<p:menuitem value="Produto" url="/pages/gestao/produtos/consultarProdutos.jsf?faces-redirect=true" />
+			<p:menuitem value="Clientes" url="/pages/gestao/clientes/consultarClientes.jsf?faces-redirect=true" />
+			<p:menuitem value="Fornecedores" url="/pages/gestao/fornecedores/consultarFornecedores.jsf?faces-redirect=true" />
+			<p:menuitem value="Funcionários" url="/pages/gestao/funcionarios/consultarFuncionarios.jsf?faces-redirect=true" />
+			<p:menuitem value="Despesas" url="/pages/gestao/despesas/consultarDespesasOperacionais.jsf?faces-redirect=true" />			
+		</p:submenu>
+
+		<p:menuitem value="Pedidos" url="/pages/operacao/consultarPedido.jsf?faces-redirect=true" icon="ui-icon-arrowreturnthick-1-w" />
+
+
+		<p:submenu label="Relatórios" icon="ui-icon-help">
+			<p:submenu label="Vendas" icon="ui-icon-document">
+				<p:menuitem value="Resumo de Vendas" url="/pages/relatorio/vendas/resumoVendas.jsf?faces-redirect=true" />
+				<p:menuitem value="Vendas Semanais" url="/pages/relatorio/vendas/vendasSemanais.jsf?faces-redirect=true" />
+				<p:menuitem value="Vendas Diárias/Produto" url="/pages/relatorio/vendas/vendasDiariasProduto.jsf?faces-redirect=true" />
+				<p:menuitem value="Vendas Diarias/Cliente" url="/pages/relatorio/vendas/vendasDiariasCliente.jsf?faces-redirect=true" />			
+			</p:submenu>	
+			<p:menuitem value="Folha de Pagamento" url="/pages/relatorio/folhaPagamento.jsf?faces-redirect=true" />
+			<p:menuitem value="Pagamentos" url="/pages/relatorio/pagamentoFornecedores.jsf?faces-redirect=true" />
+			<p:menuitem value="Resumo de Produção" url="/pages/relatorio/resumoProducao.jsf?faces-redirect=true" />
+			<p:menuitem value="Receitas/Despesas" url="/pages/relatorio/receitasDespesas.jsf?faces-redirect=true" />			
+		</p:submenu>
+
+	</p:menubar>
+</ui:composition>
+</html>

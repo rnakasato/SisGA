@@ -10,26 +10,39 @@
 	<title>Header</title>
 </h:head>
 <h:body>
-		<div
-			style="border: 2px solid blue; margin: 0 auto; height: 100px; width: 100%; background-color: #00FFFF;">
-			<div class="header">
-				Logo Empresa
-				<!-- <img src="LogoEmpresa.JPG" alt="Logo Empresa" height="42" width="42">  -->
-			</div>
-			<div style="margin: 0 auto; height: 100%; width: 60%; float: left;">
-				<br />
-				<h:outputLabel value="#{headerBeans.nome}"></h:outputLabel>
-				<br /> Tel.:
-				<h:outputLabel value="#{headerBeans.telefone}"></h:outputLabel>
-				<br /> Endereço:
-				<h:outputLabel value="#{headerBeans.endereco}"></h:outputLabel>
-				<br />
-			</div>
-			<div style="margin: 0 auto; height: 100%; width: 20%; float: right;">
-				Logo SisGA
-				<!-- <img src="Logo.JPG" alt="Logo SisGA" height="42" width="42">  -->
-			</div>
-		</div>
-	
+	<p:panelGrid id="gridMenu" styleClass="baseGrid"
+		style="height: 80px;  ">
+		<p:row>
+			<p:column rowspan="4">
+				<p:graphicImage library="images" name="Kanban (sign).png" />
+			</p:column>
+		</p:row>
+		<p:row>
+			<p:column>
+				<p:outputLabel value="#{headerBeans.nome}">TEST</p:outputLabel>
+			</p:column>
+		</p:row>
+		<p:row>
+			<p:column>
+				<p:outputLabel>	Tel.: </p:outputLabel>
+			</p:column>
+			<p:column>
+				<p:outputLabel value="#{headerBeans.telefone}"></p:outputLabel>
+			</p:column>
+		</p:row>
+
+		<p:row>
+			<p:column>
+				<p:outputLabel>	Endereço: </p:outputLabel>
+			</p:column>
+			<p:column>
+				<p:outputLabel value="#{headerBeans.endereco}"></p:outputLabel>
+			</p:column>
+		</p:row>
+	</p:panelGrid>
+
+
+
+
 </h:body>
 </html>

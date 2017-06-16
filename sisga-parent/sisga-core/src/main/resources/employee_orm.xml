@@ -15,23 +15,33 @@
 		<property name="email" column="EMAIL" />
 		<property name="active" column="ACTIVE" />
 		<property name="insertDate" column="INSERTDATE" />
-		<property name="neighborhood" column="NEIGHBORHOOD" />
-		<property name="number" column="ANUMERIC" />
 		<property name="workcardNumber" column="WORKCARDNUMERIC" />
 		<property name="workcardSeries" column="WORKCARDSERIES" />
 		<property name="employmentDate" column="EMPLOYMENTDATE" />
 		<property name="resignationDate" column="RESIGNATIONDATE" />
 		<property name="salary" column="SALARY" />
 
-		<many-to-one name="city" column="IDCITY"
-			class="com.sisga.domain.address.City" not-null="true" lazy="false"
-			cascade="save-update" />
+		<component name="address" class="com.sisga.domain.address.Address">
+			<property name="neighborhood" type="string">
+				<column name="NEIGHBORHOOD" />
+			</property>
+			<property name="number">
+				<column name="ANUMERIC" />
+			</property>
+			<many-to-one name="city" column="IDCITY"
+				class="com.sisga.domain.address.City" not-null="true" lazy="false"
+				cascade="save-update" />
+		</component>
 
-		<bag name="telephones" table="TB_PHONE" inverse="true" lazy="false" cascade="save-update">
+		<bag name="telephones" table="TB_PHONE" inverse="true" lazy="false"
+			cascade="save-update">
 			<key column="IDEMPLOYEE" />
 			<one-to-many class="com.sisga.domain.communication.Telephone" />
 		</bag>
 	</class>
+
+
+
 
 	<class name="com.sisga.domain.employee.EmployeeOperation" table="TB_EMPLOYEE_OPERATION">
 		<id name="id" column="IDOPERATION">
@@ -54,8 +64,6 @@
 		<property name="email" column="EMAIL" />
 		<property name="active" column="ACTIVE" />
 		<property name="insertDate" column="INSERTDATE" />
-		<property name="neighborhood" column="NEIGHBORHOOD" />
-		<property name="number" column="ANUMERIC" />
 		<property name="workcardNumber" column="WORKCARDNUMERIC" />
 		<property name="workcardSeries" column="WORKCARDSERIES" />
 		<property name="employmentDate" column="EMPLOYMENTDATE" />
@@ -66,9 +74,19 @@
 			class="com.sisga.domain.employee.Employee" not-null="true" />
 		<many-to-one name="employeeOperation" column="IDOPERATION"
 			class="com.sisga.domain.employee.EmployeeOperation" not-null="true" />
-		<many-to-one name="city" column="IDCITY"
-			class="com.sisga.domain.address.City" not-null="true" />
 
+		<component name="address" class="com.sisga.domain.address.Address">
+			<property name="neighborhood" type="string">
+				<column name="NEIGHBORHOOD" />
+			</property>
+			<property name="number">
+				<column name="ANUMERIC" />
+			</property>
+			<many-to-one name="city" column="IDCITY"
+				class="com.sisga.domain.address.City" not-null="true" lazy="false"
+				cascade="save-update" />
+		</component>
+		
 		<bag name="telephones" table="TB_PHONE">
 			<key column="IDEMPLOYEE" />
 			<one-to-many class="com.sisga.domain.communication.Telephone" />

@@ -5,6 +5,7 @@ import java.util.Date;
 import com.sisga.core.core.business.Complementor;
 import com.sisga.core.dao.impl.EmployeeOperationDAO;
 import com.sisga.core.hibernate.SessionThreadLocal;
+import com.sisga.domain.address.Address;
 import com.sisga.domain.employee.Employee;
 import com.sisga.domain.employee.EmployeeHistory;
 import com.sisga.domain.employee.EmployeeOperation;
@@ -20,7 +21,7 @@ public class EmployeeHistoryComplementor extends Complementor < EmployeeHistory 
 	@Override
 	public String complement( EmployeeHistory employeeHistory ) {
 		msg = null;
-		
+
 		EmployeeHistoryFilter filter = new EmployeeHistoryFilter();
 		filter.setCode( employeeHistory.getCode() );
 
@@ -36,22 +37,22 @@ public class EmployeeHistoryComplementor extends Complementor < EmployeeHistory 
 
 	private void createHistory( EmployeeHistory history, String operationCode ) throws Exception {
 		Employee employee = history.getEmployee();
-		
-		history.setActive(employee.isActive());
-		history.setCity(employee.getCity());
+		history.setAddress( new Address() );
+		history.setActive( employee.isActive() );
+		history.getAddress().setCity( employee.getAddress().getCity() );
 		history.setCode( employee.getCode() );
 		history.setDescription( employee.getDescription() );
 		history.setInsertDate( new Date() );
-		history.setFirstName(employee.getFirstName() );
-		history.setLastName(employee.getLastName() );
-		history.setNeighborhood(employee.getNeighborhood() );
-		history.setNumber(employee.getNumber() );
-		history.setEmail(employee.getEmail());
-		history.setWorkcardNumber(employee.getWorkcardNumber() );
-		history.setEmploymentDate(employee.getEmploymentDate() );
-		history.setResignationDate(employee.getResignationDate());
-		history.setSalary(employee.getSalary());
-		
+		history.setFirstName( employee.getFirstName() );
+		history.setLastName( employee.getLastName() );
+		history.getAddress().setNeighborhood( employee.getAddress().getNeighborhood() );
+		history.getAddress().setNumber( employee.getAddress().getNumber() );
+		history.setEmail( employee.getEmail() );
+		history.setWorkcardNumber( employee.getWorkcardNumber() );
+		history.setEmploymentDate( employee.getEmploymentDate() );
+		history.setResignationDate( employee.getResignationDate() );
+		history.setSalary( employee.getSalary() );
+
 		// Identifica a operação
 		EmployeeOperationDAO dao = new EmployeeOperationDAO();
 		dao.setSession( SessionThreadLocal.getSession() );

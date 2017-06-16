@@ -1,90 +1,77 @@
 package com.sisga.domain.provider;
 
-import java.util.List;
-
-import com.sisga.domain.DomainSpecificEntity;
-import com.sisga.domain.address.City;
-import com.sisga.domain.communication.Telephone;
+import com.sisga.domain.person.PersonHistory;
 
 /**
  * 
- * @author Sergio Massao Umiji
- *         10 de mar de 2017
+ * @author Sergio Massao Umiji 10 de mar de 2017
  */
 
-public class ProviderHistory extends DomainSpecificEntity{
+public class ProviderHistory extends PersonHistory{
 
 	private Provider provider;
 	private String corporateName;
 	private String cnpj;
-	private boolean active;
 	private ProviderOperation providerOperation;
-	private List<Telephone> telephones;
-	private String email;
-	private City city;
-	private String number;
-	private String neighborhood;
-	
-	
+
+	/**
+	 * @return the provider
+	 */
 	public Provider getProvider() {
 		return provider;
 	}
+
+	/**
+	 * @param provider
+	 *            the provider to set
+	 */
 	public void setProvider(Provider provider) {
 		this.provider = provider;
 	}
-	public ProviderOperation getProviderOperation() {
-		return providerOperation;
-	}
-	public void setProviderOperation(ProviderOperation providerOperation) {
-		this.providerOperation = providerOperation;
-	}
-	
-	public String getCnpj() {
-		return cnpj;
-	}
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
-	}
-	public boolean isActive() {
-		return active;
-	}
-	public void setActive(boolean active) {
-		this.active = active;
-	}
-	public List<Telephone> getTelephones() {
-		return telephones;
-	}
-	public void setTelephones(List<Telephone> telephones) {
-		this.telephones = telephones;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public City getCity() {
-		return city;
-	}
-	public void setCity(City city) {
-		this.city = city;
-	}
+
+	/**
+	 * @return the corporateName
+	 */
 	public String getCorporateName() {
 		return corporateName;
 	}
+
+	/**
+	 * @param corporateName
+	 *            the corporateName to set
+	 */
 	public void setCorporateName(String corporateName) {
 		this.corporateName = corporateName;
 	}
-	public String getNumber() {
-		return number;
+
+	/**
+	 * @return the cnpj
+	 */
+	public String getCnpj() {
+		return cnpj;
 	}
-	public void setNumber(String number) {
-		this.number = number;
+
+	/**
+	 * @param cnpj
+	 *            the cnpj to set
+	 */
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
 	}
-	public String getNeighborhood() {
-		return neighborhood;
+
+	/**
+	 * @return the providerOperation
+	 */
+	public ProviderOperation getProviderOperation() {
+		return providerOperation;
 	}
-	public void setNeighborhood(String neighborhood) {
-		this.neighborhood = neighborhood;
-	} 
+
+	/**
+	 * @param providerOperation
+	 *            the providerOperation to set
+	 */
+	public void setProviderOperation(ProviderOperation providerOperation) {
+		this.providerOperation = providerOperation;
+	}
+
 }

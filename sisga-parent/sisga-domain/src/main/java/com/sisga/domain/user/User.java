@@ -1,6 +1,5 @@
 package com.sisga.domain.user;
 
-import com.sisga.domain.AbstractDomainEntity;
 import com.sisga.domain.person.SocialPerson;
 
 /**

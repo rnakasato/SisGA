@@ -5,6 +5,7 @@ import java.util.Date;
 import com.sisga.core.core.business.Complementor;
 import com.sisga.core.dao.impl.CustomerOperationDAO;
 import com.sisga.core.hibernate.SessionThreadLocal;
+import com.sisga.domain.address.Address;
 import com.sisga.domain.customer.Customer;
 import com.sisga.domain.customer.CustomerHistory;
 import com.sisga.domain.customer.CustomerOperation;
@@ -37,15 +38,16 @@ public class CustomerHistoryComplementor extends Complementor < CustomerHistory 
 	private void createHistory( CustomerHistory history, String operationCode ) throws Exception {
 		Customer customer = history.getCustomer();
 		
+		history.setAddress( new Address() );
 		history.setActive(customer.isActive());
-		history.setCity(customer.getCity());
+		history.getAddress().setCity(customer.getAddress().getCity());
 		history.setCode( customer.getCode() );
 		history.setDescription( customer.getDescription() );
 		history.setInsertDate( new Date() );
 		history.setFirstName(customer.getFirstName() );
 		history.setLastName(customer.getLastName() );
-		history.setNeighborhood(customer.getNeighborhood() );
-		history.setNumber(customer.getNumber() );
+		history.getAddress().setNeighborhood(customer.getAddress().getNeighborhood() );
+		history.getAddress().setNumber(customer.getAddress().getNumber() );
 		history.setEmail(customer.getEmail());
 		
 		// Identifica a operação

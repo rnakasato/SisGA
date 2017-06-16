@@ -18,17 +18,17 @@ public class EmployeeFieldsValidator extends FieldsValidator < Employee > {
 	public String validate( Employee employee ) {
 		super.init();
 		if( StringUtils.isEmpty( employee.getFirstName() ) ) {
-			appendMsg( "Nome do Funcionário" );
+			appendMsg( "Nome do FuncionÃ¡rio" );
 		}
 
 		if( StringUtils.isEmpty( employee.getLastName() ) ) {
-			appendMsg( "Sobrenome do Funcionário" );
+			appendMsg( "Sobrenome do FuncionÃ¡rio" );
 			
 		} 
 		
 		
 		if( StringUtils.isEmpty( employee.getEmail() ) ) {
-			appendMsg( "Email do Funcionário" );
+			appendMsg( "Email do FuncionÃ¡rio" );
 		} else {
 			String email = employee.getEmail().toUpperCase();
 			String[] emailSplit01 = email.split("@");
@@ -40,56 +40,55 @@ public class EmployeeFieldsValidator extends FieldsValidator < Employee > {
 						if (emailSplit02.length > 1) {
 							
 						} else {
-							appendMsg("Email Inválido");
+							appendMsg("Email InvÃ¡ido");
 						}
 					} else {
-						appendMsg("Email Inválido");
+						appendMsg("Email InvÃ¡ido");
 					}
 				} else {
-					appendMsg("Email Inválido");
+					appendMsg("Email InvÃ¡ido");
 				}
 			} else {
-				appendMsg("Email Inválido");
+				appendMsg("Email InvÃ¡ido");
 			}
 		}
 
-
-		if( StringUtils.isEmpty( employee.getNeighborhood() ) ) {
-			appendMsg( "Bairro do Funcionário" );
+		if( StringUtils.isEmpty( employee.getAddress().getNeighborhood() ) ) {
+			appendMsg( "Bairro do FuncionÃ¡rio" );
 		}
 
-		if( StringUtils.isEmpty( employee.getNumber() ) ) {
-			appendMsg( "Numero do Funcionárioe" );
+		if( StringUtils.isEmpty( employee.getAddress().getNumber() ) ) {
+			appendMsg( "Numero do FuncionÃ¡rio" );
 		}
 		
 		if( StringUtils.isEmpty( employee.getWorkcardNumber()  ) ) {
-			appendMsg( "Carteira de Trabalho do Funcionárioe" );
+			appendMsg( "Carteira de Trabalho do FuncionÃ¡rio" );
 		}
 
-		if( employee.getCity() == null ) {
-			appendMsg( "Cidade do Funcionário" );
+		if( employee.getAddress().getCity() == null ) {
+			appendMsg( "Cidade do FuncionÃ¡rio" );
 		}
 
 		if( employee.getEmploymentDate() == null ) {
-			appendMsg( "Data de Contratação do Funcionário" );
+			appendMsg( "Data de ContrataÃ§Ã£o do FuncionÃ¡rio" );
 		}
 		
 
 		if( employee.getTelephones() == null ) {
-			appendMsg( "Telefone e Celular do Funcionário" );
+			appendMsg( "Telefone e Celular do FuncionÃ¡rio" );
 		}
 		
 		if( employee.getTelephones().get(0).getDdd() == null ) {
-			appendMsg( "DDD Telefone do Funcionário" );
+			appendMsg( "DDD Telefone do FuncionÃ¡rio" );
 		}
 		if( employee.getTelephones().get(0).getPnumber() == null ) {
-			appendMsg( "Telefone do Funcionário" );
+			appendMsg( "Telefone do FuncionÃ¡rio" );
 		}
 		if( employee.getTelephones().get(1).getDdd() == null ) {
-			appendMsg( "DDD Celular do Funcionário" );
+			appendMsg( "DDD Celular do FuncionÃ¡rio" );
 		}
 		if( employee.getTelephones().get(1).getPnumber() == null ) {
-			appendMsg( "Celular do Funcionário" );
+			appendMsg( "Celular do FuncionÃ¡rio" );
 		}
 		
 		return getMessage();

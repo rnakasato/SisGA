@@ -5,6 +5,7 @@ import java.util.Date;
 import com.sisga.core.core.business.Complementor;
 import com.sisga.core.dao.impl.ProviderOperationDAO;
 import com.sisga.core.hibernate.SessionThreadLocal;
+import com.sisga.domain.address.Address;
 import com.sisga.domain.provider.Provider;
 import com.sisga.domain.provider.ProviderHistory;
 import com.sisga.domain.provider.ProviderOperation;
@@ -20,7 +21,7 @@ public class ProviderHistoryComplementor extends Complementor < ProviderHistory 
 	@Override
 	public String complement( ProviderHistory providerHistory ) {
 		msg = null;
-		
+
 		ProviderHistoryFilter filter = new ProviderHistoryFilter();
 		filter.setCode( providerHistory.getCode() );
 
@@ -37,17 +38,18 @@ public class ProviderHistoryComplementor extends Complementor < ProviderHistory 
 	private void createHistory( ProviderHistory history, String operationCode ) throws Exception {
 		Provider provider = history.getProvider();
 		
-		history.setActive(provider.isActive());
-		history.setCity(provider.getCity());
+		history.setAddress( new Address() );
+		history.setActive( provider.isActive() );
+		history.getAddress().setCity( provider.getAddress().getCity() );
 		history.setCode( provider.getCode() );
 		history.setDescription( provider.getDescription() );
 		history.setInsertDate( new Date() );
-		history.setCorporateName(provider.getCorporateName() );
-		history.setCnpj(provider.getCnpj() );
-		history.setNeighborhood(provider.getNeighborhood() );
-		history.setNumber(provider.getNumber() );
-		history.setEmail(provider.getEmail());
-		
+		history.setCorporateName( provider.getCorporateName() );
+		history.setCnpj( provider.getCnpj() );
+		history.getAddress().setNeighborhood( provider.getAddress().getNeighborhood() );
+		history.getAddress().setNumber( provider.getAddress().getNumber() );
+		history.setEmail( provider.getEmail() );
+
 		// Identifica a operação
 		ProviderOperationDAO dao = new ProviderOperationDAO();
 		dao.setSession( SessionThreadLocal.getSession() );

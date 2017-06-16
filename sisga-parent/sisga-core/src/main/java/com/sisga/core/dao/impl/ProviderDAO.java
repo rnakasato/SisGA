@@ -16,7 +16,7 @@ import com.sisga.domain.provider.filter.ProviderFilter;
  * 
  * @author Sergio Massao Umiji 7 de mar de 2017
  */
-public class ProviderDAO extends DomainSpecificEntityDAO<Provider> {
+public class ProviderDAO extends AbstractDAO<Provider> {
 	private ProviderFilter providerFilter;
 
 	@Override

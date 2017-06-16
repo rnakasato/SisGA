@@ -42,14 +42,21 @@
 		<property name="email" column="EMAIL" />
 		<property name="active" column="ACTIVE" />
 		<property name="insertDate" column="INSERTDATE" />
-		<property name="neighborhood" column="NEIGHBORHOOD" />
-		<property name="number" column="ANUMERIC" />
 
-		<many-to-one name="city" column="IDCITY"
-			class="com.sisga.domain.address.City" not-null="true" 
-			lazy="false" cascade="save-update"/>
+		<component name="address" class="com.sisga.domain.address.Address">
+			<property name="neighborhood" type="string">
+				<column name="NEIGHBORHOOD" />
+			</property>
+			<property name="number">
+				<column name="ANUMERIC" />
+			</property>
+			<many-to-one name="city" column="IDCITY"
+				class="com.sisga.domain.address.City" not-null="true" lazy="false"
+				cascade="save-update" />
+		</component>
 
-		<bag name="telephones" table="TB_PHONE" inverse="true" lazy="false" cascade="save-update">
+		<bag name="telephones" table="TB_PHONE" inverse="true" lazy="false"
+			cascade="save-update">
 			<key column="IDCUSTOMER" />
 			<one-to-many class="com.sisga.domain.communication.Telephone" />
 		</bag>
@@ -76,16 +83,24 @@
 		<property name="email" column="EMAIL" />
 		<property name="active" column="ACTIVE" />
 		<property name="insertDate" column="INSERTDATE" />
-		<property name="neighborhood" column="NEIGHBORHOOD" />
-		<property name="number" column="ANUMERIC" />
-
+		
+		<component name="address" class="com.sisga.domain.address.Address">
+			<property name="neighborhood" type="string">
+				<column name="NEIGHBORHOOD" />
+			</property>
+			<property name="number">
+				<column name="ANUMERIC" />
+			</property>
+			<many-to-one name="city" column="IDCITY"
+				class="com.sisga.domain.address.City" not-null="true" lazy="false"
+				cascade="save-update" />
+		</component>
+		
 		<many-to-one name="customer" column="IDCUSTOMER"
 			class="com.sisga.domain.customer.Customer" not-null="true" />
 		<many-to-one name="customerOperation" column="IDOPERATION"
 			class="com.sisga.domain.customer.CustomerOperation" not-null="true" />
-		<many-to-one name="city" column="IDCITY"
-			class="com.sisga.domain.address.City" not-null="true" />
-
+		
 		<bag name="telephones" table="TB_PHONE">
 			<key column="IDCUSTOMER" />
 			<one-to-many class="com.sisga.domain.communication.Telephone" />

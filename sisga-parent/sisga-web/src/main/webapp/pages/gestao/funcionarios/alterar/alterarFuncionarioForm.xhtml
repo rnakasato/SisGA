@@ -157,7 +157,7 @@
 									<p:column>
 										<p:selectOneMenu id="selectOneMenuCidade"
 											disabled="#{empty employeeMB.selectedState}"
-											value="#{employeeMB.employee.city}"
+											value="#{employeeMB.employee.address.city}"
 											converter="defaultConverter" filter="true" required="true"
 											requiredMessage="Cidade obrigatório">
 											<f:selectItems value="#{employeeMB.cityList}" var="cities"
@@ -172,7 +172,7 @@
 									</p:column>
 									<p:column>
 										<p:inputText id="inputBairro"
-											value="#{employeeMB.employee.neighborhood}" required="true"
+											value="#{employeeMB.employee.address.neighborhood}" required="true"
 											requiredMessage="Bairro obrigatório">
 										</p:inputText>
 									</p:column>
@@ -185,7 +185,7 @@
 									</p:column>
 									<p:column>
 										<p:inputNumber id="inputNumero"
-											value="#{employeeMB.employee.number}" thousandSeparator=""
+											value="#{employeeMB.employee.address.number}" thousandSeparator=""
 											required="true"
 											requiredMessage="Número obrigatório">
 										</p:inputNumber>

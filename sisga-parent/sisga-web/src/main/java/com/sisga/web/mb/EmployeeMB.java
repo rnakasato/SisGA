@@ -18,6 +18,7 @@ import com.sisga.core.ICommand;
 import com.sisga.core.application.Result;
 import com.sisga.core.enums.EOperation;
 import com.sisga.core.factory.impl.FactoryCommand;
+import com.sisga.domain.address.Address;
 import com.sisga.domain.address.City;
 import com.sisga.domain.address.State;
 import com.sisga.domain.communication.PhoneType;
@@ -239,8 +240,8 @@ public class EmployeeMB extends BaseMB {
 		employee.getTelephones().get(1).getPhoneType().setCode(PhoneType.CELULAR);
 		employee.getTelephones().get(0).getPhoneType().setId(1L);
 		employee.getTelephones().get(1).getPhoneType().setId(2L);
-		employee.setCity(new City());
-		employee.getCity().setState(new State());
+		employee.setAddress(new Address());
+		employee.getAddress().setCity(new City());
 		this.employee = employee;
 	}
 	

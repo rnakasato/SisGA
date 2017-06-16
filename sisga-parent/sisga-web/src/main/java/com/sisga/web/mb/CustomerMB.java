@@ -18,6 +18,7 @@ import com.sisga.core.ICommand;
 import com.sisga.core.application.Result;
 import com.sisga.core.enums.EOperation;
 import com.sisga.core.factory.impl.FactoryCommand;
+import com.sisga.domain.address.Address;
 import com.sisga.domain.address.City;
 import com.sisga.domain.address.State;
 import com.sisga.domain.communication.PhoneType;
@@ -251,8 +252,9 @@ public class CustomerMB extends BaseMB {
 		customer.getTelephones().get(1).getPhoneType().setCode(PhoneType.CELULAR);
 		customer.getTelephones().get(0).getPhoneType().setId(1L);
 		customer.getTelephones().get(1).getPhoneType().setId(2L);
-		customer.setCity(new City());
-		customer.getCity().setState(new State());
+		customer.setAddress(new Address());
+		customer.getAddress().setCity(new City());
+		customer.getAddress().getCity().setState(new State());
 		this.customer = customer;
 	}
 

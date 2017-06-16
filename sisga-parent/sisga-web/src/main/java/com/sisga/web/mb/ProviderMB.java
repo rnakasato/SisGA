@@ -18,6 +18,7 @@ import com.sisga.core.ICommand;
 import com.sisga.core.application.Result;
 import com.sisga.core.enums.EOperation;
 import com.sisga.core.factory.impl.FactoryCommand;
+import com.sisga.domain.address.Address;
 import com.sisga.domain.address.City;
 import com.sisga.domain.address.State;
 import com.sisga.domain.communication.PhoneType;
@@ -246,8 +247,9 @@ public class ProviderMB extends BaseMB {
 		provider.getTelephones().get(1).getPhoneType().setCode(PhoneType.CELULAR);
 		provider.getTelephones().get(1).getPhoneType().setId(2L);
 		
-		provider.setCity(new City());
-		provider.getCity().setState(new State());
+		provider.setAddress(new Address());
+		provider.getAddress().setCity(new City());
+
 		this.provider = provider;
 		return this.provider;
 	}

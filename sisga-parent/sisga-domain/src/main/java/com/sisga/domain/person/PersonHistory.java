@@ -1,22 +1,17 @@
-
 package com.sisga.domain.person;
 
 import java.util.List;
 
 import com.sisga.domain.DomainSpecificEntity;
 import com.sisga.domain.address.Address;
-import com.sisga.domain.address.City;
 import com.sisga.domain.communication.Telephone;
 
 /**
  * 
- * @author Sergio Massao Umiji 10 de mar de 2017
+ * @author rafae
+ *
  */
-
-public abstract class Person extends DomainSpecificEntity {
-
-	private static final long serialVersionUID = 1L;
-	
+public abstract class PersonHistory extends DomainSpecificEntity {
 	protected List<Telephone> telephones;
 	protected String email;
 	protected Address address;

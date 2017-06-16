@@ -47,15 +47,15 @@ public class ProviderFieldsValidator extends FieldsValidator < Provider > {
 			}
 		}
 
-		if( StringUtils.isEmpty( provider.getNeighborhood() ) ) {
+		if( StringUtils.isEmpty( provider.getAddress().getNeighborhood() ) ) {
 			appendMsg( "Bairro do Fornecedor" );
 		}
 
-		if( StringUtils.isEmpty( provider.getNumber() ) ) {
+		if( StringUtils.isEmpty( provider.getAddress().getNumber() ) ) {
 			appendMsg( "Numero do Fornecedor" );
 		}
 	
-		if( provider.getCity() == null ) {
+		if( provider.getAddress().getCity() == null ) {
 			appendMsg( "Cidade do Fornecedor" );
 		}
 		if( provider.getTelephones() == null ) {

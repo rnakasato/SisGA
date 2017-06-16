@@ -48,15 +48,21 @@ public class CustomerFieldsValidator extends FieldsValidator<Customer> {
 			}
 		}
 
-		if (StringUtils.isEmpty(customer.getNeighborhood())) {
+		if(customer.getAddress() != null){
+			if (StringUtils.isEmpty(customer.getAddress().getNeighborhood())) {
+				appendMsg("Bairro do Cliente");
+			}
+			
+			if (StringUtils.isEmpty(customer.getAddress().getNumber())) {
+				appendMsg("Numero do Cliente");
+			}
+			
+			if (customer.getAddress().getCity() == null) {
+				appendMsg("Cidade do Cliente");
+			}			
+		}else{
 			appendMsg("Bairro do Cliente");
-		}
-
-		if (StringUtils.isEmpty(customer.getNumber())) {
 			appendMsg("Numero do Cliente");
-		}
-
-		if (customer.getCity() == null) {
 			appendMsg("Cidade do Cliente");
 		}
 

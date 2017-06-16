@@ -31,17 +31,20 @@ public class CustomerDAO extends DomainSpecificEntityDAO < Customer > {
 			StringBuilder jpql = new StringBuilder();
 			jpql.append( " SELECT DISTINCT (c) FROM Customer c" );
 			jpql.append( " LEFT JOIN c.city cc " );
-			jpql.append( " LEFT JOIN c.userSeller cu " );
+//			jpql.append( " LEFT JOIN c.userSeller cu " ); // Adicionar após cadastro de usuário
 			jpql.append( " LEFT JOIN c.telephones ct " );
 			jpql.append( " WHERE 1=1 " );
 			
 			if( StringUtils.isNotEmpty( customerFilter.getName() ) ) {
 				jpql.append( " AND UPPER(c.name) = :name " );
 			}
-			if( customerFilter.getStatus().equals("ATIVO")){
-				jpql.append( " AND c.active = true " );
-			} else if( customerFilter.getStatus().equals("INATIVO")){
-				jpql.append( " AND c.active = false " );
+			
+			if(customerFilter.getStatus() != null){
+				if(  customerFilter.getStatus().equals("ATIVO")){
+					jpql.append( " AND c.active = true " );
+				} else if( customerFilter.getStatus().equals("INATIVO")){
+					jpql.append( " AND c.active = false " );
+				}				
 			}
 				
 			Query query = session.createQuery( jpql.toString() );

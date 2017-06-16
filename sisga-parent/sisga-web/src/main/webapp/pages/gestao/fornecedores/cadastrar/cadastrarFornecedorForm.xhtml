@@ -19,14 +19,14 @@
 							<p:panelGrid border="0" styleClass="baseGrid">
 								<p:row>
 									<p:column>
-										<p:outputLabel for="inputNomeFornecedor"
-											value="Nome do Fornecedor" style="font-weight:bold" />
+										<p:outputLabel for="inputRazaoSocial"
+											value="Razão Social" style="font-weight:bold" />
 									</p:column>
 
 									<p:column>
-										<p:inputText id="inputNomeFornecedor"
+										<p:inputText id="inputRazaoSocial"
 											value="#{providerMB.provider.corporateName}" required="true"
-											requiredMessage="Nome obrigatório" />
+											requiredMessage="Razão Social obrigatório" />
 									</p:column>
 								</p:row>
 
@@ -143,6 +143,13 @@
 										<p:inputNumber id="inputNumero"
 											value="#{providerMB.provider.number}" required="true"
 											requiredMessage="Número obrigatório"/>
+									</p:column>
+								</p:row>
+								
+								<p:row>
+									<p:column>
+										<p:outputLabel value="OBS: utilizar &quot;0&quot; para &quot;S/N&quot; "
+											style="color:red;font-size:medium" />
 									</p:column>
 								</p:row>
 							</p:panelGrid>

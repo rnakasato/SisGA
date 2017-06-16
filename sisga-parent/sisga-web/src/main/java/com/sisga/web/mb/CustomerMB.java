@@ -257,15 +257,15 @@ public class CustomerMB extends BaseMB {
 	}
 
 	private List<City> getCities(){
-		List<City> city = new ArrayList<City>();
+		List<City> cityList = new ArrayList<City>();
 		try {
 				ICommand commandFind;
 				commandFind = FactoryCommand.build(new City(), EOperation.FINDALL);
-				city = commandFind.execute().getEntityList();
+				cityList = commandFind.execute().getEntityList();
 			} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		return city;
+		return cityList;
 	}
 
 	private List<State> getStates() {

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.hibernate.Session;
 
 import com.sisga.core.IDAO;
+import com.sisga.core.dao.impl.CityDAO;
 import com.sisga.core.dao.impl.CustomerDAO;
 import com.sisga.core.dao.impl.CustomerOperationDAO;
 import com.sisga.core.dao.impl.EmployeeDAO;
@@ -17,7 +18,10 @@ import com.sisga.core.dao.impl.ProductionTypeDAO;
 import com.sisga.core.dao.impl.ProviderDAO;
 import com.sisga.core.dao.impl.ProviderOperationDAO;
 import com.sisga.core.dao.impl.SaleTypeDAO;
+import com.sisga.core.dao.impl.StateDAO;
 import com.sisga.core.dao.impl.StockTypeDAO;
+import com.sisga.domain.address.City;
+import com.sisga.domain.address.State;
 import com.sisga.domain.customer.Customer;
 import com.sisga.domain.customer.CustomerOperation;
 import com.sisga.domain.customer.filter.CustomerFilter;
@@ -42,43 +46,47 @@ import com.sisga.domain.provider.filter.ProviderFilter;
 
 public class FactoryDAO {
 
-	private static Map < String, IDAO > daoMap;
+	private static Map<String, IDAO> daoMap;
 
 	private static void initMap() {
-		if( daoMap == null ) {
+		if (daoMap == null) {
 			daoMap = new HashMap<>();
 
+			// General DAOs
+			daoMap.put(State.class.getName(), new StateDAO());
+			daoMap.put(City.class.getName(), new CityDAO());
+
 			// Product DAOs
-			daoMap.put( Product.class.getName(), new ProductDAO() );
-			daoMap.put( ProductFilter.class.getName(), new ProductDAO() );
+			daoMap.put(Product.class.getName(), new ProductDAO());
+			daoMap.put(ProductFilter.class.getName(), new ProductDAO());
 
-			daoMap.put( ProductionType.class.getName(), new ProductionTypeDAO() );
-			daoMap.put( ProductionTypeFilter.class.getName(), new ProductionTypeDAO() );
+			daoMap.put(ProductionType.class.getName(), new ProductionTypeDAO());
+			daoMap.put(ProductionTypeFilter.class.getName(), new ProductionTypeDAO());
 
-			daoMap.put( ProductOperation.class.getName(), new ProductOperationDAO() );
-			daoMap.put( ProductOperationFilter.class.getName(), new ProductOperationDAO() );
+			daoMap.put(ProductOperation.class.getName(), new ProductOperationDAO());
+			daoMap.put(ProductOperationFilter.class.getName(), new ProductOperationDAO());
 
-			daoMap.put( SaleType.class.getName(), new SaleTypeDAO() );
-			daoMap.put( SaleTypeFilter.class.getName(), new SaleTypeDAO() );
+			daoMap.put(SaleType.class.getName(), new SaleTypeDAO());
+			daoMap.put(SaleTypeFilter.class.getName(), new SaleTypeDAO());
 
-			daoMap.put( StockType.class.getName(), new StockTypeDAO() );
-			daoMap.put( StockTypeFilter.class.getName(), new StockTypeDAO() );
+			daoMap.put(StockType.class.getName(), new StockTypeDAO());
+			daoMap.put(StockTypeFilter.class.getName(), new StockTypeDAO());
 
-			daoMap.put( ProductHistory.class.getName(), new ProductHistoryDAO() );
-			daoMap.put( ProductHistoryFilter.class.getName(), new ProductHistoryDAO() );
+			daoMap.put(ProductHistory.class.getName(), new ProductHistoryDAO());
+			daoMap.put(ProductHistoryFilter.class.getName(), new ProductHistoryDAO());
 
 			// Provider DAOs
-			daoMap.put( Provider.class.getName(), new ProviderDAO() );
-			daoMap.put( ProviderFilter.class.getName(), new ProviderDAO() );
-			daoMap.put( ProviderOperation.class.getName(), new ProviderOperationDAO() );
+			daoMap.put(Provider.class.getName(), new ProviderDAO());
+			daoMap.put(ProviderFilter.class.getName(), new ProviderDAO());
+			daoMap.put(ProviderOperation.class.getName(), new ProviderOperationDAO());
 
-			daoMap.put( Customer.class.getName(), new CustomerDAO() );
-			daoMap.put( CustomerFilter.class.getName(), new CustomerDAO() );
-			daoMap.put( CustomerOperation.class.getName(), new CustomerOperationDAO() );
+			daoMap.put(Customer.class.getName(), new CustomerDAO());
+			daoMap.put(CustomerFilter.class.getName(), new CustomerDAO());
+			daoMap.put(CustomerOperation.class.getName(), new CustomerOperationDAO());
 
-			daoMap.put( Employee.class.getName(), new EmployeeDAO() );
-			daoMap.put( EmployeeFilter.class.getName(), new EmployeeDAO() );
-			daoMap.put( EmployeeOperation.class.getName(), new EmployeeOperationDAO() );
+			daoMap.put(Employee.class.getName(), new EmployeeDAO());
+			daoMap.put(EmployeeFilter.class.getName(), new EmployeeDAO());
+			daoMap.put(EmployeeOperation.class.getName(), new EmployeeOperationDAO());
 
 		}
 	}
@@ -87,13 +95,13 @@ public class FactoryDAO {
 	 * @param className
 	 * @return retorna instância de DAO para o Objeto
 	 */
-	public static IDAO build( String className, Session session ) throws ClassNotFoundException {
+	public static IDAO build(String className, Session session) throws ClassNotFoundException {
 		initMap();
-		IDAO dao = daoMap.get( className );
-		dao.setSession( session );
-		if( dao == null ) {
+		IDAO dao = daoMap.get(className);
+		if (dao == null) {
 			throw new ClassNotFoundException();
 		}
+		dao.setSession(session);
 		return dao;
 	}
 }

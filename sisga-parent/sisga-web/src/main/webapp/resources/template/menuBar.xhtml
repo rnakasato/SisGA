@@ -9,19 +9,39 @@
 	xmlns:pe="http://primefaces.org/ui/extensions">
 <ui:composition>
 	<p:menubar style="padding-left:30px">
+		<p:menuitem value="Pedidos" url="/pages/operacao/consultarPedido.jsf?faces-redirect=true" icon="ui-icon-arrowreturnthick-1-w" />
+
 		<p:submenu label="Gestão" icon="ui-icon-document">
-			<p:menuitem value="Produto" url="/pages/gestao/produtos/consultarProdutos.jsf?faces-redirect=true" />
-			<p:menuitem value="Clientes" url="/pages/gestao/clientes/consultarClientes.jsf?faces-redirect=true" />
-			<p:menuitem value="Fornecedores" url="/pages/gestao/fornecedores/consultarFornecedores.jsf?faces-redirect=true" />
-			<p:menuitem value="Funcionários" url="/pages/gestao/funcionarios/consultarFuncionarios.jsf?faces-redirect=true" />
-			<p:menuitem value="Despesas" url="/pages/gestao/despesas/consultarDespesasOperacionais.jsf?faces-redirect=true" />			
+			<p:submenu label="Produto">
+				<p:menuitem value="Cadastrar" url="/pages/gestao/produtos/cadastrarProdutos.jsf?faces-redirect=true" />
+				<p:menuitem value="Consultar" url="/pages/gestao/produtos/consultarProdutos.jsf?faces-redirect=true" />
+			</p:submenu>
+			<p:submenu label="Clientes">
+				<p:menuitem value="Cadastrar" url="/pages/gestao/clientes/cadastrarClientes.jsf?faces-redirect=true" />
+				<p:menuitem value="Consultar" url="/pages/gestao/clientes/consultarClientes.jsf?faces-redirect=true" />
+			</p:submenu>
+			<p:submenu label="Fornecedores">
+				<p:menuitem value="Cadastrar" url="/pages/gestao/fornecedores/cadastrarFornecedores.jsf?faces-redirect=true" />
+				<p:menuitem value="Consultar" url="/pages/gestao/fornecedores/consultarFornecedores.jsf?faces-redirect=true" />
+			</p:submenu>
+			<p:submenu label="Funcionários">
+				<p:menuitem value="Cadastrar" url="/pages/gestao/funcionarios/cadastrarFuncionarios.jsf?faces-redirect=true" />
+				<p:menuitem value="Consultar" url="/pages/gestao/funcionarios/consultarFuncionarios.jsf?faces-redirect=true" />
+			</p:submenu>
+			<p:submenu label="Despesas">
+				<p:menuitem value="Cadastrar" url="/pages/gestao/despesas/cadastrarDespesasOperacionais.jsf?faces-redirect=true" />
+				<p:menuitem value="Consultar" url="/pages/gestao/despesas/consultarDespesasOperacionais.jsf?faces-redirect=true" />
+			</p:submenu>
+			<p:submenu label="Usuários">
+				<p:menuitem value="Cadastrar" url="/pages/gestao/usuarios/cadastrarUsuarios.jsf?faces-redirect=true" />
+				<p:menuitem value="Consultar" url="/pages/gestao/usuarios/consultarUsuarios.jsf?faces-redirect=true" />
+			</p:submenu>			
 		</p:submenu>
 
-		<p:menuitem value="Pedidos" url="/pages/operacao/consultarPedido.jsf?faces-redirect=true" icon="ui-icon-arrowreturnthick-1-w" />
 
 
 		<p:submenu label="Relatórios" icon="ui-icon-help">
-			<p:submenu label="Vendas" icon="ui-icon-document">
+			<p:submenu label="Vendas">
 				<p:menuitem value="Resumo de Vendas" url="/pages/relatorio/vendas/resumoVendas.jsf?faces-redirect=true" />
 				<p:menuitem value="Vendas Semanais" url="/pages/relatorio/vendas/vendasSemanais.jsf?faces-redirect=true" />
 				<p:menuitem value="Vendas Diárias/Produto" url="/pages/relatorio/vendas/vendasDiariasProduto.jsf?faces-redirect=true" />

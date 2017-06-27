@@ -4,31 +4,6 @@
 
 <hibernate-mapping>
 
-	<class name="com.sisga.domain.address.City" table="TB_CITY">
-		<id name="id" column="IDCITY">
-			<generator class="native" />
-
-		</id>
-
-		<property name="name" column="NAME" />
-		<property name="uf" column="UF" />
-
-		<many-to-one name="state" column="IDSTATE"
-			class="com.sisga.domain.address.State" not-null="true" />
-
-	</class>
-
-	<class name="com.sisga.domain.address.State" table="TB_STATE">
-		<id name="id" column="IDSTATE">
-			<generator class="native" />
-
-		</id>
-
-		<property name="name" column="NAME" />
-		<property name="uf" column="UF" />
-
-	</class>
-
 
 	<class name="com.sisga.domain.customer.Customer" table="TB_Customer">
 		<id name="id" column="IDCUSTOMER">

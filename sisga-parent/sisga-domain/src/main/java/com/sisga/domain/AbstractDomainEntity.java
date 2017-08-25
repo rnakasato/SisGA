@@ -7,6 +7,7 @@ public class AbstractDomainEntity implements IEntity, Serializable {
 	private Long id;
 	private String description;
 	private Date insertDate;
+	private Date updateDate;
 
 	// Utilizado para facilitar geração de histórico
 	private String operationCode;
@@ -41,6 +42,14 @@ public class AbstractDomainEntity implements IEntity, Serializable {
 
 	public void setOperationCode( String operationCode ) {
 		this.operationCode = operationCode;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate( Date updateDate ) {
+		this.updateDate = updateDate;
 	}
 
 }

@@ -10,41 +10,50 @@ import com.sisga.domain.person.SocialPerson;
  *         10 de mar de 2017
  */
 
-public class Employee extends SocialPerson{
+public class Employee extends SocialPerson {
 	private double salary;
 	private String workcardNumber;
 	private String workcardSeries;
 	private Date employmentDate;
 	private Date resignationDate;
-	
+
 	public Date getResignationDate() {
 		return resignationDate;
 	}
-	public void setResignationDate(Date resignationDate) {
+
+	public void setResignationDate( Date resignationDate ) {
 		this.resignationDate = resignationDate;
 	}
+
 	public double getSalary() {
 		return salary;
 	}
-	public void setSalary(double salary) {
+
+	public void setSalary( double salary ) {
 		this.salary = salary;
 	}
+
 	public String getWorkcardNumber() {
 		return workcardNumber;
 	}
-	public void setWorkcardNumber(String workcardNumber) {
+
+	public void setWorkcardNumber( String workcardNumber ) {
 		this.workcardNumber = workcardNumber;
 	}
+
 	public Date getEmploymentDate() {
 		return employmentDate;
 	}
-	public void setEmploymentDate(Date employmentDate) {
+
+	public void setEmploymentDate( Date employmentDate ) {
 		this.employmentDate = employmentDate;
 	}
+
 	public String getWorkcardSeries() {
 		return workcardSeries;
 	}
-	public void setWorkcardSeries(String workcardSeries) {
+
+	public void setWorkcardSeries( String workcardSeries ) {
 		this.workcardSeries = workcardSeries;
 	}
 }

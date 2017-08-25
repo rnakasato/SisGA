@@ -20,7 +20,7 @@ public class EmployeeSearchValidator extends FieldsValidator < EmployeeFilter > 
 		if( filter.getEmploymentDateFinal() == null ) {
 			appendMsg( "Data final não informada" );
 		}
-		
+
 		return getMessage();
 	}
 

@@ -3,7 +3,7 @@ package com.sisga.domain;
 /**
  * 
  * @author Rafael Hikaru Nakasato
- * 2 de mar de 2017
+ *         2 de mar de 2017
  */
 public class DomainSpecificEntity extends AbstractDomainEntity {
 	private String code;

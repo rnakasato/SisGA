@@ -23,7 +23,7 @@ public class Address implements IEntity {
 	 * @param city
 	 *            the city to set
 	 */
-	public void setCity(City city) {
+	public void setCity( City city ) {
 		this.city = city;
 	}
 
@@ -38,7 +38,7 @@ public class Address implements IEntity {
 	 * @param number
 	 *            the number to set
 	 */
-	public void setNumber(String number) {
+	public void setNumber( String number ) {
 		this.number = number;
 	}
 
@@ -53,7 +53,7 @@ public class Address implements IEntity {
 	 * @param neighborhood
 	 *            the neighborhood to set
 	 */
-	public void setNeighborhood(String neighborhood) {
+	public void setNeighborhood( String neighborhood ) {
 		this.neighborhood = neighborhood;
 	}
 

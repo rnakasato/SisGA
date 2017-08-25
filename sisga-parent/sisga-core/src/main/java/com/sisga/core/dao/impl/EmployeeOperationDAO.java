@@ -13,7 +13,7 @@ import com.sisga.domain.employee.EmployeeOperation;
  *         12 de mar de 2017
  */
 public class EmployeeOperationDAO extends DomainSpecificEntityDAO < EmployeeOperation > {
-		
+
 	@Override
 	public List < EmployeeOperation > find( AbstractDomainEntity entity ) throws Exception {
 		// TODO Auto-generated method stub
@@ -24,12 +24,12 @@ public class EmployeeOperationDAO extends DomainSpecificEntityDAO < EmployeeOper
 	public List < EmployeeOperation > findAll() throws Exception {
 		List < EmployeeOperation > OperationList = null;
 
-			StringBuilder jpql = new StringBuilder();
-			jpql.append( " FROM EmployeeOperation " );
+		StringBuilder jpql = new StringBuilder();
+		jpql.append( " FROM EmployeeOperation " );
 
-			Query query = session.createQuery( jpql.toString() );
+		Query query = session.createQuery( jpql.toString() );
 
-			OperationList = query.getResultList();
+		OperationList = query.getResultList();
 
 		return OperationList;
 

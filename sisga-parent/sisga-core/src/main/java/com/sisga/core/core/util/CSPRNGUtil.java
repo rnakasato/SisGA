@@ -20,7 +20,7 @@ public class CSPRNGUtil {
 
 		return randomCode;
 	}
-	
+
 	public static void main( String[] args ) {
 		System.out.println( generateHex( 2 ) );
 	}

@@ -7,9 +7,9 @@ import com.sisga.domain.customer.Customer;
 /**
  * 
  * @author Sergio Massao Umiji
- * 23 de mar de 2017
+ *         23 de mar de 2017
  */
-public class CustomerCodeComplementor extends Complementor < Customer >{
+public class CustomerCodeComplementor extends Complementor < Customer > {
 
 	@Override
 	public String complement( Customer entity ) {

@@ -9,8 +9,6 @@ import com.sisga.domain.provider.ProviderOperation;
  *         10 de mar de 2017
  */
 
-public class ProviderOperationFilter extends DomainSpecificEntityFilter<ProviderOperation>{
-	
-}
+public class ProviderOperationFilter extends DomainSpecificEntityFilter < ProviderOperation > {
 
-	
+}

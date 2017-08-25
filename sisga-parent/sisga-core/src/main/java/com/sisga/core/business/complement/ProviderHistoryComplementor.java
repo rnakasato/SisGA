@@ -37,7 +37,7 @@ public class ProviderHistoryComplementor extends Complementor < ProviderHistory 
 
 	private void createHistory( ProviderHistory history, String operationCode ) throws Exception {
 		Provider provider = history.getProvider();
-		
+
 		history.setAddress( new Address() );
 		history.setActive( provider.isActive() );
 		history.getAddress().setCity( provider.getAddress().getCity() );

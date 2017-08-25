@@ -4,9 +4,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
-import javax.xml.registry.infomodel.User;
-
-import com.sisga.web.util.Redirector;
 
 //TODO REFATORAR PARA SISGA
 public class AccessListener implements PhaseListener {

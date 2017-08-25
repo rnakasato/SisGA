@@ -24,7 +24,7 @@ public class User extends SocialPerson {
 	 * @param userType
 	 *            the userType to set
 	 */
-	public void setUserType(UserType userType) {
+	public void setUserType( UserType userType ) {
 		this.userType = userType;
 	}
 
@@ -39,7 +39,7 @@ public class User extends SocialPerson {
 	 * @param email
 	 *            the email to set
 	 */
-	public void setEmail(String email) {
+	public void setEmail( String email ) {
 		this.email = email;
 	}
 
@@ -54,7 +54,7 @@ public class User extends SocialPerson {
 	 * @param username
 	 *            the username to set
 	 */
-	public void setUsername(String username) {
+	public void setUsername( String username ) {
 		this.username = username;
 	}
 
@@ -69,7 +69,7 @@ public class User extends SocialPerson {
 	 * @param active
 	 *            the active to set
 	 */
-	public void setActive(Boolean active) {
+	public void setActive( Boolean active ) {
 		this.active = active;
 	}
 
@@ -84,7 +84,7 @@ public class User extends SocialPerson {
 	 * @param password
 	 *            the password to set
 	 */
-	public void setPassword(String password) {
+	public void setPassword( String password ) {
 		this.password = password;
 	}
 

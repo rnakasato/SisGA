@@ -1,12 +1,7 @@
 package com.sisga.domain.employee;
 
 import java.util.Date;
-import java.util.List;
 
-import com.sisga.domain.DomainSpecificEntity;
-import com.sisga.domain.address.Address;
-import com.sisga.domain.address.City;
-import com.sisga.domain.communication.Telephone;
 import com.sisga.domain.person.PersonHistory;
 
 /**
@@ -36,7 +31,7 @@ public class EmployeeHistory extends PersonHistory {
 	 * @param employee
 	 *            the employee to set
 	 */
-	public void setEmployee(Employee employee) {
+	public void setEmployee( Employee employee ) {
 		this.employee = employee;
 	}
 
@@ -51,7 +46,7 @@ public class EmployeeHistory extends PersonHistory {
 	 * @param employeeOperation
 	 *            the employeeOperation to set
 	 */
-	public void setEmployeeOperation(EmployeeOperation employeeOperation) {
+	public void setEmployeeOperation( EmployeeOperation employeeOperation ) {
 		this.employeeOperation = employeeOperation;
 	}
 
@@ -66,7 +61,7 @@ public class EmployeeHistory extends PersonHistory {
 	 * @param salary
 	 *            the salary to set
 	 */
-	public void setSalary(double salary) {
+	public void setSalary( double salary ) {
 		this.salary = salary;
 	}
 
@@ -81,7 +76,7 @@ public class EmployeeHistory extends PersonHistory {
 	 * @param workcardNumber
 	 *            the workcardNumber to set
 	 */
-	public void setWorkcardNumber(String workcardNumber) {
+	public void setWorkcardNumber( String workcardNumber ) {
 		this.workcardNumber = workcardNumber;
 	}
 
@@ -96,7 +91,7 @@ public class EmployeeHistory extends PersonHistory {
 	 * @param workcardSeries
 	 *            the workcardSeries to set
 	 */
-	public void setWorkcardSeries(String workcardSeries) {
+	public void setWorkcardSeries( String workcardSeries ) {
 		this.workcardSeries = workcardSeries;
 	}
 
@@ -111,7 +106,7 @@ public class EmployeeHistory extends PersonHistory {
 	 * @param employmentDate
 	 *            the employmentDate to set
 	 */
-	public void setEmploymentDate(Date employmentDate) {
+	public void setEmploymentDate( Date employmentDate ) {
 		this.employmentDate = employmentDate;
 	}
 
@@ -126,7 +121,7 @@ public class EmployeeHistory extends PersonHistory {
 	 * @param resignationDate
 	 *            the resignationDate to set
 	 */
-	public void setResignationDate(Date resignationDate) {
+	public void setResignationDate( Date resignationDate ) {
 		this.resignationDate = resignationDate;
 	}
 

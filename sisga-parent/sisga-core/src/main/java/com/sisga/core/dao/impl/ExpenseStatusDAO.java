@@ -16,7 +16,7 @@ public class ExpenseStatusDAO extends DomainSpecificEntityDAO < ExpenseStatus > 
 
 	@Override
 	public List < ExpenseStatus > find( AbstractDomainEntity entity ) throws Exception {
-		
+
 		return null;
 	}
 

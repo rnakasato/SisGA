@@ -35,7 +35,7 @@ public class ProductHistoryComplementor extends Complementor < ProductHistory > 
 
 	private void createHistory( ProductHistory history, String operationCode ) throws Exception {
 		Product product = history.getProduct();
-		
+
 		history.setAmount( product.getAmount() );
 		history.setBaseValue( product.getBaseValue() );
 		history.setCode( product.getCode() );

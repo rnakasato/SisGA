@@ -12,5 +12,5 @@ import com.sisga.domain.AbstractDomainEntity;
  *
  */
 public interface IEntityStrategyFactory < T extends AbstractDomainEntity > {
-	public Map<String, Map<String, List<IStrategy>>> buildEntityRules();
+	public Map < String, Map < String, List < IStrategy > > > buildEntityRules();
 }

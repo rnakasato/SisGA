@@ -16,5 +16,5 @@ public class RedirectMB {
 		String redirect = "?faces-redirect=true";
 		Redirector.redirectTo( context, page + redirect );
 	}
-	
+
 }

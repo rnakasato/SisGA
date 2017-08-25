@@ -19,7 +19,6 @@ public class FormatterMB {
 		return FormatUtils.formatToPercentage( value );
 	}
 
-
 	public String formatDate( Date date ) {
 		String formattedDate = null;
 		if( date != null ) {
@@ -28,17 +27,16 @@ public class FormatterMB {
 		}
 		return formattedDate;
 	}
-	
-	public String formatDateTime( Date date ){
+
+	public String formatDateTime( Date date ) {
 		String formattedDate = null;
-		if(date != null){
+		if( date != null ) {
 			SimpleDateFormat sdf = new SimpleDateFormat( "dd/MM/yyy HH:mm:ss" );
 			formattedDate = sdf.format( date );
 		}
 		return formattedDate;
 	}
-	
-	
+
 	public String formatCEP( String value ) {
 		return FormatUtils.formatString( value, "#####-###" );
 	}

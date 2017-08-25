@@ -13,65 +13,62 @@ import com.sisga.domain.address.City;
 
 /**
  * 
- * @author Sergio Massao Umiji 
- * 26 de mar de 2017  - find
+ * @author Sergio Massao Umiji
+ *         26 de mar de 2017 - find
  */
 public class CityDAO extends DomainSpecificEntityDAO < City > {
 	private City city;
-	
+
 	@Override
-	public List<City> find(AbstractDomainEntity entity) throws Exception {
+	public List < City > find( AbstractDomainEntity entity ) throws Exception {
 		List < City > cityList = null;
-		city = (City)entity;
-		
+		city = ( City ) entity;
+
 		StringBuilder jpql = new StringBuilder();
 		jpql.append( " FROM City " );
-		
+
 		if( StringUtils.isNotEmpty( city.getUf() ) ) {
 			jpql.append( " WHERE UF = :uf " );
 		}
 		Query query = session.createQuery( jpql.toString() );
 
-		
 		if( StringUtils.isNotEmpty( city.getUf() ) ) {
 			query.setParameter( "uf", city.getUf() );
 		}
-		
+
 		cityList = query.getResultList();
 
-		
-		return cityList;}
+		return cityList;
+	}
 
 	@Override
 	public List < City > findAll() throws Exception {
 		List < City > cityList = null;
 
-			StringBuilder jpql = new StringBuilder();
-			jpql.append( " FROM City " );
+		StringBuilder jpql = new StringBuilder();
+		jpql.append( " FROM City " );
 
-			Query query = session.createQuery( jpql.toString() );
+		Query query = session.createQuery( jpql.toString() );
 
-			cityList = query.getResultList();
+		cityList = query.getResultList();
 
-			return cityList;
+		return cityList;
 	}
 
-	public static void main(String[] args) throws Exception {
+	public static void main( String[] args ) throws Exception {
 		CityDAO dao = new CityDAO();
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		dao.setSession(session);
+		dao.setSession( session );
 
-		List<City> list = dao.findAll();
+		List < City > list = dao.findAll();
 
 		session.close();
-		for (City domain : list) {
-			System.out.println(domain.getName());
+		for( City domain: list ) {
+			System.out.println( domain.getName() );
 		}
 
-		System.exit(0);
+		System.exit( 0 );
 	}
-	
 
-	
 }

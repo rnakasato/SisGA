@@ -8,9 +8,7 @@ import org.hibernate.Session;
 
 import com.sisga.core.hibernate.HibernateUtil;
 import com.sisga.domain.AbstractDomainEntity;
-import com.sisga.domain.product.Product;
 import com.sisga.domain.product.ProductOperation;
-import com.sisga.domain.product.ProductionType;
 
 /**
  * 

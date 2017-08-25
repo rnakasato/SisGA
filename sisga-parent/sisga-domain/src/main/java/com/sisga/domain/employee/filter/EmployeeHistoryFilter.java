@@ -9,6 +9,6 @@ import com.sisga.domain.filter.impl.DomainSpecificEntityFilter;
  *         10 de mar de 2017
  */
 
-public class EmployeeHistoryFilter extends DomainSpecificEntityFilter<EmployeeHistory>{
+public class EmployeeHistoryFilter extends DomainSpecificEntityFilter < EmployeeHistory > {
 
 }

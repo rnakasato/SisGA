@@ -1,7 +1,5 @@
 package com.sisga.core.business.complement;
 
-import org.omg.IOP.Codec;
-
 import com.sisga.core.core.business.Complementor;
 import com.sisga.core.dao.impl.SaleTypeDAO;
 import com.sisga.core.hibernate.SessionThreadLocal;
@@ -34,16 +32,20 @@ public class ProductSaleTypeComplementor extends Complementor < Product > {
 				newSaleType.setDescription( saleTypeDescription );
 
 				// Para montar o código da nova forma de venda utiliza-se:
-				// Os primeiros 3 caracteres em caixa alta da descrição da forma
+				// Os primeiros 3 caracteres em caixa alta da descrição da
+				// forma
 				// de venda. Ex: CAIXA - cód: CAI
 
-				// Caso já exista um produto com o mesmo código, será utilizado:
+				// Caso já exista um produto com o mesmo código, será
+				// utilizado:
 				// Os primerios 3 caracteres em caixa alta da descrição e um
 				// valor numérico. Ex: CAIXA PAPELAO - cód: CAI1
 
-				// Ocorrerá a verificação até que haja um nome disponível. Ex:
+				// Ocorrerá a verificação até que haja um nome disponível.
+				// Ex:
 				// CAI2, CAI3, CAI4 ...CAI9
-				// Caso chegue no valor numérico 9 após os caracteres, ocorrerá
+				// Caso chegue no valor numérico 9 após os caracteres,
+				// ocorrerá
 				// um erro.
 				// Foi definido dessa forma porque pequenos produtores não
 				// produzem variedades muito
@@ -67,7 +69,8 @@ public class ProductSaleTypeComplementor extends Complementor < Product > {
 						code = sb.toString();
 						count ++ ;
 					} else {
-						// Não existe forma de venda com o mesmo código, poderá
+						// Não existe forma de venda com o mesmo código,
+						// poderá
 						// ser
 						// utilizado último código gerado
 						validCode = true;

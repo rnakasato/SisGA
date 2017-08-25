@@ -8,6 +8,6 @@ import com.sisga.domain.filter.impl.Filter;
  * @author Rafael Hikaru Nakasato
  *         10 de mar de 2017
  */
-public class ExpenseFilter extends Filter < Expense >{
+public class ExpenseFilter extends Filter < Expense > {
 
 }

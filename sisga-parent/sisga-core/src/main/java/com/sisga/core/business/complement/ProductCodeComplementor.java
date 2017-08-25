@@ -7,9 +7,9 @@ import com.sisga.domain.product.Product;
 /**
  * 
  * @author Rafael Hikaru Nakasato
- * 19 de mar de 2017
+ *         19 de mar de 2017
  */
-public class ProductCodeComplementor extends Complementor < Product >{
+public class ProductCodeComplementor extends Complementor < Product > {
 
 	@Override
 	public String complement( Product entity ) {

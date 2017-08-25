@@ -24,12 +24,12 @@ public class CustomerOperationDAO extends DomainSpecificEntityDAO < CustomerOper
 	public List < CustomerOperation > findAll() throws Exception {
 		List < CustomerOperation > OperationList = null;
 
-			StringBuilder jpql = new StringBuilder();
-			jpql.append( " FROM CustomerOperation " );
+		StringBuilder jpql = new StringBuilder();
+		jpql.append( " FROM CustomerOperation " );
 
-			Query query = session.createQuery( jpql.toString() );
+		Query query = session.createQuery( jpql.toString() );
 
-			OperationList = query.getResultList();
+		OperationList = query.getResultList();
 
 		return OperationList;
 

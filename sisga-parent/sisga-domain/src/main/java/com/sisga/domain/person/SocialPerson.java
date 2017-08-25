@@ -1,5 +1,4 @@
 
-
 package com.sisga.domain.person;
 
 import java.util.Date;
@@ -10,16 +9,16 @@ import java.util.Date;
  *         10 de mar de 2017
  */
 
-public abstract class SocialPerson extends Person{
-	
+public abstract class SocialPerson extends Person {
+
 	protected String cpf;
 	protected String rg;
-	
+
 	public String getFirstName() {
 		return firstName;
 	}
 
-	public void setFirstName(String firstName) {
+	public void setFirstName( String firstName ) {
 		this.firstName = firstName;
 	}
 
@@ -27,7 +26,7 @@ public abstract class SocialPerson extends Person{
 		return lastName;
 	}
 
-	public void setLastName(String lastName) {
+	public void setLastName( String lastName ) {
 		this.lastName = lastName;
 	}
 
@@ -37,7 +36,7 @@ public abstract class SocialPerson extends Person{
 		return cpf;
 	}
 
-	public void setCpf(String cpf) {
+	public void setCpf( String cpf ) {
 		this.cpf = cpf;
 	}
 
@@ -45,7 +44,7 @@ public abstract class SocialPerson extends Person{
 		return rg;
 	}
 
-	public void setRg(String rg) {
+	public void setRg( String rg ) {
 		this.rg = rg;
 	}
 
@@ -53,7 +52,7 @@ public abstract class SocialPerson extends Person{
 		return dateBirth;
 	}
 
-	public void setDateBirth(Date dateBirth) {
+	public void setDateBirth( Date dateBirth ) {
 		this.dateBirth = dateBirth;
 	}
 

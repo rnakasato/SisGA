@@ -1,7 +1,5 @@
 package com.sisga.domain.product.filter;
 
-import java.util.Date;
-
 import com.sisga.domain.filter.impl.DomainSpecificEntityFilter;
 import com.sisga.domain.product.Product;
 import com.sisga.domain.product.ProductionType;

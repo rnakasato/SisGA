@@ -8,25 +8,24 @@ package com.sisga.domain.person;
  */
 
 public abstract class LegalPerson extends Person {
-	
+
 	protected String corporateName;
 	protected String cnpj;
-	
-	
+
 	public String getCnpj() {
 		return cnpj;
 	}
 
-	public void setCnpj(String cnpj) {
+	public void setCnpj( String cnpj ) {
 		this.cnpj = cnpj;
 	}
-	
+
 	public String getCorporateName() {
 		return corporateName;
 	}
-	
-	public void setCorporateName(String corporateName) {
+
+	public void setCorporateName( String corporateName ) {
 		this.corporateName = corporateName;
 	}
-	
-	}
+
+}

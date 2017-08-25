@@ -8,7 +8,7 @@ import com.sisga.domain.AbstractDomainEntity;
 /**
  * 
  * @author Rafael Hikaru Nakasato
- * 19 de mar de 2017
+ *         19 de mar de 2017
  */
 public class InsertDateComplementor extends Complementor < AbstractDomainEntity > {
 

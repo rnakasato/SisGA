@@ -1,14 +1,10 @@
 package com.sisga.core.dao.impl;
 
-import java.util.List;
-
 import org.hibernate.Session;
 
 import com.sisga.core.IDAO;
 import com.sisga.core.hibernate.HibernateUtil;
 import com.sisga.domain.AbstractDomainEntity;
-import com.sisga.domain.customer.Customer;
-import com.sisga.domain.customer.CustomerOperation;
 
 public abstract class AbstractDAO < T extends AbstractDomainEntity > implements IDAO < T > {
 
@@ -61,7 +57,5 @@ public abstract class AbstractDAO < T extends AbstractDomainEntity > implements 
 		session.getTransaction().commit();
 		session.close();
 	}
-
-
 
 }

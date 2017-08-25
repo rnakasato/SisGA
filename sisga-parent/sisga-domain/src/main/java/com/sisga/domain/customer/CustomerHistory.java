@@ -1,10 +1,5 @@
 package com.sisga.domain.customer;
 
-import java.util.List;
-
-import com.sisga.domain.DomainSpecificEntity;
-import com.sisga.domain.address.City;
-import com.sisga.domain.communication.Telephone;
 import com.sisga.domain.person.PersonHistory;
 import com.sisga.domain.user.User;
 
@@ -30,7 +25,7 @@ public class CustomerHistory extends PersonHistory {
 	 * @param customer
 	 *            the customer to set
 	 */
-	public void setCustomer(Customer customer) {
+	public void setCustomer( Customer customer ) {
 		this.customer = customer;
 	}
 
@@ -45,7 +40,7 @@ public class CustomerHistory extends PersonHistory {
 	 * @param customerOperation
 	 *            the customerOperation to set
 	 */
-	public void setCustomerOperation(CustomerOperation customerOperation) {
+	public void setCustomerOperation( CustomerOperation customerOperation ) {
 		this.customerOperation = customerOperation;
 	}
 
@@ -60,7 +55,7 @@ public class CustomerHistory extends PersonHistory {
 	 * @param uesrSeller
 	 *            the uesrSeller to set
 	 */
-	public void setUesrSeller(User uesrSeller) {
+	public void setUesrSeller( User uesrSeller ) {
 		this.uesrSeller = uesrSeller;
 	}
 

@@ -21,7 +21,7 @@ public class CustomerHistoryComplementor extends Complementor < CustomerHistory 
 	@Override
 	public String complement( CustomerHistory CustomerHistory ) {
 		msg = null;
-		
+
 		CustomerHistoryFilter filter = new CustomerHistoryFilter();
 		filter.setCode( CustomerHistory.getCode() );
 
@@ -37,19 +37,19 @@ public class CustomerHistoryComplementor extends Complementor < CustomerHistory 
 
 	private void createHistory( CustomerHistory history, String operationCode ) throws Exception {
 		Customer customer = history.getCustomer();
-		
+
 		history.setAddress( new Address() );
-		history.setActive(customer.isActive());
-		history.getAddress().setCity(customer.getAddress().getCity());
+		history.setActive( customer.isActive() );
+		history.getAddress().setCity( customer.getAddress().getCity() );
 		history.setCode( customer.getCode() );
 		history.setDescription( customer.getDescription() );
 		history.setInsertDate( new Date() );
-		history.setFirstName(customer.getFirstName() );
-		history.setLastName(customer.getLastName() );
-		history.getAddress().setNeighborhood(customer.getAddress().getNeighborhood() );
-		history.getAddress().setNumber(customer.getAddress().getNumber() );
-		history.setEmail(customer.getEmail());
-		
+		history.setFirstName( customer.getFirstName() );
+		history.setLastName( customer.getLastName() );
+		history.getAddress().setNeighborhood( customer.getAddress().getNeighborhood() );
+		history.getAddress().setNumber( customer.getAddress().getNumber() );
+		history.setEmail( customer.getEmail() );
+
 		// Identifica a operação
 		CustomerOperationDAO dao = new CustomerOperationDAO();
 		dao.setSession( SessionThreadLocal.getSession() );

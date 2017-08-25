@@ -7,9 +7,9 @@ import com.sisga.domain.provider.Provider;
 /**
  * 
  * @author Sergio Massao Umiji
- * 23 de mar de 2017
+ *         23 de mar de 2017
  */
-public class ProviderCodeComplementor extends Complementor < Provider >{
+public class ProviderCodeComplementor extends Complementor < Provider > {
 
 	@Override
 	public String complement( Provider entity ) {

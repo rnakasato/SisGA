@@ -8,7 +8,7 @@ import com.sisga.domain.DomainSpecificEntity;
  *         10 de mar de 2017
  */
 
-public class State extends DomainSpecificEntity{
+public class State extends DomainSpecificEntity {
 	private String name;
 	private String uf;
 
@@ -16,7 +16,7 @@ public class State extends DomainSpecificEntity{
 		return uf;
 	}
 
-	public void setUf(String uf) {
+	public void setUf( String uf ) {
 		this.uf = uf;
 	}
 
@@ -24,8 +24,8 @@ public class State extends DomainSpecificEntity{
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName( String name ) {
 		this.name = name;
 	}
-	
-	}
+
+}

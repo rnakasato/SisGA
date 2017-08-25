@@ -1,8 +1,7 @@
 package com.sisga.core.business.validator;
 
-import com.sisga.domain.product.Product;
-
 import com.sisga.core.business.Validator;
+import com.sisga.domain.product.Product;
 
 /**
  * 

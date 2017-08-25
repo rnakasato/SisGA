@@ -16,32 +16,32 @@ import com.sisga.domain.provider.filter.ProviderFilter;
  * 
  * @author Sergio Massao Umiji 7 de mar de 2017
  */
-public class ProviderDAO extends AbstractDAO<Provider> {
+public class ProviderDAO extends AbstractDAO < Provider > {
 	private ProviderFilter providerFilter;
 
 	@Override
-	public List<Provider> find(AbstractDomainEntity entity) throws Exception {
-		providerFilter = (ProviderFilter) entity;
-		List<Provider> providerList = null;
+	public List < Provider > find( AbstractDomainEntity entity ) throws Exception {
+		providerFilter = ( ProviderFilter ) entity;
+		List < Provider > providerList = null;
 
 		StringBuilder jpql = new StringBuilder();
-		jpql.append(" SELECT DISTINCT (p) FROM Provider p");
-		jpql.append(" LEFT JOIN p.city pc ");
-		jpql.append(" LEFT JOIN p.telephones pt ");
-		jpql.append(" WHERE 1=1 ");
+		jpql.append( " SELECT DISTINCT (p) FROM Provider p" );
+		jpql.append( " LEFT JOIN p.city pc " );
+		jpql.append( " LEFT JOIN p.telephones pt " );
+		jpql.append( " WHERE 1=1 " );
 
-		if (StringUtils.isNotEmpty(providerFilter.getName())) {
-			jpql.append(" AND (UPPER(p.corporatename) LIKE :name) ");
+		if( StringUtils.isNotEmpty( providerFilter.getName() ) ) {
+			jpql.append( " AND (UPPER(p.corporatename) LIKE :name) " );
 		}
-		if( providerFilter.getStatus().equals("ATIVO")){
+		if( providerFilter.getStatus().equals( "ATIVO" ) ) {
 			jpql.append( " AND p.active = true " );
-		} else if( providerFilter.getStatus().equals("INATIVO")){
+		} else if( providerFilter.getStatus().equals( "INATIVO" ) ) {
 			jpql.append( " AND p.active = false " );
 		}
-		Query query = session.createQuery(jpql.toString());
+		Query query = session.createQuery( jpql.toString() );
 
-		if (StringUtils.isNotEmpty(providerFilter.getName())) {
-			query.setParameter("name", "%" + providerFilter.getName().toUpperCase() + "%");
+		if( StringUtils.isNotEmpty( providerFilter.getName() ) ) {
+			query.setParameter( "name", "%" + providerFilter.getName().toUpperCase() + "%" );
 		}
 
 		providerList = query.getResultList();
@@ -50,35 +50,35 @@ public class ProviderDAO extends AbstractDAO<Provider> {
 	}
 
 	@Override
-	public List<Provider> findAll() throws Exception {
-		List<Provider> providerList = null;
+	public List < Provider > findAll() throws Exception {
+		List < Provider > providerList = null;
 
 		StringBuilder jpql = new StringBuilder();
-		jpql.append(" SELECT DISTINCT (p)FROM Provider p");
-		jpql.append(" LEFT JOIN p.telephones pt ");
-		jpql.append(" LEFT JOIN p.city pc ");
+		jpql.append( " SELECT DISTINCT (p)FROM Provider p" );
+		jpql.append( " LEFT JOIN p.telephones pt " );
+		jpql.append( " LEFT JOIN p.city pc " );
 
-		Query query = session.createQuery(jpql.toString());
+		Query query = session.createQuery( jpql.toString() );
 
 		providerList = query.getResultList();
 
 		return providerList;
 	}
 
-	public static void main(String[] args) throws Exception {
+	public static void main( String[] args ) throws Exception {
 		ProviderDAO dao = new ProviderDAO();
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		dao.setSession(session);
+		dao.setSession( session );
 
-		List<Provider> providerList = dao.findAll();
+		List < Provider > providerList = dao.findAll();
 
 		session.close();
-		for (Provider provider : providerList) {
-			System.out.println(provider.getCorporateName());
+		for( Provider provider: providerList ) {
+			System.out.println( provider.getCorporateName() );
 		}
 
-		System.exit(0);
+		System.exit( 0 );
 	}
 
 }

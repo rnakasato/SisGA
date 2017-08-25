@@ -1,6 +1,5 @@
 package com.sisga.domain.product;
 
-import com.sisga.domain.AbstractDomainEntity;
 import com.sisga.domain.DomainSpecificEntity;
 
 public class ProductHistory extends DomainSpecificEntity {

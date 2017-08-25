@@ -11,8 +11,6 @@ import javax.faces.context.FacesContext;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
-import com.sisga.domain.filter.impl.Filter;
-
 public abstract class BaseMB implements Serializable {
 
 	private static final long serialVersionUID = 1L;

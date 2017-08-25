@@ -6,10 +6,10 @@ import com.sisga.domain.AbstractDomainEntity;
 
 /**
  * 
- * @author rafae Descri√ß√£o:
+ * @author rafae DescriÁ„o:
  */
 public abstract class FieldsValidator < T extends AbstractDomainEntity > extends Validator < T > {
-	private static final String STANDARD_MESSAGE = "O(s) campo(s) √©(s√£o) obrigat√≥io(s): \n";
+	private static final String STANDARD_MESSAGE = "O(s) campo(s) È(s„o) obrigatÛrio(s): \n";
 
 	private StringBuilder sbMessage;
 

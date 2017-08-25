@@ -93,19 +93,18 @@ public class FactoryDAO {
 			daoMap.put( CustomerOperation.class.getName(), new CustomerOperationDAO() );
 			daoMap.put( CustomerHistory.class.getName(), new CustomerHistoryDAO() );
 			daoMap.put( CustomerHistoryFilter.class.getName(), new CustomerHistoryDAO() );
-			
+
 			// Employee DAOs
 			daoMap.put( Employee.class.getName(), new EmployeeDAO() );
 			daoMap.put( EmployeeFilter.class.getName(), new EmployeeDAO() );
 			daoMap.put( EmployeeOperation.class.getName(), new EmployeeOperationDAO() );
 			daoMap.put( EmployeeHistory.class.getName(), new EmployeeHistoryDAO() );
 			daoMap.put( EmployeeHistoryFilter.class.getName(), new EmployeeHistoryDAO() );
-			
+
 			// City State DAOs
 			daoMap.put( State.class.getName(), new StateDAO() );
 			daoMap.put( City.class.getName(), new CityDAO() );
-						
-			
+
 		}
 	}
 

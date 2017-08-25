@@ -3,9 +3,7 @@ package com.sisga.core.business.fieldsvalidator;
 import org.apache.commons.lang3.StringUtils;
 
 import com.sisga.core.core.business.FieldsValidator;
-import com.sisga.domain.customer.Customer;
 import com.sisga.domain.employee.Employee;
-import com.sisga.domain.product.Product;
 
 /**
  * 
@@ -23,33 +21,32 @@ public class EmployeeFieldsValidator extends FieldsValidator < Employee > {
 
 		if( StringUtils.isEmpty( employee.getLastName() ) ) {
 			appendMsg( "Sobrenome do Funcionário" );
-			
-		} 
-		
-		
+
+		}
+
 		if( StringUtils.isEmpty( employee.getEmail() ) ) {
 			appendMsg( "Email do Funcionário" );
 		} else {
 			String email = employee.getEmail().toUpperCase();
-			String[] emailSplit01 = email.split("@");
-			if (emailSplit01.length == 2) {
-				if (emailSplit01[0].length() > 0) {
-					if (emailSplit01[1].length() > 2) {
+			String[] emailSplit01 = email.split( "@" );
+			if( emailSplit01.length == 2 ) {
+				if( emailSplit01[0].length() > 0 ) {
+					if( emailSplit01[1].length() > 2 ) {
 						String com = emailSplit01[1];
-						String[] emailSplit02 = com.split(".CO");
-						if (emailSplit02.length > 1) {
-							
+						String[] emailSplit02 = com.split( ".CO" );
+						if( emailSplit02.length > 1 ) {
+
 						} else {
-							appendMsg("Email Inváido");
+							appendMsg( "Email Inváido" );
 						}
 					} else {
-						appendMsg("Email Inváido");
+						appendMsg( "Email Inváido" );
 					}
 				} else {
-					appendMsg("Email Inváido");
+					appendMsg( "Email Inváido" );
 				}
 			} else {
-				appendMsg("Email Inváido");
+				appendMsg( "Email Inváido" );
 			}
 		}
 
@@ -60,8 +57,8 @@ public class EmployeeFieldsValidator extends FieldsValidator < Employee > {
 		if( StringUtils.isEmpty( employee.getAddress().getNumber() ) ) {
 			appendMsg( "Numero do Funcionário" );
 		}
-		
-		if( StringUtils.isEmpty( employee.getWorkcardNumber()  ) ) {
+
+		if( StringUtils.isEmpty( employee.getWorkcardNumber() ) ) {
 			appendMsg( "Carteira de Trabalho do Funcionário" );
 		}
 
@@ -72,25 +69,24 @@ public class EmployeeFieldsValidator extends FieldsValidator < Employee > {
 		if( employee.getEmploymentDate() == null ) {
 			appendMsg( "Data de Contratação do Funcionário" );
 		}
-		
 
 		if( employee.getTelephones() == null ) {
 			appendMsg( "Telefone e Celular do Funcionário" );
 		}
-		
-		if( employee.getTelephones().get(0).getDdd() == null ) {
+
+		if( employee.getTelephones().get( 0 ).getDdd() == null ) {
 			appendMsg( "DDD Telefone do Funcionário" );
 		}
-		if( employee.getTelephones().get(0).getPnumber() == null ) {
+		if( employee.getTelephones().get( 0 ).getPnumber() == null ) {
 			appendMsg( "Telefone do Funcionário" );
 		}
-		if( employee.getTelephones().get(1).getDdd() == null ) {
+		if( employee.getTelephones().get( 1 ).getDdd() == null ) {
 			appendMsg( "DDD Celular do Funcionário" );
 		}
-		if( employee.getTelephones().get(1).getPnumber() == null ) {
+		if( employee.getTelephones().get( 1 ).getPnumber() == null ) {
 			appendMsg( "Celular do Funcionário" );
 		}
-		
+
 		return getMessage();
 	}
 

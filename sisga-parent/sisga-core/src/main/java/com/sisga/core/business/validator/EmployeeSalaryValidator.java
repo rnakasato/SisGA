@@ -2,7 +2,6 @@ package com.sisga.core.business.validator;
 
 import com.sisga.core.business.Validator;
 import com.sisga.domain.employee.Employee;
-import com.sisga.domain.product.Product;
 
 /**
  * 
@@ -20,8 +19,8 @@ public class EmployeeSalaryValidator extends Validator < Employee > {
 
 		return msg;
 	}
-	
-	private Double getMinSalary(){
+
+	private Double getMinSalary() {
 		Double minSalary = 960.0;
 		return minSalary;
 	}

@@ -8,6 +8,6 @@ import com.sisga.domain.person.LegalPerson;
  *         10 de mar de 2017
  */
 
-public class Provider extends LegalPerson {	
+public class Provider extends LegalPerson {
 
 }

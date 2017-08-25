@@ -7,7 +7,7 @@ import com.sisga.domain.person.PersonHistory;
  * @author Sergio Massao Umiji 10 de mar de 2017
  */
 
-public class ProviderHistory extends PersonHistory{
+public class ProviderHistory extends PersonHistory {
 
 	private Provider provider;
 	private String corporateName;
@@ -25,7 +25,7 @@ public class ProviderHistory extends PersonHistory{
 	 * @param provider
 	 *            the provider to set
 	 */
-	public void setProvider(Provider provider) {
+	public void setProvider( Provider provider ) {
 		this.provider = provider;
 	}
 
@@ -40,7 +40,7 @@ public class ProviderHistory extends PersonHistory{
 	 * @param corporateName
 	 *            the corporateName to set
 	 */
-	public void setCorporateName(String corporateName) {
+	public void setCorporateName( String corporateName ) {
 		this.corporateName = corporateName;
 	}
 
@@ -55,7 +55,7 @@ public class ProviderHistory extends PersonHistory{
 	 * @param cnpj
 	 *            the cnpj to set
 	 */
-	public void setCnpj(String cnpj) {
+	public void setCnpj( String cnpj ) {
 		this.cnpj = cnpj;
 	}
 
@@ -70,7 +70,7 @@ public class ProviderHistory extends PersonHistory{
 	 * @param providerOperation
 	 *            the providerOperation to set
 	 */
-	public void setProviderOperation(ProviderOperation providerOperation) {
+	public void setProviderOperation( ProviderOperation providerOperation ) {
 		this.providerOperation = providerOperation;
 	}
 

@@ -12,7 +12,7 @@ import com.sisga.domain.communication.Telephone;
  *
  */
 public abstract class PersonHistory extends DomainSpecificEntity {
-	protected List<Telephone> telephones;
+	protected List < Telephone > telephones;
 	protected String email;
 	protected Address address;
 	protected boolean active;
@@ -22,7 +22,7 @@ public abstract class PersonHistory extends DomainSpecificEntity {
 	/**
 	 * @return the telephones
 	 */
-	public List<Telephone> getTelephones() {
+	public List < Telephone > getTelephones() {
 		return telephones;
 	}
 
@@ -30,7 +30,7 @@ public abstract class PersonHistory extends DomainSpecificEntity {
 	 * @param telephones
 	 *            the telephones to set
 	 */
-	public void setTelephones(List<Telephone> telephones) {
+	public void setTelephones( List < Telephone > telephones ) {
 		this.telephones = telephones;
 	}
 
@@ -45,7 +45,7 @@ public abstract class PersonHistory extends DomainSpecificEntity {
 	 * @param email
 	 *            the email to set
 	 */
-	public void setEmail(String email) {
+	public void setEmail( String email ) {
 		this.email = email;
 	}
 
@@ -60,7 +60,7 @@ public abstract class PersonHistory extends DomainSpecificEntity {
 	 * @param address
 	 *            the address to set
 	 */
-	public void setAddress(Address address) {
+	public void setAddress( Address address ) {
 		this.address = address;
 	}
 
@@ -75,7 +75,7 @@ public abstract class PersonHistory extends DomainSpecificEntity {
 	 * @param active
 	 *            the active to set
 	 */
-	public void setActive(boolean active) {
+	public void setActive( boolean active ) {
 		this.active = active;
 	}
 
@@ -90,7 +90,7 @@ public abstract class PersonHistory extends DomainSpecificEntity {
 	 * @param firstName
 	 *            the firstName to set
 	 */
-	public void setFirstName(String firstName) {
+	public void setFirstName( String firstName ) {
 		this.firstName = firstName;
 	}
 
@@ -105,7 +105,7 @@ public abstract class PersonHistory extends DomainSpecificEntity {
 	 * @param lastName
 	 *            the lastName to set
 	 */
-	public void setLastName(String lastName) {
+	public void setLastName( String lastName ) {
 		this.lastName = lastName;
 	}
 

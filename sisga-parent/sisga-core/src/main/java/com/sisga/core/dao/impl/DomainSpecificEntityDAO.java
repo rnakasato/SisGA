@@ -18,7 +18,7 @@ public abstract class DomainSpecificEntityDAO < T extends DomainSpecificEntity >
 
 		Query query = session.createQuery( jpql.toString() );
 		query.setParameter( "code", entity.getCode() );
-		result = (T) query.getSingleResult();
+		result = ( T ) query.getSingleResult();
 
 		return result;
 	}

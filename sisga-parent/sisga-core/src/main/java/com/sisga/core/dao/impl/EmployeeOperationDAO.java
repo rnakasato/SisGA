@@ -15,7 +15,7 @@ public class EmployeeOperationDAO extends DomainSpecificEntityDAO < EmployeeOper
 	public EmployeeOperationDAO() {
 		super( EmployeeOperation.class );
 	}
-			
+
 	@Override
 	public List < EmployeeOperation > find( AbstractDomainEntity entity ) throws Exception {
 		// TODO Auto-generated method stub

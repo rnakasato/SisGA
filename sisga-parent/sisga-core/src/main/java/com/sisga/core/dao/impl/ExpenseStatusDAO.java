@@ -15,12 +15,11 @@ public class ExpenseStatusDAO extends DomainSpecificEntityDAO < ExpenseStatus > 
 	public ExpenseStatusDAO() {
 		super( ExpenseStatus.class );
 	}
-	
+
 	@Override
 	public List < ExpenseStatus > find( AbstractDomainEntity entity ) throws Exception {
 
 		return null;
 	}
-
 
 }

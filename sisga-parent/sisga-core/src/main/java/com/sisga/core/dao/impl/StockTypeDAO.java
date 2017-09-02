@@ -17,8 +17,7 @@ public class StockTypeDAO extends DomainSpecificEntityDAO < StockType > {
 	public StockTypeDAO() {
 		super( StockType.class );
 	}
-	
-	
+
 	@Override
 	public List < StockType > find( AbstractDomainEntity entity ) throws Exception {
 		// O find foi feito para retornar somente um

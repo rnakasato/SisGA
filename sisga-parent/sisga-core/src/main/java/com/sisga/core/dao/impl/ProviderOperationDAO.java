@@ -14,12 +14,11 @@ public class ProviderOperationDAO extends DomainSpecificEntityDAO < ProviderOper
 	public ProviderOperationDAO() {
 		super( ProviderOperation.class );
 	}
-	
+
 	@Override
 	public List < ProviderOperation > find( AbstractDomainEntity entity ) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 }

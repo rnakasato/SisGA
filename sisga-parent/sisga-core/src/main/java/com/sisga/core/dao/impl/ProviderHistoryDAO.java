@@ -20,7 +20,7 @@ public class ProviderHistoryDAO extends DomainSpecificEntityDAO < ProviderHistor
 	public ProviderHistoryDAO() {
 		super( ProviderHistory.class );
 	}
-	
+
 	@Override
 	public List < ProviderHistory > find( AbstractDomainEntity entity ) throws Exception {
 		ProviderHistoryFilter filter = ( ProviderHistoryFilter ) entity;

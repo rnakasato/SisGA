@@ -17,11 +17,10 @@ import com.sisga.domain.customer.filter.CustomerHistoryFilter;
  */
 public class CustomerHistoryDAO extends DomainSpecificEntityDAO < CustomerHistory > {
 
-	
 	public CustomerHistoryDAO() {
 		super( CustomerHistory.class );
 	}
-	
+
 	@Override
 	public List < CustomerHistory > find( AbstractDomainEntity entity ) throws Exception {
 		CustomerHistoryFilter filter = ( CustomerHistoryFilter ) entity;
@@ -63,6 +62,5 @@ public class CustomerHistoryDAO extends DomainSpecificEntityDAO < CustomerHistor
 
 		return customerHistoryList;
 	}
-
 
 }

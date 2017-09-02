@@ -19,7 +19,7 @@ import com.sisga.domain.address.City;
 public class CityDAO extends DomainSpecificEntityDAO < City > {
 
 	private City city;
-	
+
 	public CityDAO() {
 		super( City.class );
 	}

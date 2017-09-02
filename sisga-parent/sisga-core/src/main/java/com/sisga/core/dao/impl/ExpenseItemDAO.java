@@ -15,12 +15,11 @@ public class ExpenseItemDAO extends DomainSpecificEntityDAO < ExpenseItem > {
 	public ExpenseItemDAO() {
 		super( ExpenseItem.class );
 	}
-	
+
 	@Override
 	public List < ExpenseItem > find( AbstractDomainEntity entity ) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 }

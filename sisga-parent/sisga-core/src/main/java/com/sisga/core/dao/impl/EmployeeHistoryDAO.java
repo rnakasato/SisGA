@@ -20,7 +20,7 @@ public class EmployeeHistoryDAO extends DomainSpecificEntityDAO < EmployeeHistor
 	public EmployeeHistoryDAO() {
 		super( EmployeeHistory.class );
 	}
-	
+
 	@Override
 	public List < EmployeeHistory > find( AbstractDomainEntity entity ) throws Exception {
 		EmployeeHistoryFilter filter = ( EmployeeHistoryFilter ) entity;
@@ -62,6 +62,5 @@ public class EmployeeHistoryDAO extends DomainSpecificEntityDAO < EmployeeHistor
 
 		return employeeHistoryList;
 	}
-
 
 }

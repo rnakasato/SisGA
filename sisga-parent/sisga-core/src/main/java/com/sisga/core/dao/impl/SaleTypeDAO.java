@@ -21,8 +21,7 @@ public class SaleTypeDAO extends DomainSpecificEntityDAO < SaleType > {
 	public SaleTypeDAO() {
 		super( SaleType.class );
 	}
-	
-	
+
 	@Override
 	public List < SaleType > find( AbstractDomainEntity entity ) throws Exception {
 		SaleTypeFilter filter = ( SaleTypeFilter ) entity;

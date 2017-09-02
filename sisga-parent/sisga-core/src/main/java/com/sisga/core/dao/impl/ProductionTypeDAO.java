@@ -17,7 +17,7 @@ public class ProductionTypeDAO extends DomainSpecificEntityDAO < ProductionType 
 	public ProductionTypeDAO() {
 		super( ProductionType.class );
 	}
-	
+
 	@Override
 	public List < ProductionType > find( AbstractDomainEntity entity ) throws Exception {
 		// TODO Auto-generated method stub

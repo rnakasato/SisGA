@@ -17,7 +17,7 @@ public class ProductOperationDAO extends DomainSpecificEntityDAO < ProductOperat
 	public ProductOperationDAO() {
 		super( ProductOperation.class );
 	}
-	
+
 	@Override
 	public List < ProductOperation > find( AbstractDomainEntity entity ) throws Exception {
 		// TODO Auto-generated method stub

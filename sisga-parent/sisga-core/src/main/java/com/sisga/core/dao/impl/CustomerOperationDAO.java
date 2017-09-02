@@ -11,7 +11,7 @@ import com.sisga.domain.customer.CustomerOperation;
  *         12 de mar de 2017
  */
 public class CustomerOperationDAO extends DomainSpecificEntityDAO < CustomerOperation > {
-	
+
 	public CustomerOperationDAO() {
 		super( CustomerOperation.class );
 	}
@@ -21,6 +21,5 @@ public class CustomerOperationDAO extends DomainSpecificEntityDAO < CustomerOper
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 }

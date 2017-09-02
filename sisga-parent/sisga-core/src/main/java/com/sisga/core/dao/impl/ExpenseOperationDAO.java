@@ -15,7 +15,7 @@ public class ExpenseOperationDAO extends DomainSpecificEntityDAO < ExpenseOperat
 	public ExpenseOperationDAO() {
 		super( ExpenseOperation.class );
 	}
-	
+
 	@Override
 	public List < ExpenseOperation > find( AbstractDomainEntity entity ) throws Exception {
 		// TODO Auto-generated method stub

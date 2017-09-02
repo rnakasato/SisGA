@@ -10,11 +10,11 @@ import com.sisga.core.IDAO;
 import com.sisga.domain.AbstractDomainEntity;
 
 public abstract class AbstractDAO < T extends AbstractDomainEntity > implements IDAO < T > {
-	protected Class<T> entityClass; 
+	protected Class < T > entityClass;
 
 	protected Session session;
-	
-	public AbstractDAO(Class<T> entityClass){
+
+	public AbstractDAO( Class < T > entityClass ) {
 		this.entityClass = entityClass;
 	}
 
@@ -32,7 +32,6 @@ public abstract class AbstractDAO < T extends AbstractDomainEntity > implements 
 		result = ( T ) session.find( clazz, entity.getId() );
 		return result;
 	}
-	
 
 	@Override
 	public List < T > findAll() throws Exception {
@@ -41,8 +40,10 @@ public abstract class AbstractDAO < T extends AbstractDomainEntity > implements 
 		StringBuilder jpql = new StringBuilder();
 		jpql.append( " FROM  " );
 		jpql.append( entityClass.getName() );
-		// Não faz filtro automatico de "active" porque nem todas as classes são mapeadas com esse atributo
-		// TODO avaliar se dever ser adicionado nos mapeamentos ou se mantem dessa forma
+		// Não faz filtro automatico de "active" porque nem todas as classes são
+		// mapeadas com esse atributo
+		// TODO avaliar se dever ser adicionado nos mapeamentos ou se mantem
+		// dessa forma
 
 		Query query = session.createQuery( jpql.toString() );
 

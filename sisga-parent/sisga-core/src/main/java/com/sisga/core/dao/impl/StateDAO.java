@@ -15,7 +15,7 @@ public class StateDAO extends DomainSpecificEntityDAO < State > {
 	public StateDAO() {
 		super( State.class );
 	}
-	
+
 	@Override
 	public List < State > find( AbstractDomainEntity entity ) throws Exception {
 		return null;

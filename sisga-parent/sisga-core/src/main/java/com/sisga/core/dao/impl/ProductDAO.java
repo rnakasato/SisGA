@@ -20,7 +20,7 @@ public class ProductDAO extends DomainSpecificEntityDAO < Product > {
 	public ProductDAO() {
 		super( Product.class );
 	}
-	
+
 	@Override
 	public List < Product > find( AbstractDomainEntity entity ) throws Exception {
 		ProductFilter filter = ( ProductFilter ) entity;

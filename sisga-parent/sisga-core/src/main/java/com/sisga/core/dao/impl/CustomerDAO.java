@@ -20,7 +20,7 @@ import com.sisga.domain.customer.filter.CustomerFilter;
  */
 public class CustomerDAO extends DomainSpecificEntityDAO < Customer > {
 	private CustomerFilter customerFilter;
-	
+
 	public CustomerDAO() {
 		super( Customer.class );
 	}

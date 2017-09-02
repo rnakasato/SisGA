@@ -20,7 +20,7 @@ public class ProductHistoryDAO extends DomainSpecificEntityDAO < ProductHistory 
 	public ProductHistoryDAO() {
 		super( ProductHistory.class );
 	}
-	
+
 	@Override
 	public List < ProductHistory > find( AbstractDomainEntity entity ) throws Exception {
 		ProductHistoryFilter filter = ( ProductHistoryFilter ) entity;

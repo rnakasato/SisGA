@@ -5,8 +5,8 @@ import com.sisga.domain.DomainSpecificEntity;
 /**
  * 
  * @author Rafael Hikaru Nakasato
- * 2 de set de 2017
+ *         2 de set de 2017
  */
-public class OrderStatus extends DomainSpecificEntity{
+public class OrderStatus extends DomainSpecificEntity {
 
 }

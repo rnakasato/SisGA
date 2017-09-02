@@ -18,7 +18,7 @@ import com.sisga.domain.employee.filter.EmployeeFilter;
  */
 public class EmployeeDAO extends DomainSpecificEntityDAO < Employee > {
 	private EmployeeFilter employeeFilter;
-	
+
 	public EmployeeDAO() {
 		super( Employee.class );
 	}
@@ -64,6 +64,7 @@ public class EmployeeDAO extends DomainSpecificEntityDAO < Employee > {
 		employeeList = query.getResultList();
 		return employeeList;
 	}
+
 	public static void main( String[] args ) throws Exception {
 		EmployeeDAO dao = new EmployeeDAO();
 

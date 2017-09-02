@@ -17,6 +17,10 @@ import com.sisga.domain.product.filter.ProductFilter;
  */
 public class ProductDAO extends DomainSpecificEntityDAO < Product > {
 
+	public ProductDAO() {
+		super( Product.class );
+	}
+	
 	@Override
 	public List < Product > find( AbstractDomainEntity entity ) throws Exception {
 		ProductFilter filter = ( ProductFilter ) entity;
@@ -92,17 +96,4 @@ public class ProductDAO extends DomainSpecificEntityDAO < Product > {
 
 		return productList;
 	}
-
-	@Override
-	public List < Product > findAll() throws Exception {
-		List < Product > productList = null;
-		StringBuilder jpql = new StringBuilder();
-		jpql.append( " FROM Product " );
-
-		Query query = session.createQuery( jpql.toString() );
-
-		productList = query.getResultList();
-		return productList;
-	}
-
 }

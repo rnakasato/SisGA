@@ -2,8 +2,6 @@ package com.sisga.core.dao.impl;
 
 import java.util.List;
 
-import javax.persistence.Query;
-
 import com.sisga.domain.AbstractDomainEntity;
 import com.sisga.domain.expense.ExpenseStatus;
 
@@ -14,31 +12,15 @@ import com.sisga.domain.expense.ExpenseStatus;
  */
 public class ExpenseStatusDAO extends DomainSpecificEntityDAO < ExpenseStatus > {
 
+	public ExpenseStatusDAO() {
+		super( ExpenseStatus.class );
+	}
+	
 	@Override
 	public List < ExpenseStatus > find( AbstractDomainEntity entity ) throws Exception {
 
 		return null;
 	}
 
-	@Override
-	public List < ExpenseStatus > findAll() throws Exception {
-		List < ExpenseStatus > expenseStatusList = null;
-		try {
-			openSession();
-
-			StringBuilder jpql = new StringBuilder();
-			jpql.append( " FROM ExpenseStatus " );
-
-			Query query = session.createQuery( jpql.toString() );
-
-			expenseStatusList = query.getResultList();
-
-			closeSession();
-		} catch( RuntimeException e ) {
-			cancelSession();
-		}
-		return expenseStatusList;
-
-	}
 
 }

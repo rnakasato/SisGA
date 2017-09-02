@@ -17,7 +17,12 @@ import com.sisga.domain.address.City;
  *         26 de mar de 2017 - find
  */
 public class CityDAO extends DomainSpecificEntityDAO < City > {
+
 	private City city;
+	
+	public CityDAO() {
+		super( City.class );
+	}
 
 	@Override
 	public List < City > find( AbstractDomainEntity entity ) throws Exception {
@@ -35,20 +40,6 @@ public class CityDAO extends DomainSpecificEntityDAO < City > {
 		if( StringUtils.isNotEmpty( city.getUf() ) ) {
 			query.setParameter( "uf", city.getUf() );
 		}
-
-		cityList = query.getResultList();
-
-		return cityList;
-	}
-
-	@Override
-	public List < City > findAll() throws Exception {
-		List < City > cityList = null;
-
-		StringBuilder jpql = new StringBuilder();
-		jpql.append( " FROM City " );
-
-		Query query = session.createQuery( jpql.toString() );
 
 		cityList = query.getResultList();
 

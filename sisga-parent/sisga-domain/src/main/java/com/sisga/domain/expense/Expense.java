@@ -21,7 +21,6 @@ public class Expense extends AbstractDomainEntity {
 	private Double serviceValue;
 	private String serviceDescription;
 	private Date expenseDate;
-	private boolean active;
 
 	public ExpenseItem getExpenseItem() {
 		return expenseItem;
@@ -85,14 +84,6 @@ public class Expense extends AbstractDomainEntity {
 
 	public void setExpenseDate( Date expenseDate ) {
 		this.expenseDate = expenseDate;
-	}
-
-	public boolean isActive() {
-		return active;
-	}
-
-	public void setActive( boolean active ) {
-		this.active = active;
 	}
 
 }

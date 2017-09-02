@@ -20,6 +20,10 @@ import com.sisga.domain.customer.filter.CustomerFilter;
  */
 public class CustomerDAO extends DomainSpecificEntityDAO < Customer > {
 	private CustomerFilter customerFilter;
+	
+	public CustomerDAO() {
+		super( Customer.class );
+	}
 
 	@Override
 	public List < Customer > find( AbstractDomainEntity entity ) throws Exception {
@@ -51,20 +55,6 @@ public class CustomerDAO extends DomainSpecificEntityDAO < Customer > {
 		if( StringUtils.isNotEmpty( customerFilter.getName() ) ) {
 			query.setParameter( "name", customerFilter.getName().toUpperCase() );
 		}
-
-		customerList = query.getResultList();
-
-		return customerList;
-	}
-
-	@Override
-	public List < Customer > findAll() throws Exception {
-		List < Customer > customerList = null;
-
-		StringBuilder jpql = new StringBuilder();
-		jpql.append( " FROM Customer " );
-
-		Query query = session.createQuery( jpql.toString() );
 
 		customerList = query.getResultList();
 

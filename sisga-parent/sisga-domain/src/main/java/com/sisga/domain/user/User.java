@@ -10,7 +10,6 @@ public class User extends SocialPerson {
 	private UserType userType;
 	private String email;
 	private String username;
-	private Boolean active;
 	private String password;
 
 	/**
@@ -56,21 +55,6 @@ public class User extends SocialPerson {
 	 */
 	public void setUsername( String username ) {
 		this.username = username;
-	}
-
-	/**
-	 * @return the active
-	 */
-	public Boolean getActive() {
-		return active;
-	}
-
-	/**
-	 * @param active
-	 *            the active to set
-	 */
-	public void setActive( Boolean active ) {
-		this.active = active;
 	}
 
 	/**

@@ -2,8 +2,6 @@ package com.sisga.core.dao.impl;
 
 import java.util.List;
 
-import javax.persistence.Query;
-
 import com.sisga.domain.AbstractDomainEntity;
 import com.sisga.domain.address.State;
 
@@ -14,22 +12,12 @@ import com.sisga.domain.address.State;
  */
 public class StateDAO extends DomainSpecificEntityDAO < State > {
 
+	public StateDAO() {
+		super( State.class );
+	}
+	
 	@Override
 	public List < State > find( AbstractDomainEntity entity ) throws Exception {
 		return null;
-	}
-
-	@Override
-	public List < State > findAll() throws Exception {
-		List < State > stateList = null;
-
-		StringBuilder jpql = new StringBuilder();
-		jpql.append( " FROM State " );
-
-		Query query = session.createQuery( jpql.toString() );
-
-		stateList = query.getResultList();
-
-		return stateList;
 	}
 }

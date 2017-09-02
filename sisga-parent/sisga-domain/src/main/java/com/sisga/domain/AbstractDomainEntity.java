@@ -9,6 +9,9 @@ public class AbstractDomainEntity implements IEntity, Serializable {
 	private Date insertDate;
 	private Date updateDate;
 
+	// Para exclus„o lÛgica
+	private Boolean active;
+
 	// Utilizado para facilitar gera√ß√£o de hist√≥rico
 	private String operationCode;
 
@@ -50,6 +53,14 @@ public class AbstractDomainEntity implements IEntity, Serializable {
 
 	public void setUpdateDate( Date updateDate ) {
 		this.updateDate = updateDate;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive( Boolean active ) {
+		this.active = active;
 	}
 
 }

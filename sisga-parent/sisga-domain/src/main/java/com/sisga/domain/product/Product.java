@@ -13,7 +13,6 @@ public class Product extends DomainSpecificEntity {
 	private ProductionType productionType;
 	private StockType stockType;
 	private Long amount;
-	private Boolean active;
 
 	public Double getBaseValue() {
 		return baseValue;
@@ -61,14 +60,6 @@ public class Product extends DomainSpecificEntity {
 
 	public void setAmount( Long amount ) {
 		this.amount = amount;
-	}
-
-	public Boolean getActive() {
-		return active;
-	}
-
-	public void setActive( Boolean active ) {
-		this.active = active;
 	}
 
 }

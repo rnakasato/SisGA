@@ -17,6 +17,10 @@ import com.sisga.domain.provider.filter.ProviderFilter;
  * @author Sergio Massao Umiji 7 de mar de 2017
  */
 public class ProviderDAO extends AbstractDAO < Provider > {
+	public ProviderDAO() {
+		super( Provider.class );
+	}
+
 	private ProviderFilter providerFilter;
 
 	@Override
@@ -43,22 +47,6 @@ public class ProviderDAO extends AbstractDAO < Provider > {
 		if( StringUtils.isNotEmpty( providerFilter.getName() ) ) {
 			query.setParameter( "name", "%" + providerFilter.getName().toUpperCase() + "%" );
 		}
-
-		providerList = query.getResultList();
-
-		return providerList;
-	}
-
-	@Override
-	public List < Provider > findAll() throws Exception {
-		List < Provider > providerList = null;
-
-		StringBuilder jpql = new StringBuilder();
-		jpql.append( " SELECT DISTINCT (p)FROM Provider p" );
-		jpql.append( " LEFT JOIN p.telephones pt " );
-		jpql.append( " LEFT JOIN p.city pc " );
-
-		Query query = session.createQuery( jpql.toString() );
 
 		providerList = query.getResultList();
 

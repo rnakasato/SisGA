@@ -3,8 +3,6 @@ package com.sisga.core.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Query;
-
 import com.sisga.domain.AbstractDomainEntity;
 import com.sisga.domain.product.StockType;
 import com.sisga.domain.product.filter.StockTypeFilter;
@@ -16,6 +14,11 @@ import com.sisga.domain.product.filter.StockTypeFilter;
  */
 public class StockTypeDAO extends DomainSpecificEntityDAO < StockType > {
 
+	public StockTypeDAO() {
+		super( StockType.class );
+	}
+	
+	
 	@Override
 	public List < StockType > find( AbstractDomainEntity entity ) throws Exception {
 		// O find foi feito para retornar somente um
@@ -29,21 +32,6 @@ public class StockTypeDAO extends DomainSpecificEntityDAO < StockType > {
 
 		stockTypeList.add( findByCode( stockType ) );
 		return stockTypeList;
-	}
-
-	@Override
-	public List < StockType > findAll() throws Exception {
-		List < StockType > stockTypeList = null;
-
-		StringBuilder jpql = new StringBuilder();
-		jpql.append( " FROM StockType " );
-
-		Query query = session.createQuery( jpql.toString() );
-
-		stockTypeList = query.getResultList();
-
-		return stockTypeList;
-
 	}
 
 }

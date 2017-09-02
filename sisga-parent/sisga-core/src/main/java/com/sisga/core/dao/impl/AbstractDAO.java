@@ -1,14 +1,22 @@
 package com.sisga.core.dao.impl;
 
+import java.util.List;
+
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 
 import com.sisga.core.IDAO;
-import com.sisga.core.hibernate.HibernateUtil;
 import com.sisga.domain.AbstractDomainEntity;
 
 public abstract class AbstractDAO < T extends AbstractDomainEntity > implements IDAO < T > {
+	protected Class<T> entityClass; 
 
 	protected Session session;
+	
+	public AbstractDAO(Class<T> entityClass){
+		this.entityClass = entityClass;
+	}
 
 	@Override
 	public void save( T entity ) throws Exception {
@@ -23,6 +31,25 @@ public abstract class AbstractDAO < T extends AbstractDomainEntity > implements 
 		Class clazz = entity.getClass();
 		result = ( T ) session.find( clazz, entity.getId() );
 		return result;
+	}
+	
+
+	@Override
+	public List < T > findAll() throws Exception {
+		List < T > entityList = null;
+
+		StringBuilder jpql = new StringBuilder();
+		jpql.append( " FROM  " );
+		jpql.append( entityClass.getName() );
+		// Não faz filtro automatico de "active" porque nem todas as classes são mapeadas com esse atributo
+		// TODO avaliar se dever ser adicionado nos mapeamentos ou se mantem dessa forma
+
+		Query query = session.createQuery( jpql.toString() );
+
+		entityList = query.getResultList();
+
+		return entityList;
+
 	}
 
 	@Override
@@ -42,20 +69,4 @@ public abstract class AbstractDAO < T extends AbstractDomainEntity > implements 
 	public void setSession( Session session ) {
 		this.session = session;
 	}
-
-	public void openSession() {
-		session = HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();
-	}
-
-	public void cancelSession() {
-		session.getTransaction().rollback();
-		session.close();
-	}
-
-	public void closeSession() {
-		session.getTransaction().commit();
-		session.close();
-	}
-
 }

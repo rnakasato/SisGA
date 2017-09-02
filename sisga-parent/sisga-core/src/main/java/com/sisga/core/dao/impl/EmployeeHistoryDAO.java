@@ -17,6 +17,10 @@ import com.sisga.domain.employee.filter.EmployeeHistoryFilter;
  */
 public class EmployeeHistoryDAO extends DomainSpecificEntityDAO < EmployeeHistory > {
 
+	public EmployeeHistoryDAO() {
+		super( EmployeeHistory.class );
+	}
+	
 	@Override
 	public List < EmployeeHistory > find( AbstractDomainEntity entity ) throws Exception {
 		EmployeeHistoryFilter filter = ( EmployeeHistoryFilter ) entity;
@@ -59,16 +63,5 @@ public class EmployeeHistoryDAO extends DomainSpecificEntityDAO < EmployeeHistor
 		return employeeHistoryList;
 	}
 
-	@Override
-	public List < EmployeeHistory > findAll() throws Exception {
-		List < EmployeeHistory > historyList = null;
-		StringBuilder jpql = new StringBuilder();
-		jpql.append( " FROM EmployeeHistory " );
-
-		Query query = session.createQuery( jpql.toString() );
-
-		historyList = query.getResultList();
-		return historyList;
-	}
 
 }

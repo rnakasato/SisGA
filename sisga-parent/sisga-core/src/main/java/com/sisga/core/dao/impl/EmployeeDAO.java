@@ -18,6 +18,10 @@ import com.sisga.domain.employee.filter.EmployeeFilter;
  */
 public class EmployeeDAO extends DomainSpecificEntityDAO < Employee > {
 	private EmployeeFilter employeeFilter;
+	
+	public EmployeeDAO() {
+		super( Employee.class );
+	}
 
 	@Override
 	public List < Employee > find( AbstractDomainEntity entity ) throws Exception {
@@ -60,21 +64,6 @@ public class EmployeeDAO extends DomainSpecificEntityDAO < Employee > {
 		employeeList = query.getResultList();
 		return employeeList;
 	}
-
-	@Override
-	public List < Employee > findAll() throws Exception {
-		List < Employee > employeeList = null;
-
-		StringBuilder jpql = new StringBuilder();
-		jpql.append( " FROM Employee " );
-
-		Query query = session.createQuery( jpql.toString() );
-
-		employeeList = query.getResultList();
-
-		return employeeList;
-	}
-
 	public static void main( String[] args ) throws Exception {
 		EmployeeDAO dao = new EmployeeDAO();
 

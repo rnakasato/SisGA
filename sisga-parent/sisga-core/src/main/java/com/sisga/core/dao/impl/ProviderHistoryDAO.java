@@ -17,6 +17,10 @@ import com.sisga.domain.provider.filter.ProviderHistoryFilter;
  */
 public class ProviderHistoryDAO extends DomainSpecificEntityDAO < ProviderHistory > {
 
+	public ProviderHistoryDAO() {
+		super( ProviderHistory.class );
+	}
+	
 	@Override
 	public List < ProviderHistory > find( AbstractDomainEntity entity ) throws Exception {
 		ProviderHistoryFilter filter = ( ProviderHistoryFilter ) entity;
@@ -57,18 +61,6 @@ public class ProviderHistoryDAO extends DomainSpecificEntityDAO < ProviderHistor
 		providerHistoryList = query.getResultList();
 
 		return providerHistoryList;
-	}
-
-	@Override
-	public List < ProviderHistory > findAll() throws Exception {
-		List < ProviderHistory > historyList = null;
-		StringBuilder jpql = new StringBuilder();
-		jpql.append( " FROM ProviderHistory " );
-
-		Query query = session.createQuery( jpql.toString() );
-
-		historyList = query.getResultList();
-		return historyList;
 	}
 
 }

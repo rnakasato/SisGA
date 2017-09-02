@@ -18,6 +18,11 @@ import com.sisga.domain.product.filter.SaleTypeFilter;
  */
 public class SaleTypeDAO extends DomainSpecificEntityDAO < SaleType > {
 
+	public SaleTypeDAO() {
+		super( SaleType.class );
+	}
+	
+	
 	@Override
 	public List < SaleType > find( AbstractDomainEntity entity ) throws Exception {
 		SaleTypeFilter filter = ( SaleTypeFilter ) entity;
@@ -87,19 +92,6 @@ public class SaleTypeDAO extends DomainSpecificEntityDAO < SaleType > {
 
 		return saleType;
 
-	}
-
-	@Override
-	public List < SaleType > findAll() throws Exception {
-		List < SaleType > saleTypeList = null;
-		StringBuilder jpql = new StringBuilder();
-		jpql.append( " FROM SaleType " );
-
-		Query query = session.createQuery( jpql.toString() );
-
-		saleTypeList = query.getResultList();
-
-		return saleTypeList;
 	}
 
 }

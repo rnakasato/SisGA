@@ -17,6 +17,11 @@ import com.sisga.domain.customer.filter.CustomerHistoryFilter;
  */
 public class CustomerHistoryDAO extends DomainSpecificEntityDAO < CustomerHistory > {
 
+	
+	public CustomerHistoryDAO() {
+		super( CustomerHistory.class );
+	}
+	
 	@Override
 	public List < CustomerHistory > find( AbstractDomainEntity entity ) throws Exception {
 		CustomerHistoryFilter filter = ( CustomerHistoryFilter ) entity;
@@ -59,16 +64,5 @@ public class CustomerHistoryDAO extends DomainSpecificEntityDAO < CustomerHistor
 		return customerHistoryList;
 	}
 
-	@Override
-	public List < CustomerHistory > findAll() throws Exception {
-		List < CustomerHistory > historyList = null;
-		StringBuilder jpql = new StringBuilder();
-		jpql.append( " FROM CustomerHistory " );
-
-		Query query = session.createQuery( jpql.toString() );
-
-		historyList = query.getResultList();
-		return historyList;
-	}
 
 }

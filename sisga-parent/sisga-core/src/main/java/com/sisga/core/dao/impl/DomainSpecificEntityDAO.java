@@ -8,6 +8,10 @@ import com.sisga.domain.DomainSpecificEntity;
 public abstract class DomainSpecificEntityDAO < T extends DomainSpecificEntity > extends AbstractDAO < T >
 		implements IDomainSpecificEntityDAO < T > {
 
+	public DomainSpecificEntityDAO( Class < T > entityClass ) {
+		super( entityClass );
+	}
+
 	@Override
 	public T findByCode( T entity ) {
 		T result = null;

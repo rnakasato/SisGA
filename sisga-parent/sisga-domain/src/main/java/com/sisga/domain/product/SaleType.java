@@ -8,4 +8,5 @@ import com.sisga.domain.DomainSpecificEntity;
  */
 public class SaleType extends DomainSpecificEntity {
 	public static final String CAIXA = "CAIXA";
+	public static final String CAMADA = "CAMADA";
 }

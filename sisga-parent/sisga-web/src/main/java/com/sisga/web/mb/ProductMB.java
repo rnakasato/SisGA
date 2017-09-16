@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
 
 import com.sisga.core.ICommand;
@@ -78,6 +79,7 @@ public class ProductMB extends BaseMB {
 
 	// Métodos Operacionais
 	public void save() {
+		
 		prepareProduct();
 		ICommand commandSave;
 		try {
@@ -102,16 +104,14 @@ public class ProductMB extends BaseMB {
 					ctx.addMessage( null, new FacesMessage( historyResult.getMsg(), historyResult.getMsg() ) );
 				}
 
-				Flash flash = ctx.getExternalContext().getFlash();
-				flash.setKeepMessages( true );
-				flash.setRedirect( true );
-				Redirector.redirectTo( ctx.getExternalContext(),
-						"/pages/gestao/produtos/consultarProdutos.jsf?faces-redirect=true" );
+				if(getSaveDialog() != null){
+		            RequestContext.getCurrentInstance().execute( "PF('" + getSaveDialog().getWidgetVar() + "').hide();" );
+				}
 
 			}
 
 		} catch( ClassNotFoundException e ) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 
@@ -127,7 +127,7 @@ public class ProductMB extends BaseMB {
 			FacesContext ctx = FacesContext.getCurrentInstance();
 
 			if( StringUtils.isNotEmpty( result.getMsg() ) ) {
-				ctx.addMessage( null, new FacesMessage( result.getMsg(), result.getMsg() ) );
+				ctx.addMessage( null, new FacesMessage( result.getMsg(), result.getMsg() ) );				
 			} else {
 				ctx.addMessage( null, new FacesMessage( "Produto Alterado" ) );
 
@@ -140,11 +140,10 @@ public class ProductMB extends BaseMB {
 				if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 					ctx.addMessage( null, new FacesMessage( historyResult.getMsg(), historyResult.getMsg() ) );
 				}
-				Flash flash = ctx.getExternalContext().getFlash();
-				flash.setKeepMessages( true );
-				flash.setRedirect( true );
-				Redirector.redirectTo( ctx.getExternalContext(),
-						"/pages/gestao/produtos/consultarProdutos.jsf?faces-redirect=true" );
+				
+				if(getUpdateDialog() != null){
+		            RequestContext.getCurrentInstance().execute( "PF('" + getUpdateDialog().getWidgetVar() + "').hide();" );
+				}
 			}
 
 		} catch( ClassNotFoundException e ) {
@@ -224,26 +223,14 @@ public class ProductMB extends BaseMB {
 		}
 	}
 
-	public void loadProduct() {
-		try {
+	public void setUpdate(Product product) {
+		
 			doUpdate = true;
 			addAmount = 0L;
 			removeAmount = 0L;
-			if( ! StringUtils.isEmpty( code ) ) {
-				ProductFilter filter = new ProductFilter();
-				filter.setCode( code );
-				ICommand commandFind;
-				commandFind = FactoryCommand.build( filter, EOperation.FIND );
-				List < Product > productList = commandFind.execute().getEntityList();
-				if( productList != null && ! productList.isEmpty() ) {
-					product = productList.get( 0 );
-					saleTypeDescription = product.getSaleType().getDescription();
-				}
-			}
-
-		} catch( ClassNotFoundException e ) {
-			e.printStackTrace();
-		}
+			
+			this.product = product;
+			
 
 	}
 

@@ -18,7 +18,8 @@
 			hideEffect="fade"
 			resizable="false"
 			width="600px"
-			position="center">
+			position="center"			>
+			<h:form id="formDetail">
 			<p:outputPanel
 				id="prodDetail"
 				style="align:center">
@@ -127,9 +128,6 @@
 						</p:column>
 					</p:row>
 				</p:panelGrid>
-
-
-
 				<p:panelGrid
 					id="gridClose"
 					styleClass="baseGrid"
@@ -146,6 +144,7 @@
 					</p:column>
 				</p:panelGrid>
 			</p:outputPanel>
+			</h:form>
 		</p:dialog>
 	</ui:composition>
 </h:body>

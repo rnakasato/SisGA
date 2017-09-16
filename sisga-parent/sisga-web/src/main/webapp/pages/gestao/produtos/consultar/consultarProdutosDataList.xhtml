@@ -71,8 +71,11 @@
 				<p:commandButton
 					id="buttonAlterarProduto"
 					style="margin-left:20px"
-					value="Alterar" 
-					actionListener="#{productMB.redirectToProductUpdate(prod)}"/>
+					value="Alterar"
+					update="formAlterarProduto:gridUpdateProduct"					
+					actionListener="#{productMB.setUpdate(prod)}"
+					onclick="PF('prodUpdateDialog').show()" 
+					/>
 
 				<p:commandButton
 					id="buttonExcluirProduto"
@@ -89,7 +92,7 @@
 					id="buttonDetalhesProduto"
 					style="margin-left:20px"
 					value="Detalhes"
-					update=":form_content:prodDetail, :messages "
+					update=":formDetail:prodDetail, :messages "
 					actionListener="#{productMB.viewDetails(prod)}"
 					onclick="PF('prodDialog').show()" />
 			</p:column>

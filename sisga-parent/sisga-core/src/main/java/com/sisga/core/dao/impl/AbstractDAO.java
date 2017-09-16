@@ -38,8 +38,9 @@ public abstract class AbstractDAO < T extends AbstractDomainEntity > implements 
 		List < T > entityList = null;
 
 		StringBuilder jpql = new StringBuilder();
-		jpql.append( " FROM  " );
+		jpql.append( " SELECT e FROM  " );
 		jpql.append( entityClass.getName() );
+		jpql.append( " e " );
 		// Não faz filtro automatico de "active" porque nem todas as classes são
 		// mapeadas com esse atributo
 		// TODO avaliar se dever ser adicionado nos mapeamentos ou se mantem

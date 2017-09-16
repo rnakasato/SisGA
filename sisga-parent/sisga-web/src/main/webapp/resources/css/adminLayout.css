@@ -48,6 +48,7 @@ html, body {
 	padding-bottom:10px !important;
 	margin: 0 auto !important; 
 	width: 100% !important;	 
+	
 }
 
 .ui-icon-search{
@@ -66,3 +67,132 @@ html, body {
 	width:90% !important;
 }
 
+
+
+.ui-messages {
+  margin: 0px;
+  padding: 0px !important;
+  margin-bottom: 10px;
+  height: auto !important;
+  border: 0px;
+  position: fixed;
+  bottom: 0%;
+  right: 1%;
+  z-index: 9999999;
+}
+.ui-messages .ui-messages-info,
+.ui-messages .ui-messages-warn,
+.ui-messages .ui-messages-error,
+.ui-messages .ui-messages-fatal {
+  padding: 8px 35px 8px 14px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.ui-messages .ui-messages-info-icon,
+.ui-messages .ui-messages-warn-icon,
+.ui-messages .ui-messages-error-icon,
+.ui-messages .ui-messages-fatal-icon {
+  display: none;
+}
+.ui-messages .ui-messages-info .ui-messages-close,
+.ui-messages .ui-messages-warn .ui-messages-close,
+.ui-messages .ui-messages-error .ui-messages-close,
+.ui-messages .ui-messages-fatal .ui-messages-close {
+  right: -20px;
+  position: relative;
+}
+.ui-messages .ui-messages-info ul,
+.ui-messages .ui-messages-warn ul,
+.ui-messages .ui-messages-error ul,
+.ui-messages .ui-messages-fatal ul {
+  margin: 0 10px;
+  margin-right: 20px;
+  white-space: nowrap;
+}
+.ui-messages .ui-messages-info ul li,
+.ui-messages .ui-messages-warn ul li,
+.ui-messages .ui-messages-error ul li,
+.ui-messages .ui-messages-fatal ul li {
+  padding: 0 ;
+  margin: 0 -15px;
+}
+span.ui-message-info-summary,
+span.ui-message-warn-summary,
+span.ui-message-error-summary,
+span.ui-message-fatal-summary {
+  margin-left: 0px !important;
+}
+
+
+.ui-message-error-icon{
+	height: 0px !important;
+	width: 0px !important;
+	background: none !important;	
+}
+
+
+.ui-message-info, .ui-message-error, .ui-message-warn, .ui-message-fatal {    	
+    	margin: 0px !important;
+}
+
+.ui-scrollpanel{
+	border: 0 !important;
+}
+
+.ui-button{
+	background-image: none !important;
+	background-color: #00a65a !important;
+	color:#fff !important;
+	text-shadow: none !important;	
+}
+
+.ui-button:hover {
+  	background-image: none !important;
+	background-color: #1c7e51 !important;
+	color:#fff !important;
+	text-shadow: none !important;	
+}
+
+
+.ui-fieldset-legend{
+	background:	#00a65a !important;
+	color:#fff !important;
+	text-shadow: none !important;	
+}
+
+.ui-fieldset{
+	border: 1px solid #00a65a !important;
+	text-shadow: none !important;		
+}
+.ui-menuitem-text{
+	color:#fff !important;
+}
+
+.ui-menubar{
+	background: #00a65a !important;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05) !important;	
+	border: 1px solid #000 !important;
+}
+
+
+.ui-menu-list{
+	background: #00a65a !important;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+	border: 1px solid #000 !important;
+}
+.ui-helper-reset{
+	border: none !important;
+}
+
+.ui-menuitem:hover{
+	background-image: none !important;
+	background-color: #1c7e51 !important;
+	color:#fff !important;
+	text-shadow: none !important;	
+}
+
+
+.ui-breadcrumb{
+	height:0px; 
+}

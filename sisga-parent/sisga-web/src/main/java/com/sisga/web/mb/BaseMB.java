@@ -8,6 +8,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.component.dialog.Dialog;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
@@ -16,12 +17,14 @@ public abstract class BaseMB implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Boolean isSelected;
+	private Dialog saveDialog;
+	private Dialog updateDialog;
 
-	public void select( SelectEvent event ) {
+	public void select(SelectEvent event) {
 		isSelected = true;
 	}
 
-	public void unSelect( UnselectEvent event ) {
+	public void unSelect(UnselectEvent event) {
 		isSelected = false;
 	}
 
@@ -31,26 +34,42 @@ public abstract class BaseMB implements Serializable {
 
 	public abstract void clearFilter();
 
-	public void addMessage( String msg ) {
+	public void addMessage(String msg) {
 		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage( null, new FacesMessage( msg ) );
+		context.addMessage(null, new FacesMessage(msg));
 	}
 
-	public void addRedirectMessage( String msg ) {
+	public void addRedirectMessage(String msg) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		ExternalContext ext = context.getExternalContext();
-		ext.getFlash().setKeepMessages( true );
-		ext.getFlash().setRedirect( true );
-		context.addMessage( null, new FacesMessage( msg ) );
+		ext.getFlash().setKeepMessages(true);
+		ext.getFlash().setRedirect(true);
+		context.addMessage(null, new FacesMessage(msg));
 	}
 
 	public Date getToday() {
 		Calendar today = Calendar.getInstance();
-		today.set( Calendar.HOUR, 0 );
-		today.set( Calendar.MINUTE, 0 );
-		today.set( Calendar.SECOND, 0 );
-		today.set( Calendar.MILLISECOND, 0 );
+		today.set(Calendar.HOUR, 0);
+		today.set(Calendar.MINUTE, 0);
+		today.set(Calendar.SECOND, 0);
+		today.set(Calendar.MILLISECOND, 0);
 		return today.getTime();
+	}
+
+	public Dialog getSaveDialog() {
+		return saveDialog;
+	}
+
+	public void setSaveDialog(Dialog saveDialog) {
+		this.saveDialog = saveDialog;
+	}
+
+	public Dialog getUpdateDialog() {
+		return updateDialog;
+	}
+
+	public void setUpdateDialog(Dialog updateDialog) {
+		this.updateDialog = updateDialog;
 	}
 
 }

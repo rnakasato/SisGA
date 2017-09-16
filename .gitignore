@@ -32,4 +32,6 @@
 /sisga-parent/sisga-domain/src/test/java/META-INF/MANIFEST.MF
 /sisga-parent/sisga-web/.settings/org.hibernate.eclipse.console.prefs
 /sisga-parent/sisga-web/.tern-project
+/target
+/WEB-INF/classes
 >>>>>>> d5316386b7a92a556a518115e109789304303a97

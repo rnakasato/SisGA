@@ -14,20 +14,24 @@
 			style="height:100%;width:100%">
 			<p:fieldset
 				legend="Consultar Produto"
-				style="text-align=left; border=1px;">
+				style="text-align=left; border=1px;" 
+				styleClass="fieldset-search">
 				<p:panelGrid
 					border="0"
-					style="margin-top:30px"
+					style="margin-top:30px;margin-left: 15px;"
 					styleClass="baseGrid">
-					<p:row>
+					<p:row style="width:100%">
 						<p:column>
 							<p:outputLabel
 								for="inputNomeProduto"
 								value="Buscar Produto " />
-						</p:column>
+						</p:column>						
+					</p:row>
+					<p:row>
 						<p:column>
 							<p:inputText
 								id="inputNomeProduto"
+								style="width:100%"
 								value="#{productMB.filter.description}" />
 						</p:column>
 					</p:row>
@@ -36,10 +40,13 @@
 							<p:outputLabel
 								for="inputCodigoProduto"
 								value="Código do produto " />
-						</p:column>
+						</p:column>						
+					</p:row>
+					<p:row>
 						<p:column>
 							<p:inputText
 								id="inputCodigoProduto"
+								style="width:100%"
 								value="#{productMB.filter.code}" />
 						</p:column>
 					</p:row>
@@ -49,11 +56,14 @@
 							<p:outputLabel
 								for="selectOneMenuProducaoPor"
 								value="Produção por " />
-						</p:column>
+						</p:column>						
+					</p:row>
+					<p:row>
 						<p:column>
 							<p:selectOneMenu
 								id="selectOneMenuProducaoPor"
 								value="#{productMB.filter.productionType}"
+								style="width:90%"
 								converter="defaultConverter">
 								<f:selectItem
 									itemLabel="Todos"
@@ -65,8 +75,6 @@
 									itemLabel="#{tp.description}" />
 							</p:selectOneMenu>
 						</p:column>
-						<p:column>
-						</p:column>
 					</p:row>
 
 
@@ -75,11 +83,14 @@
 							<p:outputLabel
 								for="selectOneMenuVendaPor"
 								value="Venda por  " />
-						</p:column>
+						</p:column>						
+					</p:row>
+					<p:row>
 						<p:column>
 							<p:selectOneMenu
 								id="selectOneMenuVendaPor"
 								value="#{productMB.filter.saleType}"
+								style="width:90%"
 								converter="defaultConverter">
 								<f:selectItem
 									itemLabel="Todos"
@@ -89,33 +100,35 @@
 									var="tp"
 									itemValue="#{tp}"
 									itemLabel="#{tp.description}" />
-
-
 							</p:selectOneMenu>
-
 						</p:column>
-
 					</p:row>
-
-
+				</p:panelGrid>
+				<p:panelGrid id="gridButtonsFilter" styleClass="baseGrid" style="margin-left: 15px;">
 					<p:row>
-						<p:column>
+						<p:column style="width:50%">
 							<p:commandButton
 								id="buttonBuscarProduto"
 								style="margin-top:50px"
+								icon="ui-icon-search" 	
 								value="Buscar"
 								update=":form_content:productTable"
-								actionListener="#{productMB.search()}" />
+								actionListener="#{productMB.search()}" >
+							</p:commandButton>
 						</p:column>
 
-						<p:column>
+						<p:column style="width:50%">
 							<p:commandButton
 								id="buttonLimparFiltros"
 								style="margin-top:50px"
+								icon="ui-icon-cancel"
 								value="Limpar Filtros"
-								update=":form_content"
-								actionListener="#{productMB.clearFilter}" />
+								update=":formFilter"
+								actionListener="#{productMB.clearFilter}" >
+								</p:commandButton>
 						</p:column>
+					</p:row>
+					<p:row>
 						<p:column>
 							<p:commandButton
 								id="buttonNovoProduto"
@@ -123,7 +136,6 @@
 								value="Novo Produto"
 								action="/pages/gestao/produtos/cadastrarProdutos.jsf?faces-redirect=true" />
 						</p:column>
-
 					</p:row>
 				</p:panelGrid>
 			</p:fieldset>

@@ -130,6 +130,9 @@ public class ProductMB extends BaseMB {
 				ctx.addMessage( null, new FacesMessage( result.getMsg(), result.getMsg() ) );				
 			} else {
 				ctx.addMessage( null, new FacesMessage( "Produto Alterado" ) );
+				
+				initSaleType();
+				initProductionType();
 
 				ProductHistory history = new ProductHistory();
 				history.setProduct( product );

@@ -40,8 +40,23 @@
 			</p:column>
 		</p:row>
 	</p:panelGrid>
-
-
+	<h:form id="themeForm">
+		<p:themeSwitcher id="advanced" style="width:165px" effect="fade" var="t">
+	                    <f:selectItem itemLabel="Choose Theme" itemValue="" />
+	                    <f:selectItems value="#{themeSwitcherView.themes}" var="theme" itemLabel="#{theme.displayName}" itemValue="#{theme}" />
+	
+	                    <p:column>
+	                        <h:outputText styleClass="ui-theme ui-theme-#{t.name}" style="display-block" />
+	                    </p:column>
+	
+	                    <p:column>
+	                        #{t.displayName}
+	                    </p:column>
+	                    
+		</p:themeSwitcher>
+		
+	</h:form>
+	
 
 
 </h:body>

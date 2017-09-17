@@ -10,13 +10,11 @@
 	<ui:composition>
 		<p:dialog id="productUpdateDialog"
 			widgetVar="prodUpdateDialog" modal="true" showEffect="fade"
+			header="Alterar Produto"
 			hideEffect="fade" resizable="false" width="800px" position="top"
 			binding="#{productMB.updateDialog}">
 
 			<h:form id="formAlterarProduto">
-			<p:fieldset
-							legend="Alterar Produto"
-							style="text-align:left; border-width:thin;">
 				<p:scrollPanel id="scroolUpdateProduct"
 					style="max-height:500px;max-width:800px">
 					
@@ -191,14 +189,13 @@
 						</p:row>
 					</p:panelGrid>					
 				</p:scrollPanel>
-				</p:fieldset>
 				<p:panelGrid id="gridAlterarButtons" styleClass="baseGrid">
 					<p:row>
 						<p:column style="width:80%">
 						</p:column>
 						<p:column style="width:10%">
 							<p:commandButton id="btnAlterarProduto" value="Alterar"
-								update=":formAlterarProduto"
+								update=":formAlterarProduto :formFilter :messages"
 								actionListener="#{productMB.update}">
 								<p:confirm header="Produto" message="Confirmar alteração?" />
 							</p:commandButton>

@@ -87,6 +87,7 @@ public class ProductSaleTypeComplementor extends Complementor < Product > {
 
 				if( validCode ) {
 					saleTypeDAO.save( newSaleType );
+					p.setSaleType(newSaleType);
 				}
 
 			}

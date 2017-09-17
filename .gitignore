@@ -35,3 +35,5 @@
 /target
 /WEB-INF/classes
 >>>>>>> d5316386b7a92a556a518115e109789304303a97
+*.class
+*.jar

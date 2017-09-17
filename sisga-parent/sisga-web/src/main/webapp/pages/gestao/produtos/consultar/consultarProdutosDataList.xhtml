@@ -13,9 +13,10 @@
 			id="productTable"
 			value="#{productMB.productList}"
 			paginator="true"
+			paginatorPosition="bottom"
 			selection="#{productMB.selectedProduct}"
 			rowKey="#{prod.id}"
-			rows="15"
+			rows="15"			
 			style="width:100%">
 			<f:facet
 				name="header"
@@ -23,7 +24,7 @@
 				            Produtos
 				        </f:facet>
 
-			<p:column style="width:15%;text-align:center">
+			<p:column style="width:15%;text-align:center" sortBy="#{prod.description}">
 
 				<f:facet name="header">
 					<p:outputLabel value="Produto" />
@@ -33,7 +34,7 @@
 
 			</p:column>
 
-			<p:column style="width:15%;text-align:center">
+			<p:column style="width:15%;text-align:center " sortBy="#{prod.code}">
 
 				<f:facet name="header">
 					<p:outputLabel value="Código" />
@@ -43,24 +44,13 @@
 
 			</p:column>
 
-			<p:column style="width:15%;text-align:center">
+			<p:column style="width:15%;text-align:center" sortBy="#{prod.amount}">
 
 				<f:facet name="header">
 					<p:outputLabel value="Estoque" />
 				</f:facet>
 
 				<p:outputLabel value="#{prod.amount}" />
-
-			</p:column>
-
-			<p:column style="width:15%;text-align:center">
-
-				<f:facet name="header">
-					<p:outputLabel value="Foto" />
-				</f:facet>
-				<p:graphicImage
-					value="#{productMB.getImagePath(prod)}"
-					style="width:192px;heigth:192" />
 
 			</p:column>
 

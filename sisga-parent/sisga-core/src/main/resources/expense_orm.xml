@@ -4,94 +4,101 @@
 
 <hibernate-mapping>
 
-    <class name="com.sisga.domain.expense.ExpenseItem" table="TB_EXPENSE_ITEM">
-        <id name="id" column="IDEXPENSEITEM">
-            <generator class="sequence">
-        		<param name="sequence_name">SQ_EXPENSE_ITEM</param>
-        	</generator>            
-        </id>
-         <property name="code" column="CODE"/>
-        <property name="description" column="DESCRIPTION"/>
-     </class> 
-     
-     <class name="com.sisga.domain.expense.ExpenseType" table="TB_EXPENSE_TYPE">
-        <id name="id" column="IDEXPENSETYPE">
-            <generator class="sequence">
-        		<param name="sequence_name">SQ_EXPENSE_TYPE</param>
-        	</generator>            
-        </id>
-         <property name="code" column="CODE"/>
-        <property name="description" column="DESCRIPTION"/>
-     </class>
-     
-     <class name="com.sisga.domain.expense.ExpenseStatus" table="TB_EXPENSE_STATUS">
-        <id name="id" column="IDEXPENSESTATUS">
-            <generator class="sequence">
-        		<param name="sequence_name">SQ_EXPENSE_STATUS</param>
-        	</generator>            
-        </id>
-        <property name="code" column="CODE"/>
-        <property name="description" column="DESCRIPTION"/>
-     </class>
-     
-     <class name="com.sisga.domain.expense.ExpenseOperation" table="TB_EXPENSE_OPERATION">
-        <id name="id" column="IDEXPENSEOPERATION">
-            <generator class="sequence">
-        		<param name="sequence_name">SQ_EXPENSE_OPERATION</param>
-        	</generator>            
-        </id>
-        <property name="code" column="CODE"/>
-        <property name="description" column="DESCRIPTION"/>
-     </class>
-     
-     
+	<class name="com.sisga.domain.expense.ExpenseItem" table="TB_EXPENSE_ITEM">
+		<id name="id" column="IDEXPENSEITEM">
+			<generator class="sequence">
+				<param name="sequence_name">SQ_EXPENSE_ITEM</param>
+			</generator>
+		</id>
+		<property name="code" column="CODE" />
+		<property name="description" column="DESCRIPTION" />
+	</class>
+
+	<class name="com.sisga.domain.expense.ExpenseType" table="TB_EXPENSE_TYPE">
+		<id name="id" column="IDEXPENSETYPE">
+			<generator class="sequence">
+				<param name="sequence_name">SQ_EXPENSE_TYPE</param>
+			</generator>
+		</id>
+		<property name="code" column="CODE" />
+		<property name="description" column="DESCRIPTION" />
+	</class>
+
+	<class name="com.sisga.domain.expense.ExpenseStatus" table="TB_EXPENSE_STATUS">
+		<id name="id" column="IDEXPENSESTATUS">
+			<generator class="sequence">
+				<param name="sequence_name">SQ_EXPENSE_STATUS</param>
+			</generator>
+		</id>
+		<property name="code" column="CODE" />
+		<property name="description" column="DESCRIPTION" />
+	</class>
+
+	<class name="com.sisga.domain.expense.ExpenseOperation" table="TB_EXPENSE_OPERATION">
+		<id name="id" column="IDEXPENSEOPERATION">
+			<generator class="sequence">
+				<param name="sequence_name">SQ_EXPENSE_OPERATION</param>
+			</generator>
+		</id>
+		<property name="code" column="CODE" />
+		<property name="description" column="DESCRIPTION" />
+	</class>
+
+
 	<class name="com.sisga.domain.expense.Expense" table="TB_EXPENSE">
-        <id name="id" column="IDEXPENSE">
-            <generator class="sequence">
-        		<param name="sequence_name">SQ_EXPENSE</param>
-        	</generator>            
-        </id>
-        <property name="description" column="DESCRIPTION"/>
-        <property name="amount" column="AMOUNT"/>
-        <property name="unitValue" column="UNITVALUE"/>
-        <property name="serviceValue" column="SERVICEVALUE"/>
-        <property name="serviceDescription" column="SERVICEDESCRIPTION"/>
-        <property name="expenseDate" column="EXPENSEDATE"/>
-        <property name="insertDate" column="INSERTDATE"/>
-        <property name="active" column="ACTIVE"/>
-        
-        <many-to-one name="expenseItem" column="IDEXPENSEITEM" class="com.sisga.domain.expense.ExpenseItem" not-null="true" />
-        <many-to-one name="expenseType" column="IDEXPENSETYPE" class="com.sisga.domain.expense.ExpenseType" not-null="true" />
-        <many-to-one name="expenseStatus" column="IDEXPENSESTATUS" class="com.sisga.domain.expense.ExpenseStatus" not-null="true" />
-        <!--  Adicionar relacionamento com Provider -->
-        
-    </class>
-    
-    <class name="com.sisga.domain.expense.ExpenseHistory" table="TB_EXPENSE_HISTORY">
-        <id name="id" column="IDEXPENSEHISTORY">
-            <generator class="sequence">
-        		<param name="sequence_name">SQ_EXPENSE_HISTORY</param>
-        	</generator>            
-        </id>
-        <property name="description" column="DESCRIPTION"/>
-        <property name="amount" column="AMOUNT"/>
-        <property name="unitValue" column="UNITVALUE"/>
-        <property name="serviceValue" column="SERVICEVALUE"/>
-        <property name="serviceDescription" column="SERVICEDESCRIPTION"/>
-        <property name="expenseDate" column="EXPENSEDATE"/>
-        <property name="insertDate" column="INSERTDATE"/>
-        <property name="phoneDdd" column="DDD_PHONE"/>
-        <property name="phoneNumber" column="PHONE_NUMBER"/>
-        <property name="cellphoneDdd" column="DDD_CELLPHONE"/>
-        <property name="cellphoneNumber" column="CELLPHONE_NUMBER"/>
-        
-        <many-to-one name="expense" column="IDEXPENSE" class="com.sisga.domain.expense.Expense" not-null="true" />
-        <many-to-one name="expenseItem" column="IDEXPENSEITEM" class="com.sisga.domain.expense.ExpenseItem" not-null="true" />
-        <many-to-one name="expenseType" column="IDEXPENSETYPE" class="com.sisga.domain.expense.ExpenseType" not-null="true" />
-        <many-to-one name="expenseStatus" column="IDEXPENSESTATUS" class="com.sisga.domain.expense.ExpenseStatus" not-null="true" />
-        <!--  Adicionar relacionamento com Provider -->
-        
-    </class>
-    
+		<id name="id" column="IDEXPENSE">
+			<generator class="sequence">
+				<param name="sequence_name">SQ_EXPENSE</param>
+			</generator>
+		</id>
+		<property name="description" column="DESCRIPTION" />
+		<property name="amount" column="AMOUNT" />
+		<property name="unitValue" column="UNITVALUE" />
+		<property name="serviceValue" column="SERVICEVALUE" />
+		<property name="serviceDescription" column="SERVICEDESCRIPTION" />
+		<property name="expenseDate" column="EXPENSEDATE" />
+		<property name="insertDate" column="INSERTDATE" />
+		<property name="active" column="ACTIVE" />
+
+		<many-to-one name="expenseItem" column="IDEXPENSEITEM"
+			class="com.sisga.domain.expense.ExpenseItem" not-null="true" />
+		<many-to-one name="expenseType" column="IDEXPENSETYPE"
+			class="com.sisga.domain.expense.ExpenseType" not-null="true" />
+		<many-to-one name="expenseStatus" column="IDEXPENSESTATUS"
+			class="com.sisga.domain.expense.ExpenseStatus" not-null="true" />
+		<!-- Adicionar relacionamento com Provider -->
+
+	</class>
+
+	<class name="com.sisga.domain.expense.ExpenseHistory" table="TB_EXPENSE_HISTORY">
+		<id name="id" column="IDEXPENSEHISTORY">
+			<generator class="sequence">
+				<param name="sequence_name">SQ_EXPENSE_HISTORY</param>
+			</generator>
+		</id>
+		<property name="description" column="DESCRIPTION" />
+		<property name="amount" column="AMOUNT" />
+		<property name="unitValue" column="UNITVALUE" />
+		<property name="serviceValue" column="SERVICEVALUE" />
+		<property name="serviceDescription" column="SERVICEDESCRIPTION" />
+		<property name="expenseDate" column="EXPENSEDATE" />
+		<property name="insertDate" column="INSERTDATE" />
+		<property name="phoneDdd" column="DDD_PHONE" />
+		<property name="phoneNumber" column="PHONE_NUMBER" />
+		<property name="cellphoneDdd" column="DDD_CELLPHONE" />
+		<property name="cellphoneNumber" column="CELLPHONE_NUMBER" />
+
+		<many-to-one name="expense" column="IDEXPENSE"
+			class="com.sisga.domain.expense.Expense" not-null="true" />
+		<many-to-one name="expenseItem" column="IDEXPENSEITEM"
+			class="com.sisga.domain.expense.ExpenseItem" not-null="true" />
+		<many-to-one name="expenseType" column="IDEXPENSETYPE"
+			class="com.sisga.domain.expense.ExpenseType" not-null="true" />
+		<many-to-one name="expenseStatus" column="IDEXPENSESTATUS"
+			class="com.sisga.domain.expense.ExpenseStatus" not-null="true" />
+		<!-- Adicionar relacionamento com Provider -->
+
+	</class>
+
 
 </hibernate-mapping>

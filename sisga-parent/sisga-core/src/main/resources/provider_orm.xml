@@ -16,19 +16,20 @@
 		<property name="email" column="EMAIL" />
 		<property name="active" column="ACTIVE" />
 		<property name="insertDate" column="INSERTDATE" />
-		
-		
+
+
 		<component name="address" class="com.sisga.domain.address.Address">
-			<property name="neighborhood" type="string" column ="NEIGHBORHOOD" />
+			<property name="neighborhood" type="string" column="NEIGHBORHOOD" />
 			<property name="number" column="ANUMERIC" />
-			
+
 			<many-to-one name="city" column="IDCITY"
-				class="com.sisga.domain.address.City" not-null="true" 
-				cascade="save-update" lazy="false" />
+				class="com.sisga.domain.address.City" not-null="true" cascade="save-update"
+				lazy="false" />
 		</component>
-		
-		
-		<bag name="telephones" table="TB_PHONE" inverse="true" cascade="save-update" lazy="false">
+
+
+		<bag name="telephones" table="TB_PHONE" inverse="true" cascade="save-update"
+			lazy="false">
 			<key column="IDPROVIDER" />
 			<one-to-many class="com.sisga.domain.communication.Telephone" />
 		</bag>
@@ -55,13 +56,13 @@
 		<property name="email" column="EMAIL" />
 		<property name="active" column="ACTIVE" />
 		<property name="insertDate" column="INSERTDATE" />
-		
+
 		<many-to-one name="provider" column="IDPROVIDER"
 			class="com.sisga.domain.provider.Provider" not-null="true" />
 		<many-to-one name="providerOperation" column="IDOPERATION"
 			class="com.sisga.domain.provider.ProviderOperation" not-null="true" />
-		
-		
+
+
 		<component name="address" class="com.sisga.domain.address.Address">
 			<property name="neighborhood" type="string">
 				<column name="NEIGHBORHOOD" />
@@ -73,7 +74,7 @@
 				class="com.sisga.domain.address.City" not-null="true" lazy="false"
 				cascade="save-update" />
 		</component>
-		
+
 
 		<bag name="telephones" table="TB_PHONE" lazy="true">
 			<key column="IDPROVIDER" />

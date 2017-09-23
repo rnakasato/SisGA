@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	
+
 	<class name="com.sisga.domain.address.City" table="TB_CITY">
 		<id name="id" column="IDCITY">
 			<generator class="native" />
@@ -28,5 +28,5 @@
 		<property name="uf" column="UF" />
 
 	</class>
-	
+
 </hibernate-mapping>

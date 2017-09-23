@@ -32,7 +32,7 @@ import com.sisga.web.util.Redirector;
 /**
  * @author Sergio Massao Umiji 20 de mar de 2017
  */
-@ManagedBean(name = "providerMB")
+@ManagedBean( name = "providerMB" )
 @ViewScoped
 public class ProviderMB extends BaseMB {
 
@@ -40,7 +40,7 @@ public class ProviderMB extends BaseMB {
 
 	// utilizado para consulta de fornecedores
 	private ProviderFilter filter;
-	private List<Provider> providerList;
+	private List < Provider > providerList;
 
 	// utilizado para cadastrar e alterar fornecedores
 	private Provider provider;
@@ -49,12 +49,12 @@ public class ProviderMB extends BaseMB {
 	private boolean doUpdate;
 	private State selectedState;
 	private City selectedCity;
-	private List<City> cityList;
-	private List<State> stateList;
+	private List < City > cityList;
+	private List < State > stateList;
 	private String status;
 	private String st;
 	private boolean loadCity = false;
-	private List<String> statusList;
+	private List < String > statusList;
 
 	// Para manipulação de fornecedores
 	private Provider selectedProvider;
@@ -62,19 +62,19 @@ public class ProviderMB extends BaseMB {
 	@PostConstruct
 	public void init() {
 		filter = new ProviderFilter();
-		filter.setStatus("TODOS");
+		filter.setStatus( "TODOS" );
 		provider = new Provider();
-		newTelephonesCityState(provider);
+		newTelephonesCityState( provider );
 		cityList = getCities();
 		stateList = getStates();
 		doUpdate = false;
-		loadCity= false;
-		
+		loadCity = false;
+
 		statusList = new ArrayList();
-		statusList.add("ATIVO");
-		statusList.add("INATIVO");
-		st="ATIVO";
-		
+		statusList.add( "ATIVO" );
+		statusList.add( "INATIVO" );
+		st = "ATIVO";
+
 	}
 
 	// Métodos Operacionais
@@ -83,35 +83,35 @@ public class ProviderMB extends BaseMB {
 		ICommand commandSave;
 		try {
 
-			commandSave = FactoryCommand.build(provider, EOperation.SAVE);
+			commandSave = FactoryCommand.build( provider, EOperation.SAVE );
 			Result result = commandSave.execute();
 
 			FacesContext ctx = FacesContext.getCurrentInstance();
 
-			if (StringUtils.isNotEmpty(result.getMsg())) {
-				ctx.addMessage(null, new FacesMessage(result.getMsg(), result.getMsg()));
+			if( StringUtils.isNotEmpty( result.getMsg() ) ) {
+				ctx.addMessage( null, new FacesMessage( result.getMsg(), result.getMsg() ) );
 			} else {
-				ctx.addMessage(null, new FacesMessage("Fornecedor cadastrado com código: " + provider.getCode()));
+				ctx.addMessage( null, new FacesMessage( "Fornecedor cadastrado com código: " + provider.getCode() ) );
 
 				ProviderHistory history = new ProviderHistory();
-				history.setProvider(provider);
-				history.setOperationCode(ProviderOperation.CADASTRO_FORNECEDOR);
-				commandSave = FactoryCommand.build(history, EOperation.SAVE);
+				history.setProvider( provider );
+				history.setOperationCode( ProviderOperation.CADASTRO_FORNECEDOR );
+				commandSave = FactoryCommand.build( history, EOperation.SAVE );
 				Result historyResult = commandSave.execute();
 
-				if (StringUtils.isNotEmpty(result.getMsg())) {
-					ctx.addMessage(null, new FacesMessage(historyResult.getMsg(), historyResult.getMsg()));
+				if( StringUtils.isNotEmpty( result.getMsg() ) ) {
+					ctx.addMessage( null, new FacesMessage( historyResult.getMsg(), historyResult.getMsg() ) );
 				}
 
 				Flash flash = ctx.getExternalContext().getFlash();
-				flash.setKeepMessages(true);
-				flash.setRedirect(true);
-				Redirector.redirectTo(ctx.getExternalContext(),
-						"/pages/gestao/fornecedores/consultarFornecedores.jsf?faces-redirect=true");
+				flash.setKeepMessages( true );
+				flash.setRedirect( true );
+				Redirector.redirectTo( ctx.getExternalContext(),
+						"/pages/gestao/fornecedores/consultarFornecedores.jsf?faces-redirect=true" );
 
 			}
 
-		} catch (ClassNotFoundException e) {
+		} catch( ClassNotFoundException e ) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -122,268 +122,268 @@ public class ProviderMB extends BaseMB {
 		prepareUpdateProvider();
 		ICommand commandUpdate;
 		try {
-			commandUpdate = FactoryCommand.build(provider, EOperation.UPDATE);
+			commandUpdate = FactoryCommand.build( provider, EOperation.UPDATE );
 			Result result = commandUpdate.execute();
 
 			FacesContext ctx = FacesContext.getCurrentInstance();
 
-			if (StringUtils.isNotEmpty(result.getMsg())) {
-				ctx.addMessage(null, new FacesMessage(result.getMsg(), result.getMsg()));
+			if( StringUtils.isNotEmpty( result.getMsg() ) ) {
+				ctx.addMessage( null, new FacesMessage( result.getMsg(), result.getMsg() ) );
 			} else {
-				ctx.addMessage(null, new FacesMessage("Fornecedor Alterado"));
+				ctx.addMessage( null, new FacesMessage( "Fornecedor Alterado" ) );
 
 				ProviderHistory history = new ProviderHistory();
-				history.setProvider(provider);
-				history.setOperationCode(ProviderOperation.ALTERACAO_FORNECEDOR);
-				commandUpdate = FactoryCommand.build(history, EOperation.SAVE);
+				history.setProvider( provider );
+				history.setOperationCode( ProviderOperation.ALTERACAO_FORNECEDOR );
+				commandUpdate = FactoryCommand.build( history, EOperation.SAVE );
 				Result historyResult = commandUpdate.execute();
 
-				if (StringUtils.isNotEmpty(result.getMsg())) {
-					ctx.addMessage(null, new FacesMessage(historyResult.getMsg(), historyResult.getMsg()));
+				if( StringUtils.isNotEmpty( result.getMsg() ) ) {
+					ctx.addMessage( null, new FacesMessage( historyResult.getMsg(), historyResult.getMsg() ) );
 				}
 				Flash flash = ctx.getExternalContext().getFlash();
-				flash.setKeepMessages(true);
-				flash.setRedirect(true);
-				Redirector.redirectTo(ctx.getExternalContext(),
-						"/pages/gestao/fornecedores/consultarFornecedores.jsf?faces-redirect=true");
+				flash.setKeepMessages( true );
+				flash.setRedirect( true );
+				Redirector.redirectTo( ctx.getExternalContext(),
+						"/pages/gestao/fornecedores/consultarFornecedores.jsf?faces-redirect=true" );
 			}
 
-		} catch (ClassNotFoundException e) {
+		} catch( ClassNotFoundException e ) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
 
-	public void delete(Provider provider) {
+	public void delete( Provider provider ) {
 		ICommand commandUpdate;
 		try {
-			provider.setActive(false);
-			commandUpdate = FactoryCommand.build(provider, EOperation.UPDATE);
+			provider.setActive( false );
+			commandUpdate = FactoryCommand.build( provider, EOperation.UPDATE );
 			Result result = commandUpdate.execute();
 
 			FacesContext ctx = FacesContext.getCurrentInstance();
 
-			if (StringUtils.isNotEmpty(result.getMsg())) {
-				ctx.addMessage(null, new FacesMessage(result.getMsg(), result.getMsg()));
+			if( StringUtils.isNotEmpty( result.getMsg() ) ) {
+				ctx.addMessage( null, new FacesMessage( result.getMsg(), result.getMsg() ) );
 			} else {
-				ctx.addMessage(null, new FacesMessage("Fornecedor deletado"));
+				ctx.addMessage( null, new FacesMessage( "Fornecedor deletado" ) );
 
 				ProviderHistory history = new ProviderHistory();
-				history.setProvider(provider);
-				history.setOperationCode(ProviderOperation.EXCLUSAO_FORNECEDOR);
-				commandUpdate = FactoryCommand.build(history, EOperation.SAVE);
+				history.setProvider( provider );
+				history.setOperationCode( ProviderOperation.EXCLUSAO_FORNECEDOR );
+				commandUpdate = FactoryCommand.build( history, EOperation.SAVE );
 				Result historyResult = commandUpdate.execute();
 
-				if (StringUtils.isNotEmpty(result.getMsg())) {
-					ctx.addMessage(null, new FacesMessage(historyResult.getMsg(), historyResult.getMsg()));
+				if( StringUtils.isNotEmpty( result.getMsg() ) ) {
+					ctx.addMessage( null, new FacesMessage( historyResult.getMsg(), historyResult.getMsg() ) );
 				}
 				search();
 			}
 
-		} catch (ClassNotFoundException e) {
+		} catch( ClassNotFoundException e ) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	public void cancel() {
-		Redirector.redirectTo(FacesContext.getCurrentInstance().getExternalContext(),
-				"/pages/gestao/fornecedores/consultarFornecedores.jsf?faces-redirect=true");
+		Redirector.redirectTo( FacesContext.getCurrentInstance().getExternalContext(),
+				"/pages/gestao/fornecedores/consultarFornecedores.jsf?faces-redirect=true" );
 
 	}
 
 	public void search() {
 		try {
-			ICommand commandFind = FactoryCommand.build(filter, EOperation.FIND);
+			ICommand commandFind = FactoryCommand.build( filter, EOperation.FIND );
 			providerList = commandFind.execute().getEntityList();
-			if (providerList != null && !providerList.isEmpty()) {
-				for (int i = 0; i < providerList.size(); i++) {
-					providerList.get(i).getTelephones().get(0)
-							.setPnumber(providerList.get(i).getTelephones().get(0).getDdd()
-									+ providerList.get(i).getTelephones().get(0).getPnumber());
-					providerList.get(i).getTelephones().get(1)
-							.setPnumber(providerList.get(i).getTelephones().get(1).getDdd()
-									+ providerList.get(i).getTelephones().get(1).getPnumber());
+			if( providerList != null && ! providerList.isEmpty() ) {
+				for( int i = 0; i < providerList.size(); i ++ ) {
+					providerList.get( i ).getTelephones().get( 0 )
+							.setPnumber( providerList.get( i ).getTelephones().get( 0 ).getDdd()
+									+ providerList.get( i ).getTelephones().get( 0 ).getPnumber() );
+					providerList.get( i ).getTelephones().get( 1 )
+							.setPnumber( providerList.get( i ).getTelephones().get( 1 ).getDdd()
+									+ providerList.get( i ).getTelephones().get( 1 ).getPnumber() );
 				}
 			}
 
-		} catch (ClassNotFoundException e) {
+		} catch( ClassNotFoundException e ) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	// Métodos de view (para auxiliar carregamentos de dados na view)
-	public void redirectToProviderUpdate(Provider provider) {
+	public void redirectToProviderUpdate( Provider provider ) {
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		ExternalContext context = ctx.getExternalContext();
-		if (provider != null) {
+		if( provider != null ) {
 
-			context.getFlash().put("provider", provider);
+			context.getFlash().put( "provider", provider );
 			StringBuilder sb = new StringBuilder();
-			sb.append("/pages/gestao/fornecedores/alterarFornecedores.jsf?faces-redirect=true");
-			sb.append("&providerCode=");
-			sb.append(provider.getId());
+			sb.append( "/pages/gestao/fornecedores/alterarFornecedores.jsf?faces-redirect=true" );
+			sb.append( "&providerCode=" );
+			sb.append( provider.getId() );
 
 			String url = sb.toString();
-			Redirector.redirectTo(context, url);
+			Redirector.redirectTo( context, url );
 
 		} else {
-			ctx.addMessage(null, new FacesMessage("Selecione um fornecedor para alterar"));
+			ctx.addMessage( null, new FacesMessage( "Selecione um fornecedor para alterar" ) );
 		}
 	}
 
 	public void loadProvider() {
 		try {
-			if (loadCity == false) {
+			if( loadCity == false ) {
 				doUpdate = true;
-				if (!StringUtils.isEmpty(code)) {
+				if( ! StringUtils.isEmpty( code ) ) {
 					ProviderFilter filter = new ProviderFilter();
-					filter.setId(Long.valueOf(code));
-					filter.setStatus("TODOS");
+					filter.setId( Long.valueOf( code ) );
+					filter.setStatus( "TODOS" );
 					ICommand commandFind;
-					commandFind = FactoryCommand.build(filter, EOperation.FIND);
-					List<Provider> providerList = commandFind.execute().getEntityList();
-					if (providerList != null && !providerList.isEmpty()) {
-						provider = providerList.get(0);
-						provider.getTelephones().get(0).setPnumber(provider.getTelephones().get(0).getDdd()
-								+ provider.getTelephones().get(0).getPnumber());
-						provider.getTelephones().get(1).setPnumber(provider.getTelephones().get(1).getDdd()
-								+ provider.getTelephones().get(1).getPnumber());
+					commandFind = FactoryCommand.build( filter, EOperation.FIND );
+					List < Provider > providerList = commandFind.execute().getEntityList();
+					if( providerList != null && ! providerList.isEmpty() ) {
+						provider = providerList.get( 0 );
+						provider.getTelephones().get( 0 ).setPnumber( provider.getTelephones().get( 0 ).getDdd()
+								+ provider.getTelephones().get( 0 ).getPnumber() );
+						provider.getTelephones().get( 1 ).setPnumber( provider.getTelephones().get( 1 ).getDdd()
+								+ provider.getTelephones().get( 1 ).getPnumber() );
 
-						for (int i = 0; i < (stateList.size()); i++) {
-							if (providerList.get(0).getAddress().getCity().getState().getUf()
-									.equals(stateList.get(i).getUf())) {
-								selectedState = stateList.get(i);
+						for( int i = 0; i < ( stateList.size() ); i ++ ) {
+							if( providerList.get( 0 ).getAddress().getCity().getState().getUf()
+									.equals( stateList.get( i ).getUf() ) ) {
+								selectedState = stateList.get( i );
 
 								City city = new City();
-								city.setUf(selectedState.getUf());
-								List<City> cityList = new ArrayList<City>();
+								city.setUf( selectedState.getUf() );
+								List < City > cityList = new ArrayList < City >();
 								try {
-									commandFind = FactoryCommand.build(city, EOperation.FIND);
+									commandFind = FactoryCommand.build( city, EOperation.FIND );
 									cityList = commandFind.execute().getEntityList();
-								} catch (ClassNotFoundException e) {
+								} catch( ClassNotFoundException e ) {
 
 									e.printStackTrace();
 								}
 
 								this.cityList = cityList;
-								selectedCity = providerList.get(0).getAddress().getCity();
-								loadCity=true;
-								
-								if(providerList.get(0).isActive()){
-									st="ATIVO";
-								}else{
-									st="INATIVO";
+								selectedCity = providerList.get( 0 ).getAddress().getCity();
+								loadCity = true;
+
+								if( providerList.get( 0 ).isActive() ) {
+									st = "ATIVO";
+								} else {
+									st = "INATIVO";
 								}
 							}
 						}
 					}
 				}
 			}
-		} catch (ClassNotFoundException e) {
+		} catch( ClassNotFoundException e ) {
 			e.printStackTrace();
 		}
 
 	}
 
-	private Provider newTelephonesCityState(Provider provider) {
-		provider.setTelephones(new ArrayList<Telephone>());
-		provider.setTelephones(new ArrayList<Telephone>());
-		provider.getTelephones().add(new Telephone());
-		provider.getTelephones().add(new Telephone());
-		provider.getTelephones().get(0).setPhoneType(new PhoneType());
-		provider.getTelephones().get(1).setPhoneType(new PhoneType());
+	private Provider newTelephonesCityState( Provider provider ) {
+		provider.setTelephones( new ArrayList < Telephone >() );
+		provider.setTelephones( new ArrayList < Telephone >() );
+		provider.getTelephones().add( new Telephone() );
+		provider.getTelephones().add( new Telephone() );
+		provider.getTelephones().get( 0 ).setPhoneType( new PhoneType() );
+		provider.getTelephones().get( 1 ).setPhoneType( new PhoneType() );
 
-		provider.getTelephones().get(0).getPhoneType().setCode(PhoneType.TELEFONE);
-		provider.getTelephones().get(0).getPhoneType().setId(1L);
+		provider.getTelephones().get( 0 ).getPhoneType().setCode( PhoneType.TELEFONE );
+		provider.getTelephones().get( 0 ).getPhoneType().setId( 1L );
 
-		provider.getTelephones().get(1).getPhoneType().setCode(PhoneType.CELULAR);
-		provider.getTelephones().get(1).getPhoneType().setId(2L);
+		provider.getTelephones().get( 1 ).getPhoneType().setCode( PhoneType.CELULAR );
+		provider.getTelephones().get( 1 ).getPhoneType().setId( 2L );
 
-		provider.setAddress(new Address());
-		provider.getAddress().setCity(new City());
+		provider.setAddress( new Address() );
+		provider.getAddress().setCity( new City() );
 
 		this.provider = provider;
 		return this.provider;
 	}
 
-	private List<City> getCities() {
-		List<City> city = new ArrayList<City>();
+	private List < City > getCities() {
+		List < City > city = new ArrayList < City >();
 		try {
 			ICommand commandFind;
-			commandFind = FactoryCommand.build(new City(), EOperation.FINDALL);
+			commandFind = FactoryCommand.build( new City(), EOperation.FINDALL );
 			city = commandFind.execute().getEntityList();
-		} catch (ClassNotFoundException e) {
+		} catch( ClassNotFoundException e ) {
 			e.printStackTrace();
 		}
 		return city;
 	}
 
-	private List<State> getStates() {
-		List<State> states = new ArrayList<State>();
+	private List < State > getStates() {
+		List < State > states = new ArrayList < State >();
 		try {
 			ICommand commandFind;
-			commandFind = FactoryCommand.build(new State(), EOperation.FINDALL);
+			commandFind = FactoryCommand.build( new State(), EOperation.FINDALL );
 			states = commandFind.execute().getEntityList();
 
-		} catch (ClassNotFoundException e) {
+		} catch( ClassNotFoundException e ) {
 			e.printStackTrace();
 		}
 		return states;
 	}
 
-	public void loadCities(AjaxBehaviorEvent event) {
+	public void loadCities( AjaxBehaviorEvent event ) {
 		City city = new City();
-		city.setUf(selectedState.getUf());
-		List<City> cityList = new ArrayList<City>();
+		city.setUf( selectedState.getUf() );
+		List < City > cityList = new ArrayList < City >();
 		try {
 			ICommand commandFind;
-			commandFind = FactoryCommand.build(city, EOperation.FIND);
+			commandFind = FactoryCommand.build( city, EOperation.FIND );
 			cityList = commandFind.execute().getEntityList();
-		} catch (ClassNotFoundException e) {
+		} catch( ClassNotFoundException e ) {
 			e.printStackTrace();
 		}
 		this.cityList = cityList;
-		selectedCity = cityList.get(0);
+		selectedCity = cityList.get( 0 );
 
 		loadCity = true;
 	}
 
-	public void viewDetails(Provider provider) {
+	public void viewDetails( Provider provider ) {
 		selectedProvider = provider;
 	}
 
 	private Provider prepareSaveProvider() {
-		tel = provider.getTelephones().get(0).getPnumber();
-		String[] dddtel = tel.split(" ");
-		provider.getTelephones().get(0).setDdd(dddtel[0].substring(1, 3));
-		provider.getTelephones().get(0).setPnumber(dddtel[1].replace("-", ""));
+		tel = provider.getTelephones().get( 0 ).getPnumber();
+		String[] dddtel = tel.split( " " );
+		provider.getTelephones().get( 0 ).setDdd( dddtel[0].substring( 1, 3 ) );
+		provider.getTelephones().get( 0 ).setPnumber( dddtel[1].replace( "-", "" ) );
 
-		tel = provider.getTelephones().get(1).getPnumber();
-		dddtel = tel.split(" ");
-		provider.getTelephones().get(1).setDdd(dddtel[0].substring(1, 3));
-		provider.getTelephones().get(1).setPnumber(dddtel[1].replace("-", ""));
+		tel = provider.getTelephones().get( 1 ).getPnumber();
+		dddtel = tel.split( " " );
+		provider.getTelephones().get( 1 ).setDdd( dddtel[0].substring( 1, 3 ) );
+		provider.getTelephones().get( 1 ).setPnumber( dddtel[1].replace( "-", "" ) );
 
 		return provider;
 	}
 
 	private Provider prepareUpdateProvider() {
-		tel = provider.getTelephones().get(0).getPnumber();
-		String[] dddtel = tel.split(" ");
-		provider.getTelephones().get(0).setDdd(dddtel[0].substring(1, 3));
-		provider.getTelephones().get(0).setPnumber(dddtel[1].replace("-", ""));
+		tel = provider.getTelephones().get( 0 ).getPnumber();
+		String[] dddtel = tel.split( " " );
+		provider.getTelephones().get( 0 ).setDdd( dddtel[0].substring( 1, 3 ) );
+		provider.getTelephones().get( 0 ).setPnumber( dddtel[1].replace( "-", "" ) );
 
-		tel = provider.getTelephones().get(1).getPnumber();
-		dddtel = tel.split(" ");
-		provider.getTelephones().get(1).setDdd(dddtel[0].substring(1, 3));
-		provider.getTelephones().get(1).setPnumber(dddtel[1].replace("-", ""));
+		tel = provider.getTelephones().get( 1 ).getPnumber();
+		dddtel = tel.split( " " );
+		provider.getTelephones().get( 1 ).setDdd( dddtel[0].substring( 1, 3 ) );
+		provider.getTelephones().get( 1 ).setPnumber( dddtel[1].replace( "-", "" ) );
 
-		if (status.equals("ATIVO")) {
-			provider.setActive(true);
-		} else if (status.equals("INATIVO")) {
-			provider.setActive(false);
+		if( status.equals( "ATIVO" ) ) {
+			provider.setActive( true );
+		} else if( status.equals( "INATIVO" ) ) {
+			provider.setActive( false );
 		}
 
 		return provider;
@@ -392,7 +392,7 @@ public class ProviderMB extends BaseMB {
 	@Override
 	public void clearFilter() {
 		filter = new ProviderFilter();
-		filter.setStatus("TODOS");
+		filter.setStatus( "TODOS" );
 		;
 	}
 
@@ -402,15 +402,15 @@ public class ProviderMB extends BaseMB {
 		return filter;
 	}
 
-	public void setFilter(ProviderFilter filter) {
+	public void setFilter( ProviderFilter filter ) {
 		this.filter = filter;
 	}
 
-	public List<Provider> getProviderList() {
+	public List < Provider > getProviderList() {
 		return providerList;
 	}
 
-	public void setProviderList(List<Provider> providerList) {
+	public void setProviderList( List < Provider > providerList ) {
 		this.providerList = providerList;
 	}
 
@@ -418,7 +418,7 @@ public class ProviderMB extends BaseMB {
 		return selectedState;
 	}
 
-	public void setSelectedState(State selectedState) {
+	public void setSelectedState( State selectedState ) {
 		this.selectedState = selectedState;
 	}
 
@@ -426,7 +426,7 @@ public class ProviderMB extends BaseMB {
 		return provider;
 	}
 
-	public void setProvider(Provider provider) {
+	public void setProvider( Provider provider ) {
 		this.provider = provider;
 	}
 
@@ -434,7 +434,7 @@ public class ProviderMB extends BaseMB {
 		return code;
 	}
 
-	public void setCode(String code) {
+	public void setCode( String code ) {
 		this.code = code;
 	}
 
@@ -442,7 +442,7 @@ public class ProviderMB extends BaseMB {
 		return doUpdate;
 	}
 
-	public void setDoUpdate(boolean doUpdate) {
+	public void setDoUpdate( boolean doUpdate ) {
 		this.doUpdate = doUpdate;
 	}
 
@@ -450,7 +450,7 @@ public class ProviderMB extends BaseMB {
 		return selectedProvider;
 	}
 
-	public void setSelectedProvider(Provider selectedProvider) {
+	public void setSelectedProvider( Provider selectedProvider ) {
 		this.selectedProvider = selectedProvider;
 	}
 
@@ -458,19 +458,19 @@ public class ProviderMB extends BaseMB {
 		return serialVersionUID;
 	}
 
-	public List<City> getCityList() {
+	public List < City > getCityList() {
 		return cityList;
 	}
 
-	public void setCityList(List<City> cityList) {
+	public void setCityList( List < City > cityList ) {
 		this.cityList = cityList;
 	}
 
-	public List<State> getStateList() {
+	public List < State > getStateList() {
 		return stateList;
 	}
 
-	public void setStateList(List<State> stateList) {
+	public void setStateList( List < State > stateList ) {
 		this.stateList = stateList;
 	}
 
@@ -478,31 +478,23 @@ public class ProviderMB extends BaseMB {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus( String status ) {
 		this.status = status;
-	}
-
-	public boolean isSt() {
-		return st;
-	}
-
-	public void setSt(boolean st) {
-		this.st = st;
 	}
 
 	public City getSelectedCity() {
 		return selectedCity;
 	}
 
-	public void setSelectedCity(City selectedCity) {
+	public void setSelectedCity( City selectedCity ) {
 		this.selectedCity = selectedCity;
 	}
 
-	public List<String> getStatusList() {
+	public List < String > getStatusList() {
 		return statusList;
 	}
 
-	public void setStatusList(List<String> statusList) {
+	public void setStatusList( List < String > statusList ) {
 		this.statusList = statusList;
 	}
 

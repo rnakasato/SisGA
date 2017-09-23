@@ -60,6 +60,7 @@ html, body {
 	border-left:none  !important;
 	margin-left:-18px;
 	margin-right:-2px;
+	background: white;
 }
 
 .ui-fieldset.fieldset-search .ui-fieldset-legend{

@@ -80,7 +80,7 @@ public class EmployeeMB extends BaseMB {
 			if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 				ctx.addMessage( null, new FacesMessage( result.getMsg(), result.getMsg() ) );
 			} else {
-				ctx.addMessage( null, new FacesMessage( Message.getMessage( "com.sisga.web.employee.info.saved", Message.INFO, employee ) + employee.getCode() ) );
+				ctx.addMessage( null, new FacesMessage( "Funcionário cadastrado com código: " + employee.getCode() ) );
 
 				ICommand commandSaveH;
 				EmployeeHistory history = new EmployeeHistory();
@@ -119,7 +119,8 @@ public class EmployeeMB extends BaseMB {
 			if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 				ctx.addMessage( null, new FacesMessage( result.getMsg(), result.getMsg() ) );
 			} else {
-				ctx.addMessage( null, new FacesMessage( Message.getMessage( "com.sisga.web.employee.info.updated", Message.INFO, employee ) ) );
+				ctx.addMessage( null, new FacesMessage(
+						Message.getMessage( "com.sisga.web.employee.info.updated", Message.INFO, employee ) ) );
 
 				EmployeeHistory history = new EmployeeHistory();
 				history.setEmployee( employee );
@@ -155,7 +156,8 @@ public class EmployeeMB extends BaseMB {
 			if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 				ctx.addMessage( null, new FacesMessage( result.getMsg(), result.getMsg() ) );
 			} else {
-				ctx.addMessage( null, new FacesMessage( Message.getMessage( "com.sisga.web.employee.info.deleted", Message.INFO, employee ) ) );
+				ctx.addMessage( null, new FacesMessage(
+						Message.getMessage( "com.sisga.web.employee.info.deleted", Message.INFO, employee ) ) );
 
 				EmployeeHistory history = new EmployeeHistory();
 				history.setEmployee( employee );
@@ -184,6 +186,16 @@ public class EmployeeMB extends BaseMB {
 		try {
 			ICommand commandFind = FactoryCommand.build( filter, EOperation.FIND );
 			employeeList = commandFind.execute().getEntityList();
+			if( employeeList != null && ! employeeList.isEmpty() ) {
+				for( int i = 0; i < employeeList.size(); i ++ ) {
+					employeeList.get( i ).getTelephones().get( 0 )
+							.setPnumber( employeeList.get( i ).getTelephones().get( 0 ).getDdd()
+									+ employeeList.get( i ).getTelephones().get( 0 ).getPnumber() );
+					employeeList.get( i ).getTelephones().get( 1 )
+							.setPnumber( employeeList.get( i ).getTelephones().get( 1 ).getDdd()
+									+ employeeList.get( i ).getTelephones().get( 1 ).getPnumber() );
+				}
+			}
 
 		} catch( ClassNotFoundException e ) {
 			e.printStackTrace();
@@ -206,7 +218,8 @@ public class EmployeeMB extends BaseMB {
 			Redirector.redirectTo( context, url );
 
 		} else {
-			ctx.addMessage( null, new FacesMessage( Message.getMessage( "com.sisga.web.employee.info.select.employee", Message.INFO, employee ) ) );
+			ctx.addMessage( null, new FacesMessage(
+					Message.getMessage( "com.sisga.web.employee.info.select.employee", Message.INFO, employee ) ) );
 		}
 	}
 
@@ -221,6 +234,11 @@ public class EmployeeMB extends BaseMB {
 				List < Employee > employeeList = commandFind.execute().getEntityList();
 				if( employeeList != null && ! employeeList.isEmpty() ) {
 					employee = employeeList.get( 0 );
+					employee.getTelephones().get( 0 ).setPnumber( employee.getTelephones().get( 0 ).getDdd()
+							+ employee.getTelephones().get( 0 ).getPnumber() );
+					employee.getTelephones().get( 1 ).setPnumber( employee.getTelephones().get( 1 ).getDdd()
+							+ employee.getTelephones().get( 1 ).getPnumber() );
+
 				}
 			}
 
@@ -290,6 +308,22 @@ public class EmployeeMB extends BaseMB {
 	}
 
 	private Employee prepareUpdateEmployee() {
+		String tel = employee.getTelephones().get( 0 ).getPnumber();
+		String[] dddtel = tel.split( " " );
+		employee.getTelephones().get( 0 ).setDdd( dddtel[0].substring( 1, 3 ) );
+		employee.getTelephones().get( 0 ).setPnumber( dddtel[1].replace( "-", "" ) );
+
+		tel = employee.getTelephones().get( 1 ).getPnumber();
+		dddtel = tel.split( " " );
+		employee.getTelephones().get( 1 ).setDdd( dddtel[0].substring( 1, 3 ) );
+		employee.getTelephones().get( 1 ).setPnumber( dddtel[1].replace( "-", "" ) );
+
+		if( status.equals( "ATIVO" ) ) {
+			employee.setActive( true );
+		} else if( status.equals( "INATIVO" ) ) {
+			employee.setActive( false );
+		}
+
 		return employee;
 	}
 

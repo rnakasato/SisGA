@@ -44,7 +44,7 @@ public class FactoryCommand {
 	}
 
 	private static void initCommands() {
-		commandMap = new HashMap<>();
+		commandMap = new HashMap <>();
 		commandMap.put( EOperation.SAVE, new CommandSave() );
 		commandMap.put( EOperation.UPDATE, new CommandUpdate() );
 		commandMap.put( EOperation.DELETE, new CommandDelete() );

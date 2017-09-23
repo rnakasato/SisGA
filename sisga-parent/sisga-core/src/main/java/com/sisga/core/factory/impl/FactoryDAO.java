@@ -59,7 +59,7 @@ public class FactoryDAO {
 
 	private static void initMap() {
 		if( daoMap == null ) {
-			daoMap = new HashMap<>();
+			daoMap = new HashMap <>();
 
 			// Product DAOs
 			daoMap.put( Product.class.getName(), new ProductDAO() );

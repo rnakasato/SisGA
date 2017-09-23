@@ -6,81 +6,90 @@
 
 
 	<class name="com.sisga.domain.product.StockType" table="TB_STOCK_TYPE">
-        <id name="id" column="IDSTOCKTYPE">
-            <generator class="sequence">
-        		<param name="sequence_name">SQ_STOCK_TYPE</param>
-        	</generator>            
-        </id>
-        <property name="code" column="CODE"/>
-        <property name="description" column="DESCRIPTION"/>
-    </class>
-    
-    <class name="com.sisga.domain.product.ProductionType" table="TB_PRODUCTION_TYPE">
-        <id name="id" column="IDPRODUCTIONTYPE">
-        	<generator class="sequence">
-        		<param name="sequence_name">SQ_PRODUCTION_TYPE</param>
-        	</generator>            
-        </id>
-        <property name="code"  column="CODE"/>
-        <property name="description" column="DESCRIPTION"/>       
-    </class>
-    
-    <class name="com.sisga.domain.product.SaleType" table="TB_SALE_TYPE">
-        <id name="id" column="IDSALETYPE">
-            <generator class="sequence">
-        		<param name="sequence_name">SQ_SALE_TYPE</param>
-        	</generator>            
-        </id>
-        <property name="code" column="CODE"/>
-        <property name="description" column="DESCRIPTION"/>
-    </class>
-    
-    <class name="com.sisga.domain.product.Product" table="TB_PRODUCT">
-        <id name="id" column="IDPRODUCT">
-            <generator class="sequence">
-        		<param name="sequence_name">SQ_PRODUCT</param>
-        	</generator>            
-        </id>
-        <property name="insertDate" column="INSERTDATE"/>
-        <property name="code" column="CODE"/>
-        <property name="description" column="DESCRIPTION"/>
-        <property name="photo" column="PHOTO"/>
-        <property name="amount" column="AMOUNT"/>
-        <property name="baseValue" column="BASEVALUE"/>
-        <property name="active" column="ACTIVE"/>
-        <many-to-one name="productionType" column="IDPRODUCTIONTYPE" class="com.sisga.domain.product.ProductionType" not-null="true" lazy="false" />
-        <many-to-one name="saleType" column="IDSALETYPE" class="com.sisga.domain.product.SaleType" not-null="true" cascade="save-update" lazy="false" />
-        <many-to-one name="stockType" column="IDSTOCKTYPE" class="com.sisga.domain.product.StockType" not-null="true" lazy="false" />        
-    </class>  
-    
-    <class name="com.sisga.domain.product.ProductOperation" table="TB_PRODUCT_OPERATION">
-        <id name="id" column="IDOPERATION">
-            <generator class="sequence">
-        		<param name="sequence_name">SQ_PRODUCT_OPERATION</param>
-        	</generator>            
-        </id>
-        <property name="code" column="CODE"/>
-        <property name="description" column="DESCRIPTION"/>       
-    </class>  
-    
-    <class name="com.sisga.domain.product.ProductHistory" table="TB_PRODUCT_HISTORY">
-        <id name="id" column="IDPRODUCTHISTORY">
-            <generator class="sequence">
-        		<param name="sequence_name">SQ_PRODUCT_HISTORY</param>
-        	</generator>            
-        </id>
-        <property name="insertDate" column="INSERTDATE"/>
-        <property name="description" column="DESCRIPTION"/>
-        <property name="photo" column="PHOTO"/>
-        <property name="amount" column="AMOUNT"/>
-        <property name="baseValue" column="BASEVALUE"/>
-        <many-to-one name="productionType" column="IDPRODUCTIONTYPE" class="com.sisga.domain.product.ProductionType" not-null="true" />
-        <many-to-one name="productOperation" column="IDOPERATION" class="com.sisga.domain.product.ProductOperation" not-null="true" />
-        <many-to-one name="saleType" column="IDSALETYPE" class="com.sisga.domain.product.SaleType" not-null="true" />
-        <many-to-one name="stockType" column="IDSTOCKTYPE" class="com.sisga.domain.product.StockType" not-null="true" />        
-        <many-to-one name="product" column="IDPRODUCT" class="com.sisga.domain.product.Product" not-null="true" />
-    </class> 
-    
+		<id name="id" column="IDSTOCKTYPE">
+			<generator class="sequence">
+				<param name="sequence_name">SQ_STOCK_TYPE</param>
+			</generator>
+		</id>
+		<property name="code" column="CODE" />
+		<property name="description" column="DESCRIPTION" />
+	</class>
+
+	<class name="com.sisga.domain.product.ProductionType" table="TB_PRODUCTION_TYPE">
+		<id name="id" column="IDPRODUCTIONTYPE">
+			<generator class="sequence">
+				<param name="sequence_name">SQ_PRODUCTION_TYPE</param>
+			</generator>
+		</id>
+		<property name="code" column="CODE" />
+		<property name="description" column="DESCRIPTION" />
+	</class>
+
+	<class name="com.sisga.domain.product.SaleType" table="TB_SALE_TYPE">
+		<id name="id" column="IDSALETYPE">
+			<generator class="sequence">
+				<param name="sequence_name">SQ_SALE_TYPE</param>
+			</generator>
+		</id>
+		<property name="code" column="CODE" />
+		<property name="description" column="DESCRIPTION" />
+	</class>
+
+	<class name="com.sisga.domain.product.Product" table="TB_PRODUCT">
+		<id name="id" column="IDPRODUCT">
+			<generator class="sequence">
+				<param name="sequence_name">SQ_PRODUCT</param>
+			</generator>
+		</id>
+		<property name="insertDate" column="INSERTDATE" />
+		<property name="code" column="CODE" />
+		<property name="description" column="DESCRIPTION" />
+		<property name="photo" column="PHOTO" />
+		<property name="amount" column="AMOUNT" />
+		<property name="baseValue" column="BASEVALUE" />
+		<property name="active" column="ACTIVE" />
+		<many-to-one name="productionType" column="IDPRODUCTIONTYPE"
+			class="com.sisga.domain.product.ProductionType" not-null="true" lazy="false" />
+		<many-to-one name="saleType" column="IDSALETYPE"
+			class="com.sisga.domain.product.SaleType" not-null="true" cascade="save-update"
+			lazy="false" />
+		<many-to-one name="stockType" column="IDSTOCKTYPE"
+			class="com.sisga.domain.product.StockType" not-null="true" lazy="false" />
+	</class>
+
+	<class name="com.sisga.domain.product.ProductOperation" table="TB_PRODUCT_OPERATION">
+		<id name="id" column="IDOPERATION">
+			<generator class="sequence">
+				<param name="sequence_name">SQ_PRODUCT_OPERATION</param>
+			</generator>
+		</id>
+		<property name="code" column="CODE" />
+		<property name="description" column="DESCRIPTION" />
+	</class>
+
+	<class name="com.sisga.domain.product.ProductHistory" table="TB_PRODUCT_HISTORY">
+		<id name="id" column="IDPRODUCTHISTORY">
+			<generator class="sequence">
+				<param name="sequence_name">SQ_PRODUCT_HISTORY</param>
+			</generator>
+		</id>
+		<property name="insertDate" column="INSERTDATE" />
+		<property name="description" column="DESCRIPTION" />
+		<property name="photo" column="PHOTO" />
+		<property name="amount" column="AMOUNT" />
+		<property name="baseValue" column="BASEVALUE" />
+		<many-to-one name="productionType" column="IDPRODUCTIONTYPE"
+			class="com.sisga.domain.product.ProductionType" not-null="true" />
+		<many-to-one name="productOperation" column="IDOPERATION"
+			class="com.sisga.domain.product.ProductOperation" not-null="true" />
+		<many-to-one name="saleType" column="IDSALETYPE"
+			class="com.sisga.domain.product.SaleType" not-null="true" />
+		<many-to-one name="stockType" column="IDSTOCKTYPE"
+			class="com.sisga.domain.product.StockType" not-null="true" />
+		<many-to-one name="product" column="IDPRODUCT"
+			class="com.sisga.domain.product.Product" not-null="true" />
+	</class>
+
 
 
 </hibernate-mapping>

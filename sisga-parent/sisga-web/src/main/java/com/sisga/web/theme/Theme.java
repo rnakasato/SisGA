@@ -1,6 +1,5 @@
 package com.sisga.web.theme;
 
-
 public class Theme {
 
 	private int id;
@@ -12,7 +11,7 @@ public class Theme {
 	public Theme() {
 	}
 
-	public Theme(int id, String displayName, String name) {
+	public Theme( int id, String displayName, String name ) {
 		this.id = id;
 		this.displayName = displayName;
 		this.name = name;
@@ -22,7 +21,7 @@ public class Theme {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId( int id ) {
 		this.id = id;
 	}
 
@@ -30,7 +29,7 @@ public class Theme {
 		return displayName;
 	}
 
-	public void setDisplayName(String displayName) {
+	public void setDisplayName( String displayName ) {
 		this.displayName = displayName;
 	}
 
@@ -38,7 +37,7 @@ public class Theme {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName( String name ) {
 		this.name = name;
 	}
 

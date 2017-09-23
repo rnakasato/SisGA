@@ -6,27 +6,28 @@
 
 
 	<class name="com.sisga.domain.user.UserType" table="TB_USER_TYPE">
-        <id name="id" column="IDUSER">
-            <generator class="sequence">
-        		<param name="sequence_name">SQ_USER_TYPE</param>
-        	</generator>            
-        </id>
-        <property name="code" column="CODE"/>
-        <property name="description" column="DESCRIPTION"/>
-    </class>
-      
-    
-    <class name="com.sisga.domain.user.User" table="TB_USER">
-        <id name="id" column="IDUSER">
-            <generator class="sequence">
-        		<param name="sequence_name">SQ_USER</param>
-        	</generator>            
-        </id>
-        <property name="insertDate" column="INSERTDATE"/>
-        <property name="firstName" column="FIRSTNAME"/>
-        <property name="lastName" column="LASTNAME"/>
-        <many-to-one name="userType" column="IDUSERTYPE" class="com.sisga.domain.user.UserType" not-null="true" />
-        
+		<id name="id" column="IDUSER">
+			<generator class="sequence">
+				<param name="sequence_name">SQ_USER_TYPE</param>
+			</generator>
+		</id>
+		<property name="code" column="CODE" />
+		<property name="description" column="DESCRIPTION" />
+	</class>
+
+
+	<class name="com.sisga.domain.user.User" table="TB_USER">
+		<id name="id" column="IDUSER">
+			<generator class="sequence">
+				<param name="sequence_name">SQ_USER</param>
+			</generator>
+		</id>
+		<property name="insertDate" column="INSERTDATE" />
+		<property name="firstName" column="FIRSTNAME" />
+		<property name="lastName" column="LASTNAME" />
+		<many-to-one name="userType" column="IDUSERTYPE"
+			class="com.sisga.domain.user.UserType" not-null="true" />
+
 		<component name="address" class="com.sisga.domain.address.Address">
 			<property name="neighborhood" type="string">
 				<column name="NEIGHBORHOOD" />
@@ -38,9 +39,9 @@
 				class="com.sisga.domain.address.City" not-null="true" lazy="false"
 				cascade="save-update" />
 		</component>
-		
-    </class>   
-    
-   
+
+	</class>
+
+
 
 </hibernate-mapping>

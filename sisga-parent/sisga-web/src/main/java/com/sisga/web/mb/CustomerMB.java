@@ -49,6 +49,8 @@ public class CustomerMB extends BaseMB {
 	private Customer customer;
 	private String status;
 	private String code;
+	private String telefone;
+	private String celular;
 	private boolean doUpdate;
 	private State selectedState;
 	private List < City > cityList;
@@ -86,7 +88,10 @@ public class CustomerMB extends BaseMB {
 			if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 				ctx.addMessage( null, new FacesMessage( result.getMsg(), result.getMsg() ) );
 			} else {
-				ctx.addMessage( null, new FacesMessage( Message.getMessage( "com.sisga.web.customer.info.saved", Message.INFO, customer ) + customer.getCode() ) );
+				ctx.addMessage( null,
+						new FacesMessage(
+								Message.getMessage( "com.sisga.web.customer.info.saved", Message.INFO, customer )
+										+ customer.getCode() ) );
 
 				CustomerHistory history = new CustomerHistory();
 				history.setCustomer( customer );
@@ -126,7 +131,8 @@ public class CustomerMB extends BaseMB {
 			if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 				ctx.addMessage( null, new FacesMessage( result.getMsg(), result.getMsg() ) );
 			} else {
-				ctx.addMessage( null, new FacesMessage( Message.getMessage( "com.sisga.web.customer.info.updated", Message.INFO, customer ) ) );
+				ctx.addMessage( null, new FacesMessage(
+						Message.getMessage( "com.sisga.web.customer.info.updated", Message.INFO, customer ) ) );
 
 				CustomerHistory history = new CustomerHistory();
 				history.setCustomer( customer );
@@ -163,7 +169,8 @@ public class CustomerMB extends BaseMB {
 			if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 				ctx.addMessage( null, new FacesMessage( result.getMsg(), result.getMsg() ) );
 			} else {
-				ctx.addMessage( null, new FacesMessage( Message.getMessage( "com.sisga.web.customer.info.deleted", Message.INFO, customer ) ) );
+				ctx.addMessage( null, new FacesMessage(
+						Message.getMessage( "com.sisga.web.customer.info.deleted", Message.INFO, customer ) ) );
 
 				CustomerHistory history = new CustomerHistory();
 				history.setCustomer( customer );
@@ -194,6 +201,16 @@ public class CustomerMB extends BaseMB {
 			filter.setStatus( status );
 			ICommand commandFind = FactoryCommand.build( filter, EOperation.FIND );
 			customerList = commandFind.execute().getEntityList();
+			if( customerList != null && ! customerList.isEmpty() ) {
+				for( int i = 0; i < customerList.size(); i ++ ) {
+					customerList.get( i ).getTelephones().get( 0 )
+							.setPnumber( customerList.get( i ).getTelephones().get( 0 ).getDdd()
+									+ customerList.get( i ).getTelephones().get( 0 ).getPnumber() );
+					customerList.get( i ).getTelephones().get( 1 )
+							.setPnumber( customerList.get( i ).getTelephones().get( 1 ).getDdd()
+									+ customerList.get( i ).getTelephones().get( 1 ).getPnumber() );
+				}
+			}
 
 		} catch( ClassNotFoundException e ) {
 			// TODO Auto-generated catch block
@@ -217,7 +234,8 @@ public class CustomerMB extends BaseMB {
 			Redirector.redirectTo( context, url );
 
 		} else {
-			ctx.addMessage( null, new FacesMessage( Message.getMessage( "com.sisga.web.customer.info.select.client", Message.INFO, customer ) ) );
+			ctx.addMessage( null, new FacesMessage(
+					Message.getMessage( "com.sisga.web.customer.info.select.client", Message.INFO, customer ) ) );
 		}
 	}
 
@@ -232,6 +250,10 @@ public class CustomerMB extends BaseMB {
 				List < Customer > customerList = commandFind.execute().getEntityList();
 				if( customerList != null && ! customerList.isEmpty() ) {
 					customer = customerList.get( 0 );
+					customer.getTelephones().get( 0 ).setPnumber( customer.getTelephones().get( 0 ).getDdd()
+							+ customer.getTelephones().get( 0 ).getPnumber() );
+					customer.getTelephones().get( 0 ).setPnumber( customer.getTelephones().get( 1 ).getDdd()
+							+ customer.getTelephones().get( 1 ).getPnumber() );
 				}
 			}
 
@@ -336,6 +358,22 @@ public class CustomerMB extends BaseMB {
 	}
 
 	private Customer prepareUpdateCustomer() {
+		String tel = customer.getTelephones().get( 0 ).getPnumber();
+		String[] dddtel = tel.split( " " );
+		customer.getTelephones().get( 0 ).setDdd( dddtel[0].substring( 1, 3 ) );
+		customer.getTelephones().get( 0 ).setPnumber( dddtel[1].replace( "-", "" ) );
+
+		tel = customer.getTelephones().get( 1 ).getPnumber();
+		dddtel = tel.split( " " );
+		customer.getTelephones().get( 1 ).setDdd( dddtel[0].substring( 1, 3 ) );
+		customer.getTelephones().get( 1 ).setPnumber( dddtel[1].replace( "-", "" ) );
+
+		if( status.equals( "ATIVO" ) ) {
+			customer.setActive( true );
+		} else if( status.equals( "INATIVO" ) ) {
+			customer.setActive( false );
+		}
+
 		return customer;
 	}
 
@@ -420,6 +458,22 @@ public class CustomerMB extends BaseMB {
 
 	public Customer getSelectedCustomer() {
 		return selectedCustomer;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone( String telefone ) {
+		this.telefone = telefone;
+	}
+
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular( String celular ) {
+		this.celular = celular;
 	}
 
 	public void setSelectedCustomer( Customer selectedCustomer ) {

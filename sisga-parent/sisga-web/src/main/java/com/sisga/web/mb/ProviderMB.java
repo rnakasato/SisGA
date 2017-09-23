@@ -49,9 +49,13 @@ public class ProviderMB extends BaseMB {
 	private String tel;
 	private boolean doUpdate;
 	private State selectedState;
+	private City selectedCity;
 	private List < City > cityList;
 	private List < State > stateList;
 	private String status;
+	private String st;
+	private boolean loadCity = false;
+	private List < String > statusList;
 
 	// Para manipulação de fornecedores
 	private Provider selectedProvider;
@@ -65,6 +69,13 @@ public class ProviderMB extends BaseMB {
 		cityList = getCities();
 		stateList = getStates();
 		doUpdate = false;
+		loadCity = false;
+
+		statusList = new ArrayList();
+		statusList.add( "ATIVO" );
+		statusList.add( "INATIVO" );
+		st = "ATIVO";
+
 	}
 
 	// Métodos Operacionais
@@ -192,6 +203,16 @@ public class ProviderMB extends BaseMB {
 		try {
 			ICommand commandFind = FactoryCommand.build( filter, EOperation.FIND );
 			providerList = commandFind.execute().getEntityList();
+			if( providerList != null && ! providerList.isEmpty() ) {
+				for( int i = 0; i < providerList.size(); i ++ ) {
+					providerList.get( i ).getTelephones().get( 0 )
+							.setPnumber( providerList.get( i ).getTelephones().get( 0 ).getDdd()
+									+ providerList.get( i ).getTelephones().get( 0 ).getPnumber() );
+					providerList.get( i ).getTelephones().get( 1 )
+							.setPnumber( providerList.get( i ).getTelephones().get( 1 ).getDdd()
+									+ providerList.get( i ).getTelephones().get( 1 ).getPnumber() );
+				}
+			}
 
 		} catch( ClassNotFoundException e ) {
 			// TODO Auto-generated catch block
@@ -209,7 +230,7 @@ public class ProviderMB extends BaseMB {
 			StringBuilder sb = new StringBuilder();
 			sb.append( "/pages/gestao/fornecedores/alterarFornecedores.jsf?faces-redirect=true" );
 			sb.append( "&providerCode=" );
-			sb.append( provider.getCode() );
+			sb.append( provider.getId() );
 
 			String url = sb.toString();
 			Redirector.redirectTo( context, url );
@@ -222,18 +243,52 @@ public class ProviderMB extends BaseMB {
 
 	public void loadProvider() {
 		try {
-			doUpdate = true;
-			if( ! StringUtils.isEmpty( code ) ) {
-				ProviderFilter filter = new ProviderFilter();
-				filter.setCode( code );
-				ICommand commandFind;
-				commandFind = FactoryCommand.build( filter, EOperation.FIND );
-				List < Provider > providerList = commandFind.execute().getEntityList();
-				if( providerList != null && ! providerList.isEmpty() ) {
-					provider = providerList.get( 0 );
+			if( loadCity == false ) {
+				doUpdate = true;
+				if( ! StringUtils.isEmpty( code ) ) {
+					ProviderFilter filter = new ProviderFilter();
+					filter.setId( Long.valueOf( code ) );
+					filter.setStatus( "TODOS" );
+					ICommand commandFind;
+					commandFind = FactoryCommand.build( filter, EOperation.FIND );
+					List < Provider > providerList = commandFind.execute().getEntityList();
+					if( providerList != null && ! providerList.isEmpty() ) {
+						provider = providerList.get( 0 );
+						provider.getTelephones().get( 0 ).setPnumber( provider.getTelephones().get( 0 ).getDdd()
+								+ provider.getTelephones().get( 0 ).getPnumber() );
+						provider.getTelephones().get( 1 ).setPnumber( provider.getTelephones().get( 1 ).getDdd()
+								+ provider.getTelephones().get( 1 ).getPnumber() );
+
+						for( int i = 0; i < ( stateList.size() ); i ++ ) {
+							if( providerList.get( 0 ).getAddress().getCity().getState().getUf()
+									.equals( stateList.get( i ).getUf() ) ) {
+								selectedState = stateList.get( i );
+
+								City city = new City();
+								city.setUf( selectedState.getUf() );
+								List < City > cityList = new ArrayList < City >();
+								try {
+									commandFind = FactoryCommand.build( city, EOperation.FIND );
+									cityList = commandFind.execute().getEntityList();
+								} catch( ClassNotFoundException e ) {
+
+									e.printStackTrace();
+								}
+
+								this.cityList = cityList;
+								selectedCity = providerList.get( 0 ).getAddress().getCity();
+								loadCity = true;
+
+								if( providerList.get( 0 ).isActive() ) {
+									st = "ATIVO";
+								} else {
+									st = "INATIVO";
+								}
+							}
+						}
+					}
 				}
 			}
-
 		} catch( ClassNotFoundException e ) {
 			e.printStackTrace();
 		}
@@ -298,6 +353,9 @@ public class ProviderMB extends BaseMB {
 			e.printStackTrace();
 		}
 		this.cityList = cityList;
+		selectedCity = cityList.get( 0 );
+
+		loadCity = true;
 	}
 
 	public void viewDetails( Provider provider ) {
@@ -319,6 +377,22 @@ public class ProviderMB extends BaseMB {
 	}
 
 	private Provider prepareUpdateProvider() {
+		tel = provider.getTelephones().get( 0 ).getPnumber();
+		String[] dddtel = tel.split( " " );
+		provider.getTelephones().get( 0 ).setDdd( dddtel[0].substring( 1, 3 ) );
+		provider.getTelephones().get( 0 ).setPnumber( dddtel[1].replace( "-", "" ) );
+
+		tel = provider.getTelephones().get( 1 ).getPnumber();
+		dddtel = tel.split( " " );
+		provider.getTelephones().get( 1 ).setDdd( dddtel[0].substring( 1, 3 ) );
+		provider.getTelephones().get( 1 ).setPnumber( dddtel[1].replace( "-", "" ) );
+
+		if( status.equals( "ATIVO" ) ) {
+			provider.setActive( true );
+		} else if( status.equals( "INATIVO" ) ) {
+			provider.setActive( false );
+		}
+
 		return provider;
 	}
 
@@ -413,6 +487,22 @@ public class ProviderMB extends BaseMB {
 
 	public void setStatus( String status ) {
 		this.status = status;
+	}
+
+	public City getSelectedCity() {
+		return selectedCity;
+	}
+
+	public void setSelectedCity( City selectedCity ) {
+		this.selectedCity = selectedCity;
+	}
+
+	public List < String > getStatusList() {
+		return statusList;
+	}
+
+	public void setStatusList( List < String > statusList ) {
+		this.statusList = statusList;
 	}
 
 }

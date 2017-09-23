@@ -15,8 +15,7 @@ public class ProductBaseValueValidator extends Validator < Product > {
 	public String validate( Product p ) {
 		msg = null;
 		if( p.getBaseValue() <= 0 ) {
-			msg =  Message.getMessage( "com.sisga.core.business.product.validator.base.value.min", Message.ERROR,
-					p );
+			msg = Message.getMessage( "com.sisga.core.business.product.validator.base.value.min", Message.ERROR, p );
 		}
 
 		return msg;

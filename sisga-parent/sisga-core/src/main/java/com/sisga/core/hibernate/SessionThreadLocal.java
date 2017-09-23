@@ -3,7 +3,7 @@ package com.sisga.core.hibernate;
 import org.hibernate.Session;
 
 public class SessionThreadLocal {
-	private static final ThreadLocal < Session > sessionThread = new ThreadLocal<>();
+	private static final ThreadLocal < Session > sessionThread = new ThreadLocal <>();
 
 	public static Session getSession() {
 		if( sessionThread.get() == null ) {

@@ -86,8 +86,8 @@
 				class="com.sisga.domain.address.City" not-null="true" lazy="false"
 				cascade="save-update" />
 		</component>
-		
-		<bag name="telephones" table="TB_PHONE">
+
+		<bag name="telephones" table="TB_PHONE" inverse="true" lazy="false">
 			<key column="IDEMPLOYEE" />
 			<one-to-many class="com.sisga.domain.communication.Telephone" />
 		</bag>

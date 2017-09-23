@@ -30,7 +30,7 @@ public class ProviderHistoryComplementor extends Complementor < ProviderHistory 
 			createHistory( providerHistory, providerHistory.getOperationCode() );
 		} catch( Exception e ) {
 			e.printStackTrace();
-			msg = Message.getMessage( "com.sisga.core.unexpected.error", Message.ERROR, providerHistory);
+			msg = Message.getMessage( "com.sisga.core.unexpected.error", Message.ERROR, providerHistory );
 		}
 
 		return msg;

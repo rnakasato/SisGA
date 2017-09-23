@@ -22,13 +22,13 @@ public class ProductHistoryStrategyFactory implements IEntityStrategyFactory < P
 	public Map < String, Map < String, List < IStrategy > > > buildEntityRules() {
 		Map < String, Map < String, List < IStrategy > > > rns = new HashMap < String, Map < String, List < IStrategy > > >();
 
-		Map < String, List < IStrategy > > rnsProductHistory = new HashMap<>();
+		Map < String, List < IStrategy > > rnsProductHistory = new HashMap <>();
 
-		List < IStrategy > rnsSave = new ArrayList<>();
-		List < IStrategy > rnsUpdate = new ArrayList<>();
+		List < IStrategy > rnsSave = new ArrayList <>();
+		List < IStrategy > rnsUpdate = new ArrayList <>();
 		// Não há regras para a busca de produto
-		List < IStrategy > rnsFind = new ArrayList<>();
-		List < IStrategy > rnsDelete = new ArrayList<>();
+		List < IStrategy > rnsFind = new ArrayList <>();
+		List < IStrategy > rnsDelete = new ArrayList <>();
 
 		rnsSave.add( new ProductHistoryComplementor() );
 

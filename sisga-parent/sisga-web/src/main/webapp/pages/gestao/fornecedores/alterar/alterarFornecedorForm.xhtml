@@ -51,8 +51,7 @@
 									</p:column>
 									<p:column>
 										<p:inputMask id="inputTelefone"
-											value="#{providerMB.provider.telephones.get(0).ddd +
-												providerMB.provider.telephones.get(0).pnumber}"
+											value="#{providerMB.provider.telephones.get(0).pnumber}"
 											required="true" mask="(99) 9999-9999"
 											requiredMessage="Telefone obrigatório">
 										</p:inputMask>
@@ -66,8 +65,7 @@
 									</p:column>
 									<p:column>
 										<p:inputMask id="inputCelular"
-											value="#{providerMB.provider.telephones.get(1).ddd + 
-												providerMB.provider.telephones.get(1).pnumber}"
+											value="#{providerMB.provider.telephones.get(1).pnumber}"
 											required="true" mask="(99) 99999-9999"
 											requiredMessage="Celular obrigatório">
 										</p:inputMask>
@@ -96,6 +94,7 @@
 										<p:selectOneMenu id="selectOneMenuEstado"
 											value="#{providerMB.selectedState}"
 											converter="defaultConverter" filter="true" required="true"
+											selection="#{providerMB.selectedState}"
 											requiredMessage="Estado obrigatório">
 											<f:selectItems value="#{providerMB.stateList}" var="states"
 												itemValue="#{states}" itemLabel="#{states.name}" />
@@ -116,6 +115,7 @@
 											disabled="#{empty providerMB.selectedState}"
 											value="#{providerMB.provider.address.city}"
 											converter="defaultConverter" filter="true" required="true"
+											selection="#{providerMB.selectedCity}"
 											requiredMessage="Cidade obrigatório">
 											<f:selectItems value="#{providerMB.cityList}" var="cities"
 												itemValue="#{cities}" itemLabel="#{cities.name}" />
@@ -152,11 +152,11 @@
 									<p:column>
 										<p:outputLabel id="labelStatus">Status  </p:outputLabel>
 										<p:selectOneRadio id="selectRadioStatus"
-											value="#{providerMB.status }">
-											<f:selectItem id="selectRadioStatusAtivo" itemLabel="Ativo"
-												itemValue="ATIVO" />
-											<f:selectItem id="selectRadioStatusInativo"
-												itemLabel="Inativo" itemValue="INATIVO" />
+										required="true"  
+										requiredMessage="Status Requerido"
+											value="#{providerMB.status }"
+											selection="#{providerMB.st }">
+											<f:selectItems value="#{providerMB.statusList}" />
 										</p:selectOneRadio>
 									</p:column>
 								</p:row>

@@ -83,18 +83,18 @@ public class ProductSaleTypeComplementor extends Complementor < Product > {
 					// Foram excedidos os códigos com os 3 dígitos iniciais da
 					// forma de venda
 					// EX: foi gerado o cód: CAI9
-					msg = Message.getMessage( "com.sisga.core.business.sale.code.exceeded", Message.ERROR, p);
+					msg = Message.getMessage( "com.sisga.core.business.sale.code.exceeded", Message.ERROR, p );
 				}
 
 				if( validCode ) {
 					saleTypeDAO.save( newSaleType );
-					p.setSaleType(newSaleType);
+					p.setSaleType( newSaleType );
 				}
 
 			}
 
 		} catch( Exception e ) {
-			msg = Message.getMessage( "com.sisga.core.unexpected.error", Message.ERROR, p);
+			msg = Message.getMessage( "com.sisga.core.unexpected.error", Message.ERROR, p );
 		}
 
 		return msg;

@@ -21,7 +21,7 @@ import com.sisga.domain.provider.Provider;
 
 public class FactoryStrategy {
 
-	private static List < IEntityStrategyFactory > factoryList = new ArrayList<>();
+	private static List < IEntityStrategyFactory > factoryList = new ArrayList <>();
 	/**
 	 * Mapa para conter as regras de negócio de todas operações por entidade;
 	 * O valor é um mapa que de regras de negócio indexado pela operação A
@@ -35,7 +35,7 @@ public class FactoryStrategy {
 		if( rns == null ) {
 			initRules();
 		}
-		List < IStrategy > operationRules = new ArrayList<>();
+		List < IStrategy > operationRules = new ArrayList <>();
 		Map < String, List < IStrategy > > entityRules = rns.get( entity.getClass().getName() );
 		if( entityRules != null ) {
 			operationRules = entityRules.get( operation );

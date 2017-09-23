@@ -20,11 +20,11 @@ public abstract class BaseMB implements Serializable {
 	private Dialog saveDialog;
 	private Dialog updateDialog;
 
-	public void select(SelectEvent event) {
+	public void select( SelectEvent event ) {
 		isSelected = true;
 	}
 
-	public void unSelect(UnselectEvent event) {
+	public void unSelect( UnselectEvent event ) {
 		isSelected = false;
 	}
 
@@ -34,25 +34,25 @@ public abstract class BaseMB implements Serializable {
 
 	public abstract void clearFilter();
 
-	public void addMessage(String msg) {
+	public void addMessage( String msg ) {
 		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, new FacesMessage(msg));
+		context.addMessage( null, new FacesMessage( msg ) );
 	}
 
-	public void addRedirectMessage(String msg) {
+	public void addRedirectMessage( String msg ) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		ExternalContext ext = context.getExternalContext();
-		ext.getFlash().setKeepMessages(true);
-		ext.getFlash().setRedirect(true);
-		context.addMessage(null, new FacesMessage(msg));
+		ext.getFlash().setKeepMessages( true );
+		ext.getFlash().setRedirect( true );
+		context.addMessage( null, new FacesMessage( msg ) );
 	}
 
 	public Date getToday() {
 		Calendar today = Calendar.getInstance();
-		today.set(Calendar.HOUR, 0);
-		today.set(Calendar.MINUTE, 0);
-		today.set(Calendar.SECOND, 0);
-		today.set(Calendar.MILLISECOND, 0);
+		today.set( Calendar.HOUR, 0 );
+		today.set( Calendar.MINUTE, 0 );
+		today.set( Calendar.SECOND, 0 );
+		today.set( Calendar.MILLISECOND, 0 );
 		return today.getTime();
 	}
 
@@ -60,7 +60,7 @@ public abstract class BaseMB implements Serializable {
 		return saveDialog;
 	}
 
-	public void setSaveDialog(Dialog saveDialog) {
+	public void setSaveDialog( Dialog saveDialog ) {
 		this.saveDialog = saveDialog;
 	}
 
@@ -68,7 +68,7 @@ public abstract class BaseMB implements Serializable {
 		return updateDialog;
 	}
 
-	public void setUpdateDialog(Dialog updateDialog) {
+	public void setUpdateDialog( Dialog updateDialog ) {
 		this.updateDialog = updateDialog;
 	}
 

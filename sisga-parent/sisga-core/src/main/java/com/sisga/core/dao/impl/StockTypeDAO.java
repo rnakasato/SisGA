@@ -27,7 +27,7 @@ public class StockTypeDAO extends DomainSpecificEntityDAO < StockType > {
 		StockType stockType = new StockType();
 		stockType.setCode( filter.getCode() );
 
-		List < StockType > stockTypeList = new ArrayList<>();
+		List < StockType > stockTypeList = new ArrayList <>();
 
 		stockTypeList.add( findByCode( stockType ) );
 		return stockTypeList;

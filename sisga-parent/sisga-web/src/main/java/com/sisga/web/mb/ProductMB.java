@@ -230,7 +230,8 @@ public class ProductMB extends BaseMB {
 			Redirector.redirectTo( context, url );
 
 		} else {
-			ctx.addMessage( null, new FacesMessage( Message.getMessage( "com.sisga.web.product.info.select.product", Message.INFO, product ) ) );
+			ctx.addMessage( null, new FacesMessage(
+					Message.getMessage( "com.sisga.web.product.info.select.product", Message.INFO, product ) ) );
 		}
 	}
 
@@ -308,7 +309,9 @@ public class ProductMB extends BaseMB {
 	}
 
 	public void doUpload( FileUploadEvent event ) {
-		FacesMessage msg = new FacesMessage( Message.getMessage( "com.sisga.web.product.info.file.saved", Message.INFO, product ), event.getFile().getFileName() );
+		FacesMessage msg = new FacesMessage(
+				Message.getMessage( "com.sisga.web.product.info.file.saved", Message.INFO, product ),
+				event.getFile().getFileName() );
 		FacesContext.getCurrentInstance().addMessage( null, msg );
 
 		try {

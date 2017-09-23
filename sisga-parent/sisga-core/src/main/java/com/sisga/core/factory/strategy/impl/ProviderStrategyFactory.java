@@ -25,14 +25,14 @@ public class ProviderStrategyFactory implements IEntityStrategyFactory < Provide
 
 	@Override
 	public Map < String, Map < String, List < IStrategy > > > buildEntityRules() {
-		Map < String, Map < String, List < IStrategy > > > rns = new HashMap<>();
+		Map < String, Map < String, List < IStrategy > > > rns = new HashMap <>();
 
 		Map < String, List < IStrategy > > rnsProvider = new HashMap < String, List < IStrategy > >();
 
-		List < IStrategy > rnsSave = new ArrayList<>();
-		List < IStrategy > rnsUpdate = new ArrayList<>();
-		List < IStrategy > rnsFind = new ArrayList<>();
-		List < IStrategy > rnsDelete = new ArrayList<>();
+		List < IStrategy > rnsSave = new ArrayList <>();
+		List < IStrategy > rnsUpdate = new ArrayList <>();
+		List < IStrategy > rnsFind = new ArrayList <>();
+		List < IStrategy > rnsDelete = new ArrayList <>();
 
 		rnsSave.add( new ProviderActiveComplementor() );
 		rnsSave.add( new ProviderCodeComplementor() );

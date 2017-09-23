@@ -3,6 +3,7 @@ package com.sisga.core.business.fieldsvalidator;
 import org.apache.commons.lang3.StringUtils;
 
 import com.sisga.core.core.business.FieldsValidator;
+import com.sisga.core.core.util.Message;
 import com.sisga.domain.employee.Employee;
 
 /**
@@ -16,16 +17,19 @@ public class EmployeeFieldsValidator extends FieldsValidator < Employee > {
 	public String validate( Employee employee ) {
 		super.init();
 		if( StringUtils.isEmpty( employee.getFirstName() ) ) {
-			appendMsg( "Nome do Funcionário" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.employee.fields.validator.name", Message.ERROR,
+					employee ) );
 		}
 
 		if( StringUtils.isEmpty( employee.getLastName() ) ) {
-			appendMsg( "Sobrenome do Funcionário" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.employee.fields.validator.surname", Message.ERROR,
+					employee ) );
 
 		}
 
 		if( StringUtils.isEmpty( employee.getEmail() ) ) {
-			appendMsg( "Email do Funcionário" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.employee.fields.validator.mail", Message.ERROR,
+					employee ) );
 		} else {
 			String email = employee.getEmail().toUpperCase();
 			String[] emailSplit01 = email.split( "@" );
@@ -51,40 +55,50 @@ public class EmployeeFieldsValidator extends FieldsValidator < Employee > {
 		}
 
 		if( StringUtils.isEmpty( employee.getAddress().getNeighborhood() ) ) {
-			appendMsg( "Bairro do Funcionário" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.employee.fields.validator.neighborhood",
+					Message.ERROR, employee ) );
 		}
 
 		if( StringUtils.isEmpty( employee.getAddress().getNumber() ) ) {
-			appendMsg( "Numero do Funcionário" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.employee.fields.validator.house.number",
+					Message.ERROR, employee ) );
 		}
 
 		if( StringUtils.isEmpty( employee.getWorkcardNumber() ) ) {
-			appendMsg( "Carteira de Trabalho do Funcionário" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.employee.fields.validator.workcard", Message.ERROR,
+					employee ) );
 		}
 
 		if( employee.getAddress().getCity() == null ) {
-			appendMsg( "Cidade do Funcionário" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.employee.fields.validator.city", Message.ERROR,
+					employee ) );
 		}
 
 		if( employee.getEmploymentDate() == null ) {
-			appendMsg( "Data de Contratação do Funcionário" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.employee.fields.validator.employment.date",
+					Message.ERROR, employee ) );
 		}
 
 		if( employee.getTelephones() == null ) {
-			appendMsg( "Telefone e Celular do Funcionário" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.provider.fields.validator.telephone.cellphone",
+					Message.ERROR, employee ) );
 		}
 
 		if( employee.getTelephones().get( 0 ).getDdd() == null ) {
-			appendMsg( "DDD Telefone do Funcionário" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.provider.fields.validator.telephone.ddd",
+					Message.ERROR, employee ) );
 		}
 		if( employee.getTelephones().get( 0 ).getPnumber() == null ) {
-			appendMsg( "Telefone do Funcionário" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.provider.fields.validator.telephone", Message.ERROR,
+					employee ) );
 		}
 		if( employee.getTelephones().get( 1 ).getDdd() == null ) {
-			appendMsg( "DDD Celular do Funcionário" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.provider.fields.validator.cellphone.ddd",
+					Message.ERROR, employee ) );
 		}
 		if( employee.getTelephones().get( 1 ).getPnumber() == null ) {
-			appendMsg( "Celular do Funcionário" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.provider.fields.validator.cellphone", Message.ERROR,
+					employee ) );
 		}
 
 		return getMessage();

@@ -3,6 +3,7 @@ package com.sisga.core.business.complement;
 import java.util.Date;
 
 import com.sisga.core.core.business.Complementor;
+import com.sisga.core.core.util.Message;
 import com.sisga.core.dao.impl.EmployeeOperationDAO;
 import com.sisga.core.hibernate.SessionThreadLocal;
 import com.sisga.domain.address.Address;
@@ -29,7 +30,7 @@ public class EmployeeHistoryComplementor extends Complementor < EmployeeHistory 
 			createHistory( employeeHistory, employeeHistory.getOperationCode() );
 		} catch( Exception e ) {
 			e.printStackTrace();
-			msg = "Erro inesperado";
+			msg = Message.getMessage( "com.sisga.core.unexpected.error", Message.ERROR, employeeHistory );
 		}
 
 		return msg;

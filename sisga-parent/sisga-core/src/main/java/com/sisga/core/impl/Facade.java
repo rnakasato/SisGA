@@ -10,6 +10,7 @@ import com.sisga.core.IDAO;
 import com.sisga.core.IFacade;
 import com.sisga.core.IStrategy;
 import com.sisga.core.application.Result;
+import com.sisga.core.core.util.Message;
 import com.sisga.core.enums.EOperation;
 import com.sisga.core.factory.impl.FactoryDAO;
 import com.sisga.core.factory.impl.FactoryStrategy;
@@ -45,7 +46,7 @@ public class Facade < T extends AbstractDomainEntity > implements IFacade < T > 
 			} catch( Exception e ) {
 				SessionThreadLocal.rollback();
 				e.printStackTrace();
-				result.setMsg( "Erro inesperado ao salvar!" );
+				result.setMsg( Message.getMessage( "com.sisga.core.impl.facade.save.error", Message.ERROR, entity ) );
 			} finally {
 				SessionThreadLocal.closeSession();
 			}
@@ -75,7 +76,7 @@ public class Facade < T extends AbstractDomainEntity > implements IFacade < T > 
 				SessionThreadLocal.commit();
 			} catch( Exception e ) {
 				e.printStackTrace();
-				result.setMsg( "Não foi possível realizar a alteração!" );
+				result.setMsg( Message.getMessage( "com.sisga.core.impl.facade.update.error", Message.ERROR, entity ) );
 			} finally {
 				SessionThreadLocal.closeSession();
 			}
@@ -105,7 +106,7 @@ public class Facade < T extends AbstractDomainEntity > implements IFacade < T > 
 				SessionThreadLocal.commit();
 			} catch( Exception e ) {
 				e.printStackTrace();
-				result.setMsg( "Não foi possível deletar o item!" );
+				result.setMsg( Message.getMessage( "com.sisga.core.impl.facade.delete.error", Message.ERROR, entity ) );
 			} finally {
 				SessionThreadLocal.closeSession();
 			}
@@ -131,7 +132,7 @@ public class Facade < T extends AbstractDomainEntity > implements IFacade < T > 
 				result.setEntityList( dao.find( entity ) );
 			} catch( Exception e ) {
 				e.printStackTrace();
-				result.setMsg( "Não foi possível realizar a consulta!" );
+				result.setMsg( Message.getMessage( "com.sisga.core.impl.facade.find.error", Message.ERROR, entity ) );
 			} finally {
 				SessionThreadLocal.closeSession();
 			}
@@ -176,7 +177,7 @@ public class Facade < T extends AbstractDomainEntity > implements IFacade < T > 
 				IDAO dao = FactoryDAO.build( classNm, session );
 				result.setEntityList( dao.findAll() );
 			} catch( Exception e ) {
-				result.setMsg( "Não foi possível realizar a consulta!" );
+				result.setMsg( Message.getMessage( "com.sisga.core.impl.facade.find.error", Message.ERROR, entity ) );
 				SessionThreadLocal.rollback();
 			} finally {
 				SessionThreadLocal.closeSession();

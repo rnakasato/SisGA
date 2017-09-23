@@ -3,6 +3,7 @@ package com.sisga.core.business.fieldsvalidator;
 import org.apache.commons.lang3.StringUtils;
 
 import com.sisga.core.core.business.FieldsValidator;
+import com.sisga.core.core.util.Message;
 import com.sisga.domain.product.Product;
 
 /**
@@ -16,23 +17,28 @@ public class ProductFieldsValidator extends FieldsValidator < Product > {
 	public String validate( Product product ) {
 		super.init();
 		if( StringUtils.isEmpty( product.getDescription() ) ) {
-			appendMsg( "Nome do Produto" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.product.fields.validator.name", Message.ERROR,
+					product ) );
 		}
 
 		if( product.getProductionType() == null ) {
-			appendMsg( "Produção por" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.product.fields.validator.production.type",
+					Message.ERROR, product ) );
 		}
 
 		if( product.getAmount() == null ) {
-			appendMsg( "Quantidade" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.product.fields.validator.amount", Message.ERROR,
+					product ) );
 		}
 
 		if( product.getBaseValue() == null ) {
-			appendMsg( "Valor base de venda" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.product.fields.validator.base.value", Message.ERROR,
+					product ) );
 		}
 
 		if( product.getSaleType() == null ) {
-			appendMsg( "Venda por" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.product.fields.validator.sale.type", Message.ERROR,
+					product ) );
 		}
 
 		return getMessage();

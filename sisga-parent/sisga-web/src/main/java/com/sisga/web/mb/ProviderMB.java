@@ -16,6 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.sisga.core.ICommand;
 import com.sisga.core.application.Result;
+import com.sisga.core.core.util.Message;
 import com.sisga.core.enums.EOperation;
 import com.sisga.core.factory.impl.FactoryCommand;
 import com.sisga.domain.address.Address;
@@ -80,7 +81,10 @@ public class ProviderMB extends BaseMB {
 			if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 				ctx.addMessage( null, new FacesMessage( result.getMsg(), result.getMsg() ) );
 			} else {
-				ctx.addMessage( null, new FacesMessage( "Fornecedor cadastrado com código: " + provider.getCode() ) );
+				ctx.addMessage( null,
+						new FacesMessage(
+								Message.getMessage( "com.sisga.web.provider.info.saved", Message.INFO, provider )
+										+ provider.getCode() ) );
 
 				ProviderHistory history = new ProviderHistory();
 				history.setProvider( provider );
@@ -119,7 +123,8 @@ public class ProviderMB extends BaseMB {
 			if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 				ctx.addMessage( null, new FacesMessage( result.getMsg(), result.getMsg() ) );
 			} else {
-				ctx.addMessage( null, new FacesMessage( "Fornecedor Alterado" ) );
+				ctx.addMessage( null, new FacesMessage(
+						Message.getMessage( "com.sisga.web.provider.info.updated", Message.INFO, provider ) ) );
 
 				ProviderHistory history = new ProviderHistory();
 				history.setProvider( provider );
@@ -148,7 +153,7 @@ public class ProviderMB extends BaseMB {
 		ICommand commandUpdate;
 		try {
 			provider.setActive( false );
-			commandUpdate = FactoryCommand.build( provider, EOperation.UPDATE );
+			commandUpdate = FactoryCommand.build( provider, EOperation.DELETE );
 			Result result = commandUpdate.execute();
 
 			FacesContext ctx = FacesContext.getCurrentInstance();
@@ -156,7 +161,8 @@ public class ProviderMB extends BaseMB {
 			if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 				ctx.addMessage( null, new FacesMessage( result.getMsg(), result.getMsg() ) );
 			} else {
-				ctx.addMessage( null, new FacesMessage( "Fornecedor deletado" ) );
+				ctx.addMessage( null, new FacesMessage(
+						Message.getMessage( "com.sisga.web.provider.info.updated", Message.INFO, provider ) ) );
 
 				ProviderHistory history = new ProviderHistory();
 				history.setProvider( provider );
@@ -209,7 +215,8 @@ public class ProviderMB extends BaseMB {
 			Redirector.redirectTo( context, url );
 
 		} else {
-			ctx.addMessage( null, new FacesMessage( "Selecione um fornecedor para alterar" ) );
+			ctx.addMessage( null, new FacesMessage(
+					Message.getMessage( "com.sisga.web.provider.info.select.provider", Message.INFO, provider ) ) );
 		}
 	}
 

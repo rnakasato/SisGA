@@ -16,6 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.sisga.core.ICommand;
 import com.sisga.core.application.Result;
+import com.sisga.core.core.util.Message;
 import com.sisga.core.enums.EOperation;
 import com.sisga.core.factory.impl.FactoryCommand;
 import com.sisga.domain.address.Address;
@@ -85,7 +86,7 @@ public class CustomerMB extends BaseMB {
 			if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 				ctx.addMessage( null, new FacesMessage( result.getMsg(), result.getMsg() ) );
 			} else {
-				ctx.addMessage( null, new FacesMessage( "Cliente cadastrado com código: " + customer.getCode() ) );
+				ctx.addMessage( null, new FacesMessage( Message.getMessage( "com.sisga.web.customer.info.saved", Message.INFO, customer ) + customer.getCode() ) );
 
 				CustomerHistory history = new CustomerHistory();
 				history.setCustomer( customer );
@@ -125,7 +126,7 @@ public class CustomerMB extends BaseMB {
 			if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 				ctx.addMessage( null, new FacesMessage( result.getMsg(), result.getMsg() ) );
 			} else {
-				ctx.addMessage( null, new FacesMessage( "Cliente Alterado" ) );
+				ctx.addMessage( null, new FacesMessage( Message.getMessage( "com.sisga.web.customer.info.updated", Message.INFO, customer ) ) );
 
 				CustomerHistory history = new CustomerHistory();
 				history.setCustomer( customer );
@@ -162,7 +163,7 @@ public class CustomerMB extends BaseMB {
 			if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 				ctx.addMessage( null, new FacesMessage( result.getMsg(), result.getMsg() ) );
 			} else {
-				ctx.addMessage( null, new FacesMessage( "Cliente deletado" ) );
+				ctx.addMessage( null, new FacesMessage( Message.getMessage( "com.sisga.web.customer.info.deleted", Message.INFO, customer ) ) );
 
 				CustomerHistory history = new CustomerHistory();
 				history.setCustomer( customer );
@@ -216,7 +217,7 @@ public class CustomerMB extends BaseMB {
 			Redirector.redirectTo( context, url );
 
 		} else {
-			ctx.addMessage( null, new FacesMessage( "Selecione um cliente para alterar" ) );
+			ctx.addMessage( null, new FacesMessage( Message.getMessage( "com.sisga.web.customer.info.select.client", Message.INFO, customer ) ) );
 		}
 	}
 

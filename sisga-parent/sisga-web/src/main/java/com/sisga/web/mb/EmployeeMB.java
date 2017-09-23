@@ -16,6 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.sisga.core.ICommand;
 import com.sisga.core.application.Result;
+import com.sisga.core.core.util.Message;
 import com.sisga.core.enums.EOperation;
 import com.sisga.core.factory.impl.FactoryCommand;
 import com.sisga.domain.address.Address;
@@ -79,7 +80,7 @@ public class EmployeeMB extends BaseMB {
 			if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 				ctx.addMessage( null, new FacesMessage( result.getMsg(), result.getMsg() ) );
 			} else {
-				ctx.addMessage( null, new FacesMessage( "Funcionário cadastrado com código: " + employee.getCode() ) );
+				ctx.addMessage( null, new FacesMessage( Message.getMessage( "com.sisga.web.employee.info.saved", Message.INFO, employee ) + employee.getCode() ) );
 
 				ICommand commandSaveH;
 				EmployeeHistory history = new EmployeeHistory();
@@ -118,7 +119,7 @@ public class EmployeeMB extends BaseMB {
 			if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 				ctx.addMessage( null, new FacesMessage( result.getMsg(), result.getMsg() ) );
 			} else {
-				ctx.addMessage( null, new FacesMessage( "Funcionário Alterado" ) );
+				ctx.addMessage( null, new FacesMessage( Message.getMessage( "com.sisga.web.employee.info.updated", Message.INFO, employee ) ) );
 
 				EmployeeHistory history = new EmployeeHistory();
 				history.setEmployee( employee );
@@ -154,7 +155,7 @@ public class EmployeeMB extends BaseMB {
 			if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 				ctx.addMessage( null, new FacesMessage( result.getMsg(), result.getMsg() ) );
 			} else {
-				ctx.addMessage( null, new FacesMessage( "Funcionário deletado" ) );
+				ctx.addMessage( null, new FacesMessage( Message.getMessage( "com.sisga.web.employee.info.deleted", Message.INFO, employee ) ) );
 
 				EmployeeHistory history = new EmployeeHistory();
 				history.setEmployee( employee );
@@ -205,7 +206,7 @@ public class EmployeeMB extends BaseMB {
 			Redirector.redirectTo( context, url );
 
 		} else {
-			ctx.addMessage( null, new FacesMessage( "Selecione um funcionário para alterar" ) );
+			ctx.addMessage( null, new FacesMessage( Message.getMessage( "com.sisga.web.employee.info.select.employee", Message.INFO, employee ) ) );
 		}
 	}
 

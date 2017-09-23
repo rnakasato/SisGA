@@ -20,6 +20,7 @@ import com.sisga.core.ICommand;
 import com.sisga.core.application.Result;
 import com.sisga.core.core.util.ImageUtils;
 import com.sisga.core.core.util.ListUtils;
+import com.sisga.core.core.util.Message;
 import com.sisga.core.core.util.SaveDirectory;
 import com.sisga.core.enums.EOperation;
 import com.sisga.core.factory.impl.FactoryCommand;
@@ -79,7 +80,7 @@ public class ProductMB extends BaseMB {
 
 	// Métodos Operacionais
 	public void save() {
-		
+
 		prepareProduct();
 		ICommand commandSave;
 		try {
@@ -92,7 +93,10 @@ public class ProductMB extends BaseMB {
 			if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 				ctx.addMessage( null, new FacesMessage( result.getMsg(), result.getMsg() ) );
 			} else {
-				ctx.addMessage( null, new FacesMessage( "Produto cadastrado com código: " + product.getCode() ) );
+				ctx.addMessage( null,
+						new FacesMessage(
+								Message.getMessage( "com.sisga.web.product.info.saved", Message.INFO, product )
+										+ product.getCode() ) );
 
 				ProductHistory history = new ProductHistory();
 				history.setProduct( product );
@@ -104,8 +108,9 @@ public class ProductMB extends BaseMB {
 					ctx.addMessage( null, new FacesMessage( historyResult.getMsg(), historyResult.getMsg() ) );
 				}
 
-				if(getSaveDialog() != null){
-		            RequestContext.getCurrentInstance().execute( "PF('" + getSaveDialog().getWidgetVar() + "').hide();" );
+				if( getSaveDialog() != null ) {
+					RequestContext.getCurrentInstance()
+							.execute( "PF('" + getSaveDialog().getWidgetVar() + "').hide();" );
 				}
 
 			}
@@ -127,10 +132,11 @@ public class ProductMB extends BaseMB {
 			FacesContext ctx = FacesContext.getCurrentInstance();
 
 			if( StringUtils.isNotEmpty( result.getMsg() ) ) {
-				ctx.addMessage( null, new FacesMessage( result.getMsg(), result.getMsg() ) );				
+				ctx.addMessage( null, new FacesMessage( result.getMsg(), result.getMsg() ) );
 			} else {
-				ctx.addMessage( null, new FacesMessage( "Produto Alterado" ) );
-				
+				ctx.addMessage( null, new FacesMessage(
+						Message.getMessage( "com.sisga.web.product.info.updated", Message.INFO, product ) ) );
+
 				initSaleType();
 				initProductionType();
 
@@ -143,9 +149,10 @@ public class ProductMB extends BaseMB {
 				if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 					ctx.addMessage( null, new FacesMessage( historyResult.getMsg(), historyResult.getMsg() ) );
 				}
-				
-				if(getUpdateDialog() != null){
-		            RequestContext.getCurrentInstance().execute( "PF('" + getUpdateDialog().getWidgetVar() + "').hide();" );
+
+				if( getUpdateDialog() != null ) {
+					RequestContext.getCurrentInstance()
+							.execute( "PF('" + getUpdateDialog().getWidgetVar() + "').hide();" );
 				}
 			}
 
@@ -168,7 +175,8 @@ public class ProductMB extends BaseMB {
 			if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 				ctx.addMessage( null, new FacesMessage( result.getMsg(), result.getMsg() ) );
 			} else {
-				ctx.addMessage( null, new FacesMessage( "Produto deletado" ) );
+				ctx.addMessage( null, new FacesMessage(
+						Message.getMessage( "com.sisga.web.product.info.updated", Message.INFO, product ) ) );
 
 				ProductHistory history = new ProductHistory();
 				history.setProduct( product );
@@ -222,18 +230,17 @@ public class ProductMB extends BaseMB {
 			Redirector.redirectTo( context, url );
 
 		} else {
-			ctx.addMessage( null, new FacesMessage( "Selecione um produto para alterar" ) );
+			ctx.addMessage( null, new FacesMessage( Message.getMessage( "com.sisga.web.product.info.select.product", Message.INFO, product ) ) );
 		}
 	}
 
-	public void setUpdate(Product product) {
-		
-			doUpdate = true;
-			addAmount = 0L;
-			removeAmount = 0L;
-			
-			this.product = product;
-			
+	public void setUpdate( Product product ) {
+
+		doUpdate = true;
+		addAmount = 0L;
+		removeAmount = 0L;
+
+		this.product = product;
 
 	}
 
@@ -270,7 +277,7 @@ public class ProductMB extends BaseMB {
 			ICommand command;
 			command = FactoryCommand.build( filter, EOperation.FIND );
 			List < SaleType > stList = command.execute().getEntityList();
-			acSaleType = new ArrayList<>();
+			acSaleType = new ArrayList <>();
 			if( ! ListUtils.isEmpty( stList ) ) {
 				for( SaleType s: stList ) {
 					acSaleType.add( s.getDescription() );
@@ -301,7 +308,7 @@ public class ProductMB extends BaseMB {
 	}
 
 	public void doUpload( FileUploadEvent event ) {
-		FacesMessage msg = new FacesMessage( "Arquivo salvo! ", event.getFile().getFileName() + " is uploaded." );
+		FacesMessage msg = new FacesMessage( Message.getMessage( "com.sisga.web.product.info.file.saved", Message.INFO, product ), event.getFile().getFileName() );
 		FacesContext.getCurrentInstance().addMessage( null, msg );
 
 		try {

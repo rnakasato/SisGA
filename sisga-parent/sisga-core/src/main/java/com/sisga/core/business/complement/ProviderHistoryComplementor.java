@@ -3,6 +3,7 @@ package com.sisga.core.business.complement;
 import java.util.Date;
 
 import com.sisga.core.core.business.Complementor;
+import com.sisga.core.core.util.Message;
 import com.sisga.core.dao.impl.ProviderOperationDAO;
 import com.sisga.core.hibernate.SessionThreadLocal;
 import com.sisga.domain.address.Address;
@@ -29,7 +30,7 @@ public class ProviderHistoryComplementor extends Complementor < ProviderHistory 
 			createHistory( providerHistory, providerHistory.getOperationCode() );
 		} catch( Exception e ) {
 			e.printStackTrace();
-			msg = "Erro inesperado";
+			msg = Message.getMessage( "com.sisga.core.unexpected.error", Message.ERROR, providerHistory);
 		}
 
 		return msg;

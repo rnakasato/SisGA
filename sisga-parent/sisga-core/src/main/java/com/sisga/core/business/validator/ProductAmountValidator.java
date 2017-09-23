@@ -1,6 +1,7 @@
 package com.sisga.core.business.validator;
 
 import com.sisga.core.business.Validator;
+import com.sisga.core.core.util.Message;
 import com.sisga.domain.product.Product;
 
 /**
@@ -14,7 +15,8 @@ public class ProductAmountValidator extends Validator < Product > {
 	public String validate( Product p ) {
 		msg = null;
 		if( p.getAmount() == 0 ) {
-			msg = "A quantidade em estoque deve ser maior do que 0";
+			msg = Message.getMessage( "com.sisga.core.business.product.validator.stock.larger.than.zero", Message.ERROR,
+					p );
 		}
 
 		return msg;

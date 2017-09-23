@@ -1,6 +1,7 @@
 package com.sisga.core.business.validator;
 
 import com.sisga.core.business.Validator;
+import com.sisga.core.core.util.Message;
 import com.sisga.domain.product.Product;
 
 /**
@@ -14,7 +15,8 @@ public class ProductBaseValueValidator extends Validator < Product > {
 	public String validate( Product p ) {
 		msg = null;
 		if( p.getBaseValue() <= 0 ) {
-			msg = "O valor base de venda não deve ser inferior ou igual a 0";
+			msg =  Message.getMessage( "com.sisga.core.business.product.validator.base.value.min", Message.ERROR,
+					p );
 		}
 
 		return msg;

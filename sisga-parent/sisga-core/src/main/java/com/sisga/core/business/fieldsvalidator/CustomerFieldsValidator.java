@@ -3,6 +3,7 @@ package com.sisga.core.business.fieldsvalidator;
 import org.apache.commons.lang3.StringUtils;
 
 import com.sisga.core.core.business.FieldsValidator;
+import com.sisga.core.core.util.Message;
 import com.sisga.domain.customer.Customer;
 
 /**
@@ -15,15 +16,18 @@ public class CustomerFieldsValidator extends FieldsValidator < Customer > {
 	public String validate( Customer customer ) {
 		super.init();
 		if( StringUtils.isEmpty( customer.getFirstName() ) ) {
-			appendMsg( "Nome do Cliente" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.cutomer.fields.validator.name", Message.ERROR,
+					customer ) );
 		}
 
 		if( StringUtils.isEmpty( customer.getLastName() ) ) {
-			appendMsg( "Sobrenome do Cliente" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.cutomer.fields.validator.surname", Message.ERROR,
+					customer ) );
 		}
 
 		if( StringUtils.isEmpty( customer.getEmail() ) ) {
-			appendMsg( "Email do Cliente" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.cutomer.fields.validator.mail", Message.ERROR,
+					customer ) );
 		} else {
 			String email = customer.getEmail().toUpperCase();
 			String[] emailSplit01 = email.split( "@" );
@@ -48,41 +52,53 @@ public class CustomerFieldsValidator extends FieldsValidator < Customer > {
 
 		if( customer.getAddress() != null ) {
 			if( StringUtils.isEmpty( customer.getAddress().getNeighborhood() ) ) {
-				appendMsg( "Bairro do Cliente" );
+				appendMsg( Message.getMessage( "com.sisga.core.business.cutomer.fields.validator.neighborhood",
+						Message.ERROR, customer ) );
 			}
 
 			if( StringUtils.isEmpty( customer.getAddress().getNumber() ) ) {
-				appendMsg( "Numero do Cliente" );
+				appendMsg( Message.getMessage( "com.sisga.core.business.cutomer.fields.validator.house.number",
+						Message.ERROR, customer ) );
 			}
 
 			if( customer.getAddress().getCity() == null ) {
-				appendMsg( "Cidade do Cliente" );
+				appendMsg( Message.getMessage( "com.sisga.core.business.cutomer.fields.validator.city", Message.ERROR,
+						customer ) );
 			}
 		} else {
-			appendMsg( "Bairro do Cliente" );
-			appendMsg( "Numero do Cliente" );
-			appendMsg( "Cidade do Cliente" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.cutomer.fields.validator.neighborhood",
+					Message.ERROR, customer ) );
+			appendMsg( Message.getMessage( "com.sisga.core.business.cutomer.fields.validator.house.number",
+					Message.ERROR, customer ) );
+			appendMsg( Message.getMessage( "com.sisga.core.business.cutomer.fields.validator.city", Message.ERROR,
+					customer ) );
 		}
 
 		if( customer.getUserSeller() == null ) {
-			appendMsg( "Vendedor do Cliente" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.cutomer.fields.validator.seller", Message.ERROR,
+					customer ) );
 		}
 
 		if( customer.getTelephones() == null ) {
-			appendMsg( "Telefone e Celular do Cliente" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.cutomer.fields.validator.telephone.cellphone",
+					Message.ERROR, customer ) );
 		}
 
 		if( customer.getTelephones().get( 0 ).getDdd() == null ) {
-			appendMsg( "DDD Telefone do Cliente" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.cutomer.fields.validator.telephone.ddd",
+					Message.ERROR, customer ) );
 		}
 		if( customer.getTelephones().get( 0 ).getPnumber() == null ) {
-			appendMsg( "Telefone do Cliente" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.cutomer.fields.validator.telephone", Message.ERROR,
+					customer ) );
 		}
 		if( customer.getTelephones().get( 1 ).getDdd() == null ) {
-			appendMsg( "DDD Celular do Cliente" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.cutomer.fields.validator.cellphone.ddd",
+					Message.ERROR, customer ) );
 		}
 		if( customer.getTelephones().get( 1 ).getPnumber() == null ) {
-			appendMsg( "Celular do Cliente" );
+			appendMsg( Message.getMessage( "com.sisga.core.business.cutomer.fields.validator.cellphone", Message.ERROR,
+					customer ) );
 		}
 
 		return getMessage();

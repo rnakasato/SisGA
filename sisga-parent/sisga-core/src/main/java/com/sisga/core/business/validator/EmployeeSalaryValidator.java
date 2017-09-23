@@ -1,6 +1,7 @@
 package com.sisga.core.business.validator;
 
 import com.sisga.core.business.Validator;
+import com.sisga.core.core.util.Message;
 import com.sisga.domain.employee.Employee;
 
 /**
@@ -14,7 +15,7 @@ public class EmployeeSalaryValidator extends Validator < Employee > {
 	public String validate( Employee e ) {
 		msg = null;
 		if( e.getSalary() < getMinSalary() ) {
-			msg = "O salário do funcionário não pode ser menor que o salário mínimo";
+			msg = Message.getMessage( "com.sisga.core.business.employee.validator.min.salary", Message.ERROR, e );
 		}
 
 		return msg;

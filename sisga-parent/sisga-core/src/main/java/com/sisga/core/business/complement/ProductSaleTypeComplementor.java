@@ -1,6 +1,7 @@
 package com.sisga.core.business.complement;
 
 import com.sisga.core.core.business.Complementor;
+import com.sisga.core.core.util.Message;
 import com.sisga.core.dao.impl.SaleTypeDAO;
 import com.sisga.core.hibernate.SessionThreadLocal;
 import com.sisga.domain.product.Product;
@@ -31,21 +32,21 @@ public class ProductSaleTypeComplementor extends Complementor < Product > {
 				SaleType newSaleType = new SaleType();
 				newSaleType.setDescription( saleTypeDescription );
 
-				// Para montar o c√≥digo da nova forma de venda utiliza-se:
-				// Os primeiros 3 caracteres em caixa alta da descri√ß√£o da
+				// Para montar o cÛdigo da nova forma de venda utiliza-se:
+				// Os primeiros 3 caracteres em caixa alta da descriÁ„o da
 				// forma
-				// de venda. Ex: CAIXA - c√≥d: CAI
+				// de venda. Ex: CAIXA - cÛd: CAI
 
-				// Caso j√° exista um produto com o mesmo c√≥digo, ser√°
+				// Caso j· exista um produto com o mesmo cÛdigo, ser·
 				// utilizado:
-				// Os primerios 3 caracteres em caixa alta da descri√ß√£o e um
-				// valor num√©rico. Ex: CAIXA PAPELAO - c√≥d: CAI1
+				// Os primerios 3 caracteres em caixa alta da descriÁ„o e um
+				// valor numÈrico. Ex: CAIXA PAPELAO - cÛd: CAI1
 
-				// Ocorrer√° a verifica√ß√£o at√© que haja um nome dispon√≠vel.
+				// Ocorrer· a verificaÁ„o atÈ que haja um nome disponÌvel.
 				// Ex:
 				// CAI2, CAI3, CAI4 ...CAI9
-				// Caso chegue no valor num√©rico 9 ap√≥s os caracteres,
-				// ocorrer√°
+				// Caso chegue no valor numÈrico 9 apÛs os caracteres,
+				// ocorrer·
 				// um erro.
 				// Foi definido dessa forma porque pequenos produtores n√£o
 				// produzem variedades muito
@@ -62,27 +63,27 @@ public class ProductSaleTypeComplementor extends Complementor < Product > {
 					saleType = saleTypeDAO.findSingle( filter );
 
 					if( saleType != null ) {
-						// Existe uma forma de venda com o mesmo c√≥digo
+						// Existe uma forma de venda com o mesmo cÛdigo
 						StringBuilder sb = new StringBuilder();
 						sb.append( code.substring( 0, 2 ) );
 						sb.append( count );
 						code = sb.toString();
 						count ++ ;
 					} else {
-						// N√£o existe forma de venda com o mesmo c√≥digo,
-						// poder√°
+						// N√£o existe forma de venda com o mesmo cÛdigo,
+						// poder·
 						// ser
-						// utilizado √∫ltimo c√≥digo gerado
+						// utilizado ⁄ltimo cÛdigo gerado
 						validCode = true;
 						newSaleType.setCode( code.toUpperCase() );
 					}
 				}
 
 				if( ! validCode && count > 9 ) {
-					// Foram excedidos os c√≥digos com os 3 d√≠gitos iniciais da
+					// Foram excedidos os cÛdigos com os 3 dÌgitos iniciais da
 					// forma de venda
-					// EX: foi gerado o c√≥d: CAI9
-					msg = "N√∫mero de c√≥digos de forma de venda excedidos";
+					// EX: foi gerado o cÛd: CAI9
+					msg = Message.getMessage( "com.sisga.core.business.sale.code.exceeded", Message.ERROR, p);
 				}
 
 				if( validCode ) {
@@ -93,7 +94,7 @@ public class ProductSaleTypeComplementor extends Complementor < Product > {
 			}
 
 		} catch( Exception e ) {
-			msg = "Erro inesperado";
+			msg = Message.getMessage( "com.sisga.core.unexpected.error", Message.ERROR, p);
 		}
 
 		return msg;

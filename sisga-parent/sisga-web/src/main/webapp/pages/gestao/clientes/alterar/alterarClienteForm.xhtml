@@ -51,8 +51,7 @@
 									<p:column>
 										<p:inputMask id="inputTelefone"
 											mask="(99) 9999-9999"
-											value="#{customerMB.customer.telephones.get(0).ddd + 
-												customerMB.customer.telephones.get(0).pnumber}" required="true"
+											value="#{customerMB.customer.telephones.get(0).pnumber}" required="true"
 											requiredMessage="Telefone obrigatório">
 										</p:inputMask>
 									</p:column>
@@ -66,8 +65,7 @@
 
 									<p:column>
 										<p:inputMask id="inputCelular" 
-											value="#{customerMB.customer.telephones.get(1).ddd + 
-												customerMB.customer.telephones.get(1).pnumber}"
+											value="#{customerMB.customer.telephones.get(1).pnumber}"
 											required="true" 
 											mask="(99) 99999-9999"
 											requiredMessage="Celular obrigatório">

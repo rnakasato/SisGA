@@ -48,27 +48,30 @@ public class CustomerMB extends BaseMB {
 	private Customer customer;
 	private String status;
 	private String code;
+	private String telefone;
+	private String celular;
 	private boolean doUpdate;
 	private State selectedState;
-	private List < City > cityList;
-	private List < State > stateList;
-	private List < User > userList;
-
+	private List<City> cityList;
+	private List<State> stateList;
+	private List<User> userList;
+	
+	
 	// Para manipulação de clientes
 	private Customer selectedCustomer;
 
 	@PostConstruct
 	public void init() {
-
+		
 		filter = new CustomerFilter();
-		filter.setStatus( "TODOS" );
+		filter.setStatus("TODOS");
 		customer = new Customer();
 		doUpdate = false;
-		newTelephonesCityState( customer );
+		newTelephonesCityState(customer);
 		cityList = getCities();
 		stateList = getStates();
 		userList = getUsers();
-
+		
 	}
 
 	// Métodos Operacionais
@@ -114,7 +117,7 @@ public class CustomerMB extends BaseMB {
 
 	public void update() {
 		prepareUpdateCustomer();
-
+		
 		ICommand commandUpdate;
 		try {
 			commandUpdate = FactoryCommand.build( customer, EOperation.UPDATE );
@@ -190,9 +193,15 @@ public class CustomerMB extends BaseMB {
 
 	public void search() {
 		try {
-			filter.setStatus( status );
+			filter.setStatus(status);
 			ICommand commandFind = FactoryCommand.build( filter, EOperation.FIND );
 			customerList = commandFind.execute().getEntityList();
+			if (customerList != null && !customerList.isEmpty()) {
+				for(int i = 0; i< customerList.size();i++){
+					customerList.get(i).getTelephones().get(0).setPnumber(customerList.get(i).getTelephones().get(0).getDdd()+customerList.get(i).getTelephones().get(0).getPnumber());
+					customerList.get(i).getTelephones().get(1).setPnumber(customerList.get(i).getTelephones().get(1).getDdd()+customerList.get(i).getTelephones().get(1).getPnumber());
+				}
+			}
 
 		} catch( ClassNotFoundException e ) {
 			// TODO Auto-generated catch block
@@ -231,6 +240,8 @@ public class CustomerMB extends BaseMB {
 				List < Customer > customerList = commandFind.execute().getEntityList();
 				if( customerList != null && ! customerList.isEmpty() ) {
 					customer = customerList.get( 0 );
+					customer.getTelephones().get(0).setPnumber(customer.getTelephones().get(0).getDdd() + customer.getTelephones().get(0).getPnumber());
+					customer.getTelephones().get(0).setPnumber(customer.getTelephones().get(1).getDdd() + customer.getTelephones().get(1).getPnumber());
 				}
 			}
 
@@ -239,109 +250,125 @@ public class CustomerMB extends BaseMB {
 		}
 
 	}
-
-	private void newTelephonesCityState( Customer customer ) {
-		customer.setTelephones( new ArrayList < Telephone >() );
-		customer.setTelephones( new ArrayList < Telephone >() );
-		customer.getTelephones().add( new Telephone() );
-		customer.getTelephones().add( new Telephone() );
-		customer.getTelephones().get( 0 ).setPhoneType( new PhoneType() );
-		customer.getTelephones().get( 1 ).setPhoneType( new PhoneType() );
-		customer.getTelephones().get( 0 ).getPhoneType().setCode( PhoneType.TELEFONE );
-		customer.getTelephones().get( 1 ).getPhoneType().setCode( PhoneType.CELULAR );
-		customer.getTelephones().get( 0 ).getPhoneType().setId( 1L );
-		customer.getTelephones().get( 1 ).getPhoneType().setId( 2L );
-		customer.setAddress( new Address() );
-		customer.getAddress().setCity( new City() );
-		customer.getAddress().getCity().setState( new State() );
+	
+	private void newTelephonesCityState(Customer customer) {
+		customer.setTelephones(new ArrayList<Telephone>());
+		customer.setTelephones(new ArrayList<Telephone>());
+		customer.getTelephones().add(new Telephone());
+		customer.getTelephones().add(new Telephone());
+		customer.getTelephones().get(0).setPhoneType(new PhoneType());
+		customer.getTelephones().get(1).setPhoneType(new PhoneType());
+		customer.getTelephones().get(0).getPhoneType().setCode(PhoneType.TELEFONE);
+		customer.getTelephones().get(1).getPhoneType().setCode(PhoneType.CELULAR);
+		customer.getTelephones().get(0).getPhoneType().setId(1L);
+		customer.getTelephones().get(1).getPhoneType().setId(2L);
+		customer.setAddress(new Address());
+		customer.getAddress().setCity(new City());
+		customer.getAddress().getCity().setState(new State());
 		this.customer = customer;
 	}
 
-	private List < City > getCities() {
-		List < City > cityList = new ArrayList < City >();
+	private List<City> getCities(){
+		List<City> cityList = new ArrayList<City>();
 		try {
-			ICommand commandFind;
-			commandFind = FactoryCommand.build( new City(), EOperation.FINDALL );
-			cityList = commandFind.execute().getEntityList();
-		} catch( ClassNotFoundException e ) {
+				ICommand commandFind;
+				commandFind = FactoryCommand.build(new City(), EOperation.FINDALL);
+				cityList = commandFind.execute().getEntityList();
+			} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		return cityList;
 	}
 
-	private List < State > getStates() {
-		List < State > states = new ArrayList < State >();
+	private List<State> getStates() {
+		List<State> states = new ArrayList<State>();
 		try {
 			ICommand commandFind;
-			commandFind = FactoryCommand.build( new State(), EOperation.FINDALL );
+			commandFind = FactoryCommand.build(new State(), EOperation.FINDALL);
 			states = commandFind.execute().getEntityList();
 
-		} catch( ClassNotFoundException e ) {
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		return states;
+		return  states;
 	}
+	
+	private List<User> getUsers() {
+		List<User> users = new ArrayList<User>();
+		//try {
+		//	ICommand commandFind;
+		//	commandFind = FactoryCommand.build(new User(), EOperation.FINDALL);
+		//	users = commandFind.execute().getEntityList();
 
-	private List < User > getUsers() {
-		List < User > users = new ArrayList < User >();
-		// try {
-		// ICommand commandFind;
-		// commandFind = FactoryCommand.build(new User(), EOperation.FINDALL);
-		// users = commandFind.execute().getEntityList();
-
-		// } catch (ClassNotFoundException e) {
-		// e.printStackTrace();
-		// }
-
+		//} catch (ClassNotFoundException e) {
+		//	e.printStackTrace();
+		//}
+		
 		User u = new User();
-		u.setFirstName( "Sergio" );
-		users.add( u );
-		u.setFirstName( "Massao" );
-		users.add( u );
-
-		return users;
+		u.setFirstName("Sergio");
+		users.add(u);
+		u.setFirstName("Massao");
+		users.add(u);
+		
+		return  users;
 	}
 
 	public void loadCities( AjaxBehaviorEvent event ) {
 		City city = new City();
-		city.setUf( selectedState.getUf() );
-		List < City > cityList = new ArrayList < City >();
+		city.setUf(selectedState.getUf());
+		List<City> cityList = new ArrayList<City>();
 		try {
 			ICommand commandFind;
-			commandFind = FactoryCommand.build( city, EOperation.FIND );
+			commandFind = FactoryCommand.build(city, EOperation.FIND);
 			cityList = commandFind.execute().getEntityList();
-		} catch( ClassNotFoundException e ) {
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		this.cityList = cityList;
 	}
-
+	
 	public void viewDetails( Customer customer ) {
 		selectedCustomer = customer;
 	}
 
-	private Customer prepareSaveCustomer() {
-		String tel = customer.getTelephones().get( 0 ).getPnumber();
-		String[] dddtel = tel.split( " " );
-		customer.getTelephones().get( 0 ).setDdd( dddtel[0].substring( 1, 3 ) );
-		customer.getTelephones().get( 0 ).setPnumber( dddtel[1].replace( "-", "" ) );
-
-		tel = customer.getTelephones().get( 1 ).getPnumber();
-		dddtel = tel.split( " " );
-		customer.getTelephones().get( 1 ).setDdd( dddtel[0].substring( 1, 3 ) );
-		customer.getTelephones().get( 1 ).setPnumber( dddtel[1].replace( "-", "" ) );
-
+	private Customer prepareSaveCustomer() { 
+		String tel = customer.getTelephones().get(0).getPnumber();
+		String [] dddtel = tel.split(" ");
+		customer.getTelephones().get(0).setDdd(dddtel[0].substring(1,3));
+		customer.getTelephones().get(0).setPnumber(dddtel[1].replace("-", ""));
+	
+		tel = customer.getTelephones().get(1).getPnumber();
+		dddtel = tel.split(" ");
+		customer.getTelephones().get(1).setDdd(dddtel[0].substring(1,3));
+		customer.getTelephones().get(1).setPnumber(dddtel[1].replace("-", ""));
+	
 		return customer;
 	}
-
+	
 	private Customer prepareUpdateCustomer() {
+		String tel = customer.getTelephones().get(0).getPnumber();
+		String [] dddtel = tel.split(" ");
+		customer.getTelephones().get(0).setDdd(dddtel[0].substring(1,3));
+		customer.getTelephones().get(0).setPnumber(dddtel[1].replace("-", ""));
+	
+		tel = customer.getTelephones().get(1).getPnumber();
+		dddtel = tel.split(" ");
+		customer.getTelephones().get(1).setDdd(dddtel[0].substring(1,3));
+		customer.getTelephones().get(1).setPnumber(dddtel[1].replace("-", ""));
+		
+		if(status.equals("ATIVO")){
+			customer.setActive(true);
+		}else if(status.equals("INATIVO")){
+			customer.setActive(false);
+		}
+	
 		return customer;
 	}
 
 	@Override
 	public void clearFilter() {
 		filter = new CustomerFilter();
-		filter.setStatus( "TODOS" );
+		filter.setStatus("TODOS");
 	}
 
 	// Getters e Setters
@@ -349,15 +376,15 @@ public class CustomerMB extends BaseMB {
 		return filter;
 	}
 
-	public void setFilter( CustomerFilter filter ) {
+	public void setFilter(CustomerFilter filter) {
 		this.filter = filter;
 	}
 
-	public List < Customer > getCustomerList() {
+	public List<Customer> getCustomerList() {
 		return customerList;
 	}
 
-	public void setCustomerList( List < Customer > customerList ) {
+	public void setCustomerList(List<Customer> customerList) {
 		this.customerList = customerList;
 	}
 
@@ -365,7 +392,7 @@ public class CustomerMB extends BaseMB {
 		return customer;
 	}
 
-	public void setCustomer( Customer customer ) {
+	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
 
@@ -373,7 +400,7 @@ public class CustomerMB extends BaseMB {
 		return status;
 	}
 
-	public void setStatus( String status ) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
@@ -381,7 +408,7 @@ public class CustomerMB extends BaseMB {
 		return code;
 	}
 
-	public void setCode( String code ) {
+	public void setCode(String code) {
 		this.code = code;
 	}
 
@@ -389,23 +416,23 @@ public class CustomerMB extends BaseMB {
 		return selectedState;
 	}
 
-	public void setSelectedState( State selectedState ) {
+	public void setSelectedState(State selectedState) {
 		this.selectedState = selectedState;
 	}
 
-	public List < City > getCityList() {
+	public List<City> getCityList() {
 		return cityList;
 	}
 
-	public void setCityList( List < City > cityList ) {
+	public void setCityList(List<City> cityList) {
 		this.cityList = cityList;
 	}
 
-	public List < State > getStateList() {
+	public List<State> getStateList() {
 		return stateList;
 	}
 
-	public void setStateList( List < State > stateList ) {
+	public void setStateList(List<State> stateList) {
 		this.stateList = stateList;
 	}
 
@@ -413,7 +440,7 @@ public class CustomerMB extends BaseMB {
 		return doUpdate;
 	}
 
-	public void setDoUpdate( boolean doUpdate ) {
+	public void setDoUpdate(boolean doUpdate) {
 		this.doUpdate = doUpdate;
 	}
 
@@ -421,16 +448,35 @@ public class CustomerMB extends BaseMB {
 		return selectedCustomer;
 	}
 
-	public void setSelectedCustomer( Customer selectedCustomer ) {
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
+	}
+
+	public void setSelectedCustomer(Customer selectedCustomer) {
 		this.selectedCustomer = selectedCustomer;
 	}
 
-	public List < User > getUserList() {
+	public List<User> getUserList() {
 		return userList;
 	}
 
-	public void setUserList( List < User > userList ) {
+	public void setUserList(List<User> userList) {
 		this.userList = userList;
 	}
+	
+	
 
+	
 }

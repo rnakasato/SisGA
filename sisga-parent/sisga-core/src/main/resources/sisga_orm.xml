@@ -13,7 +13,7 @@
 		<property name="name" column="NAME" />
 		<property name="uf" column="UF" />
 
-		<many-to-one name="state" column="IDSTATE"
+		<many-to-one name="state" column="IDSTATE" lazy="false"
 			class="com.sisga.domain.address.State" not-null="true" />
 
 	</class>

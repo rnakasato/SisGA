@@ -35,7 +35,7 @@ import com.sisga.web.util.Redirector;
  */
 @ManagedBean( name = "providerMB" )
 @ViewScoped
-public class ProviderMB extends BaseMB {
+public class ProviderMB extends BaseMB<Provider> {
 
 	private static final long serialVersionUID = 1L;
 

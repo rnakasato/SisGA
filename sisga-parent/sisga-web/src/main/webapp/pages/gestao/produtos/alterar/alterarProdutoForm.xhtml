@@ -195,7 +195,8 @@
 						</p:column>
 						<p:column style="width:10%">
 							<p:commandButton id="btnAlterarProduto" value="Alterar"
-								update=":formAlterarProduto :formFilter :messages"
+								update=":formAlterarProduto :formFilter form_content:productTable :messages"
+								process=":formAlterarProduto:gridUpdateProduct :formAlterarProduto:gridAlterarButtons"
 								actionListener="#{productMB.update}">
 								<p:confirm header="Produto" message="Confirmar alteração?" />
 							</p:commandButton>

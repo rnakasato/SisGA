@@ -1,8 +1,10 @@
 package com.sisga.web.mb;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
@@ -12,13 +14,17 @@ import org.primefaces.component.dialog.Dialog;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
-public abstract class BaseMB implements Serializable {
+import com.sisga.domain.AbstractDomainEntity;
+
+public abstract class BaseMB < T extends AbstractDomainEntity > implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private Boolean isSelected;
 	private Dialog saveDialog;
 	private Dialog updateDialog;
+
+	private List < T > filteredValue;
 
 	public void select( SelectEvent event ) {
 		isSelected = true;
@@ -70,6 +76,17 @@ public abstract class BaseMB implements Serializable {
 
 	public void setUpdateDialog( Dialog updateDialog ) {
 		this.updateDialog = updateDialog;
+	}
+
+	public List < T > getFilteredValue() {
+		if( filteredValue == null ) {
+			filteredValue = new ArrayList <>();
+		}
+		return filteredValue;
+	}
+
+	public void setFilteredValue( List < T > filteredValue ) {
+		this.filteredValue = filteredValue;
 	}
 
 }

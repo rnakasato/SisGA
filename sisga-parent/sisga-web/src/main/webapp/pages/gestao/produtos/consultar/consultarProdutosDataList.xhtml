@@ -9,22 +9,30 @@
 <h:body>
 	<ui:composition>
 		<p:dataTable
+			widgetVar="wvProductTable"
 			var="prod"
 			id="productTable"
 			value="#{productMB.productList}"
 			paginator="true"
 			paginatorPosition="bottom"
 			selection="#{productMB.selectedProduct}"
+			filteredValue="#{productMB.filteredValue}"
 			rowKey="#{prod.id}"
-			rows="15"			
+			rows="15"
 			style="width:100%">
 			<f:facet
 				name="header"
 				style="align:left">
-				            Produtos
-				        </f:facet>
+					<ui:include
+						src="/pages/gestao/produtos/consultar/consultarProdutosMenubar.xhtml" />
+				
+			</f:facet>
 
-			<p:column style="width:15%;text-align:center" sortBy="#{prod.description}">
+			<p:column
+				style="width:15%;text-align:center"
+				filterBy="#{prod.description}"
+				filterStyle="display:none"
+				sortBy="#{prod.description}">
 
 				<f:facet name="header">
 					<p:outputLabel value="Produto" />
@@ -34,7 +42,11 @@
 
 			</p:column>
 
-			<p:column style="width:15%;text-align:center " sortBy="#{prod.code}">
+			<p:column
+				style="width:15%;text-align:center "
+				filterBy="#{prod.code}"
+				filterStyle="display:none"
+				sortBy="#{prod.code}">
 
 				<f:facet name="header">
 					<p:outputLabel value="Código" />
@@ -44,7 +56,11 @@
 
 			</p:column>
 
-			<p:column style="width:15%;text-align:center" sortBy="#{prod.amount}">
+			<p:column
+				style="width:15%;text-align:center"
+				filterBy="#{prod.amount}"
+				filterStyle="display:none"
+				sortBy="#{prod.amount}">
 
 				<f:facet name="header">
 					<p:outputLabel value="Estoque" />
@@ -62,10 +78,9 @@
 					id="buttonAlterarProduto"
 					style="margin-left:20px"
 					value="Alterar"
-					update="formAlterarProduto:gridUpdateProduct"					
+					update="formAlterarProduto:gridUpdateProduct"
 					actionListener="#{productMB.setUpdate(prod)}"
-					onclick="PF('prodUpdateDialog').show()" 
-					/>
+					onclick="PF('prodUpdateDialog').show()" />
 
 				<p:commandButton
 					id="buttonExcluirProduto"

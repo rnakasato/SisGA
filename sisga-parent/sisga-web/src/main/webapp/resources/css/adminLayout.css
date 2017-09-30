@@ -45,8 +45,36 @@ html, body {
 
 .baseGrid.ui-panelgrid>*>tr, .baseGrid.ui-panelgrid .ui-panelgrid-cell {
 	border: none;
-	background: white !important; 
+	background: none; 
 }
+
+.baseGridgreen.ui-panelgrid>*>tr, .baseGridgreen.ui-panelgrid .ui-panelgrid-cell {
+	border:none;
+	 
+}
+
+.baseGridgreen.ui-panelgrid {
+	border-style: solid !important;
+	border-width: 1px !important;
+	border-color:black !important;
+}
+
+
+
+.menu-button{
+	background-image: none !important;
+	background-color: #1c7e51 !important;
+	color:#fff !important;
+	text-shadow: none !important;	
+}
+
+.menu-button:hover {
+  	background-image: none !important;
+	background-color: #00a65a !important;
+	color:#fff !important;
+	text-shadow: none !important;	
+}
+
 
 
 /*PRIMEFACES OVERRIDE*/
@@ -57,6 +85,7 @@ html, body {
 }
 .ui-fieldset.fieldset-search {
 	padding: 0px;
+	padding-bottom: 50px !important;
 	border-left:none  !important;
 	margin-left:-18px;
 	margin-right:-2px;
@@ -259,4 +288,9 @@ span.ui-message-fatal-summary {
 .ui-dialog.detailModal .ui-dialog-content .right{border-left:#666 thin solid;}
 .ui-dialog.detailModal .ui-dialog-content .left{border-right:#ccc thin solid;}
 
+.ui-datatable-header{padding: 0px !important}
+
 /*ICONS*/
+
+
+

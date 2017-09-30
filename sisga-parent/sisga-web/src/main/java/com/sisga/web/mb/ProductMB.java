@@ -41,7 +41,7 @@ import com.sisga.web.util.Redirector;
  */
 @ManagedBean( name = "productMB" )
 @ViewScoped
-public class ProductMB extends BaseMB {
+public class ProductMB extends BaseMB<Product> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -112,6 +112,8 @@ public class ProductMB extends BaseMB {
 					RequestContext.getCurrentInstance()
 							.execute( "PF('" + getSaveDialog().getWidgetVar() + "').hide();" );
 				}
+				
+				search();
 
 			}
 
@@ -154,6 +156,7 @@ public class ProductMB extends BaseMB {
 					RequestContext.getCurrentInstance()
 							.execute( "PF('" + getUpdateDialog().getWidgetVar() + "').hide();" );
 				}
+				search();
 			}
 
 		} catch( ClassNotFoundException e ) {
@@ -196,44 +199,19 @@ public class ProductMB extends BaseMB {
 		}
 	}
 
-	public void cancel() {
-		Redirector.redirectTo( FacesContext.getCurrentInstance().getExternalContext(),
-				"/pages/gestao/produtos/consultarProdutos.jsf?faces-redirect=true" );
-
-	}
-
 	public void search() {
 		try {
 			filter.setActive( true );
 			ICommand commandFind = FactoryCommand.build( filter, EOperation.FIND );
 			productList = commandFind.execute().getEntityList();
+			setFilteredValue( productList );
 
 		} catch( ClassNotFoundException e ) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
-	// Métodos de view (para auxiliar carregamentos de dados na view)
-	public void redirectToProductUpdate( Product product ) {
-		FacesContext ctx = FacesContext.getCurrentInstance();
-		ExternalContext context = ctx.getExternalContext();
-		if( product != null ) {
-
-			context.getFlash().put( "product", product );
-			StringBuilder sb = new StringBuilder();
-			sb.append( "/pages/gestao/produtos/alterarProdutos.jsf?faces-redirect=true" );
-			sb.append( "&productCode=" );
-			sb.append( product.getCode() );
-
-			String url = sb.toString();
-			Redirector.redirectTo( context, url );
-
-		} else {
-			ctx.addMessage( null, new FacesMessage(
-					Message.getMessage( "com.sisga.web.product.info.select.product", Message.INFO, product ) ) );
-		}
-	}
+	
 
 	public void setUpdate( Product product ) {
 
@@ -244,6 +222,14 @@ public class ProductMB extends BaseMB {
 		this.product = product;
 
 	}
+	
+	public void setSave( Product product ) {
+
+		doUpdate = false;
+		this.product = new Product();
+
+	}
+
 
 	public void loadStockType() {
 		ICommand commandFind = null;
@@ -450,12 +436,5 @@ public class ProductMB extends BaseMB {
 		this.removeAmount = removeAmount;
 	}
 
-	public boolean isDoUpdate() {
-		return doUpdate;
-	}
-
-	public void setDoUpdate( boolean doUpdate ) {
-		this.doUpdate = doUpdate;
-	}
 
 }

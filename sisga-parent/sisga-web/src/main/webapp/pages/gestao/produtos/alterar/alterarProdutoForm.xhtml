@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -8,31 +9,46 @@
 	xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
 	<ui:composition>
-		<p:dialog id="productUpdateDialog"
-			widgetVar="prodUpdateDialog" modal="true" showEffect="fade"
+		<p:dialog
+			id="productUpdateDialog"
+			widgetVar="prodUpdateDialog"
+			modal="true"
+			showEffect="fade"
 			header="Alterar Produto"
-			hideEffect="fade" resizable="false" width="800px" position="top"
+			hideEffect="fade"
+			resizable="false"
+			width="800px"
+			position="center"
 			binding="#{productMB.updateDialog}">
 
 			<h:form id="formAlterarProduto">
-				<p:scrollPanel id="scroolUpdateProduct"
+				<p:scrollPanel
+					id="scroolUpdateProduct"
 					style="max-height:500px;max-width:800px">
-					
-					<p:panelGrid id="gridUpdateProduct" border="0"
+
+					<p:panelGrid
+						id="gridUpdateProduct"
+						border="0"
 						styleClass="baseGrid">
 						<p:row>
 							<p:column>
-								<p:panelGrid id="gridUpdateProductData" border="0"
+								<p:panelGrid
+									id="gridUpdateProductData"
+									border="0"
 									styleClass="baseGrid">
 									<p:row>
 										<p:column>
-											<p:outputLabel for="inputNomeProduto"
-												value="Nome do Produto " style="font-weight:bold" />
+											<p:outputLabel
+												for="inputNomeProduto"
+												value="Nome do Produto "
+												style="font-weight:bold" />
 										</p:column>
 
 										<p:column>
-											<p:inputText id="inputNomeProduto"
-												value="#{productMB.product.description}" required="true"
+											<p:inputText
+												id="inputNomeProduto"
+												value="#{productMB.product.description}"
+												required="true"
 												requiredMessage="Campo obrigatório" />
 											<p:message for="inputNomeProduto" />
 										</p:column>
@@ -42,11 +58,14 @@
 
 									<p:row>
 										<p:column>
-											<p:outputLabel for="outputProducao" value="Produção por "
+											<p:outputLabel
+												for="outputProducao"
+												value="Produção por "
 												style="font-weight:bold" />
 										</p:column>
 										<p:column>
-											<p:outputLabel id="outputProducao"
+											<p:outputLabel
+												id="outputProducao"
 												value="#{productMB.product.productionType.description}" />
 										</p:column>
 									</p:row>
@@ -54,17 +73,24 @@
 
 									<p:row>
 										<p:column>
-											<p:outputLabel for="outputQuantidade"
-												value="Quantidade em estoque" style="font-weight:bold" />
+											<p:outputLabel
+												for="outputQuantidade"
+												value="Quantidade em estoque"
+												style="font-weight:bold" />
 										</p:column>
 										<p:column>
-											<p:outputLabel id="outputQuantidade"
+											<p:outputLabel
+												id="outputQuantidade"
 												value="#{productMB.product.amount}">
 											</p:outputLabel>
-											<p:outputLabel id="outputUnidade" style="margin-left: 10px"
+											<p:outputLabel
+												id="outputUnidade"
+												style="margin-left: 10px"
 												value="Unidade:">
 											</p:outputLabel>
-											<p:outputLabel id="outputStockType" style="margin-left: 10px"
+											<p:outputLabel
+												id="outputStockType"
+												style="margin-left: 10px"
 												value="#{productMB.product.stockType.description}">
 											</p:outputLabel>
 
@@ -73,19 +99,28 @@
 
 									<p:row>
 										<p:column>
-											<p:outputLabel for="inputAdicionarQuantidade"
-												value="Quantidade a adicionar" style="font-weight:bold" />
+											<p:outputLabel
+												for="inputAdicionarQuantidade"
+												value="Quantidade a adicionar"
+												style="font-weight:bold" />
 										</p:column>
 										<p:column>
-											<p:inputNumber id="inputAdicionarQuantidade"
-												value="#{productMB.addAmount}" decimalSeparator=","
-												thousandSeparator="." minValue="0" decimalPlaces="0"
+											<p:inputNumber
+												id="inputAdicionarQuantidade"
+												value="#{productMB.addAmount}"
+												decimalSeparator=","
+												thousandSeparator="."
+												minValue="0"
+												decimalPlaces="0"
 												maxValue="99999">
 											</p:inputNumber>
-											<p:outputLabel id="outputUnidadeAdicionar"
-												style="margin-left: 10px" value="Unidade:">
+											<p:outputLabel
+												id="outputUnidadeAdicionar"
+												style="margin-left: 10px"
+												value="Unidade:">
 											</p:outputLabel>
-											<p:outputLabel id="outputStockTypeAdicionar"
+											<p:outputLabel
+												id="outputStockTypeAdicionar"
 												style="margin-left: 10px"
 												value="#{productMB.product.stockType.description}">
 											</p:outputLabel>
@@ -94,19 +129,28 @@
 									</p:row>
 									<p:row>
 										<p:column>
-											<p:outputLabel for="inputRemoverQuantidade"
-												value="Quantidade a remover" style="font-weight:bold" />
+											<p:outputLabel
+												for="inputRemoverQuantidade"
+												value="Quantidade a remover"
+												style="font-weight:bold" />
 										</p:column>
 										<p:column>
-											<p:inputNumber id="inputRemoverQuantidade"
-												value="#{productMB.removeAmount}" decimalSeparator=","
-												thousandSeparator="." minValue="0" decimalPlaces="0"
+											<p:inputNumber
+												id="inputRemoverQuantidade"
+												value="#{productMB.removeAmount}"
+												decimalSeparator=","
+												thousandSeparator="."
+												minValue="0"
+												decimalPlaces="0"
 												maxValue="99999">
 											</p:inputNumber>
-											<p:outputLabel id="outputUnidadeRemover"
-												style="margin-left: 10px" value="Unidade:">
+											<p:outputLabel
+												id="outputUnidadeRemover"
+												style="margin-left: 10px"
+												value="Unidade:">
 											</p:outputLabel>
-											<p:outputLabel id="outputStockTypeRemover"
+											<p:outputLabel
+												id="outputStockTypeRemover"
 												style="margin-left: 10px"
 												value="#{productMB.product.stockType.description}">
 											</p:outputLabel>
@@ -117,13 +161,19 @@
 
 									<p:row>
 										<p:column>
-											<p:outputLabel for="inputValorBaseVenda"
-												value="Valor base de venda" style="font-weight:bold" />
+											<p:outputLabel
+												for="inputValorBaseVenda"
+												value="Valor base de venda"
+												style="font-weight:bold" />
 										</p:column>
 										<p:column>
-											<p:inputNumber id="inputValorBaseVenda"
-												value="#{productMB.product.baseValue}" decimalSeparator=","
-												thousandSeparator="." maxValue="9999.99" required="true"
+											<p:inputNumber
+												id="inputValorBaseVenda"
+												value="#{productMB.product.baseValue}"
+												decimalSeparator=","
+												thousandSeparator="."
+												maxValue="9999.99"
+												required="true"
 												requiredMessage="Campo obrigatório">
 											</p:inputNumber>
 											<p:message for="inputValorBaseVenda" />
@@ -133,13 +183,19 @@
 
 									<p:row>
 										<p:column>
-											<p:outputLabel for="selectOneMenuVendaPor"
-												value="Venda por  " style="font-weight:bold" />
+											<p:outputLabel
+												for="selectOneMenuVendaPor"
+												value="Venda por  "
+												style="font-weight:bold" />
 										</p:column>
 										<p:column>
-											<p:autoComplete id="selectOneMenuVendaPor" dropdown="true"
-												value="#{productMB.saleTypeDescription}" maxlength="30"
-												completeMethod="#{productMB.fillSaleType}" required="true"
+											<p:autoComplete
+												id="selectOneMenuVendaPor"
+												dropdown="true"
+												value="#{productMB.saleTypeDescription}"
+												maxlength="30"
+												completeMethod="#{productMB.fillSaleType}"
+												required="true"
 												requiredMessage="Campo obrigatório" />
 											<p:message for="selectOneMenuVendaPor" />
 										</p:column>
@@ -160,17 +216,24 @@
 						</p:row>
 						<p:row>
 							<p:column>
-								<p:panelGrid id="gridCadastrarFoto" styleClass="baseGrid">
+								<p:panelGrid
+									id="gridCadastrarFoto"
+									styleClass="baseGrid">
 									<p:row>
 										<p:column>
-											<p:outputLabel for="fileUpload" value="Foto:"
+											<p:outputLabel
+												for="fileUpload"
+												value="Foto:"
 												style="font-weight:bold"
 												allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 										</p:column>
 										<p:column>
-											<p:fileUpload id="fileUpload"
+											<p:fileUpload
+												id="fileUpload"
 												fileUploadListener="#{productMB.doUpload}"
-												label="Procurar..." auto="false" update="img">
+												label="Procurar..."
+												auto="false"
+												update="img">
 											</p:fileUpload>
 										</p:column>
 
@@ -178,34 +241,46 @@
 
 									<p:row>
 										<p:column>
-											<p:graphicImage id="img"
+											<p:graphicImage
+												id="img"
 												url="#{productMB.getImagePath(productMB.product)}"
-												width="256" height="144" />
+												width="256"
+												height="144" />
 										</p:column>
 									</p:row>
 
 								</p:panelGrid>
 							</p:column>
 						</p:row>
-					</p:panelGrid>					
+					</p:panelGrid>
 				</p:scrollPanel>
-				<p:panelGrid id="gridAlterarButtons" styleClass="baseGrid">
+				<p:panelGrid
+					id="gridAlterarButtons"
+					styleClass="baseGrid">
 					<p:row>
 						<p:column style="width:80%">
 						</p:column>
 						<p:column style="width:10%">
-							<p:commandButton id="btnAlterarProduto" value="Alterar"
+							<p:commandButton
+								id="btnAlterarProduto"
+								value="Alterar"
 								update=":formAlterarProduto :formFilter form_content:productTable :messages"
 								process=":formAlterarProduto:gridUpdateProduct :formAlterarProduto:gridAlterarButtons"
 								actionListener="#{productMB.update}">
-								<p:confirm header="Produto" message="Confirmar alteração?" />
+								<p:confirm
+									header="Produto"
+									message="Confirmar alteração?" />
 							</p:commandButton>
 						</p:column>
 						<p:column style="width:10%">
-							<p:commandButton id="btnCancelarAlteracaoProduto"
-								value="Cancelar" onclick="PF('prodUpdateDialog').hide()"
+							<p:commandButton
+								id="btnCancelarAlteracaoProduto"
+								value="Cancelar"
+								onclick="PF('prodUpdateDialog').hide()"
 								process="@this">
-								<p:confirm header="Produto" message="Cancelar alteração?" />
+								<p:confirm
+									header="Produto"
+									message="Cancelar alteração?" />
 							</p:commandButton>
 						</p:column>
 					</p:row>

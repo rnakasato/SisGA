@@ -5,6 +5,11 @@ import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
 
+import com.sisga.domain.user.User;
+import com.sisga.domain.user.UserType;
+import com.sisga.web.mb.LoginMB;
+import com.sisga.web.util.Redirector;
+
 //TODO REFATORAR PARA SISGA
 public class AccessListener implements PhaseListener {
 
@@ -14,43 +19,22 @@ public class AccessListener implements PhaseListener {
 		String currentPage = context.getViewRoot().getViewId();
 
 		boolean isLoginPage = currentPage.contains( "login" );
-		boolean isClientPage = currentPage.contains( "clientuser" );
-		boolean isAdminPage = currentPage.contains( "admin" );
+		boolean isAdminPage = currentPage.contains( "gestao" ) || currentPage.contains( "relatorio" );
+		boolean isLoggedPage = currentPage.contains( "logged" );
 
-		// Object currentUser =
-		// context.getExternalContext().getSessionMap().get( User.LOGGED_USER );
-		//
-		// boolean isAdminUser = currentUser instanceof Administrator;
-		// boolean isOpUser = currentUser instanceof Operator;
-		// boolean isClientUser = currentUser instanceof Customer;
-		//
-		// if( ! isClientUser || ( ! isLoginPage && ( currentUser == null ||
-		// currentUser == "" ) ) ) {
-		// // caso o usu疵io esteja logado como Administrador ou Operador ser�
-		// // realizado o logout automatico
-		// if( ! isClientUser && isClientPage && currentUser != null ) {
-		// context.getExternalContext().getSessionMap().put( User.LOGGED_USER,
-		// null );
-		// }
-		// if( isClientPage && currentPage.contains( "logged" ) ) {
-		// Redirector.redirectTo( context.getExternalContext(),
-		// "/clientuser/login.jsf?faces-redirect=true" );
-		// }
-		// }
-		//
-		// if( ( ! isAdminUser && ! isOpUser ) || ( ! isLoginPage && (
-		// currentUser == null || currentUser == "" ) ) ) {
-		// // caso o usu疵io esteja logado como Administrador ou Operador ser�
-		// // realizado o logout automatico
-		// if( ! isAdminUser && isAdminPage && currentUser != null ) {
-		// context.getExternalContext().getSessionMap().put( User.LOGGED_USER,
-		// null );
-		// }
-		// if( isAdminPage && ! isLoginPage ) {
-		// Redirector.redirectTo( context.getExternalContext(),
-		// "/admin/login.jsf?faces-redirect=true" );
-		// }
-		// }
+		User currentUser = (User) context.getExternalContext().getSessionMap().get( LoginMB.LOGGED_USER );
+		
+		if(  ( ! isLoginPage || isLoggedPage ) && currentUser == null) {
+//			Redirector.redirectTo( context.getExternalContext(), "/pages/login.jsf?faces-redirect=true" );					
+		}else if(!isLoginPage){
+			boolean isOpUser = currentUser.getUserType().getCode().equals( UserType.OPERADOR );		
+			
+			if(isOpUser && isAdminPage) {
+				// REDIRECIONAR PARA PAGINA INFORMANDO QUE NAO POSSUI PERMISSAO
+			}
+		}
+		
+		
 
 	}
 

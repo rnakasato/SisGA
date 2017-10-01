@@ -10,7 +10,7 @@ public class Result < T extends AbstractDomainEntity > {
 	private List < T > entityList;
 
 	/**
-	 * MÈtodo de recuperaÁ„o do campo msg
+	 * M√©todo de recupera√ß√£o do campo msg
 	 *
 	 * @return valor do campo msg
 	 */
@@ -19,7 +19,7 @@ public class Result < T extends AbstractDomainEntity > {
 	}
 
 	/**
-	 * Valor de msg atribu˙Åo a msg
+	 * Valor de msg atribu√≠do a msg
 	 *
 	 * @param msg
 	 *            Atributo da Classe
@@ -29,16 +29,24 @@ public class Result < T extends AbstractDomainEntity > {
 	}
 
 	/**
-	 * MÈtodo de recuperaÁ„o do campo entityList
+	 * M√©todo de recupera√ß√£o do campo entityList
 	 *
 	 * @return valor do campo entityList
 	 */
 	public List < T > getEntityList() {
 		return entityList;
 	}
+	
+	public T getFirstResult() {
+		T entity = null;
+		if(entityList != null && !entityList.isEmpty()) {
+			entity = entityList.get( 0 );
+		}
+		return entity;
+	}
 
 	/**
-	 * Valor de entidades atribu˙Åo a entidades
+	 * Valor de entidades atribu√∫ÔøΩo a entidades
 	 *
 	 * @param entidades
 	 *            Atributo da Classe

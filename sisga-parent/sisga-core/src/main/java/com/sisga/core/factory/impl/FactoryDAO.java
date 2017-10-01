@@ -23,6 +23,9 @@ import com.sisga.core.dao.impl.ProviderOperationDAO;
 import com.sisga.core.dao.impl.SaleTypeDAO;
 import com.sisga.core.dao.impl.StateDAO;
 import com.sisga.core.dao.impl.StockTypeDAO;
+import com.sisga.core.dao.impl.UserDAO;
+import com.sisga.core.dao.impl.UserHistoryDAO;
+import com.sisga.core.dao.impl.UserOperationDAO;
 import com.sisga.domain.address.City;
 import com.sisga.domain.address.State;
 import com.sisga.domain.customer.Customer;
@@ -52,6 +55,10 @@ import com.sisga.domain.provider.ProviderHistory;
 import com.sisga.domain.provider.ProviderOperation;
 import com.sisga.domain.provider.filter.ProviderFilter;
 import com.sisga.domain.provider.filter.ProviderHistoryFilter;
+import com.sisga.domain.user.User;
+import com.sisga.domain.user.UserHistory;
+import com.sisga.domain.user.UserOperation;
+import com.sisga.domain.user.filter.UserFilter;
 
 public class FactoryDAO {
 
@@ -104,6 +111,13 @@ public class FactoryDAO {
 			// City State DAOs
 			daoMap.put( State.class.getName(), new StateDAO() );
 			daoMap.put( City.class.getName(), new CityDAO() );
+			
+			// User DAOs
+			daoMap.put( User.class.getName(), new UserDAO() );
+			daoMap.put( UserFilter.class.getName(), new UserDAO() );
+			daoMap.put( UserOperation.class.getName(), new UserOperationDAO() );
+			daoMap.put( UserHistory.class.getName(), new UserHistoryDAO() );
+			
 
 		}
 	}

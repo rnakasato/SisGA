@@ -8,6 +8,7 @@ import org.hibernate.Session;
 
 import com.sisga.core.IDAO;
 import com.sisga.domain.AbstractDomainEntity;
+import com.sisga.domain.filter.impl.Filter;
 
 public abstract class AbstractDAO < T extends AbstractDomainEntity > implements IDAO < T > {
 	protected Class < T > entityClass;

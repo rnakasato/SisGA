@@ -25,6 +25,10 @@ public class Facade < T extends AbstractDomainEntity > implements IFacade < T > 
 	public Facade() {
 
 	}
+	
+	public static Facade getInstance() {
+		return new Facade();
+	}
 
 	@Override
 	public Result < T > save( T entity ) {

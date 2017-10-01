@@ -8,7 +8,7 @@ public class CommandDelete < T extends AbstractDomainEntity > extends Command < 
 
 	@Override
 	public Result < T > execute() {
-		facade = new Facade < T >();
+		facade = Facade.getInstance();
 		return facade.delete( entity );
 	}
 

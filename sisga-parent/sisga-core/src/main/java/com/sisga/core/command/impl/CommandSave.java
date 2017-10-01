@@ -8,7 +8,7 @@ public class CommandSave < T extends AbstractDomainEntity > extends Command < T 
 
 	@Override
 	public Result < T > execute() {
-		facade = new Facade < T >();
+		facade = Facade.getInstance();
 		return facade.save( entity );
 	}
 

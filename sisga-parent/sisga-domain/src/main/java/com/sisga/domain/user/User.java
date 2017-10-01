@@ -8,9 +8,9 @@ import com.sisga.domain.person.SocialPerson;
  */
 public class User extends SocialPerson {
 	private UserType userType;
-	private String email;
 	private String username;
 	private String password;
+	private Boolean isFirstLogin;
 
 	/**
 	 * @return the userType
@@ -25,21 +25,6 @@ public class User extends SocialPerson {
 	 */
 	public void setUserType( UserType userType ) {
 		this.userType = userType;
-	}
-
-	/**
-	 * @return the email
-	 */
-	public String getEmail() {
-		return email;
-	}
-
-	/**
-	 * @param email
-	 *            the email to set
-	 */
-	public void setEmail( String email ) {
-		this.email = email;
 	}
 
 	/**
@@ -71,5 +56,24 @@ public class User extends SocialPerson {
 	public void setPassword( String password ) {
 		this.password = password;
 	}
+
+	/**
+	 * 
+	 * @return if the user already did the first login
+	 */
+	public Boolean getIsFirstLogin() {
+		return isFirstLogin;
+	}
+	/**
+	 * 
+	 * @param isFirstLogin 
+	 * 		set if is the first login
+	 */
+
+	public void setIsFirstLogin( Boolean isFirstLogin ) {
+		this.isFirstLogin = isFirstLogin;
+	}
+	
+	
 
 }

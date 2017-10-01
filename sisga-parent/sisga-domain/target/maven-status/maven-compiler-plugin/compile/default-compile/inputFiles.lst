@@ -21,6 +21,7 @@ C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-domain\src\main\java\com\sis
 C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-domain\src\main\java\com\sisga\domain\filter\impl\DomainSpecificEntityFilter.java
 C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-domain\src\main\java\com\sisga\domain\order\OrderItem.java
 C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-domain\src\main\java\com\sisga\domain\EntityCarrier.java
+C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-domain\src\main\java\com\sisga\domain\user\UserOperation.java
 C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-domain\src\main\java\com\sisga\domain\address\City.java
 C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-domain\src\main\java\com\sisga\domain\product\StockType.java
 C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-domain\src\main\java\com\sisga\domain\AbstractDomainEntity.java
@@ -49,8 +50,10 @@ C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-domain\src\main\java\com\sis
 C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-domain\src\main\java\com\sisga\domain\DomainSpecificEntity.java
 C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-domain\src\main\java\com\sisga\domain\provider\filter\ProviderHistoryFilter.java
 C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-domain\src\main\java\com\sisga\domain\expense\ExpenseHistory.java
+C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-domain\src\main\java\com\sisga\domain\user\UserHistory.java
 C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-domain\src\main\java\com\sisga\domain\customer\CustomerOperation.java
 C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-domain\src\main\java\com\sisga\domain\order\filter\OrderFilter.java
+C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-domain\src\main\java\com\sisga\domain\user\filter\UserFilter.java
 C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-domain\src\main\java\com\sisga\domain\employee\EmployeeOperation.java
 C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-domain\src\main\java\com\sisga\domain\person\SocialPerson.java
 C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-domain\src\main\java\com\sisga\domain\provider\ProviderOperation.java

@@ -22,6 +22,12 @@
 				<param name="sequence_name">SQ_USER</param>
 			</generator>
 		</id>
+		<property name="active" column="ACTIVE" />
+		<property name="username" column="USERNAME" />
+		<property name="password" column="PASSWORD" />
+		<property name="cpf" column="CPF" />
+		<property name="rg" column="RG" />
+		<property name="email" column="email" />
 		<property name="insertDate" column="INSERTDATE" />
 		<property name="firstName" column="FIRSTNAME" />
 		<property name="lastName" column="LASTNAME" />

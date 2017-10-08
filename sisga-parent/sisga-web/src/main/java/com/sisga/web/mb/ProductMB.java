@@ -223,8 +223,7 @@ public class ProductMB extends BaseMB<Product> {
 
 	}
 	
-	public void setSave( Product product ) {
-
+	public void setSave() {
 		doUpdate = false;
 		this.product = new Product();
 

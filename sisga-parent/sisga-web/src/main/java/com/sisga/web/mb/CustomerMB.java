@@ -13,6 +13,7 @@ import javax.faces.context.Flash;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.context.RequestContext;
 
 import com.sisga.core.ICommand;
 import com.sisga.core.application.Result;
@@ -28,6 +29,7 @@ import com.sisga.domain.customer.Customer;
 import com.sisga.domain.customer.CustomerHistory;
 import com.sisga.domain.customer.CustomerOperation;
 import com.sisga.domain.customer.filter.CustomerFilter;
+import com.sisga.domain.product.Product;
 import com.sisga.domain.user.User;
 import com.sisga.web.util.Redirector;
 
@@ -65,9 +67,7 @@ public class CustomerMB extends BaseMB<Customer> {
 
 		filter = new CustomerFilter();
 		filter.setStatus( "TODOS" );
-		customer = new Customer();
 		doUpdate = false;
-		newTelephonesCityState( customer );
 		cityList = getCities();
 		stateList = getStates();
 		userList = getUsers();
@@ -101,13 +101,13 @@ public class CustomerMB extends BaseMB<Customer> {
 
 				if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 					ctx.addMessage( null, new FacesMessage( historyResult.getMsg(), historyResult.getMsg() ) );
+				}	
+				
+				if( getSaveDialog() != null ) {
+					RequestContext.getCurrentInstance()
+							.execute( "PF('" + getSaveDialog().getWidgetVar() + "').hide();" );
 				}
-
-				Flash flash = ctx.getExternalContext().getFlash();
-				flash.setKeepMessages( true );
-				flash.setRedirect( true );
-				Redirector.redirectTo( ctx.getExternalContext(),
-						"/pages/gestao/clientes/consultarClientes.jsf?faces-redirect=true" );
+				search();
 
 			}
 
@@ -143,11 +143,11 @@ public class CustomerMB extends BaseMB<Customer> {
 				if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 					ctx.addMessage( null, new FacesMessage( historyResult.getMsg(), historyResult.getMsg() ) );
 				}
-				Flash flash = ctx.getExternalContext().getFlash();
-				flash.setKeepMessages( true );
-				flash.setRedirect( true );
-				Redirector.redirectTo( ctx.getExternalContext(),
-						"/pages/gestao/clientes/consultarClientes.jsf?faces-redirect=true" );
+				if( getUpdateDialog() != null ) {
+					RequestContext.getCurrentInstance()
+							.execute( "PF('" + getUpdateDialog().getWidgetVar() + "').hide();" );
+				}
+				search();
 			}
 
 		} catch( ClassNotFoundException e ) {
@@ -190,12 +190,6 @@ public class CustomerMB extends BaseMB<Customer> {
 		}
 	}
 
-	public void cancel() {
-		Redirector.redirectTo( FacesContext.getCurrentInstance().getExternalContext(),
-				"/pages/gestao/clientes/consultarClientes.jsf?faces-redirect=true" );
-
-	}
-
 	public void search() {
 		try {
 			filter.setStatus( status );
@@ -211,56 +205,24 @@ public class CustomerMB extends BaseMB<Customer> {
 									+ customerList.get( i ).getTelephones().get( 1 ).getPnumber() );
 				}
 			}
+			setFilteredValue( customerList );
 
 		} catch( ClassNotFoundException e ) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
-	// Métodos de view (para auxiliar carregamentos de dados na view)
-	public void redirectToCustomerUpdate( Customer customer ) {
-		FacesContext ctx = FacesContext.getCurrentInstance();
-		ExternalContext context = ctx.getExternalContext();
-		if( customer != null ) {
-
-			context.getFlash().put( "customer", customer );
-			StringBuilder sb = new StringBuilder();
-			sb.append( "/pages/gestao/clientes/alterarClientes.jsf?faces-redirect=true" );
-			sb.append( "&customerCode=" );
-			sb.append( customer.getCode() );
-
-			String url = sb.toString();
-			Redirector.redirectTo( context, url );
-
-		} else {
-			ctx.addMessage( null, new FacesMessage(
-					Message.getMessage( "com.sisga.web.customer.info.select.client", Message.INFO, customer ) ) );
-		}
+	
+	
+	public void setUpdate( Customer customer ) {		
+		doUpdate = true;
+		this.customer = customer;
 	}
-
-	public void loadCustomer() {
-		try {
-			doUpdate = true;
-			if( ! StringUtils.isEmpty( code ) ) {
-				CustomerFilter filter = new CustomerFilter();
-				filter.setCode( code );
-				ICommand commandFind;
-				commandFind = FactoryCommand.build( filter, EOperation.FIND );
-				List < Customer > customerList = commandFind.execute().getEntityList();
-				if( customerList != null && ! customerList.isEmpty() ) {
-					customer = customerList.get( 0 );
-					customer.getTelephones().get( 0 ).setPnumber( customer.getTelephones().get( 0 ).getDdd()
-							+ customer.getTelephones().get( 0 ).getPnumber() );
-					customer.getTelephones().get( 0 ).setPnumber( customer.getTelephones().get( 1 ).getDdd()
-							+ customer.getTelephones().get( 1 ).getPnumber() );
-				}
-			}
-
-		} catch( ClassNotFoundException e ) {
-			e.printStackTrace();
-		}
-
+	
+	public void setSave() {		
+		doUpdate = false;
+		this.customer = new Customer();
+		newTelephonesCityState( customer );
 	}
 
 	private void newTelephonesCityState( Customer customer ) {

@@ -30,7 +30,7 @@ public class EmployeeDAO extends DomainSpecificEntityDAO < Employee > {
 
 		StringBuilder jpql = new StringBuilder();
 		jpql.append( " SELECT DISTINCT (e) FROM Employee e" );
-		jpql.append( " LEFT JOIN e.city ec " );
+		jpql.append( " LEFT JOIN e.address.city ec " );
 		jpql.append( " LEFT JOIN e.telephones et " );
 		jpql.append( " WHERE 1=1 " );
 

@@ -13,6 +13,7 @@ import javax.faces.context.Flash;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.context.RequestContext;
 
 import com.sisga.core.ICommand;
 import com.sisga.core.application.Result;
@@ -28,6 +29,7 @@ import com.sisga.domain.employee.Employee;
 import com.sisga.domain.employee.EmployeeHistory;
 import com.sisga.domain.employee.EmployeeOperation;
 import com.sisga.domain.employee.filter.EmployeeFilter;
+import com.sisga.domain.product.Product;
 import com.sisga.web.util.Redirector;
 
 /**
@@ -92,13 +94,16 @@ public class EmployeeMB extends BaseMB<Employee> {
 				if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 					ctx.addMessage( null, new FacesMessage( historyResult.getMsg(), historyResult.getMsg() ) );
 				}
-
-				Flash flash = ctx.getExternalContext().getFlash();
-				flash.setKeepMessages( true );
-				flash.setRedirect( true );
-				Redirector.redirectTo( ctx.getExternalContext(),
-						"/pages/gestao/funcionarios/consultarFuncionarios.jsf?faces-redirect=true" );
+				
+				if( getSaveDialog() != null ) {
+					RequestContext.getCurrentInstance()
+							.execute( "PF('" + getSaveDialog().getWidgetVar() + "').hide();" );
+				}
+				
+				search();
 			}
+			
+			
 
 		} catch( ClassNotFoundException e ) {
 			// TODO Auto-generated catch block
@@ -131,11 +136,14 @@ public class EmployeeMB extends BaseMB<Employee> {
 				if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 					ctx.addMessage( null, new FacesMessage( historyResult.getMsg(), historyResult.getMsg() ) );
 				}
-				Flash flash = ctx.getExternalContext().getFlash();
-				flash.setKeepMessages( true );
-				flash.setRedirect( true );
-				Redirector.redirectTo( ctx.getExternalContext(),
-						"/pages/gestao/funcionarios/consultarFuncionarios.jsf?faces-redirect=true" );
+
+				if( getUpdateDialog() != null ) {
+					RequestContext.getCurrentInstance()
+							.execute( "PF('" + getUpdateDialog().getWidgetVar() + "').hide();" );
+				}
+				
+				search();
+			
 			}
 
 		} catch( ClassNotFoundException e ) {
@@ -177,11 +185,17 @@ public class EmployeeMB extends BaseMB<Employee> {
 		}
 	}
 
-	public void cancel() {
-		Redirector.redirectTo( FacesContext.getCurrentInstance().getExternalContext(),
-				"/pages/gestao/funcionarios/consultarFuncionarios.jsf?faces-redirect=true" );
+	public void setUpdate( Employee employee ) {
+		doUpdate = true;
+		this.employee = employee;
 	}
-
+	
+	public void setSave() {
+		doUpdate = false;
+		this.employee= new Employee();
+		newTelephonesCityState( employee );
+	}
+	
 	public void search() {
 		try {
 			ICommand commandFind = FactoryCommand.build( filter, EOperation.FIND );
@@ -196,57 +210,14 @@ public class EmployeeMB extends BaseMB<Employee> {
 									+ employeeList.get( i ).getTelephones().get( 1 ).getPnumber() );
 				}
 			}
+			setFilteredValue( employeeList );
 
 		} catch( ClassNotFoundException e ) {
 			e.printStackTrace();
 		}
 	}
 
-	// Métodos de view (para auxiliar carregamentos de dados na view)
-	public void redirectToEmployeeUpdate( Employee employee ) {
-		FacesContext ctx = FacesContext.getCurrentInstance();
-		ExternalContext context = ctx.getExternalContext();
-		if( employee != null ) {
-
-			context.getFlash().put( "employee", employee );
-			StringBuilder sb = new StringBuilder();
-			sb.append( "/pages/gestao/funcionarios/alterarFuncionarios.jsf?faces-redirect=true" );
-			sb.append( "&employeeCode=" );
-			sb.append( employee.getCode() );
-
-			String url = sb.toString();
-			Redirector.redirectTo( context, url );
-
-		} else {
-			ctx.addMessage( null, new FacesMessage(
-					Message.getMessage( "com.sisga.web.employee.info.select.employee", Message.INFO, employee ) ) );
-		}
-	}
-
-	public void loadEmployee() {
-		try {
-			doUpdate = true;
-			if( ! StringUtils.isEmpty( code ) ) {
-				EmployeeFilter filter = new EmployeeFilter();
-				filter.setCode( code );
-				ICommand commandFind;
-				commandFind = FactoryCommand.build( filter, EOperation.FIND );
-				List < Employee > employeeList = commandFind.execute().getEntityList();
-				if( employeeList != null && ! employeeList.isEmpty() ) {
-					employee = employeeList.get( 0 );
-					employee.getTelephones().get( 0 ).setPnumber( employee.getTelephones().get( 0 ).getDdd()
-							+ employee.getTelephones().get( 0 ).getPnumber() );
-					employee.getTelephones().get( 1 ).setPnumber( employee.getTelephones().get( 1 ).getDdd()
-							+ employee.getTelephones().get( 1 ).getPnumber() );
-
-				}
-			}
-
-		} catch( ClassNotFoundException e ) {
-			e.printStackTrace();
-		}
-
-	}
+	
 
 	private void newTelephonesCityState( Employee employee ) {
 		employee.setTelephones( new ArrayList < Telephone >() );

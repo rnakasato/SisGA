@@ -32,14 +32,26 @@ public class CustomerDAO extends DomainSpecificEntityDAO < Customer > {
 
 		StringBuilder jpql = new StringBuilder();
 		jpql.append( " SELECT DISTINCT (c) FROM Customer c" );
-		jpql.append( " LEFT JOIN c.city cc " );
+		jpql.append( " LEFT JOIN c.address.city cc " );
 		// jpql.append( " LEFT JOIN c.userSeller cu " ); // Adicionar após
 		// cadastro de usuário
 		jpql.append( " LEFT JOIN c.telephones ct " );
 		jpql.append( " WHERE 1=1 " );
 
 		if( StringUtils.isNotEmpty( customerFilter.getName() ) ) {
-			jpql.append( " AND UPPER(c.name) = :name " );
+			jpql.append( " AND UPPER(c.name) like :name " );
+		}
+		
+		if( StringUtils.isNotEmpty( customerFilter.getCnpj() ) ) {
+			jpql.append( " AND UPPER(c.cnpj) like :cnpj " );
+		}
+		
+		if( StringUtils.isNotEmpty( customerFilter.getCode() ) ) {
+			jpql.append( " AND UPPER(c.code) like :code " );
+		}
+		
+		if( StringUtils.isNotEmpty( customerFilter.getCorporateName() ) ) {
+			jpql.append( " AND UPPER(c.corporateName) like :corporateName " );
 		}
 
 		if( customerFilter.getStatus() != null ) {
@@ -53,7 +65,20 @@ public class CustomerDAO extends DomainSpecificEntityDAO < Customer > {
 		Query query = session.createQuery( jpql.toString() );
 
 		if( StringUtils.isNotEmpty( customerFilter.getName() ) ) {
-			query.setParameter( "name", customerFilter.getName().toUpperCase() );
+			query.setParameter( "name", "%" + customerFilter.getName().toUpperCase() + "%");
+		}
+		
+		if( StringUtils.isNotEmpty( customerFilter.getCnpj() ) ) {
+			query.setParameter( "cnpj", "%" + customerFilter.getCnpj().toUpperCase() + "%");
+		}
+		
+		if( StringUtils.isNotEmpty( customerFilter.getCode() ) ) {
+			query.setParameter( "code", "%" + customerFilter.getCode().toUpperCase() + "%");
+		}
+		
+		if( StringUtils.isNotEmpty( customerFilter.getCorporateName() ) ) {
+			jpql.append( " AND UPPER(c.corporateName) = :corporateName " );
+			query.setParameter( "corportateName", "%" + customerFilter.getCorporateName().toUpperCase() + "%");
 		}
 
 		customerList = query.getResultList();

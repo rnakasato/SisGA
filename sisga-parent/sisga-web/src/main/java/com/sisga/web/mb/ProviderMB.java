@@ -13,6 +13,7 @@ import javax.faces.context.Flash;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.context.RequestContext;
 
 import com.sisga.core.ICommand;
 import com.sisga.core.application.Result;
@@ -24,6 +25,7 @@ import com.sisga.domain.address.City;
 import com.sisga.domain.address.State;
 import com.sisga.domain.communication.PhoneType;
 import com.sisga.domain.communication.Telephone;
+import com.sisga.domain.customer.Customer;
 import com.sisga.domain.provider.Provider;
 import com.sisga.domain.provider.ProviderHistory;
 import com.sisga.domain.provider.ProviderOperation;
@@ -106,12 +108,11 @@ public class ProviderMB extends BaseMB<Provider> {
 				if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 					ctx.addMessage( null, new FacesMessage( historyResult.getMsg(), historyResult.getMsg() ) );
 				}
-
-				Flash flash = ctx.getExternalContext().getFlash();
-				flash.setKeepMessages( true );
-				flash.setRedirect( true );
-				Redirector.redirectTo( ctx.getExternalContext(),
-						"/pages/gestao/fornecedores/consultarFornecedores.jsf?faces-redirect=true" );
+				if( getSaveDialog() != null ) {
+					RequestContext.getCurrentInstance()
+							.execute( "PF('" + getSaveDialog().getWidgetVar() + "').hide();" );
+				}
+				search();
 
 			}
 
@@ -146,11 +147,13 @@ public class ProviderMB extends BaseMB<Provider> {
 				if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 					ctx.addMessage( null, new FacesMessage( historyResult.getMsg(), historyResult.getMsg() ) );
 				}
-				Flash flash = ctx.getExternalContext().getFlash();
-				flash.setKeepMessages( true );
-				flash.setRedirect( true );
-				Redirector.redirectTo( ctx.getExternalContext(),
-						"/pages/gestao/fornecedores/consultarFornecedores.jsf?faces-redirect=true" );
+				
+				if( getUpdateDialog() != null ) {
+					RequestContext.getCurrentInstance()
+							.execute( "PF('" + getUpdateDialog().getWidgetVar() + "').hide();" );
+				}
+				search();
+				
 			}
 
 		} catch( ClassNotFoundException e ) {
@@ -192,11 +195,16 @@ public class ProviderMB extends BaseMB<Provider> {
 			e.printStackTrace();
 		}
 	}
-
-	public void cancel() {
-		Redirector.redirectTo( FacesContext.getCurrentInstance().getExternalContext(),
-				"/pages/gestao/fornecedores/consultarFornecedores.jsf?faces-redirect=true" );
-
+	
+	public void setUpdate( Provider provider ) {		
+		doUpdate = true;
+		this.provider = provider;
+	}
+	
+	public void setSave() {		
+		doUpdate = false;
+		this.provider = new Provider();
+		newTelephonesCityState( provider );
 	}
 
 	public void search() {
@@ -213,6 +221,7 @@ public class ProviderMB extends BaseMB<Provider> {
 									+ providerList.get( i ).getTelephones().get( 1 ).getPnumber() );
 				}
 			}
+			setFilteredValue( providerList );
 
 		} catch( ClassNotFoundException e ) {
 			// TODO Auto-generated catch block
@@ -220,80 +229,7 @@ public class ProviderMB extends BaseMB<Provider> {
 		}
 	}
 
-	// Métodos de view (para auxiliar carregamentos de dados na view)
-	public void redirectToProviderUpdate( Provider provider ) {
-		FacesContext ctx = FacesContext.getCurrentInstance();
-		ExternalContext context = ctx.getExternalContext();
-		if( provider != null ) {
 
-			context.getFlash().put( "provider", provider );
-			StringBuilder sb = new StringBuilder();
-			sb.append( "/pages/gestao/fornecedores/alterarFornecedores.jsf?faces-redirect=true" );
-			sb.append( "&providerCode=" );
-			sb.append( provider.getId() );
-
-			String url = sb.toString();
-			Redirector.redirectTo( context, url );
-
-		} else {
-			ctx.addMessage( null, new FacesMessage(
-					Message.getMessage( "com.sisga.web.provider.info.select.provider", Message.INFO, provider ) ) );
-		}
-	}
-
-	public void loadProvider() {
-		try {
-			if( loadCity == false ) {
-				doUpdate = true;
-				if( ! StringUtils.isEmpty( code ) ) {
-					ProviderFilter filter = new ProviderFilter();
-					filter.setId( Long.valueOf( code ) );
-					filter.setStatus( "TODOS" );
-					ICommand commandFind;
-					commandFind = FactoryCommand.build( filter, EOperation.FIND );
-					List < Provider > providerList = commandFind.execute().getEntityList();
-					if( providerList != null && ! providerList.isEmpty() ) {
-						provider = providerList.get( 0 );
-						provider.getTelephones().get( 0 ).setPnumber( provider.getTelephones().get( 0 ).getDdd()
-								+ provider.getTelephones().get( 0 ).getPnumber() );
-						provider.getTelephones().get( 1 ).setPnumber( provider.getTelephones().get( 1 ).getDdd()
-								+ provider.getTelephones().get( 1 ).getPnumber() );
-
-						for( int i = 0; i < ( stateList.size() ); i ++ ) {
-							if( providerList.get( 0 ).getAddress().getCity().getState().getUf()
-									.equals( stateList.get( i ).getUf() ) ) {
-								selectedState = stateList.get( i );
-
-								City city = new City();
-								city.setUf( selectedState.getUf() );
-								List < City > cityList = new ArrayList < City >();
-								try {
-									commandFind = FactoryCommand.build( city, EOperation.FIND );
-									cityList = commandFind.execute().getEntityList();
-								} catch( ClassNotFoundException e ) {
-
-									e.printStackTrace();
-								}
-
-								this.cityList = cityList;
-								selectedCity = providerList.get( 0 ).getAddress().getCity();
-								loadCity = true;
-
-								if( providerList.get( 0 ).isActive() ) {
-									st = "ATIVO";
-								} else {
-									st = "INATIVO";
-								}
-							}
-						}
-					}
-				}
-			}
-		} catch( ClassNotFoundException e ) {
-			e.printStackTrace();
-		}
-
-	}
 
 	private Provider newTelephonesCityState( Provider provider ) {
 		provider.setTelephones( new ArrayList < Telephone >() );

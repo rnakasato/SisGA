@@ -30,7 +30,7 @@ public class ProviderDAO extends AbstractDAO < Provider > {
 
 		StringBuilder jpql = new StringBuilder();
 		jpql.append( " SELECT DISTINCT (p) FROM Provider p" );
-		jpql.append( " LEFT JOIN p.city pc " );
+		jpql.append( " LEFT JOIN p.address.city pc " );
 		jpql.append( " LEFT JOIN p.telephones pt " );
 		jpql.append( " WHERE 1=1 " );
 

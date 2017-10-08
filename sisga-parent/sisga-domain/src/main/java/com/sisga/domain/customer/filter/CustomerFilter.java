@@ -12,6 +12,9 @@ import com.sisga.domain.filter.impl.DomainSpecificEntityFilter;
 public class CustomerFilter extends DomainSpecificEntityFilter < Customer > {
 	private String name;
 	private String status;
+	private String code;
+	private String cnpj;
+	private String corporateName;
 
 	public String getName() {
 		return name;
@@ -27,6 +30,30 @@ public class CustomerFilter extends DomainSpecificEntityFilter < Customer > {
 
 	public void setStatus( String status ) {
 		this.status = status;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode( String code ) {
+		this.code = code;
+	}
+
+	public String getCnpj() {
+		return cnpj;
+	}
+
+	public void setCnpj( String cnpj ) {
+		this.cnpj = cnpj;
+	}
+
+	public String getCorporateName() {
+		return corporateName;
+	}
+
+	public void setCorporateName( String corporateName ) {
+		this.corporateName = corporateName;
 	}
 
 }

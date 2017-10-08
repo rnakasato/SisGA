@@ -1,55 +1,76 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <h:body>
 	<ui:composition>
-		<p:dataTable var="prov" id="providerTable"
-			value="#{providerMB.providerList}" paginator="true"
-			selection="#{providerMB.selectedProvider}" rowKey="#{provider.id}"
-			rows="15" style="width:100%">
-			<f:facet name="header" style="align:left">
-				            Fornecedores
-				        </f:facet>
+		<p:dataTable
+			widgetVar="wvProviderTable"
+			var="prov"
+			id="providerTable"
+			value="#{providerMB.providerList}"
+			paginator="true"
+			paginatorPosition="bottom"
+			selection="#{providerMB.selectedProvider}"
+			filteredValue="#{providerMB.filteredValue}"
+			rowKey="#{provider.id}"
+			rows="15"
+			style="width:100%">
+			<f:facet
+				name="header"
+				style="align:left">
+				<ui:include
+					src="/pages/gestao/fornecedores/consultar/consultarFornecedoresMenubar.xhtml" />
+			</f:facet>
 
-			<p:column style="width:15%;text-align:center">
+			<p:column
+				style="width:10%;text-align:center"
+				filterBy="#{prov.corporateName}"
+				filterStyle="display:none">>
 
 				<f:facet name="header">
-					<p:outputLabel value="Fornecedores" />
+					<p:outputLabel value="Fornecedor" />
 				</f:facet>
 
 				<p:outputLabel value="#{prov.corporateName }" />
 
 			</p:column>
 
-			<p:column style="width:15%;text-align:center">
+			<p:column
+				style="width:10%;text-align:center"
+				filterBy="#{prov.code}"
+				filterStyle="display:none">>
 
 				<f:facet name="header">
 					<p:outputLabel value="Código" />
 				</f:facet>
 
-				<p:outputLabel value="#{prov.id}" />
+				<p:outputLabel value="#{prov.code}" />
 
 			</p:column>
 
-			<p:column style="width:15%;text-align:center">
+			<p:column style="width:10%;text-align:center">
 				<f:facet name="header">
 					<h:outputText value="Telefone" />
 				</f:facet>
 				<p:outputLabel value="#{prov.telephones.get(0).pnumber}" />
 			</p:column>
 
-			<p:column>
+			<p:column style="width:10%;text-align:center">
 				<f:facet name="header">
 					<h:outputText value="Celular" />
 				</f:facet>
 				<p:outputLabel value="#{prov.telephones.get(1).pnumber}" />
 			</p:column>
 
-			<p:column>
+			<p:column
+				style="width:15%;text-align:center"
+				filterBy="#{prov.email}"
+				filterStyle="display:none">>
 				<f:facet name="header">
 					<p:outputLabel value="E-mail" />
 				</f:facet>
@@ -60,21 +81,30 @@
 				<f:facet name="header">
 					<p:outputLabel value="Operação" />
 				</f:facet>
-				<p:commandButton id="buttonAlterarFornecedor"
-					style="margin-left:20px" value="Alterar"
-					actionListener="#{providerMB.redirectToProviderUpdate(prov)}" />
+				<p:commandButton
+					id="buttonAlterarFornecedor"
+					style="margin-left:20px"
+					value="Alterar"
+					actionListener="#{providerMB.setUpdate(prov)}"
+					onclick="PF('providerUpdateDialog').show()" />
 
-				<p:commandButton id="buttonExcluirFornecedor" value="Excluir"
-					update=":form_content :messages" style="margin-left:20px"
+				<p:commandButton
+					id="buttonExcluirFornecedor"
+					value="Excluir"
+					update=":form_content :messages"
+					style="margin-left:20px"
 					rendered="#{prov.active}"
 					actionListener="#{providerMB.delete(prov)}">
-					<p:confirm header="Fornecedor"
+					<p:confirm
+						header="Fornecedor"
 						message="Confirmar exclusão do fornecedor?" />
 				</p:commandButton>
 
-				<p:commandButton id="buttonDetalhesFornecedor"
-					style="margin-left:20px" value="Detalhes"
-					update=":form_content:provDetail, :messages "
+				<p:commandButton
+					id="buttonDetalhesFornecedor"
+					style="margin-left:20px"
+					value="Detalhes"
+					update=":formDetail:provDetail, :messages "
 					actionListener="#{providerMB.viewDetails(prov)}"
 					onclick="PF('provDialog').show()" />
 			</p:column>

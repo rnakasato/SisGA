@@ -1,41 +1,49 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <h:body>
 	<ui:composition>
-		<p:dataTable var="employ" id="employeeTable"
-			value="#{employeeMB.employeeList}" paginator="true"
-			selection="#{employeeMB.selectedEmployee}" rowKey="#{employee.id}"
-			rows="15" style="width:100%">
-			<f:facet name="header" style="align:left">
-				            Funcionários
-				        </f:facet>
+		<p:dataTable
+			widgetVar="wvEmployeeTable"
+			var="employ"
+			id="employeeTable"
+			value="#{employeeMB.employeeList}"
+			paginator="true"
+			paginatorPosition="bottom"
+			selection="#{employeeMB.selectedEmployee}"
+			filteredValue="#{employeeMB.filteredValue}"
+			rowKey="#{employee.id}"
+			rows="15"
+			style="width:100%">
+			<f:facet
+				name="header"
+				style="align:left">
+				<ui:include
+					src="/pages/gestao/funcionarios/consultar/consultarFuncionariosMenubar.xhtml" />
+			</f:facet>
 
-			<p:column style="width:15%;text-align:center">
+			<p:column
+				style="width:15%;text-align:center"
+				filterBy="#{employ.firstName.concat(' ').concat(employ.lastName)}"
+				filterStyle="display:none">
 
 				<f:facet name="header">
 					<p:outputLabel value="Nome Funcionário" />
 				</f:facet>
 
-				<p:outputLabel value="#{employ.firstName}" />
-
+				<p:outputLabel value="#{employ.firstName.concat(' ').concat(employ.lastName)}" />
 			</p:column>
+			
 
-			<p:column style="width:15%;text-align:center">
-
-				<f:facet name="header">
-					<p:outputLabel value="Sobrenome Funcionário" />
-				</f:facet>
-
-				<p:outputLabel value="#{employ.lastName }" />
-
-			</p:column>
-
-			<p:column style="width:15%;text-align:center">
+			<p:column
+				style="width:10%;text-align:center"
+				filterBy="#{employ.code}"
+				filterStyle="display:none">
 
 				<f:facet name="header">
 					<p:outputLabel value="Código" />
@@ -45,21 +53,26 @@
 
 			</p:column>
 
-			<p:column style="width:15%;text-align:center">
+			<p:column style="width:10%;text-align:center">
 				<f:facet name="header">
 					<h:outputText value="Telefone" />
 				</f:facet>
-				<p:outputLabel value="#{employ.telephones.get(0).ddd + employ.telephones.get(0).pnumber}" />
+				<p:outputLabel
+					value="#{employ.telephones.get(0).ddd + employ.telephones.get(0).pnumber}" />
 			</p:column>
 
-			<p:column style="width:15%;text-align:center">
+			<p:column style="width:10%;text-align:center">
 				<f:facet name="header">
 					<h:outputText value="Celular" />
 				</f:facet>
-				<p:outputLabel value="#{employ.telephones.get(1).ddd + employ.telephones.get(1).pnumber}" />
+				<p:outputLabel
+					value="#{employ.telephones.get(1).ddd + employ.telephones.get(1).pnumber}" />
 			</p:column>
 
-			<p:column style="width:15%;text-align:center">
+			<p:column
+				style="width:10%;text-align:center"
+				filterBy="#{employ.salary}"
+				filterStyle="display:none">
 				<f:facet name="header">
 					<h:outputText value="Salario" />
 				</f:facet>
@@ -71,20 +84,31 @@
 				<f:facet name="header">
 					<p:outputLabel value="Operação" />
 				</f:facet>
-				<p:commandButton id="buttonAlterarFuncionario" style="margin-left:20px"
+				<p:commandButton
+					id="buttonAlterarFuncionario"
+					style="margin-left:20px"
 					value="Alterar"
-					actionListener="#{employeeMB.redirectToEmployeeUpdate(employ)}" />
+					update="formAlterarFuncionario:gridUpdateEmployee"
+					actionListener="#{employeeMB.setUpdate(employ)}"
+					onclick="PF('employeeUpdateDialog').show()" />
 
-				<p:commandButton id="buttonExcluirFuncionario" value="Excluir"
-					update=":form_content :messages" style="margin-left:20px"
+				<p:commandButton
+					id="buttonExcluirFuncionario"
+					value="Excluir"
+					update=":form_content :messages"
+					style="margin-left:20px"
 					actionListener="#{employeeMB.delete(employ)}"
 					rendered="#{employ.active}">
-					<p:confirm header="Funcionário"
+					<p:confirm
+						header="Funcionário"
 						message="Confirmar exclusão do funcionário?" />
 				</p:commandButton>
 
-				<p:commandButton id="buttonDetalhesFuncionario" style="margin-left:20px"
-					value="Detalhes" update=":form_content:employDetail, :messages "
+				<p:commandButton
+					id="buttonDetalhesFuncionario"
+					style="margin-left:20px"
+					value="Detalhes"
+					update=":formDetail:employDetail, :messages "
 					actionListener="#{employeeMB.viewDetails(employ)}"
 					onclick="PF('employDialog').show()" />
 			</p:column>

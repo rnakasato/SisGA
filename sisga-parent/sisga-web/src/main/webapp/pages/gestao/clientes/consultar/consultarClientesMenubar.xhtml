@@ -19,18 +19,18 @@
 				<p:column>
 					<p:inputText
 						id="globalFilter"
-						onkeyup="PF('wvProductTable').filter()" 
+						onkeyup="PF('wvCustomerTable').filter()" 
 						style="text-align: left; display: block"/>
 				</p:column>				
 				<p:column>
 					<p:commandButton
-						id="buttonNewProduct"
+						id="buttonNewCustomer"
 						style="margin-left:20px;float: right;"
 						styleClass="menu-button"
-						value="Novo Produto"
-						update="formCadastroProduto:gridSaveProduct"
-						actionListener="#{productMB.setSave()}"
-						onclick="PF('prodSaveDialog').show()" />
+						value="Novo Cliente"
+						update="formCadastroCliente:gridSaveCustomer"
+						actionListener="#{customerMB.setSave()}"
+						onclick="PF('customerSaveDialog').show()" />
 				</p:column>				
 			</p:row>
 

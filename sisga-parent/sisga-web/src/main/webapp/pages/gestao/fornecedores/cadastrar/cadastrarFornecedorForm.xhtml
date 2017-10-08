@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -8,50 +9,75 @@
 	xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
 	<ui:composition>
-		<h:form id="formCadastroFornecedor">
-			<div style="margin: 0 auto; height: 100%; width: 100%;">
-				<div style="margin: 0 auto; height: 380px; width: 100%;">
-					<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
-					<div
-						style="margin: 0 auto; width: 700px; height: 140px; float: center;">
-						<p:fieldset legend="Cadastro de Fornecedor"
-							style="text-align:left; border-width:thin;">
-							<p:panelGrid border="0" styleClass="baseGrid">
+		<p:dialog
+			id="providerSaveDialog"
+			widgetVar="providerSaveDialog"
+			modal="true"
+			showEffect="fade"
+			header="Cadastrar Fornecedor"
+			hideEffect="fade"
+			resizable="false"
+			width="800px"
+			position="center"
+			binding="#{providerMB.saveDialog}">
+			<h:form id="formCadastroFornecedor">
+				<div style="margin: 0 auto; height: 100%; width: 100%;">
+					<div style="margin: 0 auto; height: 380px; width: 100%;">
+						<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
+						<div
+							style="margin: 0 auto; width: 700px; height: 140px; float: center;">
+							<p:panelGrid
+								id="gridSaveProvider"
+								border="0"
+								styleClass="baseGrid">
 								<p:row>
 									<p:column>
-										<p:outputLabel for="inputRazaoSocial"
-											value="Razão Social" style="font-weight:bold" />
+										<p:outputLabel
+											for="inputRazaoSocial"
+											value="Razão Social"
+											style="font-weight:bold" />
 									</p:column>
 
 									<p:column>
-										<p:inputText id="inputRazaoSocial"
-											value="#{providerMB.provider.corporateName}" required="true"
+										<p:inputText
+											id="inputRazaoSocial"
+											value="#{providerMB.provider.corporateName}"
+											required="true"
 											requiredMessage="Razão Social obrigatório" />
 									</p:column>
 								</p:row>
 
 								<p:row>
 									<p:column>
-										<p:outputLabel for="inputCNPJ" value="CNPJ "
+										<p:outputLabel
+											for="inputCNPJ"
+											value="CNPJ "
 											style="font-weight:bold" />
 									</p:column>
 
 									<p:column>
-										<p:inputMask id="inputCNPJ"
-											value="#{providerMB.provider.cnpj}" required="true"
-											mask="99.999.999/9999-99" requiredMessage="CNPJ obrigatório" />
+										<p:inputMask
+											id="inputCNPJ"
+											value="#{providerMB.provider.cnpj}"
+											required="true"
+											mask="99.999.999/9999-99"
+											requiredMessage="CNPJ obrigatório" />
 									</p:column>
 								</p:row>
 
 								<p:row>
 									<p:column>
-										<p:outputLabel for="inputTelefone" value="Telefone "
+										<p:outputLabel
+											for="inputTelefone"
+											value="Telefone "
 											style="font-weight:bold" />
 									</p:column>
 									<p:column>
-										<p:inputMask id="inputTelefone"
+										<p:inputMask
+											id="inputTelefone"
 											value="#{providerMB.provider.telephones.get(0).pnumber}"
-											required="true" mask="(99) 9999-9999"
+											required="true"
+											mask="(99) 9999-9999"
 											requiredMessage="Telefone obrigatório">
 										</p:inputMask>
 									</p:column>
@@ -59,13 +85,17 @@
 
 								<p:row>
 									<p:column>
-										<p:outputLabel for="inputCelular" value="Celular "
+										<p:outputLabel
+											for="inputCelular"
+											value="Celular "
 											style="font-weight:bold" />
 									</p:column>
 									<p:column>
-										<p:inputMask id="inputCelular"
+										<p:inputMask
+											id="inputCelular"
 											value="#{providerMB.provider.telephones.get(1).pnumber}"
-											required="true" mask="(99) 99999-9999"
+											required="true"
+											mask="(99) 99999-9999"
 											requiredMessage="Celular obrigatório">
 										</p:inputMask>
 									</p:column>
@@ -73,12 +103,16 @@
 
 								<p:row>
 									<p:column>
-										<p:outputLabel for="inputEmail" value="E-mail "
+										<p:outputLabel
+											for="inputEmail"
+											value="E-mail "
 											style="font-weight:bold" />
 									</p:column>
 									<p:column>
-										<p:inputText id="inputEmail"
-											value="#{providerMB.provider.email}" required="true"
+										<p:inputText
+											id="inputEmail"
+											value="#{providerMB.provider.email}"
+											required="true"
 											requiredMessage="E-mail obrigatório">
 										</p:inputText>
 									</p:column>
@@ -87,18 +121,28 @@
 
 								<p:row>
 									<p:column>
-										<p:outputLabel for="selectOneMenuEstado" value="Estado "
+										<p:outputLabel
+											for="selectOneMenuEstado"
+											value="Estado "
 											style="font-weight:bold" />
 									</p:column>
 									<p:column>
-										<p:selectOneMenu id="selectOneMenuEstado"
+										<p:selectOneMenu
+											id="selectOneMenuEstado"
 											value="#{providerMB.selectedState}"
-											converter="defaultConverter" filter="true" required="true"
+											converter="defaultConverter"
+											filter="true"
+											required="true"
 											requiredMessage="Estado obrigatório">
-											<f:selectItems value="#{providerMB.stateList}" var="states"
-												itemValue="#{states}" itemLabel="#{states.name}" />
+											<f:selectItems
+												value="#{providerMB.stateList}"
+												var="states"
+												itemValue="#{states}"
+												itemLabel="#{states.name}" />
 
-											<p:ajax event="change" listener="#{providerMB.loadCities}"
+											<p:ajax
+												event="change"
+												listener="#{providerMB.loadCities}"
 												update=":formCadastroFornecedor:selectOneMenuCidade" />
 										</p:selectOneMenu>
 									</p:column>
@@ -106,29 +150,41 @@
 
 								<p:row>
 									<p:column>
-										<p:outputLabel for="selectOneMenuCidade" value="Cidade "
+										<p:outputLabel
+											for="selectOneMenuCidade"
+											value="Cidade "
 											style="font-weight:bold" />
 									</p:column>
 									<p:column>
-										<p:selectOneMenu id="selectOneMenuCidade"
+										<p:selectOneMenu
+											id="selectOneMenuCidade"
 											disabled="#{empty providerMB.selectedState}"
 											value="#{providerMB.provider.address.city}"
-											converter="defaultConverter" filter="true" required="true"
+											converter="defaultConverter"
+											filter="true"
+											required="true"
 											requiredMessage="Cidade obrigatório">
-											<f:selectItems value="#{providerMB.cityList}" var="cities"
-												itemValue="#{cities}" itemLabel="#{cities.name}" />
+											<f:selectItems
+												value="#{providerMB.cityList}"
+												var="cities"
+												itemValue="#{cities}"
+												itemLabel="#{cities.name}" />
 										</p:selectOneMenu>
 									</p:column>
 								</p:row>
 
 								<p:row>
 									<p:column>
-										<p:outputLabel for="inputBairro" value="Bairro "
+										<p:outputLabel
+											for="inputBairro"
+											value="Bairro "
 											style="font-weight:bold" />
 									</p:column>
 									<p:column>
-										<p:inputText id="inputBairro"
-											value="#{providerMB.provider.address.neighborhood}" required="true"
+										<p:inputText
+											id="inputBairro"
+											value="#{providerMB.provider.address.neighborhood}"
+											required="true"
 											requiredMessage="Bairro obrigatório">
 										</p:inputText>
 									</p:column>
@@ -136,51 +192,67 @@
 
 								<p:row>
 									<p:column>
-										<p:outputLabel for="inputNumero" value="Número "
+										<p:outputLabel
+											for="inputNumero"
+											value="Número "
 											style="font-weight:bold" />
 									</p:column>
 									<p:column>
-										<p:inputNumber id="inputNumero"
-											value="#{providerMB.provider.address.number}" required="true"
-											requiredMessage="Número obrigatório"/>
+										<p:inputNumber
+											id="inputNumero"
+											value="#{providerMB.provider.address.number}"
+											required="true"
+											requiredMessage="Número obrigatório" />
 									</p:column>
 								</p:row>
-								
+
 								<p:row>
 									<p:column>
-										<p:outputLabel value="OBS: utilizar &quot;0&quot; para &quot;S/N&quot; "
+										<p:outputLabel
+											value="OBS: utilizar &quot;0&quot; para &quot;S/N&quot; "
 											style="color:red;font-size:medium" />
 									</p:column>
 								</p:row>
 							</p:panelGrid>
 
-							<p:panelGrid id="gridCadastrarButtons" styleClass="baseGrid">
+							<p:panelGrid
+								id="gridCadastrarButtons"
+								styleClass="baseGrid">
 								<p:row>
 									<p:column style="width:80%">
 									</p:column>
 									<p:column style="width:10%">
-										<p:commandButton id="btnCadastrarFornecedor" value="Cadastrar"
-											update=":formCadastroFornecedor,:messages"
-											actionListener="#{providerMB.save}">
-											<p:confirm header="Fornecedor" message="Confirmar cadastro?" />
+										<p:commandButton
+											id="btnCadastrarFornecedor"
+											value="Cadastrar"
+											update=":formCadastroFornecedor form_content:providerTable :messages"
+											actionListener="#{providerMB.save}"
+											process=":formCadastroFornecedor:gridSaveProvider :formCadastroFornecedor:gridCadastrarButtons">
+											<p:confirm
+												header="Fornecedor"
+												message="Confirmar cadastro?" />
 										</p:commandButton>
 									</p:column>
+
 									<p:column style="width:10%">
-										<p:commandButton id="btnCancelarCadastrarFornecedor"
-											value="Cancelar" actionListener="#{providerMB.cancel}"
+										<p:commandButton
+											id="btnCancelarCadastrarFornecedor"
+											value="Cancelar"
+											onclick="PF('providerSaveDialog').hide()"
 											process="@this">
-											<p:confirm header="Fornecedor" message="Cancelar cadastro?" />
+											<p:confirm
+												header="Fornecedor"
+												message="Cancelar cadastro?" />
 										</p:commandButton>
 									</p:column>
 								</p:row>
 							</p:panelGrid>
-						</p:fieldset>
+						</div>
+						<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
 					</div>
-					<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
 				</div>
-			</div>
-			<ui:include src="/public/confirmDialog.xhtml" />
-		</h:form>
+			</h:form>
+		</p:dialog>
 	</ui:composition>
 </h:body>
 </html>

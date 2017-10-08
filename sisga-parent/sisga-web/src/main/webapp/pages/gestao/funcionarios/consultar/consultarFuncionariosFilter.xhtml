@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -8,36 +9,85 @@
 	xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
 	<ui:composition>
-		<h:form id="formFilter" style="height:100%;width:100%">
-			<p:fieldset legend="Consultar Funcionário"
-				style="text-align=left; border=1px;">
-				<p:panelGrid border="0" style="margin-top:30px"
+		<h:form
+			id="formFilter"
+			style="height:100%;width:100%">
+			<p:fieldset
+				legend="Consultar Funcionário"
+				style="text-align=left; border=1px;"
+				styleClass="fieldset-search">
+				<p:panelGrid
+					id="gridButtonsFilter"
+					styleClass="baseGrid"
+					style="margin-left: 15px;">
+					<p:row>
+						<p:column>
+							<p:commandButton
+								id="buttonBuscarFuncionario"
+								style="margin-top:50px"
+								icon="ui-icon-search"
+								value="Buscar"
+								update=":form_content:employeeTable"
+								oncomplete="PF('wvEmployeeTable').filter()"
+								actionListener="#{employeeMB.search()}" />
+						</p:column>
+
+						<p:column>
+							<p:commandButton
+								id="buttonLimparFiltros"
+								style="margin-top:50px"
+								value="Limpar Filtros"
+								icon="ui-icon-cancel"
+								update=":formFilter:gridFilter"
+								actionListener="#{employeeMB.clearFilter}" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<p:panelGrid
+					id="gridFilter"
+					border="0"
+					style="margin-top:30px"
 					styleClass="baseGrid">
 
 					<p:row>
 						<p:column>
-							<p:outputLabel for="inputNameFuncionario"
+							<p:outputLabel
+								for="inputNameFuncionario"
 								value="Buscar Funcionário" />
 
 						</p:column>
+					</p:row>
+					<p:row>
 						<p:column>
-							<p:inputText id="inputNameFuncionario"
+							<p:inputText
+								id="inputNameFuncionario"
 								value="#{employeeMB.filter.name}">
 							</p:inputText>
 						</p:column>
 					</p:row>
 					<p:row>
 						<p:column>
-							<p:outputLabel for="selectRadioStatus" value="Status" />
+							<p:outputLabel
+								for="selectRadioStatus"
+								value="Status" />
 						</p:column>
+					</p:row>
+					<p:row>
 						<p:column>
-							<p:selectOneRadio id="selectRadioStatus"
+							<p:selectOneRadio
+								id="selectRadioStatus"
 								value="#{employeeMB.filter.status }">
-								<f:selectItem id="selectRadioStatusTodos" itemLabel="Todos"
+								<f:selectItem
+									id="selectRadioStatusTodos"
+									itemLabel="Todos"
 									itemValue="TODOS" />
-								<f:selectItem id="selectRadioStatusAtivo" itemLabel="Ativo"
+								<f:selectItem
+									id="selectRadioStatusAtivo"
+									itemLabel="Ativo"
 									itemValue="ATIVO" />
-								<f:selectItem id="selectRadioStatusInativo" itemLabel="Inativo"
+								<f:selectItem
+									id="selectRadioStatusInativo"
+									itemLabel="Inativo"
 									itemValue="INATIVO" />
 							</p:selectOneRadio>
 						</p:column>
@@ -47,37 +97,25 @@
 						<p:column>
 							<p:outputLabel value="Data de Contratação entre" />
 						</p:column>
+					</p:row>
+					<p:row>
 						<p:column>
-							<p:calendar id="popupInicio"
+							<p:calendar
+								id="popupInicio"
 								value="#{employeeMB.filter.employmentDateInit}" />
 						</p:column>
+					</p:row>
+					<p:row>
 						<p:column>
 							<p:outputLabel value=" e " />
 						</p:column>
-						<p:column>
-							<p:calendar id="popupFim"
-								value="#{employeeMB.filter.employmentDateFinal}" />
-						</p:column>
 					</p:row>
-
 					<p:row>
 						<p:column>
-							<p:commandButton id="buttonBuscarFuncionario" style="margin-top:50px"
-								value="Buscar" update=":form_content:employeeTable"
-								actionListener="#{employeeMB.search()}" />
+							<p:calendar
+								id="popupFim"
+								value="#{employeeMB.filter.employmentDateFinal}" />
 						</p:column>
-
-						<p:column>
-							<p:commandButton id="buttonLimparFiltros" style="margin-top:50px"
-								value="Limpar Filtros" update=":form_content"
-								actionListener="#{employeeMB.clearFilter}" />
-						</p:column>
-						<p:column>
-							<p:commandButton id="buttonNovoFuncionario" style="margin-top:50px"
-								value="Novo Funcionario"
-								action="/pages/gestao/funcionarios/cadastrarFuncionarios.jsf?faces-redirect=true" />
-						</p:column>
-
 					</p:row>
 				</p:panelGrid>
 

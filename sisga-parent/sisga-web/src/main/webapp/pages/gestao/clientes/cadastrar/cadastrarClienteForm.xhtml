@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -8,80 +9,118 @@
 	xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
 	<ui:composition>
-		<h:form id="formCadastroCliente">
-			<div style="margin: 0 auto; height: 100%; width: 100%;">
-				<div style="margin: 0 auto; height: 380px; width: 100%;">
-					<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
-					<div
-						style="margin: 0 auto; width: 700px; height: 140px; text-align: center;">
-						<p:fieldset legend="Cadastro de Cliente"
-							style="text-align:left; border-width:thin;">
-							<p:panelGrid border="0" styleClass="baseGrid">
+		<p:dialog
+			id="customerSaveDialog"
+			widgetVar="customerSaveDialog"
+			modal="true"
+			showEffect="fade"
+			header="Cadastrar Cliente"
+			hideEffect="fade"
+			resizable="false"
+			width="800px"
+			position="center"
+			binding="#{customerMB.saveDialog}">
+			<h:form id="formCadastroCliente">
+				<div style="margin: 0 auto; height: 100%; width: 100%;">
+					<div style="margin: 0 auto; height: 380px; width: 100%;">
+						<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
+						<div
+							style="margin: 0 auto; width: 700px; height: 140px; text-align: center;">
+							<p:panelGrid
+								border="0"
+								id="gridSaveCustomer"
+								styleClass="baseGrid"
+								style="text-align:left; border-width:thin;">
 								<p:row>
 									<p:column>
-										<p:outputLabel for="inputPrimeiroNomeCliente" value="Nome "
+										<p:outputLabel
+											for="inputPrimeiroNomeCliente"
+											value="Nome "
 											style="font-weight:bold" />
 									</p:column>
 
 									<p:column>
-										<p:inputText id="inputPrimeiroNomeCliente"
-											value="#{customerMB.customer.firstName}" required="true"
+										<p:inputText
+											id="inputPrimeiroNomeCliente"
+											value="#{customerMB.customer.firstName}"
+											required="true"
 											requiredMessage="Nome obrigatório" />
 									</p:column>
 								</p:row>
 
 								<p:row>
 									<p:column>
-										<p:outputLabel for="inputSobrenome" value="Sobrenome "
+										<p:outputLabel
+											for="inputSobrenome"
+											value="Sobrenome "
 											style="font-weight:bold" />
 									</p:column>
 
 									<p:column>
-										<p:inputText id="inputSobrenome"
-											value="#{customerMB.customer.lastName}" required="true"
+										<p:inputText
+											id="inputSobrenome"
+											value="#{customerMB.customer.lastName}"
+											required="true"
 											requiredMessage="Sobrenome obrigatório" />
 									</p:column>
 								</p:row>
 
 								<p:row>
 									<p:column>
-										<p:outputLabel for="selectOneMenuUsuario" value="Vendedor "
+										<p:outputLabel
+											for="selectOneMenuUsuario"
+											value="Vendedor "
 											style="font-weight:bold" />
 									</p:column>
 									<p:column>
-										<p:selectOneMenu id="selectOneMenuUsuario"
+										<p:selectOneMenu
+											id="selectOneMenuUsuario"
 											value="#{customerMB.customer.userSeller}"
-											converter="defaultConverter" filter="true" required="true"
+											converter="defaultConverter"
+											filter="true"
+											required="true"
 											requiredMessage="Vendedor obrigatório">
-											<f:selectItems value="#{customerMB.userList}" var="user"
-												itemValue="#{user}" itemLabel="#{user.firstName}" />
+											<f:selectItems
+												value="#{customerMB.userList}"
+												var="user"
+												itemValue="#{user}"
+												itemLabel="#{user.firstName}" />
 										</p:selectOneMenu>
 									</p:column>
 								</p:row>
 
 								<p:row>
 									<p:column>
-										<p:outputLabel for="inputTelefone" value="Telefone "
+										<p:outputLabel
+											for="inputTelefone"
+											value="Telefone "
 											style="font-weight:bold" />
 									</p:column>
 									<p:column>
-										<p:inputMask id="inputTelefone" mask="(99) 9999-9999"
+										<p:inputMask
+											id="inputTelefone"
+											mask="(99) 9999-9999"
 											value="#{customerMB.customer.telephones.get(0).pnumber}"
-											required="true" requiredMessage="Telefone obrigatório">
+											required="true"
+											requiredMessage="Telefone obrigatório">
 										</p:inputMask>
 									</p:column>
 								</p:row>
 
 								<p:row>
 									<p:column>
-										<p:outputLabel for="inputCelular" value="Celular "
+										<p:outputLabel
+											for="inputCelular"
+											value="Celular "
 											style="font-weight:bold" />
 									</p:column>
 
 									<p:column>
-										<p:inputMask id="inputCelular"
+										<p:inputMask
+											id="inputCelular"
 											value="#{customerMB.customer.telephones.get(1).pnumber}"
-											required="true" mask="(99) 99999-9999"
+											required="true"
+											mask="(99) 99999-9999"
 											requiredMessage="Celular obrigatório">
 										</p:inputMask>
 									</p:column>
@@ -89,12 +128,16 @@
 
 								<p:row>
 									<p:column>
-										<p:outputLabel for="inputEmail" value="E-mail "
+										<p:outputLabel
+											for="inputEmail"
+											value="E-mail "
 											style="font-weight:bold" />
 									</p:column>
 									<p:column>
-										<p:inputText id="inputEmail"
-											value="#{customerMB.customer.email}" required="true"
+										<p:inputText
+											id="inputEmail"
+											value="#{customerMB.customer.email}"
+											required="true"
 											requiredMessage="E-mail obrigatório">
 										</p:inputText>
 									</p:column>
@@ -104,17 +147,27 @@
 
 								<p:row>
 									<p:column>
-										<p:outputLabel for="selectOneMenuEstado" value="Estado "
+										<p:outputLabel
+											for="selectOneMenuEstado"
+											value="Estado "
 											style="font-weight:bold" />
 									</p:column>
 									<p:column>
-										<p:selectOneMenu id="selectOneMenuEstado"
+										<p:selectOneMenu
+											id="selectOneMenuEstado"
 											value="#{customerMB.selectedState}"
-											converter="defaultConverter" filter="true" required="true"
+											converter="defaultConverter"
+											filter="true"
+											required="true"
 											requiredMessage="Estado obrigatório">
-											<f:selectItems value="#{customerMB.stateList}" var="state"
-												itemValue="#{state}" itemLabel="#{state.name}" />
-											<p:ajax event="change" listener="#{customerMB.loadCities}"
+											<f:selectItems
+												value="#{customerMB.stateList}"
+												var="state"
+												itemValue="#{state}"
+												itemLabel="#{state.name}" />
+											<p:ajax
+												event="change"
+												listener="#{customerMB.loadCities}"
 												update=":formCadastroCliente:selectOneMenuCidade" />
 										</p:selectOneMenu>
 									</p:column>
@@ -122,29 +175,41 @@
 
 								<p:row>
 									<p:column>
-										<p:outputLabel for="selectOneMenuCidade" value="Cidade "
+										<p:outputLabel
+											for="selectOneMenuCidade"
+											value="Cidade "
 											style="font-weight:bold" />
 									</p:column>
 									<p:column>
-										<p:selectOneMenu id="selectOneMenuCidade"
+										<p:selectOneMenu
+											id="selectOneMenuCidade"
 											disabled="#{empty customerMB.selectedState}"
 											value="#{customerMB.customer.address.city}"
-											converter="defaultConverter" filter="true" required="true"
+											converter="defaultConverter"
+											filter="true"
+											required="true"
 											requiredMessage="Cidade obrigatório">
-											<f:selectItems value="#{customerMB.cityList}" var="city"
-												itemValue="#{city}" itemLabel="#{city.name}" />
+											<f:selectItems
+												value="#{customerMB.cityList}"
+												var="city"
+												itemValue="#{city}"
+												itemLabel="#{city.name}" />
 										</p:selectOneMenu>
 									</p:column>
 								</p:row>
 
 								<p:row>
 									<p:column>
-										<p:outputLabel for="inputBairro" value="Bairro "
+										<p:outputLabel
+											for="inputBairro"
+											value="Bairro "
 											style="font-weight:bold" />
 									</p:column>
 									<p:column>
-										<p:inputText id="inputBairro"
-											value="#{customerMB.customer.address.neighborhood}" required="true"
+										<p:inputText
+											id="inputBairro"
+											value="#{customerMB.customer.address.neighborhood}"
+											required="true"
 											requiredMessage="Bairro obrigatório">
 										</p:inputText>
 									</p:column>
@@ -152,13 +217,18 @@
 
 								<p:row>
 									<p:column>
-										<p:outputLabel for="inputNumero" value="Número "
+										<p:outputLabel
+											for="inputNumero"
+											value="Número "
 											style="font-weight:bold" />
 									</p:column>
 									<p:column>
-										<p:inputNumber id="inputNumero"
-											value="#{customerMB.customer.address.number}" required="true"
-											thousandSeparator="." decimalSeparator=","
+										<p:inputNumber
+											id="inputNumero"
+											value="#{customerMB.customer.address.number}"
+											required="true"
+											thousandSeparator="."
+											decimalSeparator=","
 											requiredMessage="Número obrigatório">
 										</p:inputNumber>
 									</p:column>
@@ -175,33 +245,43 @@
 								</p:row>
 							</p:panelGrid>
 
-							<p:panelGrid id="gridCadastrarButtons" styleClass="baseGrid">
+							<p:panelGrid
+								id="gridCadastrarButtons"
+								styleClass="baseGrid">
 								<p:row>
 									<p:column style="width:80%">
 									</p:column>
 									<p:column style="width:10%">
-										<p:commandButton id="btnCadastrarCliente" value="Cadastrar"
-											update=":formCadastroCliente,:messages"
+										<p:commandButton
+											id="btnCadastrarCliente"
+											value="Cadastrar"
+											update=":formCadastroCliente:gridSaveCustomer formCadastroCliente:gridCadastrarButtons ,:messages"
 											actionListener="#{customerMB.save}">
-											<p:confirm header="Cliente" message="Confirmar cadastro?" />
+											<p:confirm
+												header="Cliente"
+												message="Confirmar cadastro?" />
 										</p:commandButton>
 									</p:column>
 									<p:column style="width:10%">
-										<p:commandButton id="btnCancelarCadastrarCliente"
-											value="Cancelar" actionListener="#{customerMB.cancel}"
+										<p:commandButton
+											id="btnCancelarCadastrarCliente"
+											value="Cancelar"
+											onclick="PF('customerSaveDialog').hide()"
 											process="@this">
-											<p:confirm header="Cliente" message="Cancelar cadastro?" />
+											<p:confirm
+												header="Cliente"
+												message="Cancelar cadastro?" />
 										</p:commandButton>
 									</p:column>
 								</p:row>
 							</p:panelGrid>
-						</p:fieldset>
+
+						</div>
+						<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
 					</div>
-					<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
 				</div>
-			</div>
-			<ui:include src="/public/confirmDialog.xhtml" />
-		</h:form>
+			</h:form>
+		</p:dialog>
 	</ui:composition>
 </h:body>
 </html>

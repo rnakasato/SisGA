@@ -19,7 +19,6 @@ public abstract class Person extends DomainSpecificEntity {
 	protected List < Telephone > telephones;
 	protected String email;
 	protected Address address;
-	protected boolean active;
 	protected String firstName;
 	protected String lastName;
 
@@ -66,21 +65,6 @@ public abstract class Person extends DomainSpecificEntity {
 	 */
 	public void setAddress( Address address ) {
 		this.address = address;
-	}
-
-	/**
-	 * @return the active
-	 */
-	public boolean isActive() {
-		return active;
-	}
-
-	/**
-	 * @param active
-	 *            the active to set
-	 */
-	public void setActive( boolean active ) {
-		this.active = active;
 	}
 
 	/**

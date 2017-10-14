@@ -12,7 +12,7 @@ public class CustomerHistory extends PersonHistory {
 
 	private Customer customer;
 	private CustomerOperation customerOperation;
-	private User uesrSeller;
+	private User userSeller;
 
 	/**
 	 * @return the customer
@@ -45,18 +45,33 @@ public class CustomerHistory extends PersonHistory {
 	}
 
 	/**
-	 * @return the uesrSeller
+	 * @return the userSeller
 	 */
-	public User getUesrSeller() {
-		return uesrSeller;
+	public User getUserSeller() {
+		return userSeller;
 	}
 
 	/**
-	 * @param uesrSeller
-	 *            the uesrSeller to set
+	 * @param userSeller
+	 *            the userSeller to set
 	 */
-	public void setUesrSeller( User uesrSeller ) {
-		this.uesrSeller = uesrSeller;
+	public void setUserSeller( User userSeller ) {
+		this.userSeller = userSeller;
+	}
+
+	public String getOperationCode() {
+		String code = null;
+		if( this.customerOperation != null ) {
+			code = this.customerOperation.getCode();
+		}
+		return code;
+	}
+
+	public void setOperationCode( String code ) {
+		if( this.customerOperation == null ) {
+			customerOperation = new CustomerOperation();
+		}
+		customerOperation.setCode( code );
 	}
 
 }

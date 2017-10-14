@@ -1,6 +1,6 @@
 package com.sisga.core.business.complement;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import com.sisga.core.core.business.Complementor;
 import com.sisga.core.core.util.Message;
@@ -41,7 +41,7 @@ public class ProductHistoryComplementor extends Complementor < ProductHistory > 
 		history.setBaseValue( product.getBaseValue() );
 		history.setCode( product.getCode() );
 		history.setDescription( product.getDescription() );
-		history.setInsertDate( new Date() );
+		history.setInsertDate( Calendar.getInstance() );
 		history.setPhoto( product.getPhoto() );
 		history.setProductionType( product.getProductionType() );
 		history.setSaleType( product.getSaleType() );

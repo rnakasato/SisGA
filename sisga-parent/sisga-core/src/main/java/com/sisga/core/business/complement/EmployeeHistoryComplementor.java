@@ -1,6 +1,6 @@
 package com.sisga.core.business.complement;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import com.sisga.core.core.business.Complementor;
 import com.sisga.core.core.util.Message;
@@ -43,7 +43,7 @@ public class EmployeeHistoryComplementor extends Complementor < EmployeeHistory 
 		history.getAddress().setCity( employee.getAddress().getCity() );
 		history.setCode( employee.getCode() );
 		history.setDescription( employee.getDescription() );
-		history.setInsertDate( new Date() );
+		history.setInsertDate( Calendar.getInstance() );
 		history.setFirstName( employee.getFirstName() );
 		history.setLastName( employee.getLastName() );
 		history.getAddress().setNeighborhood( employee.getAddress().getNeighborhood() );

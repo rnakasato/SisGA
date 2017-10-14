@@ -38,34 +38,34 @@ public class LoginMB extends BaseMB {
 					hasError = executeLogin( context );
 				}
 			} else {
-				addMessage( Message.getMessage( "com.sisga.core.business.validator.user.not.informed", Message.ERROR, this ) );
+				addMessage( Message.getMessage( "com.sisga.core.business.validator.user.not.informed", Message.ERROR,
+						this ) );
 			}
 
 		} catch( Exception e ) {
 			e.printStackTrace();
 		}
 	}
-	
-	private boolean executeLogin(FacesContext context) throws ClassNotFoundException {
+
+	private boolean executeLogin( FacesContext context ) throws ClassNotFoundException {
 		boolean hasError = false;
 		boolean isOk = false;
-		
-		
+
 		UserFilter filter = new UserFilter();
-		
+
 		filter.setActive( true );
 		filter.setUsername( username );
 		filter.setPassword( password );
-		filter.setIsLogin(true);
-		
+		filter.setIsLogin( true );
+
 		ICommand commandFind = FactoryCommand.build( filter, EOperation.FIND );
-		
-		User user = (User) commandFind.execute().getFirstResult();
+
+		User user = ( User ) commandFind.execute().getFirstResult();
 		// if the password and the username matches the user will be returned
 
-		if( user == null) {
-			hasError = true;			
-		}else {
+		if( user == null ) {
+			hasError = true;
+		} else {
 			isOk = true;
 		}
 

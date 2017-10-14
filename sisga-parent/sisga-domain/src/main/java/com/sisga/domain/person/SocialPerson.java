@@ -1,7 +1,7 @@
 
 package com.sisga.domain.person;
 
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  * 
@@ -14,46 +14,51 @@ public abstract class SocialPerson extends Person {
 	protected String cpf;
 	protected String rg;
 
-	public String getFirstName() {
-		return firstName;
-	}
+	protected Calendar birthDate;
 
-	public void setFirstName( String firstName ) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName( String lastName ) {
-		this.lastName = lastName;
-	}
-
-	protected Date dateBirth;
-
+	/**
+	 * @return the cpf
+	 */
 	public String getCpf() {
 		return cpf;
 	}
-
+		
+	/**
+	 * @param cpf
+	 *            the cpf to set
+	 */
 	public void setCpf( String cpf ) {
 		this.cpf = cpf;
 	}
 
+	/**
+	 * @return the rg
+	 */
 	public String getRg() {
 		return rg;
 	}
 
+	/**
+	 * @param rg
+	 *            the rg to set
+	 */
 	public void setRg( String rg ) {
 		this.rg = rg;
 	}
 
-	public Date getDateBirth() {
-		return dateBirth;
+	/**
+	 * @return the dateBirth
+	 */
+	public Calendar getBirthDate() {
+		return birthDate;
 	}
 
-	public void setDateBirth( Date dateBirth ) {
-		this.dateBirth = dateBirth;
+	/**
+	 * @param birthDate
+	 *            the dateBirth to set
+	 */
+	public void setBirthDate( Calendar birthDate ) {
+		this.birthDate = birthDate;
 	}
 
 }

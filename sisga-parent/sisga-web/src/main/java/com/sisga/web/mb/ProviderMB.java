@@ -7,9 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import org.apache.commons.lang3.StringUtils;
@@ -25,19 +23,17 @@ import com.sisga.domain.address.City;
 import com.sisga.domain.address.State;
 import com.sisga.domain.communication.PhoneType;
 import com.sisga.domain.communication.Telephone;
-import com.sisga.domain.customer.Customer;
 import com.sisga.domain.provider.Provider;
 import com.sisga.domain.provider.ProviderHistory;
 import com.sisga.domain.provider.ProviderOperation;
 import com.sisga.domain.provider.filter.ProviderFilter;
-import com.sisga.web.util.Redirector;
 
 /**
  * @author Sergio Massao Umiji 20 de mar de 2017
  */
 @ManagedBean( name = "providerMB" )
 @ViewScoped
-public class ProviderMB extends BaseMB<Provider> {
+public class ProviderMB extends BaseMB < Provider > {
 
 	private static final long serialVersionUID = 1L;
 
@@ -147,13 +143,13 @@ public class ProviderMB extends BaseMB<Provider> {
 				if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 					ctx.addMessage( null, new FacesMessage( historyResult.getMsg(), historyResult.getMsg() ) );
 				}
-				
+
 				if( getUpdateDialog() != null ) {
 					RequestContext.getCurrentInstance()
 							.execute( "PF('" + getUpdateDialog().getWidgetVar() + "').hide();" );
 				}
 				search();
-				
+
 			}
 
 		} catch( ClassNotFoundException e ) {
@@ -195,13 +191,13 @@ public class ProviderMB extends BaseMB<Provider> {
 			e.printStackTrace();
 		}
 	}
-	
-	public void setUpdate( Provider provider ) {		
+
+	public void setUpdate( Provider provider ) {
 		doUpdate = true;
 		this.provider = provider;
 	}
-	
-	public void setSave() {		
+
+	public void setSave() {
 		doUpdate = false;
 		this.provider = new Provider();
 		newTelephonesCityState( provider );
@@ -228,8 +224,6 @@ public class ProviderMB extends BaseMB<Provider> {
 			e.printStackTrace();
 		}
 	}
-
-
 
 	private Provider newTelephonesCityState( Provider provider ) {
 		provider.setTelephones( new ArrayList < Telephone >() );

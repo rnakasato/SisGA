@@ -8,9 +8,9 @@ import com.sisga.domain.user.UserType;
 /**
  * 
  * @author Rafael Hikaru Nakasato
- * 1 de out de 2017
+ *         1 de out de 2017
  */
-public class UserTypeDAO extends DomainSpecificEntityDAO < UserType >{
+public class UserTypeDAO extends DomainSpecificEntityDAO < UserType > {
 
 	public UserTypeDAO() {
 		super( UserType.class );

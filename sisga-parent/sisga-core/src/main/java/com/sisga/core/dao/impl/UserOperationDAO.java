@@ -8,9 +8,9 @@ import com.sisga.domain.user.UserOperation;
 /**
  * 
  * @author Rafael Hikaru Nakasato
- * 1 de out de 2017
+ *         1 de out de 2017
  */
-public class UserOperationDAO extends DomainSpecificEntityDAO < UserOperation >{
+public class UserOperationDAO extends DomainSpecificEntityDAO < UserOperation > {
 
 	public UserOperationDAO() {
 		super( UserOperation.class );

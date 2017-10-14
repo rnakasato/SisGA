@@ -41,15 +41,15 @@ public class CustomerDAO extends DomainSpecificEntityDAO < Customer > {
 		if( StringUtils.isNotEmpty( customerFilter.getName() ) ) {
 			jpql.append( " AND UPPER(c.name) like :name " );
 		}
-		
+
 		if( StringUtils.isNotEmpty( customerFilter.getCnpj() ) ) {
 			jpql.append( " AND UPPER(c.cnpj) like :cnpj " );
 		}
-		
+
 		if( StringUtils.isNotEmpty( customerFilter.getCode() ) ) {
 			jpql.append( " AND UPPER(c.code) like :code " );
 		}
-		
+
 		if( StringUtils.isNotEmpty( customerFilter.getCorporateName() ) ) {
 			jpql.append( " AND UPPER(c.corporateName) like :corporateName " );
 		}
@@ -65,20 +65,20 @@ public class CustomerDAO extends DomainSpecificEntityDAO < Customer > {
 		Query query = session.createQuery( jpql.toString() );
 
 		if( StringUtils.isNotEmpty( customerFilter.getName() ) ) {
-			query.setParameter( "name", "%" + customerFilter.getName().toUpperCase() + "%");
+			query.setParameter( "name", "%" + customerFilter.getName().toUpperCase() + "%" );
 		}
-		
+
 		if( StringUtils.isNotEmpty( customerFilter.getCnpj() ) ) {
-			query.setParameter( "cnpj", "%" + customerFilter.getCnpj().toUpperCase() + "%");
+			query.setParameter( "cnpj", "%" + customerFilter.getCnpj().toUpperCase() + "%" );
 		}
-		
+
 		if( StringUtils.isNotEmpty( customerFilter.getCode() ) ) {
-			query.setParameter( "code", "%" + customerFilter.getCode().toUpperCase() + "%");
+			query.setParameter( "code", "%" + customerFilter.getCode().toUpperCase() + "%" );
 		}
-		
+
 		if( StringUtils.isNotEmpty( customerFilter.getCorporateName() ) ) {
 			jpql.append( " AND UPPER(c.corporateName) = :corporateName " );
-			query.setParameter( "corportateName", "%" + customerFilter.getCorporateName().toUpperCase() + "%");
+			query.setParameter( "corportateName", "%" + customerFilter.getCorporateName().toUpperCase() + "%" );
 		}
 
 		customerList = query.getResultList();

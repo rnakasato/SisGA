@@ -5,7 +5,6 @@ import java.util.List;
 import org.hibernate.Session;
 
 import com.sisga.domain.AbstractDomainEntity;
-import com.sisga.domain.filter.impl.Filter;
 
 public interface IDAO < T extends AbstractDomainEntity > {
 	public void save( T entity ) throws Exception;

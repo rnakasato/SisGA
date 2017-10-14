@@ -76,4 +76,19 @@ public class ProductHistory extends DomainSpecificEntity {
 		this.baseValue = baseValue;
 	}
 
+	public String getOperationCode() {
+		String code = null;
+		if( this.productOperation != null ) {
+			code = this.productOperation.getCode();
+		}
+		return code;
+	}
+
+	public void setOperationCode( String code ) {
+		if( this.productOperation == null ) {
+			productOperation = new ProductOperation();
+		}
+		productOperation.setCode( code );
+	}
+
 }

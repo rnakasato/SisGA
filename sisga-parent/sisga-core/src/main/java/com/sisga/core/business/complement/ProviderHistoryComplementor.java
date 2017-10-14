@@ -1,6 +1,6 @@
 package com.sisga.core.business.complement;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import com.sisga.core.core.business.Complementor;
 import com.sisga.core.core.util.Message;
@@ -40,11 +40,11 @@ public class ProviderHistoryComplementor extends Complementor < ProviderHistory 
 		Provider provider = history.getProvider();
 
 		history.setAddress( new Address() );
-		history.setActive( provider.isActive() );
+		history.setActive( provider.getActive() );
 		history.getAddress().setCity( provider.getAddress().getCity() );
 		history.setCode( provider.getCode() );
 		history.setDescription( provider.getDescription() );
-		history.setInsertDate( new Date() );
+		history.setInsertDate( Calendar.getInstance() );
 		history.setCorporateName( provider.getCorporateName() );
 		history.setCnpj( provider.getCnpj() );
 		history.getAddress().setNeighborhood( provider.getAddress().getNeighborhood() );

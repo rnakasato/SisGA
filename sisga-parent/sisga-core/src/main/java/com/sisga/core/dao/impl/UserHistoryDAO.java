@@ -8,9 +8,9 @@ import com.sisga.domain.user.UserHistory;
 /**
  * 
  * @author Rafael Hikaru Nakasato
- * 1 de out de 2017
+ *         1 de out de 2017
  */
-public class UserHistoryDAO extends AbstractDAO < UserHistory >{
+public class UserHistoryDAO extends AbstractDAO < UserHistory > {
 
 	public UserHistoryDAO() {
 		super( UserHistory.class );
@@ -18,7 +18,7 @@ public class UserHistoryDAO extends AbstractDAO < UserHistory >{
 
 	@Override
 	public List < UserHistory > find( AbstractDomainEntity entity ) throws Exception {
-		
+
 		return null;
 	}
 

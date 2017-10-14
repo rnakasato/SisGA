@@ -10,6 +10,8 @@ public class User extends SocialPerson {
 	private UserType userType;
 	private String username;
 	private String password;
+	private String oldPassowrd;
+	private String newPassowrd;
 	private Boolean isFirstLogin;
 
 	/**
@@ -64,16 +66,45 @@ public class User extends SocialPerson {
 	public Boolean getIsFirstLogin() {
 		return isFirstLogin;
 	}
+
 	/**
 	 * 
-	 * @param isFirstLogin 
-	 * 		set if is the first login
+	 * @param isFirstLogin
+	 *            set if is the first login
 	 */
 
 	public void setIsFirstLogin( Boolean isFirstLogin ) {
 		this.isFirstLogin = isFirstLogin;
 	}
-	
-	
+
+	/**
+	 * @return the oldPassowrd
+	 */
+	public String getOldPassowrd() {
+		return oldPassowrd;
+	}
+
+	/**
+	 * @param oldPassowrd
+	 *            the oldPassowrd to set
+	 */
+	public void setOldPassowrd( String oldPassowrd ) {
+		this.oldPassowrd = oldPassowrd;
+	}
+
+	/**
+	 * @return the newPassowrd
+	 */
+	public String getNewPassowrd() {
+		return newPassowrd;
+	}
+
+	/**
+	 * @param newPassowrd
+	 *            the newPassowrd to set
+	 */
+	public void setNewPassowrd( String newPassowrd ) {
+		this.newPassowrd = newPassowrd;
+	}
 
 }

@@ -78,42 +78,42 @@ public class UserDAO extends AbstractDAO < User > {
 		if( filter.getUserType() != null && StringUtils.isNotEmpty( filter.getUserType().getCode() ) ) {
 			sql.append( " AND UPPER(t.code) like :userTypeCode " );
 		}
-		
+
 		Query query = session.createQuery( sql.toString() );
-		
+
 		if( filter.getActive() != null ) {
 			query.setParameter( "active", filter.getActive() );
 		}
 
 		if( StringUtils.isNotEmpty( filter.getCpf() ) ) {
-			query.setParameter( "cpf", "%" + filter.getCpf() + "%");
+			query.setParameter( "cpf", "%" + filter.getCpf() + "%" );
 		}
 
 		if( StringUtils.isNotEmpty( filter.getRg() ) ) {
-			query.setParameter( "rg", "%" + filter.getRg() + "%");
+			query.setParameter( "rg", "%" + filter.getRg() + "%" );
 		}
 
 		if( StringUtils.isNotEmpty( filter.getUsername() ) ) {
 			sql.append( " AND UPPER(u.username) like :username " );
-			query.setParameter( "username", "%" + filter.getUsername() + "%");
+			query.setParameter( "username", "%" + filter.getUsername() + "%" );
 		}
 
 		if( StringUtils.isNotEmpty( filter.getFirstName() ) ) {
-			query.setParameter( "firstName", "%" + filter.getFirstName() + "%");
+			query.setParameter( "firstName", "%" + filter.getFirstName() + "%" );
 		}
 
 		if( StringUtils.isNotEmpty( filter.getLastName() ) ) {
-			query.setParameter( "lastName", "%" + filter.getLastName() + "%");
+			query.setParameter( "lastName", "%" + filter.getLastName() + "%" );
 		}
 
 		if( StringUtils.isNotEmpty( filter.getEmail() ) ) {
-			query.setParameter( "email", "%" + filter.getEmail() + "%");
+			query.setParameter( "email", "%" + filter.getEmail() + "%" );
 		}
 
 		if( filter.getUserType() != null && StringUtils.isNotEmpty( filter.getUserType().getCode() ) ) {
-			query.setParameter( "userTypeCode", "%" + filter.getUserType().getCode() + "%");
+			query.setParameter( "userTypeCode", "%" + filter.getUserType().getCode() + "%" );
 		}
-		
+
 		return query;
 
 	}

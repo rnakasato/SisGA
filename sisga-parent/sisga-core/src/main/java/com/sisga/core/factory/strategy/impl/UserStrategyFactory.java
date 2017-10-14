@@ -15,13 +15,13 @@ import com.sisga.domain.user.User;
 /**
  * 
  * @author Rafael Hikaru Nakasato
- * 1 de out de 2017
+ *         1 de out de 2017
  */
-public class UserStrategyFactory implements IEntityStrategyFactory < User >{
+public class UserStrategyFactory implements IEntityStrategyFactory < User > {
 
 	@Override
 	public Map < String, Map < String, List < IStrategy > > > buildEntityRules() {
-		
+
 		Map < String, Map < String, List < IStrategy > > > rns = new HashMap <>();
 
 		Map < String, List < IStrategy > > rnsProduct = new HashMap <>();
@@ -33,12 +33,11 @@ public class UserStrategyFactory implements IEntityStrategyFactory < User >{
 		List < IStrategy > rnsDelete = new ArrayList <>();
 
 		// rnsSave.add( new ProductFieldsValidator() );
-		
+
 		// rnsUpdate.add( new ProductFieldsValidator() );
-		
+
 		rnsFind.add( new UserLoginComplemmentor() );
-		
-		
+
 		// Insere as regras de negócio por operação
 		rnsProduct.put( EOperation.SAVE, rnsSave );
 		rnsProduct.put( EOperation.UPDATE, rnsUpdate );

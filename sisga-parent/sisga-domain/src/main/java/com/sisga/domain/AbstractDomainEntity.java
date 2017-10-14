@@ -1,64 +1,88 @@
 package com.sisga.domain;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Calendar;
 
 public class AbstractDomainEntity implements IEntity, Serializable {
 	private Long id;
 	private String description;
-	private Date insertDate;
-	private Date updateDate;
+	private Calendar insertDate;
+	private Calendar updateDate;
 
 	// Para exclus„o lÛgica
 	private Boolean active;
 
-	// Utilizado para facilitar gera√ß√£o de hist√≥rico
-	private String operationCode;
-
+	/**
+	 * @return the id
+	 */
 	public Long getId() {
 		return id;
 	}
 
+	/**
+	 * @param id
+	 *            the id to set
+	 */
 	public void setId( Long id ) {
 		this.id = id;
 	}
 
+	/**
+	 * @return the description
+	 */
 	public String getDescription() {
 		return description;
 	}
 
+	/**
+	 * @param description
+	 *            the description to set
+	 */
 	public void setDescription( String description ) {
 		this.description = description;
 	}
 
-	public Date getInsertDate() {
+	/**
+	 * @return the insertDate
+	 */
+	public Calendar getInsertDate() {
 		return insertDate;
 	}
 
-	public void setInsertDate( Date insertDate ) {
+	/**
+	 * @param insertDate
+	 *            the insertDate to set
+	 */
+	public void setInsertDate( Calendar insertDate ) {
 		this.insertDate = insertDate;
 	}
 
-	public String getOperationCode() {
-		return operationCode;
-	}
-
-	public void setOperationCode( String operationCode ) {
-		this.operationCode = operationCode;
-	}
-
-	public Date getUpdateDate() {
+	/**
+	 * @return the updateDate
+	 */
+	public Calendar getUpdateDate() {
 		return updateDate;
 	}
 
-	public void setUpdateDate( Date updateDate ) {
+	/**
+	 * @param updateDate
+	 *            the updateDate to set
+	 */
+	public void setUpdateDate( Calendar updateDate ) {
 		this.updateDate = updateDate;
 	}
 
+	/**
+	 * @return the active
+	 */
 	public Boolean getActive() {
 		return active;
 	}
 
+	/**
+	 * @param active
+	 *            the active to set
+	 */
 	public void setActive( Boolean active ) {
 		this.active = active;
 	}

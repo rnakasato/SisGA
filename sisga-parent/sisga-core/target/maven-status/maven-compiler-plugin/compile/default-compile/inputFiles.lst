@@ -85,6 +85,7 @@ C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-core\src\main\java\com\sisga
 C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-core\src\main\java\com\sisga\core\IDAO.java
 C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-core\src\main\java\com\sisga\core\business\fieldsvalidator\ProviderSearchValidator.java
 C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-core\src\main\java\com\sisga\core\business\fieldsvalidator\EmployeeSearchValidator.java
+C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-core\src\main\java\com\sisga\core\factory\strategy\impl\UserStrategyFactory.java
 C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-core\src\main\java\com\sisga\core\command\impl\CommandFindAll.java
 C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-core\src\main\java\com\sisga\core\factory\strategy\impl\EmployeeHistoryStrategyFactory.java
 C:\Meus Documentos\Pessoal\SisGA\sisga-parent\sisga-core\src\main\java\com\sisga\core\business\complement\EmployeePhoneComplementor.java

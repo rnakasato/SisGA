@@ -6,8 +6,8 @@ import com.sisga.domain.address.Address;
 public class UserHistory extends AbstractDomainEntity {
 
 	private static final long serialVersionUID = 1L;
-	
-	
+
+	private User user;
 	private UserType userType;
 	private String email;
 	private String username;
@@ -16,7 +16,6 @@ public class UserHistory extends AbstractDomainEntity {
 	private String cpf;
 	private String rg;
 	private Address address;
-	private boolean active;
 	private String firstName;
 	private String lastName;
 	private UserOperation userOparation;
@@ -85,14 +84,6 @@ public class UserHistory extends AbstractDomainEntity {
 		this.address = address;
 	}
 
-	public boolean isActive() {
-		return active;
-	}
-
-	public void setActive( boolean active ) {
-		this.active = active;
-	}
-
 	public String getFirstName() {
 		return firstName;
 	}
@@ -115,6 +106,36 @@ public class UserHistory extends AbstractDomainEntity {
 
 	public void setUserOparation( UserOperation userOparation ) {
 		this.userOparation = userOparation;
+	}
+
+	/**
+	 * @return the user
+	 */
+	public User getUser() {
+		return user;
+	}
+
+	/**
+	 * @param user
+	 *            the user to set
+	 */
+	public void setUser( User user ) {
+		this.user = user;
+	}
+
+	public void setOperationCode( String code ) {
+		if( this.userOparation == null ) {
+			userOparation = new UserOperation();
+		}
+		userOparation.setCode( code );
+	}
+
+	public String getOperationCode() {
+		String code = null;
+		if( this.userOparation != null ) {
+			code = this.userOparation.getCode();
+		}
+		return code;
 	}
 
 }

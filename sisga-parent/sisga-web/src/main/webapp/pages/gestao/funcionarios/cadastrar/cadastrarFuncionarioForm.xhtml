@@ -318,7 +318,7 @@
 										<p:commandButton
 											id="btnCancelarCadastrarFuncionario"
 											value="Cancelar"
-											actionListener="#{employeeMB.cancel}"
+											onclick="PF('employeeSaveDialog').hide()"
 											process="@this">
 											<p:confirm
 												header="Funcionário"

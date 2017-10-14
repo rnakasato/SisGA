@@ -111,13 +111,12 @@ public class FactoryDAO {
 			// City State DAOs
 			daoMap.put( State.class.getName(), new StateDAO() );
 			daoMap.put( City.class.getName(), new CityDAO() );
-			
+
 			// User DAOs
 			daoMap.put( User.class.getName(), new UserDAO() );
 			daoMap.put( UserFilter.class.getName(), new UserDAO() );
 			daoMap.put( UserOperation.class.getName(), new UserOperationDAO() );
 			daoMap.put( UserHistory.class.getName(), new UserHistoryDAO() );
-			
 
 		}
 	}

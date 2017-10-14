@@ -1,6 +1,7 @@
 package com.sisga.web.mb;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
@@ -17,6 +18,14 @@ public class FormatterMB {
 
 	public String formatToPercentage( Double value ) {
 		return FormatUtils.formatToPercentage( value );
+	}
+	
+	public String formatDate( Calendar calendar ) {		
+		return formatDate( calendar.getTime() );
+	}
+	
+	public String formatDateTime( Calendar calendar ) {		
+		return formatDateTime( calendar.getTime() );
 	}
 
 	public String formatDate( Date date ) {

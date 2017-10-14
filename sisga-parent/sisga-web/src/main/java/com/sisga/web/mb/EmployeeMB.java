@@ -7,9 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import org.apache.commons.lang3.StringUtils;
@@ -29,15 +27,13 @@ import com.sisga.domain.employee.Employee;
 import com.sisga.domain.employee.EmployeeHistory;
 import com.sisga.domain.employee.EmployeeOperation;
 import com.sisga.domain.employee.filter.EmployeeFilter;
-import com.sisga.domain.product.Product;
-import com.sisga.web.util.Redirector;
 
 /**
  * @author Sergio Massao Umiji 20 de mar de 2017
  */
 @ManagedBean( name = "employeeMB" )
 @ViewScoped
-public class EmployeeMB extends BaseMB<Employee> {
+public class EmployeeMB extends BaseMB < Employee > {
 
 	private static final long serialVersionUID = 1L;
 
@@ -94,16 +90,14 @@ public class EmployeeMB extends BaseMB<Employee> {
 				if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 					ctx.addMessage( null, new FacesMessage( historyResult.getMsg(), historyResult.getMsg() ) );
 				}
-				
+
 				if( getSaveDialog() != null ) {
 					RequestContext.getCurrentInstance()
 							.execute( "PF('" + getSaveDialog().getWidgetVar() + "').hide();" );
 				}
-				
+
 				search();
 			}
-			
-			
 
 		} catch( ClassNotFoundException e ) {
 			// TODO Auto-generated catch block
@@ -141,9 +135,9 @@ public class EmployeeMB extends BaseMB<Employee> {
 					RequestContext.getCurrentInstance()
 							.execute( "PF('" + getUpdateDialog().getWidgetVar() + "').hide();" );
 				}
-				
+
 				search();
-			
+
 			}
 
 		} catch( ClassNotFoundException e ) {
@@ -189,13 +183,13 @@ public class EmployeeMB extends BaseMB<Employee> {
 		doUpdate = true;
 		this.employee = employee;
 	}
-	
+
 	public void setSave() {
 		doUpdate = false;
-		this.employee= new Employee();
+		this.employee = new Employee();
 		newTelephonesCityState( employee );
 	}
-	
+
 	public void search() {
 		try {
 			ICommand commandFind = FactoryCommand.build( filter, EOperation.FIND );
@@ -216,8 +210,6 @@ public class EmployeeMB extends BaseMB<Employee> {
 			e.printStackTrace();
 		}
 	}
-
-	
 
 	private void newTelephonesCityState( Employee employee ) {
 		employee.setTelephones( new ArrayList < Telephone >() );

@@ -36,10 +36,10 @@ public class Result < T extends AbstractDomainEntity > {
 	public List < T > getEntityList() {
 		return entityList;
 	}
-	
+
 	public T getFirstResult() {
 		T entity = null;
-		if(entityList != null && !entityList.isEmpty()) {
+		if( entityList != null && ! entityList.isEmpty() ) {
 			entity = entityList.get( 0 );
 		}
 		return entity;

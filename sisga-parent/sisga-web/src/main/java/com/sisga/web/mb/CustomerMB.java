@@ -7,9 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import org.apache.commons.lang3.StringUtils;
@@ -29,9 +27,7 @@ import com.sisga.domain.customer.Customer;
 import com.sisga.domain.customer.CustomerHistory;
 import com.sisga.domain.customer.CustomerOperation;
 import com.sisga.domain.customer.filter.CustomerFilter;
-import com.sisga.domain.product.Product;
 import com.sisga.domain.user.User;
-import com.sisga.web.util.Redirector;
 
 /**
  * @author Sergio Massao Umiji
@@ -39,7 +35,7 @@ import com.sisga.web.util.Redirector;
  */
 @ManagedBean( name = "customerMB" )
 @ViewScoped
-public class CustomerMB extends BaseMB<Customer> {
+public class CustomerMB extends BaseMB < Customer > {
 
 	private static final long serialVersionUID = 1L;
 
@@ -101,8 +97,8 @@ public class CustomerMB extends BaseMB<Customer> {
 
 				if( StringUtils.isNotEmpty( result.getMsg() ) ) {
 					ctx.addMessage( null, new FacesMessage( historyResult.getMsg(), historyResult.getMsg() ) );
-				}	
-				
+				}
+
 				if( getSaveDialog() != null ) {
 					RequestContext.getCurrentInstance()
 							.execute( "PF('" + getSaveDialog().getWidgetVar() + "').hide();" );
@@ -212,14 +208,13 @@ public class CustomerMB extends BaseMB<Customer> {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	public void setUpdate( Customer customer ) {		
+
+	public void setUpdate( Customer customer ) {
 		doUpdate = true;
 		this.customer = customer;
 	}
-	
-	public void setSave() {		
+
+	public void setSave() {
 		doUpdate = false;
 		this.customer = new Customer();
 		newTelephonesCityState( customer );

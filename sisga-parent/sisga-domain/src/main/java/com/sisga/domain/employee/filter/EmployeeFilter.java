@@ -1,6 +1,6 @@
 package com.sisga.domain.employee.filter;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import com.sisga.domain.employee.Employee;
 import com.sisga.domain.filter.impl.DomainSpecificEntityFilter;
@@ -15,38 +15,66 @@ public class EmployeeFilter extends DomainSpecificEntityFilter < Employee > {
 
 	private String name;
 	private String status;
-	private Date employmentDateInit;
-	private Date employmentDateFinal;
+	private Calendar employmentDateInit;
+	private Calendar employmentDateFinal;
 
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus( String status ) {
-		this.status = status;
-	}
-
+	/**
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * @param name
+	 *            the name to set
+	 */
 	public void setName( String name ) {
 		this.name = name;
 	}
 
-	public Date getEmploymentDateInit() {
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status
+	 *            the status to set
+	 */
+	public void setStatus( String status ) {
+		this.status = status;
+	}
+
+	/**
+	 * @return the employmentDateInit
+	 */
+	public Calendar getEmploymentDateInit() {
 		return employmentDateInit;
 	}
 
-	public void setEmploymentDateInit( Date employmentDateInit ) {
+	/**
+	 * @param employmentDateInit
+	 *            the employmentDateInit to set
+	 */
+	public void setEmploymentDateInit( Calendar employmentDateInit ) {
 		this.employmentDateInit = employmentDateInit;
 	}
 
-	public Date getEmploymentDateFinal() {
+	/**
+	 * @return the employmentDateFinal
+	 */
+	public Calendar getEmploymentDateFinal() {
 		return employmentDateFinal;
 	}
 
-	public void setEmploymentDateFinal( Date employmentDateFinal ) {
+	/**
+	 * @param employmentDateFinal
+	 *            the employmentDateFinal to set
+	 */
+	public void setEmploymentDateFinal( Calendar employmentDateFinal ) {
 		this.employmentDateFinal = employmentDateFinal;
 	}
 

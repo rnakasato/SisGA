@@ -1,6 +1,6 @@
 package com.sisga.core.business.complement;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import com.sisga.core.core.business.Complementor;
 import com.sisga.domain.AbstractDomainEntity;
@@ -14,7 +14,7 @@ public class InsertDateComplementor extends Complementor < AbstractDomainEntity 
 
 	@Override
 	public String complement( AbstractDomainEntity entity ) {
-		entity.setInsertDate( new Date() );
+		entity.setInsertDate( Calendar.getInstance() );
 		return null;
 	}
 

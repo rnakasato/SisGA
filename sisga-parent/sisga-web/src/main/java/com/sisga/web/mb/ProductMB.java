@@ -8,9 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
 
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.context.RequestContext;
@@ -33,7 +31,6 @@ import com.sisga.domain.product.StockType;
 import com.sisga.domain.product.filter.ProductFilter;
 import com.sisga.domain.product.filter.SaleTypeFilter;
 import com.sisga.domain.product.filter.StockTypeFilter;
-import com.sisga.web.util.Redirector;
 
 /**
  * @author Rafael Hikaru Nakasato
@@ -41,7 +38,7 @@ import com.sisga.web.util.Redirector;
  */
 @ManagedBean( name = "productMB" )
 @ViewScoped
-public class ProductMB extends BaseMB<Product> {
+public class ProductMB extends BaseMB < Product > {
 
 	private static final long serialVersionUID = 1L;
 
@@ -112,7 +109,7 @@ public class ProductMB extends BaseMB<Product> {
 					RequestContext.getCurrentInstance()
 							.execute( "PF('" + getSaveDialog().getWidgetVar() + "').hide();" );
 				}
-				
+
 				search();
 
 			}
@@ -211,7 +208,6 @@ public class ProductMB extends BaseMB<Product> {
 			e.printStackTrace();
 		}
 	}
-	
 
 	public void setUpdate( Product product ) {
 
@@ -222,13 +218,12 @@ public class ProductMB extends BaseMB<Product> {
 		this.product = product;
 
 	}
-	
+
 	public void setSave() {
 		doUpdate = false;
 		this.product = new Product();
 
 	}
-
 
 	public void loadStockType() {
 		ICommand commandFind = null;
@@ -434,6 +429,5 @@ public class ProductMB extends BaseMB<Product> {
 	public void setRemoveAmount( Long removeAmount ) {
 		this.removeAmount = removeAmount;
 	}
-
 
 }

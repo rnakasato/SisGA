@@ -1,6 +1,6 @@
 package com.sisga.domain.employee;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import com.sisga.domain.person.PersonHistory;
 
@@ -17,8 +17,8 @@ public class EmployeeHistory extends PersonHistory {
 	private double salary;
 	private String workcardNumber;
 	private String workcardSeries;
-	private Date employmentDate;
-	private Date resignationDate;
+	private Calendar employmentDate;
+	private Calendar resignationDate;
 
 	/**
 	 * @return the employee
@@ -98,7 +98,7 @@ public class EmployeeHistory extends PersonHistory {
 	/**
 	 * @return the employmentDate
 	 */
-	public Date getEmploymentDate() {
+	public Calendar getEmploymentDate() {
 		return employmentDate;
 	}
 
@@ -106,14 +106,14 @@ public class EmployeeHistory extends PersonHistory {
 	 * @param employmentDate
 	 *            the employmentDate to set
 	 */
-	public void setEmploymentDate( Date employmentDate ) {
+	public void setEmploymentDate( Calendar employmentDate ) {
 		this.employmentDate = employmentDate;
 	}
 
 	/**
 	 * @return the resignationDate
 	 */
-	public Date getResignationDate() {
+	public Calendar getResignationDate() {
 		return resignationDate;
 	}
 
@@ -121,8 +121,23 @@ public class EmployeeHistory extends PersonHistory {
 	 * @param resignationDate
 	 *            the resignationDate to set
 	 */
-	public void setResignationDate( Date resignationDate ) {
+	public void setResignationDate( Calendar resignationDate ) {
 		this.resignationDate = resignationDate;
+	}
+
+	public String getOperationCode() {
+		String code = null;
+		if( this.employeeOperation != null ) {
+			code = this.employeeOperation.getCode();
+		}
+		return code;
+	}
+
+	public void setOperationCode( String code ) {
+		if( this.employeeOperation == null ) {
+			employeeOperation = new EmployeeOperation();
+		}
+		employeeOperation.setCode( code );
 	}
 
 }

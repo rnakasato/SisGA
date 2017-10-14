@@ -60,7 +60,7 @@ public class UserFieldsValidator extends FieldsValidator < User > {
 		if( ListUtils.isEmpty( entity.getTelephones() ) ) {
 
 		}
-		if( entity.getDateBirth() == null ) {
+		if( entity.getBirthDate() == null ) {
 
 		}
 

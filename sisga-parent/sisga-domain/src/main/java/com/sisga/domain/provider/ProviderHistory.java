@@ -74,4 +74,19 @@ public class ProviderHistory extends PersonHistory {
 		this.providerOperation = providerOperation;
 	}
 
+	public void setOperationCode( String code ) {
+		if( this.providerOperation == null ) {
+			providerOperation = new ProviderOperation();
+		}
+		providerOperation.setCode( code );
+	}
+
+	public String getOperationCode() {
+		String code = null;
+		if( this.providerOperation != null ) {
+			code = this.providerOperation.getCode();
+		}
+		return code;
+	}
+
 }

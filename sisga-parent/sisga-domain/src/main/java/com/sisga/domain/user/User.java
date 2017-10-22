@@ -13,6 +13,7 @@ public class User extends SocialPerson {
 	private String oldPassowrd;
 	private String newPassowrd;
 	private Boolean isFirstLogin;
+	private Boolean active;
 
 	/**
 	 * @return the userType
@@ -105,6 +106,21 @@ public class User extends SocialPerson {
 	 */
 	public void setNewPassowrd( String newPassowrd ) {
 		this.newPassowrd = newPassowrd;
+	}
+
+	/**
+	 * @return the active
+	 */
+	public Boolean getActive() {
+		return active;
+	}
+
+	/**
+	 * @param active
+	 *            the active to set
+	 */
+	public void setActive( Boolean active ) {
+		this.active = active;
 	}
 
 }

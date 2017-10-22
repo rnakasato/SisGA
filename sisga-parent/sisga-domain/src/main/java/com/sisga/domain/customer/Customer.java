@@ -11,7 +11,8 @@ import com.sisga.domain.user.User;
 
 public class Customer extends LegalPerson {
 	private User userSeller;
-
+	private boolean active;
+	
 	public User getUserSeller() {
 		return userSeller;
 	}
@@ -19,5 +20,21 @@ public class Customer extends LegalPerson {
 	public void setUserSeller( User userSeller ) {
 		this.userSeller = userSeller;
 	}
+
+	/**
+	 * @return the active
+	 */
+	public boolean isActive() {
+		return active;
+	}
+
+	/**
+	 * @param active the active to set
+	 */
+	public void setActive( boolean active ) {
+		this.active = active;
+	}
+	
+	
 
 }

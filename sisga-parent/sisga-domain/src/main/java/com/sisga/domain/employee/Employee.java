@@ -16,6 +16,7 @@ public class Employee extends SocialPerson {
 	private String workcardSeries;
 	private Calendar employmentDate;
 	private Calendar resignationDate;
+	private boolean active;
 
 	/**
 	 * @return the salary
@@ -90,6 +91,21 @@ public class Employee extends SocialPerson {
 	 */
 	public void setResignationDate( Calendar resignationDate ) {
 		this.resignationDate = resignationDate;
+	}
+
+	/**
+	 * @return the active
+	 */
+	public boolean isActive() {
+		return active;
+	}
+
+	/**
+	 * @param active
+	 *            the active to set
+	 */
+	public void setActive( boolean active ) {
+		this.active = active;
 	}
 
 }

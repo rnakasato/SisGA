@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition>
+		<p:dataTable
+			widgetVar="wvUserTable"
+			var="user"
+			id="userTable"
+			value="#{userMB.userList}"
+			paginator="true"
+			paginatorPosition="bottom"
+			selection="#{userMB.selectedUser}"
+			filteredValue="#{userMB.filteredValue}"
+			rowKey="#{user.id}"
+			rows="15"
+			style="width:100%">
+			<f:facet
+				name="header"
+				style="align:left">
+				<ui:include
+					src="/pages/gestao/usuarios/consultar/consultarUsuariosMenubar.xhtml" />
+			</f:facet>
+
+			<p:column
+				style="width:15%;text-align:center"
+				filterBy="#{user.firstName.concat(' ').concat(user.lastName)}"
+				filterStyle="display:none">
+
+				<f:facet name="header">
+					<p:outputLabel value="Nome" />
+				</f:facet>
+
+				<p:outputLabel value="#{user.firstName.concat(' ').concat(user.lastName)}" />
+			</p:column>
+			
+
+			<p:column
+				style="width:10%;text-align:center"
+				filterBy="#{user.code}"
+				filterStyle="display:none">
+
+				<f:facet name="header">
+					<p:outputLabel value="Código" />
+				</f:facet>
+
+				<p:outputLabel value="#{user.code}" />
+			</p:column>
+			
+			<p:column
+				style="width:10%;text-align:center"
+				filterBy="#{user.username}"
+				filterStyle="display:none">
+				<f:facet name="header">
+					<p:outputLabel value="Usuário" />
+				</f:facet>
+				<p:outputLabel value="#{user.username}" />
+			</p:column>
+			
+			<p:column
+				style="width:10%;text-align:center"
+				filterBy="#{user.userType.description}"
+				filterStyle="display:none">
+				<f:facet name="header">
+					<p:outputLabel value="Tipo de usuário" />
+				</f:facet>
+				<p:outputLabel value="#{user.userType.description}" />
+			</p:column>
+
+
+			<p:column style="width:40%;text-align:center">
+				<f:facet name="header">
+					<p:outputLabel value="Operação" />
+				</f:facet>
+				<p:commandButton
+					id="buttonAlterarUsuario"
+					style="margin-left:20px"
+					value="Alterar"
+					update="formAlterarUsuario:gridUpdateUser"
+					actionListener="#{userMB.setUpdate(user)}"
+					onclick="PF('userUpdateDialog').show()" />
+
+				<p:commandButton
+					id="buttonExcluirUsuario"
+					value="Excluir"
+					update=":form_content :messages"
+					style="margin-left:20px"
+					actionListener="#{userMB.delete(user)}"
+					rendered="#{user.active}">
+					<p:confirm
+						header="Funcionário"
+						message="Confirmar exclusão do usuário?" />
+				</p:commandButton>
+
+				<p:commandButton
+					id="buttonDetalhesUsuario"
+					style="margin-left:20px"
+					value="Detalhes"
+					update=":formDetail:userDetail, :messages "
+					actionListener="#{userMB.viewDetails(user)}"
+					onclick="PF('userDialog').show()" />
+			</p:column>
+		</p:dataTable>
+	</ui:composition>
+</h:body>
+</html>

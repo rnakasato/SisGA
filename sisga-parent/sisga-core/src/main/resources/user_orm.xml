@@ -45,7 +45,7 @@
 				class="com.sisga.domain.address.City" not-null="true" lazy="false"
 				cascade="save-update" />
 		</component>
-		
+
 		<bag name="telephones" table="TB_PHONE" inverse="true" lazy="false"
 			cascade="save-update">
 			<key column="IDEMPLOYEE" />
@@ -53,7 +53,7 @@
 		</bag>
 
 	</class>
-	
+
 	<class name="com.sisga.domain.user.UserOperation" table="TB_USER_OPERATION">
 		<id name="id" column="IDOPERATION">
 			<generator class="sequence">
@@ -64,24 +64,25 @@
 		<property name="description" column="DESCRIPTION" />
 	</class>
 
+
 	<class name="com.sisga.domain.user.UserHistory" table="TB_USER_HISTORY">
 		<id name="id" column="IDUSERHISTORY">
 			<generator class="sequence">
 				<param name="sequence_name">SQ_USER_HISTORY</param>
 			</generator>
 		</id>
-		
-		<property name="username" column="FIRSTNAME" />
+
+		<property name="username" column="USERNAME" />
 		<property name="firstName" column="FIRSTNAME" />
 		<property name="lastName" column="LASTNAME" />
 		<property name="email" column="EMAIL" />
-		<property name="active" column="ACTIVE" />		
+		<property name="active" column="ACTIVE" />
 		<property name="cpf" column="CPF" />
 		<property name="rg" column="RG" />
 		<property name="isFirstLogin" column="FIRSTLOGIN" />
-		<property name="insertDate" column="INSERTDATE" />		
+		<property name="insertDate" column="INSERTDATE" />
 		<property name="updateDate" column="UPDATEDATE" />
-		
+
 		<component name="address" class="com.sisga.domain.address.Address">
 			<property name="neighborhood" type="string">
 				<column name="NEIGHBORHOOD" />
@@ -94,18 +95,15 @@
 				cascade="save-update" />
 		</component>
 
-		<bag name="telephones" table="TB_PHONE" inverse="true" lazy="false">
-			<key column="IDUSER" />
-			<one-to-many class="com.sisga.domain.communication.Telephone" />
-		</bag>
-
 		<many-to-one name="user" column="IDUSER"
 			class="com.sisga.domain.user.User" not-null="true" />
-		<many-to-one name="userOperation" column="IDOPERATION"
+
+		<many-to-one name="userOparation" column="IDOPERATION"
 			class="com.sisga.domain.user.UserOperation" not-null="true" />
 
+
 	</class>
-	
+
 
 
 

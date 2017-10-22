@@ -10,5 +10,4 @@ import com.sisga.domain.DomainSpecificEntity;
 public class UserType extends DomainSpecificEntity {
 	public static final String PROPRIETARIO = "PRO";
 	public static final String OPERADOR = "OPE";
-	public static final String ADMINISTRADOR = "ADM";
 }

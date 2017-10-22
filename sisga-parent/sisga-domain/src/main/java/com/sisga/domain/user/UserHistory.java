@@ -18,96 +18,9 @@ public class UserHistory extends AbstractDomainEntity {
 	private Address address;
 	private String firstName;
 	private String lastName;
-	private UserOperation userOparation;
+	private UserOperation userOparation;	
 
-	public UserType getUserType() {
-		return userType;
-	}
-
-	public void setUserType( UserType userType ) {
-		this.userType = userType;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail( String email ) {
-		this.email = email;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername( String username ) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword( String password ) {
-		this.password = password;
-	}
-
-	public Boolean getIsFirstLogin() {
-		return isFirstLogin;
-	}
-
-	public void setIsFirstLogin( Boolean isFirstLogin ) {
-		this.isFirstLogin = isFirstLogin;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf( String cpf ) {
-		this.cpf = cpf;
-	}
-
-	public String getRg() {
-		return rg;
-	}
-
-	public void setRg( String rg ) {
-		this.rg = rg;
-	}
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress( Address address ) {
-		this.address = address;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName( String firstName ) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName( String lastName ) {
-		this.lastName = lastName;
-	}
-
-	public UserOperation getUserOparation() {
-		return userOparation;
-	}
-
-	public void setUserOparation( UserOperation userOparation ) {
-		this.userOparation = userOparation;
-	}
-
+	
 	/**
 	 * @return the user
 	 */
@@ -116,11 +29,164 @@ public class UserHistory extends AbstractDomainEntity {
 	}
 
 	/**
-	 * @param user
-	 *            the user to set
+	 * @param user the user to set
 	 */
 	public void setUser( User user ) {
 		this.user = user;
+	}
+
+	/**
+	 * @return the userType
+	 */
+	public UserType getUserType() {
+		return userType;
+	}
+
+	/**
+	 * @param userType the userType to set
+	 */
+	public void setUserType( UserType userType ) {
+		this.userType = userType;
+	}
+
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail( String email ) {
+		this.email = email;
+	}
+
+	/**
+	 * @return the username
+	 */
+	public String getUsername() {
+		return username;
+	}
+
+	/**
+	 * @param username the username to set
+	 */
+	public void setUsername( String username ) {
+		this.username = username;
+	}
+
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword( String password ) {
+		this.password = password;
+	}
+
+	/**
+	 * @return the isFirstLogin
+	 */
+	public Boolean getIsFirstLogin() {
+		return isFirstLogin;
+	}
+
+	/**
+	 * @param isFirstLogin the isFirstLogin to set
+	 */
+	public void setIsFirstLogin( Boolean isFirstLogin ) {
+		this.isFirstLogin = isFirstLogin;
+	}
+
+	/**
+	 * @return the cpf
+	 */
+	public String getCpf() {
+		return cpf;
+	}
+
+	/**
+	 * @param cpf the cpf to set
+	 */
+	public void setCpf( String cpf ) {
+		this.cpf = cpf;
+	}
+
+	/**
+	 * @return the rg
+	 */
+	public String getRg() {
+		return rg;
+	}
+
+	/**
+	 * @param rg the rg to set
+	 */
+	public void setRg( String rg ) {
+		this.rg = rg;
+	}
+
+	/**
+	 * @return the address
+	 */
+	public Address getAddress() {
+		return address;
+	}
+
+	/**
+	 * @param address the address to set
+	 */
+	public void setAddress( Address address ) {
+		this.address = address;
+	}
+
+	/**
+	 * @return the firstName
+	 */
+	public String getFirstName() {
+		return firstName;
+	}
+
+	/**
+	 * @param firstName the firstName to set
+	 */
+	public void setFirstName( String firstName ) {
+		this.firstName = firstName;
+	}
+
+	/**
+	 * @return the lastName
+	 */
+	public String getLastName() {
+		return lastName;
+	}
+
+	/**
+	 * @param lastName the lastName to set
+	 */
+	public void setLastName( String lastName ) {
+		this.lastName = lastName;
+	}
+
+	/**
+	 * @return the userOparation
+	 */
+	public UserOperation getUserOparation() {
+		return userOparation;
+	}
+
+	/**
+	 * @param userOparation the userOparation to set
+	 */
+	public void setUserOparation( UserOperation userOparation ) {
+		this.userOparation = userOparation;
 	}
 
 	public void setOperationCode( String code ) {

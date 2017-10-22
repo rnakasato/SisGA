@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<ui:composition>
+		<p:dialog
+			id="userUpdateDialog"
+			widgetVar="userUpdateDialog"
+			modal="true"
+			showEffect="fade"
+			header="Alterar Funcionário"
+			hideEffect="fade"
+			resizable="false"
+			width="800px"
+			position="center"
+			binding="#{userMB.updateDialog}">
+			<h:form id="formAlterarUsuario">
+				<div style="margin: 0 auto; height: 100%; width: 100%;">
+					<div style="margin: 0 auto; height: 380px; width: 100%;">
+						<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
+						<div
+							style="margin: 0 auto; width: 800px; height: 140px; float: center;">
+							<p:panelGrid
+								id="gridUpdateUser"
+								border="0"
+								style="text-align:left; border-width:thin;"
+								styleClass="baseGrid">
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											for="inputUpdateFirstName"
+											value="Nome "
+											style="font-weight:bold" />
+									</p:column>
+
+									<p:column>
+										<p:inputText
+											id="inputUpdateFirstName"
+											value="#{userMB.user.firstName}"
+											maxlength="50"
+											required="true"
+											requiredMessage="Primeiro nome obrigatório" />
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											for="inputUpdateLastName"
+											value="Sobrenome "
+											style="font-weight:bold" />
+									</p:column>
+
+									<p:column>
+										<p:inputText
+											id="inputUpdateLastName"
+											value="#{userMB.user.lastName}"
+											required="true"
+											maxlength="50"
+											requiredMessage="Sobrenome obrigatório" />
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											for="inputUpdateUsername"
+											value="Nome de usuário "
+											style="font-weight:bold" />
+									</p:column>
+
+									<p:column>
+										<p:inputText
+											id="inputUpdateUsername"
+											value="#{userMB.user.username}"
+											required="true"
+											maxlength="50"
+											requiredMessage="Nome de usuário obrigatório" />
+									</p:column>
+								</p:row>
+								
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											for="inputUpdateOldPassword"
+											value="Senha "
+											style="font-weight:bold" />
+									</p:column>
+
+									<p:column>
+										<p:password
+											id="inputUpdateOldPassword"
+											value="#{userMB.user.oldPassowrd}"
+											label="Senha"
+											maxlength="50"
+											required="true" />										
+									</p:column>
+								</p:row>
+								
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											for="inputUpdatePassword"
+											value="Senha "
+											style="font-weight:bold" />
+									</p:column>
+
+									<p:column>
+										<p:password
+											id="inputUpdatePassword"
+											value="#{userMB.user.newPassowrd}"
+											match="inputUpdateConfirmPassword"
+											label="Senha"
+											maxlength="50"
+											required="true" />										
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											for="inputUpdateConfirmPassword"
+											value="Confirmação de senha "
+											style="font-weight:bold" />
+									</p:column>
+
+									<p:column>
+										<p:password
+											id="inputUpdateConfirmPassword"
+											value="#{userMB.user.newPassowrd}"
+											label="Senha"
+											maxlength="50"
+											required="true" />										
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:outputLabel
+										for="inputUpdateCPF"
+										value="CPF:"
+										style="font-weight:bold; width:40%;" />
+								</p:row>
+								<p:row>
+									<p:inputMask
+										id="inputUpdateCPF"
+										value="#{userMB.user.cpf}"
+										mask="999.999.999-99"
+										maxlength="75"
+										style="width:40%" />
+								</p:row>
+
+
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											for="inputUpdateRG"
+											value="RG" />
+
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column>
+										<p:inputText
+											id="inputUpdateRG"
+											value="#{userMB.user.rg}">
+										</p:inputText>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											for="inputUpdateTelephone"
+											value="Telefone "
+											style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:inputMask
+											id="inputUpdateTelephone"
+											value="#{userMB.user.telephones.get(0).pnumber}"
+											required="true"
+											mask="(99) 9999-9999"
+											requiredMessage="Telefone obrigatório">
+										</p:inputMask>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											for="inputUpdateCellphone"
+											value="Celular "
+											style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:inputMask
+											id="inputUpdateCellphone"
+											value="#{userMB.user.telephones.get(1).pnumber}"
+											required="true"
+											mask="(99) 99999-9999"
+											requiredMessage="Celular obrigatório">
+										</p:inputMask>
+									</p:column>
+								</p:row>
+
+
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											for="inputUpdateEmail"
+											value="E-mail "
+											style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:inputText
+											id="inputUpdateEmail"
+											value="#{userMB.user.email}"
+											required="true"
+											maxlength="50"
+											requiredMessage="E-mail obrigatório">
+										</p:inputText>
+									</p:column>
+								</p:row>
+
+
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											for="selectOneMenuEstado"
+											value="Estado "
+											style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:selectOneMenu
+											id="selectOneMenuEstado"
+											value="#{userMB.selectedState}"
+											converter="defaultConverter"
+											filter="true"
+											required="true"
+											requiredMessage="Estado obrigatório">
+											<f:selectItems
+												value="#{userMB.stateList}"
+												var="states"
+												itemValue="#{states}"
+												itemLabel="#{states.name}" />
+
+											<p:ajax
+												event="change"
+												listener="#{userMB.loadCities}"
+												update=":formCadastroUsuario:selectOneMenuCidade" />
+										</p:selectOneMenu>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											for="selectOneMenuCidade"
+											value="Cidade "
+											style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:selectOneMenu
+											id="selectOneMenuCidade"
+											disabled="#{empty userMB.selectedState}"
+											value="#{userMB.user.address.city}"
+											converter="defaultConverter"
+											filter="true"
+											required="true"
+											requiredMessage="Cidade obrigatório">
+											<f:selectItems
+												value="#{userMB.cityList}"
+												var="cities"
+												itemValue="#{cities}"
+												itemLabel="#{cities.name}" />
+										</p:selectOneMenu>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											for="inputUpdateBairro"
+											value="Bairro "
+											style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:inputText
+											id="inputUpdateBairro"
+											value="#{userMB.user.address.neighborhood}"
+											required="true"
+											maxlength="50"
+											requiredMessage="Bairro obrigatório">
+										</p:inputText>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											for="inputUpdateNumero"
+											value="Numero "
+											style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:inputNumber
+											id="inputUpdateNumero"
+											value="#{userMB.user.address.number}"
+											maxValue="99999"
+											thousandSeparator="."
+											decimalSeparator=","
+											required="true"
+											requiredMessage="Número obrigatório" />
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											for="inputUpdateBirthDate"
+											value="Data de nascimento"
+											style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:calendar
+											id="inputUpdateBirthDate"
+											value="#{userMB.user.birthDate}"
+											required="true"
+											requiredMessage="Data de nascimento obrigatório">
+										</p:calendar>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											for="selectRadioSaveStatus"
+											value="Status"
+											style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:selectOneRadio
+											id="selectRadioSaveStatus"
+											value="#{userMB.user.active}">
+											<f:selectItem
+												id="selectRadioSaveStatusAtivo"
+												itemLabel="Ativo"
+												itemValue="#{true}" />
+											<f:selectItem
+												id="selectRadioSaveStatusInativo"
+												itemLabel="Inativo"
+												itemValue="#{false}" />
+										</p:selectOneRadio>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+									</p:column>
+									<p:column>
+										<p:outputLabel
+											value="Campos marcados com * são de preenchimento obrigatório"
+											style="color:red;margin-bottom:20px" />
+									</p:column>
+								</p:row>
+							</p:panelGrid>
+
+							<p:panelGrid
+								id="gridAlterarButtons"
+								styleClass="baseGrid">
+								<p:row>
+									<p:column style="width:80%">
+									</p:column>
+									<p:column style="width:10%">
+										<p:commandButton
+											id="btnAlterarUsuario"
+											value="Alterar"
+											update=":formAlterarUsuario :formFilter form_content:userTable :messages"
+											actionListener="#{userMB.update}"
+											process=":formAlterarUsuario:gridUpdateUser :formAlterarUsuario:gridAlterarButtons">
+											<p:confirm
+												header="Funcionário"
+												message="Confirmar alteração?" />
+										</p:commandButton>
+									</p:column>
+									<p:column style="width:10%">
+										<p:commandButton
+											id="btnCancelarAlteracaoUsuario"
+											value="Cancelar"
+											onclick="PF('userUpdateDialog').hide()"
+											process="@this">
+											<p:confirm
+												header="Usuário"
+												message="Cancelar alteração?" />
+										</p:commandButton>
+									</p:column>
+								</p:row>
+							</p:panelGrid>
+						</div>
+						<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
+					</div>
+				</div>
+			</h:form>
+		</p:dialog>
+	</ui:composition>
+</h:body>
+</html>

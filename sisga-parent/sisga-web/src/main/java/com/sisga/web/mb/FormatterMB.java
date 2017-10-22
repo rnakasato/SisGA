@@ -19,16 +19,28 @@ public class FormatterMB {
 	public String formatToPercentage( Double value ) {
 		return FormatUtils.formatToPercentage( value );
 	}
-	
-	public String formatDate( Calendar calendar ) {		
-		return formatDate( calendar.getTime() );
-	}
-	
-	public String formatDateTime( Calendar calendar ) {		
-		return formatDateTime( calendar.getTime() );
+
+	public String formatDate( Calendar calendar ) {
+		String formatted = null;
+		
+		if(calendar != null) {
+			formatted = formatFromDate( calendar.getTime() ); 
+		}
+			
+		return formatted;
 	}
 
-	public String formatDate( Date date ) {
+	public String formatDateTime( Calendar calendar ) {
+		String formatted = null;
+		
+		if(calendar != null) {
+			formatted = formatFromDateTime( calendar.getTime() ); 
+		}
+		
+		return formatted;
+	}
+
+	public String formatFromDate( Date date ) {
 		String formattedDate = null;
 		if( date != null ) {
 			SimpleDateFormat sdf = new SimpleDateFormat( "dd/MM/yyyy" );
@@ -37,7 +49,7 @@ public class FormatterMB {
 		return formattedDate;
 	}
 
-	public String formatDateTime( Date date ) {
+	public String formatFromDateTime( Date date ) {
 		String formattedDate = null;
 		if( date != null ) {
 			SimpleDateFormat sdf = new SimpleDateFormat( "dd/MM/yyy HH:mm:ss" );

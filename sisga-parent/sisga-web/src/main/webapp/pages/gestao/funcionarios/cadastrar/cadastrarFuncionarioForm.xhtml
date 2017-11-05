@@ -280,7 +280,12 @@
 											id="inputDataContratacao"
 											value="#{employeeMB.employee.employmentDate}"
 											required="true"
-											requiredMessage="Data de Contratação obrigatório">
+											requiredMessage="Data de Contratação obrigatório"
+											mask="true"
+											navigator="true"
+											pattern="dd/MM/yyyy"
+											yearRange="c-80:c+50"
+											converter="calendarConverter">
 										</p:calendar>
 									</p:column>
 								</p:row>

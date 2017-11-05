@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Alterar Despesas Operacionais</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta
+		http-equiv="Content-Type"
+		content="text/html; charset=ISO-8859-1" />
 </h:head>
 
 <h:body>
@@ -18,11 +21,17 @@
 				<ui:include src="/resources/template/header.xhtml" />
 			</p:layoutUnit>
 			<p:breadCrumb style="margin: 0 auto; width: 100%; padding: 2px;">
-				<p:menuitem value="Início" url="../../paginaInicial.xhtml" />
-				<p:menuitem value="Gestão" url="../menuGestao.xhtml" />
-				<p:menuitem value="Despesas Operacionais"
+				<p:menuitem
+					value="Início"
+					url="../../paginaInicial.xhtml" />
+				<p:menuitem
+					value="Gestão"
+					url="../menuGestao.xhtml" />
+				<p:menuitem
+					value="Despesas Operacionais"
 					url="menuDespesasOperacionais.xhtml" />
-				<p:menuitem value="Alterar Despesas Operacionais"
+				<p:menuitem
+					value="Alterar Despesas Operacionais"
 					url="alterarDespesasOperacionais.xhtml" />
 			</p:breadCrumb>
 
@@ -30,28 +39,37 @@
 				<div style="margin: 0 auto; width: 100%; height: 50px;"></div>
 				<div
 					style="margin: 0 auto; width: 60%; height: 100%; float: center;">
-					<p:fieldset legend="Alterar Despesa"
+					<p:fieldset
+						legend="Alterar Despesa"
 						style="text-align=left; border=1px;">
 						<p:fieldset>
-							<h:panelGrid columns="2" border="0">
+							<h:panelGrid
+								columns="2"
+								border="0">
 								<p:outputLabel id="labelNomeDespesa">Nome da Despesa </p:outputLabel>
 								<h:inputText id="inputNomeDespesa"></h:inputText>
 
 								<p:outputLabel id="labelselectMenuItemDespesa">Item da Despesa</p:outputLabel>
-								<p:selectOneMenu id="selectMenuItemDespesa"
-									value="#{alterarDespesasBeans.itemDespesa}" style="width:125px">
+								<p:selectOneMenu
+									id="selectMenuItemDespesa"
+									value="#{alterarDespesasBeans.itemDespesa}"
+									style="width:125px">
 									<f:selectItems value="#{alterarDespesasBeans.itensDespesas}" />
 								</p:selectOneMenu>
 
 								<p:outputLabel id="selectMenuTipoDespesa">Tipo da Despesa</p:outputLabel>
-								<p:selectOneMenu id="selectMenuTipoDespesa"
-									value="#{alterarDespesasBeans.tipoDespesa}" style="width:125px">
+								<p:selectOneMenu
+									id="selectMenuTipoDespesa"
+									value="#{alterarDespesasBeans.tipoDespesa}"
+									style="width:125px">
 									<f:selectItems value="#{alterarDespesasBeans.tiposDespesas}" />
 								</p:selectOneMenu>
 							</h:panelGrid>
 						</p:fieldset>
 						<p:fieldset>
-							<h:panelGrid columns="2" border="0">
+							<h:panelGrid
+								columns="2"
+								border="0">
 
 								<p:outputLabel id="labelQuantidadeDespesa">Quantidade </p:outputLabel>
 								<h:inputText id="inputQuantidadeDespesa"></h:inputText>
@@ -64,7 +82,9 @@
 							</h:panelGrid>
 						</p:fieldset>
 						<p:fieldset>
-							<h:panelGrid columns="2" border="0">
+							<h:panelGrid
+								columns="2"
+								border="0">
 
 								<p:outputLabel id="labelValorServico">Valor do Serviço </p:outputLabel>
 								<h:inputText id="inputValorServico"></h:inputText>
@@ -73,17 +93,28 @@
 							</h:panelGrid>
 						</p:fieldset>
 						<p:fieldset>
-							<h:panelGrid columns="2" border="0">
+							<h:panelGrid
+								columns="2"
+								border="0">
 								<p:outputLabel id="labelEstadoDespesa">Estado da Despesa </p:outputLabel>
-								<h:selectOneMenu id="selectMenuEstadoDespesa"
+								<h:selectOneMenu
+									id="selectMenuEstadoDespesa"
 									value="#{alterarDespesasBeans.estadoDespesa}"
 									style="width:125px">
 									<f:selectItems value="#{alterarDespesasBeans.estadosDespesas}" />
 								</h:selectOneMenu>
 
-								<p:outputLabel for="popupDataDespesa" value="Data da Despesa" />
-								<p:calendar id="popupDataDespesa"
-									value="#{alterarDespesasBeans.dataDespesa}" />
+								<p:outputLabel
+									for="popupDataDespesa"
+									value="Data da Despesa" />
+								<p:calendar
+									id="popupDataDespesa"
+									value="#{alterarDespesasBeans.dataDespesa}"
+									mask="true"
+									navigator="true"
+									pattern="dd/MM/yyyy"
+									yearRange="c-80:c+50"
+									converter="calendarConverter" />
 
 								<p:outputLabel id="labelFornecedorDespesa">Fornecedor </p:outputLabel>
 								<h:inputText id="inputFornecedorDespesa"></h:inputText>
@@ -91,10 +122,15 @@
 								<p:outputLabel id="labelTelefoneContatatoDespesa">Tel. Contato </p:outputLabel>
 								<h:inputText id="inputTelefoneContatatoDespesa"></h:inputText>
 
-								<h:commandButton id="buttonAlterarDespesa" value="Alterar"
-									type="submit" action="#{alterarDespesasBeans.alterar}" />
-								<h:commandButton id="buttonCancelarAdicionarDespesa"
-									value="Cancelar" type="submit"
+								<h:commandButton
+									id="buttonAlterarDespesa"
+									value="Alterar"
+									type="submit"
+									action="#{alterarDespesasBeans.alterar}" />
+								<h:commandButton
+									id="buttonCancelarAdicionarDespesa"
+									value="Cancelar"
+									type="submit"
 									action="#{alterarDespesasBeans.cancelar}" />
 							</h:panelGrid>
 						</p:fieldset>

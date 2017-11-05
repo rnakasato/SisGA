@@ -88,6 +88,30 @@
 								<p:row>
 									<p:column>
 										<p:outputLabel
+											for="selectOneMenuTipoUsuario"
+											value="Tipo de Usuário "
+											style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:selectOneMenu
+											id="selectOneMenuTipoUsuario"
+											value="#{userMB.user.userType}"
+											converter="defaultConverter"
+											filter="true"
+											required="true"
+											requiredMessage="Tipo de usuário obrigatório">
+											<f:selectItems
+												value="#{userMB.userTypeList}"
+												var="userType"
+												itemValue="#{userType}"
+												itemLabel="#{userType.description}" />
+										</p:selectOneMenu>
+									</p:column>
+								</p:row>
+								
+								<p:row>
+									<p:column>
+										<p:outputLabel
 											for="inputUpdateOldPassword"
 											value="Senha "
 											style="font-weight:bold" />
@@ -253,7 +277,7 @@
 											<p:ajax
 												event="change"
 												listener="#{userMB.loadCities}"
-												update=":formCadastroUsuario:selectOneMenuCidade" />
+												update=":formAlterarUsuario:selectOneMenuCidade" />
 										</p:selectOneMenu>
 									</p:column>
 								</p:row>
@@ -331,7 +355,12 @@
 											id="inputUpdateBirthDate"
 											value="#{userMB.user.birthDate}"
 											required="true"
-											requiredMessage="Data de nascimento obrigatório">
+											requiredMessage="Data de nascimento obrigatório"
+											mask="true"
+											navigator="true"
+											pattern="dd/MM/yyyy"
+											yearRange="c-80:c+50"
+											converter="calendarConverter">
 										</p:calendar>
 									</p:column>
 								</p:row>

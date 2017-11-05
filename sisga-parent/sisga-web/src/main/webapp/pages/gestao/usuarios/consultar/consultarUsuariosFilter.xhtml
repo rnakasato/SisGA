@@ -150,7 +150,7 @@
 								value="CPF:" />
 						</p:column>
 					</p:row>
-					
+
 					<p:row>
 						<p:column>
 							<p:inputMask
@@ -262,7 +262,12 @@
 						<p:column>
 							<p:calendar
 								id="inputInsertDateInit"
-								value="#{userMB.filter.insertDateInit}" />
+								value="#{userMB.filter.insertDateInit}"
+								mask="true"
+								navigator="true"
+								pattern="dd/MM/yyyy"
+								yearRange="c-80:c+50"
+								converter="calendarConverter" />
 						</p:column>
 					</p:row>
 					<p:row>
@@ -274,7 +279,12 @@
 						<p:column>
 							<p:calendar
 								id="inputInsertDateFinal"
-								value="#{userMB.filter.insertDateFinal}" />
+								value="#{userMB.filter.insertDateFinal}"
+								mask="true"
+								navigator="true"
+								pattern="dd/MM/yyyy"
+								yearRange="c-80:c+50"
+								converter="calendarConverter" />
 						</p:column>
 					</p:row>
 
@@ -287,7 +297,12 @@
 						<p:column>
 							<p:calendar
 								id="inputBirthDateInit"
-								value="#{userMB.filter.birthDateInit}" />
+								value="#{userMB.filter.birthDateInit}"
+								mask="true"
+								navigator="true"
+								pattern="dd/MM/yyyy"
+								yearRange="c-80:c+50"
+								converter="calendarConverter" />
 						</p:column>
 					</p:row>
 					<p:row>
@@ -299,7 +314,12 @@
 						<p:column>
 							<p:calendar
 								id="inputBirthDateFinal"
-								value="#{userMB.filter.birthDateFinal}" />
+								value="#{userMB.filter.birthDateFinal}"
+								mask="true"
+								navigator="true"
+								pattern="dd/MM/yyyy"
+								yearRange="c-80:c+50"
+								converter="calendarConverter" />
 						</p:column>
 					</p:row>
 

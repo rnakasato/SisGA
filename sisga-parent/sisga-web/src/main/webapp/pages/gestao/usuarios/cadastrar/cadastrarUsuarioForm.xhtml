@@ -84,6 +84,31 @@
 											requiredMessage="Nome de usuário obrigatório" />
 									</p:column>
 								</p:row>
+								
+								
+								<p:row>
+									<p:column>
+										<p:outputLabel
+											for="selectOneMenuTipoUsuario"
+											value="Tipo de Usuário "
+											style="font-weight:bold" />
+									</p:column>
+									<p:column>
+										<p:selectOneMenu
+											id="selectOneMenuTipoUsuario"
+											value="#{userMB.user.userType}"
+											converter="defaultConverter"
+											filter="true"
+											required="true"
+											requiredMessage="Tipo de usuário obrigatório">
+											<f:selectItems
+												value="#{userMB.userTypeList}"
+												var="userType"
+												itemValue="#{userType}"
+												itemLabel="#{userType.description}" />
+										</p:selectOneMenu>
+									</p:column>
+								</p:row>
 
 								<p:row>
 									<p:column>
@@ -100,7 +125,7 @@
 											match="inputSaveConfirmPassword"
 											label="Senha"
 											maxlength="50"
-											required="true" />										
+											required="true" />
 									</p:column>
 								</p:row>
 
@@ -118,11 +143,11 @@
 											value="#{userMB.user.password}"
 											label="Senha"
 											maxlength="50"
-											required="true" />										
+											required="true" />
 									</p:column>
 								</p:row>
-								
-								
+
+
 								<p:row>
 									<p:column>
 										<p:outputLabel
@@ -137,7 +162,7 @@
 											mask="999.999.999-99"
 											maxlength="75"
 											style="width:40%" />
-									</p:column>	
+									</p:column>
 								</p:row>
 
 
@@ -145,7 +170,8 @@
 									<p:column>
 										<p:outputLabel
 											for="inputSaveRG"
-											value="RG" />
+											value="RG"
+											style="font-weight:bold" />
 
 									</p:column>
 									<p:column>
@@ -314,6 +340,11 @@
 											id="inputSaveBirthDate"
 											value="#{userMB.user.birthDate}"
 											required="true"
+											mask="true"
+											navigator="true"
+											pattern="dd/MM/yyyy"
+											yearRange="c-80:c+50"
+											converter="calendarConverter"
 											requiredMessage="Data de nascimento obrigatório">
 										</p:calendar>
 									</p:column>

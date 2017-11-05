@@ -14,6 +14,9 @@ import org.primefaces.component.dialog.Dialog;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
+import com.sisga.core.ICommand;
+import com.sisga.core.enums.EOperation;
+import com.sisga.core.factory.impl.FactoryCommand;
 import com.sisga.domain.AbstractDomainEntity;
 
 public abstract class BaseMB < T extends AbstractDomainEntity > implements Serializable {
@@ -60,6 +63,18 @@ public abstract class BaseMB < T extends AbstractDomainEntity > implements Seria
 		today.set( Calendar.SECOND, 0 );
 		today.set( Calendar.MILLISECOND, 0 );
 		return today.getTime();
+	}
+	
+	public <E extends AbstractDomainEntity> List<E> getSelectEntity(E entity){
+			List < E > entityList = new ArrayList < E >();
+			try {
+				ICommand commandFind;
+				commandFind = FactoryCommand.build( entity, EOperation.FINDALL );
+				entityList = commandFind.execute().getEntityList();
+			} catch( ClassNotFoundException e ) {
+				e.printStackTrace();
+			}
+			return entityList;
 	}
 
 	public Dialog getSaveDialog() {

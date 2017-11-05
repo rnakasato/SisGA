@@ -58,8 +58,9 @@ public class UserMB extends BaseMB < User > {
 		user = new User();
 		doUpdate = false;
 		newTelephonesCityState( user );
-		cityList = getCities();
-		stateList = getStates();
+		cityList = getSelectEntity( new City() );
+		stateList = getSelectEntity( new State() );
+		userTypeList = getSelectEntity( new UserType() );
 	}
 
 	// Métodos Operacionais
@@ -223,31 +224,7 @@ public class UserMB extends BaseMB < User > {
 		user.getAddress().setCity( new City() );
 		this.user = user;
 	}
-
-	private List < City > getCities() {
-		List < City > city = new ArrayList < City >();
-		try {
-			ICommand commandFind;
-			commandFind = FactoryCommand.build( new City(), EOperation.FINDALL );
-			city = commandFind.execute().getEntityList();
-		} catch( ClassNotFoundException e ) {
-			e.printStackTrace();
-		}
-		return city;
-	}
-
-	private List < State > getStates() {
-		List < State > states = new ArrayList < State >();
-		try {
-			ICommand commandFind;
-			commandFind = FactoryCommand.build( new State(), EOperation.FINDALL );
-			states = commandFind.execute().getEntityList();
-
-		} catch( ClassNotFoundException e ) {
-			e.printStackTrace();
-		}
-		return states;
-	}
+	
 
 	public void loadCities( AjaxBehaviorEvent event ) {
 		City city = new City();
@@ -472,6 +449,8 @@ public class UserMB extends BaseMB < User > {
 	public void setUserTypeList( List < UserType > userTypeList ) {
 		this.userTypeList = userTypeList;
 	}
+	
+	
 
 	
 

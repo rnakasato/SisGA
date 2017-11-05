@@ -6,7 +6,7 @@
 
 
 	<class name="com.sisga.domain.user.UserType" table="TB_USER_TYPE">
-		<id name="id" column="IDUSER">
+		<id name="id" column="IDUSERTYPE">
 			<generator class="sequence">
 				<param name="sequence_name">SQ_USER_TYPE</param>
 			</generator>

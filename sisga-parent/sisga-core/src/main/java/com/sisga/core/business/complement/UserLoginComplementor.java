@@ -9,7 +9,7 @@ import com.sisga.domain.user.filter.UserFilter;
  * @author Rafael Hikaru Nakasato
  *         1 de out de 2017
  */
-public class UserLoginComplemmentor extends Complementor < UserFilter > {
+public class UserLoginComplementor extends Complementor < UserFilter > {
 
 	@Override
 	public String complement( UserFilter filter ) {
